@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 7,
+  "revision": 8,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -8,7 +8,7 @@
     },
     {
       "path": "code-of-conduct/index.html",
-      "sha256": "254ba8efd519bdd919841f70786589198966ddae101466dd5f995d34d228cf38"
+      "sha256": "7349da133a638d016f7f5c05d90d7f2886620e33e64504022921389b9e60d52b"
     },
     {
       "path": "gigs/index.html",
