@@ -1,5 +1,10 @@
 {
   "schema": 1,
-  "revision": 0,
-  "files": []
+  "revision": 1,
+  "files": [
+    {
+      "path": "test/publisher-verification.html",
+      "sha256": "a03e3ff224b7045b91d90e6698d502218731b770b0b1b3da63ca3a6ef238860d"
+    }
+  ]
 }
