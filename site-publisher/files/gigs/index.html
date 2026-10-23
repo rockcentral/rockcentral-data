@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:dark;--bg:#0b0b0c;--panel:#19191c;--panel2:#242428;--line:#38383e;--yellow:#ffea00;--white:#fafafa;--muted:#c6c6cb}
+:root{color-scheme:dark;--bg:#0b0b0c;--panel:#19191c;--panel2:#242428;--line:#38383e;--yellow:#ffea00;--white:#fafafa;--muted:#c6c6cb;--font:Montserrat,Arial,sans-serif;--display:'Bebas Neue',Impact,'Arial Narrow',sans-serif}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--white);font-family:Montserrat,Arial,sans-serif;font-size:15px;line-height:1.7}
@@ -89,6 +89,53 @@ h1,h2,h3{font-family:"Bebas Neue",Impact,"Arial Narrow",sans-serif;line-height:1
 @media(max-width:900px){.header-inner{flex-direction:column;align-items:flex-start;padding:18px 0;gap:13px}.nav{justify-content:flex-start}.hero-inner{padding:64px 0 69px}.venue-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:580px){.container{width:calc(100% - 32px)}.brand img{width:220px;max-width:80vw}.nav a{font-size:.63rem;padding:8px}.hero h1{font-size:clamp(4rem,16vw,6.7rem)}.hero-inner{padding:54px 0}.section{padding:52px 0}.booking-head,.booking-bottom{padding:16px}.widget-wrap{padding:11px}.venue-grid{gap:10px}.venue-link{padding:17px 13px}.features{grid-template-columns:1fr}.features div{padding:19px 0}.features div+div{border-left:0;border-top:1px solid var(--line);padding:19px 0}.venue-cta-inner{flex-direction:column;align-items:flex-start}.venue-cta .button{white-space:normal}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Venue cards: exact styling reused from homepage source */
+.town-name{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.025em}
+.town{text-decoration:none}
+/* Compact, text-led cards. Keep the name and subtitle together. */
+    .town-grid {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:26px}
+    .town {position:relative;min-height:116px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:7px;padding:24px 20px 17px;background:linear-gradient(135deg,#222,#111);border:1px solid #444;border-radius:5px;transition:background .2s,border-color .2s,transform .2s,box-shadow .2s}
+    .town-arrow {position:absolute;top:10px;right:14px;color:var(--yellow);font-size:19px;line-height:1;pointer-events:none}
+    .town[hidden] {display:none!important}
+    .town:hover,.town:focus,.town:active {background:#252525;border-color:var(--yellow);box-shadow:inset 0 0 0 1px var(--yellow)}
+    .town:hover {transform:translateY(-2px)}
+    .town-name {font-size:clamp(28px,2.7vw,38px);line-height:.98;color:white;max-width:100%;overflow-wrap:normal}
+    .town-sub {display:block;max-width:100%;font-family:var(--font);font-size:10px;line-height:1.35;letter-spacing:.055em;font-weight:800;text-transform:uppercase;color:#b9b9b9}
+    .town .town-name.long {font-size:clamp(26px,2.5vw,34px)}
+    .inactive-venues {margin-top:44px;padding-top:26px;border-top:1px solid #303030}
+    .inactive-title {font:400 clamp(30px,3.3vw,42px)/1 var(--display);letter-spacing:.025em;margin:0}
+    .inactive-intro {color:#aaa;font-size:13px;margin:8px 0 0}
+    .inactive-venues .town-grid {margin-top:20px}
+    .town.inactive {min-height:133px;background:linear-gradient(135deg,#191919,#101010);border-color:#343434;gap:5px;padding-bottom:15px}
+    .town.inactive .town-name {color:#bdbdbd}
+    .town.inactive .town-sub {color:#999}
+    .town.inactive .town-arrow {color:#737373}
+    .town.inactive:hover,.town.inactive:focus {background:#222;border-color:#777;box-shadow:none}
+    .town-status {margin-top:7px;display:inline-block;padding:4px 7px;background:#303030;color:#c8c8c8;border:1px solid #464646;border-radius:2px;font-family:var(--font);font-size:9px;line-height:1.25;font-weight:700;letter-spacing:.045em;text-transform:uppercase}
+    .town.inactive:hover .town-status {background:#393939}
+    #no-active-venues {font-size:13px;margin-top:17px}
+@media(max-width:760px){
+.town-grid {grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+      .town {min-height:117px;padding:22px 13px 17px;gap:6px}
+      .town-name {font-size:clamp(25px,6.7vw,31px)}
+      .town .town-name.long {font-size:clamp(23px,6.0vw,28px)}
+      .town-sub {font-size:9px;line-height:1.3}
+      .town-arrow {right:11px;top:9px;font-size:17px}
+      .inactive-venues {margin-top:34px;padding-top:23px}
+      .inactive-venues .town-grid {margin-top:17px}
+      .town.inactive {min-height:132px;padding-bottom:12px;gap:4px}
+      .town-status {font-size:8px;padding:4px 6px;margin-top:5px;letter-spacing:.025em}
+}
+@media(max-width:365px){
+.town-grid {gap:8px}
+      .town {padding-inline:11px;min-height:120px}
+      .town.inactive {min-height:140px}
+      .town-name {font-size:24px}
+      .town .town-name.long {font-size:22px}
+      .town-sub {font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){.town{transition:none}}
 </style>
 </head>
 <body>
@@ -119,21 +166,128 @@ h1,h2,h3{font-family:"Bebas Neue",Impact,"Arial Narrow",sans-serif;line-height:1
 </div></section>
 <section class="section venues" id="venues"><div class="container">
 <div class="section-heading"><span class="eyebrow">Closer than you think</span><h2>FIND COMEDY NEAR YOU.</h2><p>Want to see what's on at your local comedy club? Pick a venue to explore its upcoming nights.</p></div>
-<div class="venue-grid">
-<a class="venue-link" href="/belper/"><strong>Belper Comedy Club</strong><span>Explore venue &nearr;</span></a>
-<a class="venue-link" href="/heanor/"><strong>Heanor Comedy Club</strong><span>Explore venue &nearr;</span></a>
-<a class="venue-link" href="/ripley/"><strong>Ripley Comedy Club</strong><span>Explore venue &nearr;</span></a>
-<a class="venue-link" href="/bollington/"><strong>Bolly Comedy Club</strong><span>Explore venue &nearr;</span></a>
-<a class="venue-link" href="/alfreton/"><strong>Alfreton Comedy Club</strong><span>Explore venue &nearr;</span></a>
-<a class="venue-link" href="/riddings/"><strong>Riddings Park Comedy Club</strong><span>Explore venue &nearr;</span></a>
-<a class="venue-link" href="/duffield/"><strong>Duffield Comedy Club</strong><span>Explore venue &nearr;</span></a>
-<a class="venue-link" href="/brookfield/"><strong>Brookfield Comedy Club</strong><span>Explore venue &nearr;</span></a>
+<div class="town-grid" id="active-town-grid" aria-label="Venues currently advertising shows">
+<a class="town" href="/belper/"><span class="town-arrow" aria-hidden="true">↗</span><span class="town-name">Belper</span><span class="town-sub">Comedy Club</span></a>
+<a class="town" href="/heanor/"><span class="town-arrow" aria-hidden="true">↗</span><span class="town-name">Heanor</span><span class="town-sub">Comedy Club</span></a>
+<a class="town" href="/elements/"><span class="town-arrow" aria-hidden="true">↗</span><span class="town-name">Ripley</span><span class="town-sub">Elements Lafternoon Comedy Club</span></a>
+<a class="town" href="/bolly/"><span class="town-arrow" aria-hidden="true">↗</span><span class="town-name long">Bollington</span><span class="town-sub">Bolly Comedy Club</span></a>
+<a class="town" href="/duffield/"><span class="town-arrow" aria-hidden="true">↗</span><span class="town-name">Duffield</span><span class="town-sub">Comedy Club</span></a>
+<a class="town" href="/odsal/"><span class="town-arrow" aria-hidden="true">↗</span><span class="town-name">Bradford</span><span class="town-sub">Odsal Comedy Club</span></a>
+<a class="town" href="/pentrich/"><span class="town-arrow" aria-hidden="true">↗</span><span class="town-name">Pentrich</span><span class="town-sub">Pentich Brewery Comedy Club</span></a>
+</div>
+<p id="no-active-venues" class="section-intro" hidden>There are no venues currently marked as having tickets on sale. <a href="https://tixevery.com/events/rockcentral">Browse all upcoming shows &rarr;</a></p>
+<div class="inactive-venues" id="inactive-venues">
+<h3 class="inactive-title">MORE ROCKCENTRAL VENUES</h3>
+<p class="inactive-intro">No dates announced at these venues just yet. Check back for new shows.</p>
+<div class="town-grid" id="inactive-town-grid" aria-label="Other RockCentral venues without announced shows">
+<a class="town inactive" href="/alfreton/" aria-label="Alfreton, no dates announced"><span class="town-arrow" aria-hidden="true">↗</span><span class="town-name">Alfreton</span><span class="town-sub">Comedy Club</span><span class="town-status">No dates announced</span></a>
+<a class="town inactive" href="/riddings/" aria-label="Riddings Park, no dates announced"><span class="town-arrow" aria-hidden="true">↗</span><span class="town-name long">Riddings Park</span><span class="town-sub">Comedy Club</span><span class="town-status">No dates announced</span></a>
+<a class="town inactive" href="/brookfield/" aria-label="Brookfield, no dates announced"><span class="town-arrow" aria-hidden="true">↗</span><span class="town-name long">Brookfield</span><span class="town-sub">Comedy Club</span><span class="town-status">No dates announced</span></a>
+<a class="town inactive" href="/icf/" aria-label="Independent Comedy Festival, no dates announced"><span class="town-arrow" aria-hidden="true">↗</span><span class="town-name long">Independent Comedy Festival</span><span class="town-sub">INDIE COM FEST</span><span class="town-status">No dates announced</span></a>
+<a class="town inactive" href="/somercotes/" aria-label="Somercotes, no dates announced"><span class="town-arrow" aria-hidden="true">↗</span><span class="town-name long">Somercotes</span><span class="town-sub">Little Premier Comedy Club</span><span class="town-status">No dates announced</span></a>
+<a class="town inactive" href="/ramfest/" aria-label="Ram Fest, no dates announced"><span class="town-arrow" aria-hidden="true">↗</span><span class="town-name">Ram Fest</span><span class="town-sub">Derby&#39;s Independent Comedy Festival</span><span class="town-status">No dates announced</span></a>
+</div>
 </div>
 <div class="features"><div><h3>Proper live comedy</h3><p>Real stand-up and a brilliant atmosphere, right where you live.</p></div><div><h3>Local venues</h3><p>Club nights and special events across the Midlands and beyond.</p></div><div><h3>Book direct</h3><p>Choose your show and pay securely through TixEvery.</p></div></div>
 </div></section>
 <section class="venue-cta"><div class="container venue-cta-inner"><div><h2>BRING COMEDY TO YOUR VENUE.</h2><p>We create memorable comedy nights for pubs, clubs, theatres and arts centres.</p></div><a class="button" href="/venues/">Work with us &rarr;</a></div></section>
 </main>
 <footer class="footer"><div class="container footer-inner"><div><h2>ROCKCENTRAL PROMOTIONS</h2><small>Independent live comedy since 2019.</small></div><nav aria-label="Footer navigation"><a href="/">Home</a><a href="/code-of-conduct/">Code of Conduct</a><a href="/venues/">For venues</a><a href="/contact/">Contact</a><a href="https://fb.me/rockcentralpromotions">Facebook</a><a href="https://www.instagram.com/rockcentralpromotions/">Instagram</a><a href="mailto:info@rockcentralpromotions.com">Email</a></nav></div></footer>
+<script>
+    // The Google Sheet remains the single source for venue card content and status.
+    // Unticked venues move to a quieter group at the bottom, rather than disappearing.
+    // Keep the static HTML as a safe fallback if the public read-only feed fails.
+    (function () {
+      'use strict';
+      const activeGrid = document.getElementById('active-town-grid');
+      const inactiveGrid = document.getElementById('inactive-town-grid');
+      const inactiveArea = document.getElementById('inactive-venues');
+      const emptyMessage = document.getElementById('no-active-venues');
+      if (!activeGrid || !inactiveGrid || !inactiveArea) return;
+
+      function makeCard(venue) {
+        const link = document.createElement('a');
+        link.className = venue.enabled ? 'town' : 'town inactive';
+        link.href = venue.path;
+        if (!venue.enabled) {
+          link.setAttribute('aria-label', venue.name + ', no dates announced');
+        }
+
+        const arrow = document.createElement('span');
+        arrow.className = 'town-arrow';
+        arrow.setAttribute('aria-hidden', 'true');
+        arrow.textContent = '↗';
+
+        const name = document.createElement('span');
+        name.className = 'town-name' + (venue.name.length > 9 ? ' long' : '');
+        name.textContent = venue.name;
+
+        const subtitle = document.createElement('span');
+        subtitle.className = 'town-sub';
+        subtitle.textContent = venue.subtitle;
+        link.append(arrow, name, subtitle);
+
+        if (!venue.enabled) {
+          const status = document.createElement('span');
+          status.className = 'town-status';
+          status.textContent = 'No dates announced';
+          link.append(status);
+        }
+        return link;
+      }
+
+      window.RockCentralReceiveVenueData = function (response) {
+        if (!response || response.status !== 'ok' || !response.table ||
+            !Array.isArray(response.table.rows)) return;
+
+        const active = [];
+        const inactive = [];
+        const seen = new Set();
+        let validRows = 0;
+
+        for (const row of response.table.rows) {
+          const cells = row && row.c;
+          if (!cells || cells.length < 3) continue;
+          const name = String(cells[0] && cells[0].v != null ? cells[0].v : '').trim();
+          const checked = cells[1] && cells[1].v;
+          const path = String(cells[2] && cells[2].v != null ? cells[2].v : '').trim().toLowerCase();
+          const subtitle = String(cells[3] && cells[3].v != null ? cells[3].v : '').trim();
+
+          // Only same-site venue links are allowed, and every folder appears once.
+          if (!name || name.length > 70 || !/^\/[a-z0-9-]+\/$/.test(path) || seen.has(path)) continue;
+          seen.add(path);
+          validRows++;
+          const enabled = checked === true || /^(true|yes|1|on)$/i.test(String(checked));
+          const venue = { name, path, enabled, subtitle: subtitle.slice(0, 60) || 'Comedy Club' };
+          (enabled ? active : inactive).push(venue);
+        }
+        if (!validRows) return; // Preserve the existing cards on invalid sheet data.
+
+        const activeCards = document.createDocumentFragment();
+        const inactiveCards = document.createDocumentFragment();
+        active.forEach(venue => activeCards.appendChild(makeCard(venue)));
+        inactive.forEach(venue => inactiveCards.appendChild(makeCard(venue)));
+        activeGrid.replaceChildren(activeCards);
+        inactiveGrid.replaceChildren(inactiveCards);
+        inactiveArea.hidden = inactive.length === 0;
+        if (emptyMessage) emptyMessage.hidden = active.length > 0;
+      };
+
+      const feed = document.createElement('script');
+      const base = 'https://docs.google.com/spreadsheets/d/1gbOzjmyylAAQNoCEggmoc3ZUZ_ekhVjX7W-DDqjnHfI/gviz/tq';
+      const params = new URLSearchParams({
+        gid: '2029282768',
+        headers: '1',
+        tq: 'select A, B, C, D',
+        tqx: 'out:json;responseHandler:RockCentralReceiveVenueData',
+        v: String(Math.floor(Date.now() / 300000))
+      });
+      feed.src = base + '?' + params.toString();
+      feed.async = true;
+      feed.onerror = () => console.warn('Venue settings unavailable; showing fallback cards.');
+      document.head.appendChild(feed);
+    })();
+  </script>
 <script async src="https://tixevery.com/public/widgets/embed.js"></script>
 </body>
 </html>
