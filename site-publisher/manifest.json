@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 5,
+  "revision": 6,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -12,7 +12,7 @@
     },
     {
       "path": "gigs/index.html",
-      "sha256": "5c73f8aea0911ba77d978f92c813dbd09a9a4c5e04df25cf4a4d5cdd4ce6c305"
+      "sha256": "0540d1ae2475b2205270e49a022c003a96a206be4a0fd184e8e509a0b3447bad"
     }
   ]
 }
