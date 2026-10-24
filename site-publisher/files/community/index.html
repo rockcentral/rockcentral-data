@@ -24,6 +24,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script>
+(function(){
+  if ('IntersectionObserver' in window &&
+      !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('motion-ready');
+  }
+})();
+</script>
 <style>
 :root{color-scheme:dark;--bg:#0d0d0e;--panel:#1b1b1e;--panel2:#242428;--ink:#f8f8f6;--muted:#cacace;--line:#36363b;--yellow:#ffea00;--display:'Bebas Neue',Impact,'Arial Narrow',sans-serif;--body:Montserrat,Arial,sans-serif}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.75 var(--body)}a{color:inherit}a:focus-visible{outline:3px solid var(--yellow);outline-offset:4px}
@@ -46,6 +54,13 @@ nav.main{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap
 @media(max-width:900px){.header-inner{flex-direction:column;align-items:flex-start;padding:17px 0;gap:11px}.principles-inner{gap:28px}}
 @media(max-width:680px){.container{width:calc(100% - 32px)}nav.main a{padding:7px;font-size:.61rem}.intro{padding:45px 0}.section{padding:48px 0}.grid{grid-template-columns:1fr;gap:13px}.tile{padding:23px;min-height:0}.principles-inner{grid-template-columns:1fr;gap:8px}.cta-inner{display:block}.cta .action{margin-top:22px;white-space:normal}.release{flex-wrap:wrap}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Reveal content as it comes into view; never hide it without supported JS. */
+html.motion-ready .fade-in{opacity:0;transform:translate3d(0,24px,0);transition:opacity .7s ease-out,transform .7s cubic-bezier(.2,.8,.2,1);transition-delay:var(--reveal-delay,0ms)}
+html.motion-ready .fade-in.is-visible{opacity:1;transform:none}
+.grid .tile:nth-child(even){--reveal-delay:95ms}
+@media(prefers-reduced-motion:reduce){html.motion-ready .fade-in{opacity:1;transform:none;transition:none}}
+@media print{html.motion-ready .fade-in{opacity:1!important;transform:none!important}}
 </style>
 </head>
 <body>
@@ -55,25 +70,44 @@ nav.main{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap
 <nav class="main" aria-label="Main navigation"><a href="/gigs/">Upcoming shows</a><a href="/#locations">Locations</a><a href="/community/" aria-current="page">Community</a><a href="/venues/">For venues</a><a class="nav-cta" href="/gigs/">Find tickets &rarr;</a></nav>
 </div></header>
 <main id="main">
-<section class="banner" aria-label="RockCentral Community"><div class="banner-inner"><img src="/assets/social/og-community.jpg" alt="RockCentral Community: stand-up comedian performing for an audience, with the RockCentral logo" width="1200" height="630"></div></section>
-<section class="intro"><div class="container">
+<section class="banner fade-in" aria-label="RockCentral Community"><div class="banner-inner"><img src="/assets/social/og-community.jpg" alt="RockCentral Community: stand-up comedian performing for an audience, with the RockCentral logo" width="1200" height="630"></div></section>
+<section class="intro fade-in"><div class="container">
 <span class="eyebrow">More than putting on shows</span>
 <h1>BACKING THE PEOPLE WHO <em>MAKE COMEDY HAPPEN.</em></h1>
 <p>Great comedy nights don't happen by accident. They need performers, organisers, venues and audiences who care about the scene. Here are some of the ways RockCentral supports the people behind live comedy.</p>
 <div class="pills" aria-label="Community themes"><span>Access</span><span>Opportunities</span><span>Development</span><span>Safety</span><span>Fair treatment</span></div>
 </div></section>
 <section class="section" aria-labelledby="commitments"><div class="container">
-<div class="section-head"><span class="eyebrow">Our commitment to comedy</span><h2 id="commitments">WHAT WE DO.</h2><p>Six practical ways we support comics and others working in live comedy.</p></div>
+<div class="section-head fade-in"><span class="eyebrow">Our commitment to comedy</span><h2 id="commitments">WHAT WE DO.</h2><p>Six practical ways we support comics and others working in live comedy.</p></div>
 <div class="grid">
-<article class="tile"><span class="number">01 / ACCESS</span><h3>FREE TICKETS FOR COMEDY PEOPLE</h3><p>Comics and anyone connected to the live comedy industry can request complimentary tickets to any RockCentral show, provided it isn't already sold out. Come and enjoy a show, support other acts or see a room in action.</p><a href="mailto:info@rockcentralpromotions.com?subject=Comedy%20industry%20tickets">Ask about tickets &rarr;</a></article>
-<article class="tile"><span class="number">02 / OPPORTUNITIES</span><h3>ROCKCENTRAL GIG SPOTS</h3><p>Our private Facebook group, RockCentral Gig Spots, helps comics hear about gig opportunities and stay connected with what's happening at RockCentral.</p><a href="mailto:info@rockcentralpromotions.com?subject=RockCentral%20Gig%20Spots%20group">Ask to join the group &rarr;</a></article>
-<article class="tile"><span class="number">03 / DEVELOPMENT</span><h3>COURSES AND WORKSHOPS</h3><p>We run regular comedy courses and workshops for aspiring comedians. Whether you're preparing to try stand-up for the first time or looking to develop what you do on stage, we want to help more people give comedy a go.</p></article>
-<article class="tile"><span class="number">04 / SAFETY</span><h3>SAFER GIGS FOR EVERYONE</h3><p>We work with Get Off! Live Comedy to support safer working environments in stand-up. Our own Code of Conduct also sets out expected behaviour and how to raise concerns.</p></article>
-<article class="tile"><span class="number">05 / FAIR TREATMENT</span><h3>PAID WITHIN 48 HOURS</h3><p>Performers shouldn't have to chase their fees. We pay our acts within 48 hours of receiving their invoices.</p></article>
-<article class="tile"><span class="number">06 / NEW TALENT</span><h3>PAID RISING STAR SPOTS</h3><p>Many of our professional bills include paid Rising Star open spots. It's a chance for newer comics to perform in front of a paying audience alongside established acts, with a fee for their work.</p></article>
+<article class="tile fade-in"><span class="number">01 / ACCESS</span><h3>FREE TICKETS FOR COMEDY PEOPLE</h3><p>Comics and anyone connected to the live comedy industry can request complimentary tickets to any RockCentral show, provided it isn't already sold out. Come and enjoy a show, support other acts or see a room in action.</p><a href="mailto:info@rockcentralpromotions.com?subject=Comedy%20industry%20tickets">Ask about tickets &rarr;</a></article>
+<article class="tile fade-in"><span class="number">02 / OPPORTUNITIES</span><h3>ROCKCENTRAL GIG SPOTS</h3><p>Our private Facebook group, RockCentral Gig Spots, helps comics hear about gig opportunities and stay connected with what's happening at RockCentral.</p><a href="mailto:info@rockcentralpromotions.com?subject=RockCentral%20Gig%20Spots%20group">Ask to join the group &rarr;</a></article>
+<article class="tile fade-in"><span class="number">03 / DEVELOPMENT</span><h3>COURSES AND WORKSHOPS</h3><p>We run regular comedy courses and workshops for aspiring comedians. Whether you're preparing to try stand-up for the first time or looking to develop what you do on stage, we want to help more people give comedy a go.</p></article>
+<article class="tile fade-in"><span class="number">04 / SAFETY</span><h3>SAFER GIGS FOR EVERYONE</h3><p>We work with Get Off! Live Comedy to support safer working environments in stand-up. Our own Code of Conduct also sets out expected behaviour and how to raise concerns.</p></article>
+<article class="tile fade-in"><span class="number">05 / FAIR TREATMENT</span><h3>PAID WITHIN 48 HOURS</h3><p>Performers shouldn't have to chase their fees. We pay our acts within 48 hours of receiving their invoices.</p></article>
+<article class="tile fade-in"><span class="number">06 / NEW TALENT</span><h3>PAID RISING STAR SPOTS</h3><p>Many of our professional bills include paid Rising Star open spots. It's a chance for newer comics to perform in front of a paying audience alongside established acts, with a fee for their work.</p></article>
 </div></div></section>
-<section class="principles"><div class="container principles-inner"><div><span class="eyebrow">Respect on and off stage</span><h2>COMEDY SHOULD BE <span>GOOD TO ITS PEOPLE.</span></h2></div><div><p>We want RockCentral shows to be places where audiences enjoy themselves, performers are treated fairly and newer acts get genuine opportunities.</p><p>That means setting clear expectations, being approachable when something goes wrong and taking the wider comedy community seriously.</p><p>Learn more about <a href="https://getofflivecomedy.org/" target="_blank" rel="noopener noreferrer">Get Off! Live Comedy</a> and read our <a href="/code-of-conduct/">Code of Conduct</a>.</p></div></div></section>
-<section class="cta"><div class="container cta-inner"><div><h2>PART OF THE COMEDY COMMUNITY?</h2><p>For general enquiries about RockCentral and our community activities, use our contact page.</p></div><a class="action" href="/contact/">Get in touch &rarr;</a></div></section>
+<section class="principles fade-in"><div class="container principles-inner"><div><span class="eyebrow">Respect on and off stage</span><h2>COMEDY SHOULD BE <span>GOOD TO ITS PEOPLE.</span></h2></div><div><p>We want RockCentral shows to be places where audiences enjoy themselves, performers are treated fairly and newer acts get genuine opportunities.</p><p>That means setting clear expectations, being approachable when something goes wrong and taking the wider comedy community seriously.</p><p>Learn more about <a href="https://getofflivecomedy.org/" target="_blank" rel="noopener noreferrer">Get Off! Live Comedy</a> and read our <a href="/code-of-conduct/">Code of Conduct</a>.</p></div></div></section>
+<section class="cta fade-in"><div class="container cta-inner"><div><h2>PART OF THE COMEDY COMMUNITY?</h2><p>For general enquiries about RockCentral and our community activities, use our contact page.</p></div><a class="action" href="/contact/">Get in touch &rarr;</a></div></section>
 </main>
-<footer class="footer"><div class="container footer-inner"><div><h2>ROCKCENTRAL PROMOTIONS</h2><small>Independent live comedy since 2019.</small></div><nav aria-label="Footer navigation"><a href="/">Home</a><a href="/gigs/">All shows</a><a href="/community/">Community</a><a href="/venues/">For venues</a><a href="/contact/">Contact</a><a href="https://fb.me/rockcentralpromotions">Facebook</a><a href="https://www.instagram.com/rockcentralpromotions/">Instagram</a></nav></div><div class="container release"><span>Page v2</span><span>Prepared 24 October 2026</span></div></div></footer>
+<footer class="footer"><div class="container footer-inner"><div><h2>ROCKCENTRAL PROMOTIONS</h2><small>Independent live comedy since 2019.</small></div><nav aria-label="Footer navigation"><a href="/">Home</a><a href="/gigs/">All shows</a><a href="/community/">Community</a><a href="/venues/">For venues</a><a href="/contact/">Contact</a><a href="https://fb.me/rockcentralpromotions">Facebook</a><a href="https://www.instagram.com/rockcentralpromotions/">Instagram</a></nav></div><div class="container release"><span>Page v3</span><span>Prepared 24 October 2026</span></div></div></footer>
+<script>
+(function(){
+  if (!document.documentElement.classList.contains('motion-ready')) return;
+  try {
+    var items=document.querySelectorAll('.fade-in');
+    var observer=new IntersectionObserver(function(entries, obs){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.1,rootMargin:'0px 0px -30px 0px'});
+    items.forEach(function(item){observer.observe(item)});
+  } catch(err) {
+    document.documentElement.classList.remove('motion-ready');
+  }
+})();
+</script>
 </body></html>
