@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 10,
+  "revision": 11,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -17,6 +17,14 @@
     {
       "path": "assets/venues/publisher-verification.png",
       "sha256": "13bfe60206617eefb865c5353da00b8d32e12aa77cf476cee8234faf6953e388"
+    },
+    {
+      "path": "community/index.html",
+      "sha256": "3cbfb0fc067544e0bad97b9df9852d7afc99bd295bbdb91ff3f2263352e00989"
+    },
+    {
+      "path": "assets/social/og-community.jpg",
+      "sha256": "a56776573480bec25f088b42908714e0d634080035925c92dfaf10c83e1185a1"
     }
   ]
 }
