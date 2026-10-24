@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 11,
+  "revision": 12,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -20,7 +20,7 @@
     },
     {
       "path": "community/index.html",
-      "sha256": "3cbfb0fc067544e0bad97b9df9852d7afc99bd295bbdb91ff3f2263352e00989"
+      "sha256": "f4a6aecb87974327d7fcf980f28f750fd420a3e14993eb42d65e315bdd8f8b1c"
     },
     {
       "path": "assets/social/og-community.jpg",
