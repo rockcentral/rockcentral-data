@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 14,
+  "revision": 15,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -25,6 +25,10 @@
     {
       "path": "assets/social/og-community.jpg",
       "sha256": "a56776573480bec25f088b42908714e0d634080035925c92dfaf10c83e1185a1"
+    },
+    {
+      "path": "duffield/index.html",
+      "sha256": "8ebc420b710572d36637d6ee3d021afeefde8060fadd5b3b88628ad1dfc17fb2"
     }
   ]
 }
