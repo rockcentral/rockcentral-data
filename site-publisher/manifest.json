@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 21,
+  "revision": 22,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -40,7 +40,11 @@
     },
     {
       "path": "elements/index.html",
-      "sha256": "7b06f1d44f90dcf723c21f835fc9169cf419089a39dffbb73df82d7979287126"
+      "sha256": "1e17181c14c9c02c91c32de3974fb35be520b8a0f8b5a1775a1a8f59e9f35539"
+    },
+    {
+      "path": "assets/venues/elements-tom.webp",
+      "sha256": "a4cfaf1d83a39019590ac744dfba65328d1a0b35fbdbc774f330670540ee7cca"
     }
   ]
 }
