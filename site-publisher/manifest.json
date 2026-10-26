@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 15,
+  "revision": 16,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -29,6 +29,14 @@
     {
       "path": "duffield/index.html",
       "sha256": "8ebc420b710572d36637d6ee3d021afeefde8060fadd5b3b88628ad1dfc17fb2"
+    },
+    {
+      "path": "cleckheaton/index.html",
+      "sha256": "8ce32c7ebfafc0141d3305e11b95b81951cc4665594768d417a3681e82983a4d"
+    },
+    {
+      "path": "cleckheaton/images/the-meat-drunkery-cleckheaton.jpg",
+      "sha256": "e42a1215e27cd9eb8111345ced5f1bc2ddf92b1efeb4cbceda2dd171dc0ab7eb"
     }
   ]
 }
