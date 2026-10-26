@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 17,
+  "revision": 18,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -32,7 +32,7 @@
     },
     {
       "path": "cleckheaton/index.html",
-      "sha256": "24c6bd51da2474bd35369a3e885d5da805a2e07897869ca364fb93f845457db3"
+      "sha256": "0aec38e2216282a48e60fe2dff0a360b97779bd21e49a0f1b8c20543085a93cf"
     },
     {
       "path": "assets/venues/the-meat-drunkery-cleckheaton.jpg",
