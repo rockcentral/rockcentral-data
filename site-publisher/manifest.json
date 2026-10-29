@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 34,
+  "revision": 35,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -52,11 +52,15 @@
     },
     {
       "path": "recalculating/index.html",
-      "sha256": "ba49f2b2651c3833925a3b5c983de3d2bfc84f0086f54f64dc03bc9e1aa3a249"
+      "sha256": "d8f06ced8b0a0acf5257250e4cb0382ee3a96812e6a925e9214a0470cba7911c"
     },
     {
       "path": "assets/venues/recalculating-poster.webp",
       "sha256": "264cc1c4c607406250a517a908b0333c075c0484905084d5b65565804b18ea61"
+    },
+    {
+      "path": "assets/venues/recalculating-favicon.png",
+      "sha256": "703c7cb78820bd46191181eea68ffdfede155d4a824804da702c08fd4636d1dd"
     }
   ]
 }
