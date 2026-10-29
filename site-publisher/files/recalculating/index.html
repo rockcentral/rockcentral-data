@@ -24,6 +24,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script>
+(function(){
+  if ('IntersectionObserver' in window &&
+      !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('motion-ready');
+  }
+})();
+</script>
 <style>
 :root{--blue:#07519e;--sky:#1687d0;--cream:#fff8e7;--ink:#092948;--red:#e94730;--pale:#f6f0e1;--line:#c7d5df;--white:#fffdf8;--shadow:0 16px 42px #0027522e;--body:Montserrat,Arial,sans-serif;--display:'Bebas Neue',Impact,'Arial Narrow',sans-serif}
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:85px}body{margin:0;color:var(--ink);background:var(--cream);font:500 15px/1.7 var(--body)}a{color:inherit}a:focus-visible,button:focus-visible{outline:3px solid var(--red);outline-offset:4px}button{font:inherit}
@@ -98,6 +106,20 @@
   .poster-wrap{width:min(280px,75%);margin-top:2px}
 }
 @media(max-width:360px){.hero-actions{gap:5px}.hero-actions .btn{font-size:.61rem;padding:9px 10px}.hero-actions .btn-ghost{padding-inline:4px}}
+
+/* v13: Scroll-in sections, matching RockCentral Community behaviour. */
+html.motion-ready .fade-in{opacity:0;transform:translate3d(0,24px,0);transition:opacity .7s ease-out,transform .7s cubic-bezier(.2,.8,.2,1);transition-delay:var(--reveal-delay,0ms)}
+html.motion-ready .fade-in.is-visible{opacity:1;transform:none}
+.hero-grid>.poster-wrap{--reveal-delay:110ms}
+.tour-row:nth-child(even){--reveal-delay:90ms}
+.about-grid>.feature{--reveal-delay:105ms}
+.people-grid>.person:nth-child(even){--reveal-delay:95ms}
+@media(max-width:710px){
+  /* Raise the road, horizon and marker behind the main mobile copy. */
+  .hero-scenery{transform:translateY(-115px)}
+}
+@media(prefers-reduced-motion:reduce){html.motion-ready .fade-in{opacity:1;transform:none;transition:none}.hero-scenery{transition:none}}
+@media print{html.motion-ready .fade-in{opacity:1!important;transform:none!important}}
 </style>
 </head>
 <body>
@@ -122,24 +144,24 @@
 <path d="M304 925 C390 845 394 813 335 781 C261 740 383 716 352 664 C326 625 374 600 370 561" fill="none" stroke="#f9e9bf" stroke-width="3" stroke-dasharray="9 19" stroke-linecap="round" opacity=".72"/>
 <g transform="translate(376 540)" opacity=".8"><path d="M0-31c-15 0-27 12-27 27 0 21 27 48 27 48S27 17 27-4C27-19 15-31 0-31Z" fill="#ec4c34" stroke="#ffede2" stroke-width="3"/><circle cy="-5" r="9" fill="#fff1df"/></g>
 </svg>
-<div class="wrap hero-grid"><div>
+<div class="wrap hero-grid"><div class="hero-content fade-in">
 <span class="kicker">Dawn Bailey &amp; Anthony Williams / Live comedy</span>
 <h1 class="title">RECALCULATING</h1>
 <p class="tagline">Two people. Two stories.<br>Plenty of wrong turns.</p>
 <p class="hero-copy"><span class="hero-copy-desktop">Life doesn't always take the route you planned. A brand-new live comedy show from Dawn Bailey and Anthony Williams, with stories of detours, decisions and the occasional spectacular wrong turn.</span><span class="hero-copy-mobile">A new live comedy show about life's unexpected detours and the decisions that take us there.</span></p>
 <div class="hero-actions"><a class="btn btn-light" href="#dates">See tour dates &darr;</a><a class="btn btn-ghost" href="#about">About the show</a></div>
-</div><div class="poster-wrap"><img class="poster" src="https://rockcentralpromotions.com/assets/venues/recalculating-poster.webp" width="540" height="764" alt="RECALCULATING show poster featuring Dawn Bailey and Anthony Williams against a bright blue sky and winding road" fetchpriority="high"><svg class="route-mark" viewBox="0 0 160 100" aria-hidden="true"><path d="M0 75C55 4 62 120 160 22"/></svg></div></div></section>
-<section class="section dates-section" id="dates" aria-labelledby="dates-title"><div class="wrap"><span class="eyebrow">Your next destination</span><div class="dates-toolbar"><div><h2 id="dates-title">TOUR DATES</h2><p class="section-lead">Upcoming shows and the road travelled so far.</p></div><span class="small">Dates shown in UK local time</span></div>
+</div><div class="poster-wrap fade-in"><img class="poster" src="https://rockcentralpromotions.com/assets/venues/recalculating-poster.webp" width="540" height="764" alt="RECALCULATING show poster featuring Dawn Bailey and Anthony Williams against a bright blue sky and winding road" fetchpriority="high"><svg class="route-mark" viewBox="0 0 160 100" aria-hidden="true"><path d="M0 75C55 4 62 120 160 22"/></svg></div></div></section>
+<section class="section dates-section" id="dates" aria-labelledby="dates-title"><div class="wrap"><span class="eyebrow">Your next destination</span><div class="dates-toolbar fade-in"><div><h2 id="dates-title">TOUR DATES</h2><p class="section-lead">Upcoming shows and the road travelled so far.</p></div><span class="small">Dates shown in UK local time</span></div>
 <div class="dates" id="tour-dates" aria-live="polite">
 <!-- Accessible starter content remains useful offline; script refreshes it from CSV on hosted site. -->
-<div class="tour-row"><div class="date"><span class="day">09</span><span class="month">DEC 2026</span><span class="dow">WED</span></div><div class="city">HATHERN</div><div class="venue-cell"><div class="venue">Dew Drop Inn</div><div class="details">Double work in progress · 7.30pm</div></div><div class="performance">Double work in progress</div><div class="action"><a class="ticket-link" href="https://www.ticketsource.com/laffalot-promotions/dew-drop-comedy-club-anthony-williams-amp-dawn-bailey-double-work-in-progress/e-dkoolgo" target="_blank" rel="noopener noreferrer">Tickets &rarr;</a></div></div>
-<div class="tour-row"><div class="date"><span class="day">13</span><span class="month">FEB 2027</span><span class="dow">SAT</span></div><div class="city">LEICESTER</div><div class="venue-cell"><div class="venue">Real Ale Classroom</div><div class="details">Independent Comedy Festival · 7.30pm</div></div><div class="performance">Independent Comedy Festival</div><div class="action"><a class="ticket-link" href="https://indiecomedyfest.co.uk/tickets" target="_blank" rel="noopener noreferrer">Tickets &rarr;</a></div></div>
+<div class="tour-row fade-in"><div class="date"><span class="day">09</span><span class="month">DEC 2026</span><span class="dow">WED</span></div><div class="city">HATHERN</div><div class="venue-cell"><div class="venue">Dew Drop Inn</div><div class="details">Double work in progress · 7.30pm</div></div><div class="performance">Double work in progress</div><div class="action"><a class="ticket-link" href="https://www.ticketsource.com/laffalot-promotions/dew-drop-comedy-club-anthony-williams-amp-dawn-bailey-double-work-in-progress/e-dkoolgo" target="_blank" rel="noopener noreferrer">Tickets &rarr;</a></div></div>
+<div class="tour-row fade-in"><div class="date"><span class="day">13</span><span class="month">FEB 2027</span><span class="dow">SAT</span></div><div class="city">LEICESTER</div><div class="venue-cell"><div class="venue">Real Ale Classroom</div><div class="details">Independent Comedy Festival · 7.30pm</div></div><div class="performance">Independent Comedy Festival</div><div class="action"><a class="ticket-link" href="https://indiecomedyfest.co.uk/tickets" target="_blank" rel="noopener noreferrer">Tickets &rarr;</a></div></div>
 </div></div></section>
-<section class="section about" id="about"><div class="wrap about-grid"><div><span class="eyebrow">About the show</span><h2>THE SCENIC <em>ROUTE.</em></h2><p><strong>RECALCULATING</strong></p><p>Two people. Two stories. Plenty of wrong turns.</p><p>In Recalculating, Anthony Williams and Dawn Bailey each tell a story about the point at which the life they were heading towards stopped feeling like the right destination.</p><p>There are relationships, family, reinvention, questionable decisions, unexpected detours and at least one near-assassination attempt.</p><p>Two very different stories, each asking the same question: when the destination no longer makes you happy, is it time to recalculate?</p><p class="wip-note">Work in progress.</p></div><div class="feature"><p class="quote">TWO PEOPLE.<br>TWO STORIES.<br>PLENTY OF<br>WRONG TURNS.</p><p class="footnote">No sat-nav can prepare you for this.</p></div></div></section>
-<section class="section people" id="performers"><div class="wrap"><span class="eyebrow">Meet the comedians</span><h2>DAWN &amp; ANTHONY.</h2><p class="section-lead">Two established stand-up performers, bringing their own perspectives to the same question: what happens when life changes course?</p><div class="people-grid"><article class="person"><h3>DAWN BAILEY</h3><p>Stand-up comedian and one half of RECALCULATING. Her story brings its own wrong turns and unexpected destinations.</p><a href="https://dawnbaileycomedy.com/" target="_blank" rel="noopener noreferrer">Dawn&#39;s comedy website &rarr;</a></article><article class="person"><h3>ANTHONY WILLIAMS</h3><p>Stand-up comedian, Funhouse resident MC and a 2026 Spirit of Comedy finalist. Anthony is the other half of RECALCULATING.</p><a href="https://anthonywilliamscomedy.com/" target="_blank" rel="noopener noreferrer">Anthony's comedy website &rarr;</a></article></div></div></section>
-<section class="contact" id="contact"><div class="wrap contact-in"><div><span class="kicker">For promoters, venues and press</span><h2>FANCY A DETOUR?</h2><p>Interested in booking RECALCULATING or discussing a festival appearance? Get in touch with us directly.</p></div><a class="btn btn-light" href="mailto:info@rockcentralpromotions.com?subject=RECALCULATING%20Show%20Enquiry">Email about the show &rarr;</a></div></section>
+<section class="section about" id="about"><div class="wrap about-grid"><div class="fade-in"><span class="eyebrow">About the show</span><h2>THE SCENIC <em>ROUTE.</em></h2><p><strong>RECALCULATING</strong></p><p>Two people. Two stories. Plenty of wrong turns.</p><p>In Recalculating, Anthony Williams and Dawn Bailey each tell a story about the point at which the life they were heading towards stopped feeling like the right destination.</p><p>There are relationships, family, reinvention, questionable decisions, unexpected detours and at least one near-assassination attempt.</p><p>Two very different stories, each asking the same question: when the destination no longer makes you happy, is it time to recalculate?</p><p class="wip-note">Work in progress.</p></div><div class="feature fade-in"><p class="quote">TWO PEOPLE.<br>TWO STORIES.<br>PLENTY OF<br>WRONG TURNS.</p><p class="footnote">No sat-nav can prepare you for this.</p></div></div></section>
+<section class="section people" id="performers"><div class="wrap"><span class="eyebrow">Meet the comedians</span><h2>DAWN &amp; ANTHONY.</h2><p class="section-lead">Two established stand-up performers, bringing their own perspectives to the same question: what happens when life changes course?</p><div class="people-grid"><article class="person fade-in"><h3>DAWN BAILEY</h3><p>Stand-up comedian and one half of RECALCULATING. Her story brings its own wrong turns and unexpected destinations.</p><a href="https://dawnbaileycomedy.com/" target="_blank" rel="noopener noreferrer">Dawn&#39;s comedy website &rarr;</a></article><article class="person fade-in"><h3>ANTHONY WILLIAMS</h3><p>Stand-up comedian, Funhouse resident MC and a 2026 Spirit of Comedy finalist. Anthony is the other half of RECALCULATING.</p><a href="https://anthonywilliamscomedy.com/" target="_blank" rel="noopener noreferrer">Anthony's comedy website &rarr;</a></article></div></div></section>
+<section class="contact" id="contact"><div class="wrap contact-in fade-in"><div><span class="kicker">For promoters, venues and press</span><h2>FANCY A DETOUR?</h2><p>Interested in booking RECALCULATING or discussing a festival appearance? Get in touch with us directly.</p></div><a class="btn btn-light" href="mailto:info@rockcentralpromotions.com?subject=RECALCULATING%20Show%20Enquiry">Email about the show &rarr;</a></div></section>
 </main>
-<footer class="footer"><div class="wrap footer-in"><div><small>&copy; <span id="copyright-year">2026</span> RECALCULATING. Dawn Bailey &amp; Anthony Williams.</small><div class="release">Page v12 &middot; Updated 29 October 2026 at 16:30 GMT</div></div><small>Website and bookings: <a href="mailto:info@rockcentralpromotions.com?subject=RECALCULATING%20Show%20Enquiry">RockCentral Promotions</a></small></div></footer>
+<footer class="footer"><div class="wrap footer-in"><div><small>&copy; <span id="copyright-year">2026</span> RECALCULATING. Dawn Bailey &amp; Anthony Williams.</small><div class="release">Page v13 &middot; Updated 29 October 2026 at 16:45 GMT</div></div><small>Website and bookings: <a href="mailto:info@rockcentralpromotions.com?subject=RECALCULATING%20Show%20Enquiry">RockCentral Promotions</a></small></div></footer>
 <script>
 (function(){
 'use strict';
@@ -150,9 +172,9 @@ function parseCSV(raw){var lines=raw.replace(/^\uFEFF/,'');var out=[],row=[],v='
 function currentDateISO(){var parts=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());var p={};parts.forEach(function(x){p[x.type]=x.value;});return p.year+'-'+p.month+'-'+p.day;}
 function rowHTML(e,today){if(!/^\d{4}-\d{2}-\d{2}$/.test(e.date))return '';var d=new Date(e.date+'T12:00:00Z');if(isNaN(d.getTime()))return '';
 var past=e.date<today,day=new Intl.DateTimeFormat('en-GB',{day:'2-digit',timeZone:'UTC'}).format(d),month=new Intl.DateTimeFormat('en-GB',{month:'short',year:'numeric',timeZone:'UTC'}).format(d).toUpperCase(),dow=new Intl.DateTimeFormat('en-GB',{weekday:'short',timeZone:'UTC'}).format(d).toUpperCase();var t=e.time&&/^\d{2}:\d{2}$/.test(e.time)?e.time.replace(/^0/,'').replace(':00',''):'TBC';var status=(e.status||'Info soon').toLowerCase();var u=e.ticket_url||'';var valid=/^https:\/\//i.test(u);var sale=/^(on sale|tickets|selling|live)$/i.test(status);var label=past?'<span class="status">Performed</span>':sale&&valid?'<a class="ticket-link" href="'+esc(u)+'" target="_blank" rel="noopener noreferrer">Tickets &rarr;</a>':'<span class="status">'+esc(status==='sold out'?'Sold out':status==='cancelled'?'Cancelled':'Details soon')+'</span>';
-return '<div class="tour-row'+(past?' past':'')+'"><div class="date"><span class="day">'+day+'</span><span class="month">'+month+'</span><span class="dow">'+dow+'</span></div><div class="city">'+esc(e.town)+'</div><div class="venue-cell"><div class="venue">'+esc(e.venue)+'</div><div class="details">'+esc(e.show_type||'Live comedy')+' · '+(e.time?esc(t):'Start time TBC')+'</div></div><div class="performance">'+esc(e.show_type||'Live comedy')+'</div><div class="action">'+label+'</div></div>';
+return '<div class="tour-row fade-in'+(past?' past':'')+'"><div class="date"><span class="day">'+day+'</span><span class="month">'+month+'</span><span class="dow">'+dow+'</span></div><div class="city">'+esc(e.town)+'</div><div class="venue-cell"><div class="venue">'+esc(e.venue)+'</div><div class="details">'+esc(e.show_type||'Live comedy')+' · '+(e.time?esc(t):'Start time TBC')+'</div></div><div class="performance">'+esc(e.show_type||'Live comedy')+'</div><div class="action">'+label+'</div></div>';
 }
-function render(data){var today=currentDateISO();data.sort(function(a,b){return a.date.localeCompare(b.date)||(a.time||'').localeCompare(b.time||'');});var markup=data.map(function(x){return rowHTML(x,today);}).join('');container.innerHTML=markup||'<p class="empty">New performance dates will be announced here.</p>';}
+function render(data){var today=currentDateISO();data.sort(function(a,b){return a.date.localeCompare(b.date)||(a.time||'').localeCompare(b.time||'');});var markup=data.map(function(x){return rowHTML(x,today);}).join('');container.innerHTML=markup||'<p class="empty">New performance dates will be announced here.</p>';if(window.recalculatingObserveReveals)window.recalculatingObserveReveals();}
 // Google Sheets is the source of truth. These rows are an offline fallback.
 var sheetLoaded=false, fallbackStarted=false;
 var initialDates=[
@@ -184,6 +206,32 @@ script.src='https://docs.google.com/spreadsheets/d/1T8eW7FDrSZ1R8ndsdauqVu0VAfJn
 script.onerror=loadBackup;
 document.head.appendChild(script);
 setTimeout(loadBackup,5500);
+})();
+</script>
+<script>
+/* Accessible by default: if observation fails, all text remains visible. */
+(function(){
+  if(!document.documentElement.classList.contains('motion-ready'))return;
+  try{
+    var observer=new IntersectionObserver(function(entries,obs){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    },{threshold:0.08,rootMargin:'0px 0px -20px 0px'});
+    window.recalculatingObserveReveals=function(){
+      var targets=document.querySelectorAll('.fade-in:not([data-reveal-bound])');
+      targets.forEach(function(el){
+        el.setAttribute('data-reveal-bound','1');
+        observer.observe(el);
+      });
+    };
+    window.recalculatingObserveReveals();
+  }catch(err){
+    document.documentElement.classList.remove('motion-ready');
+  }
 })();
 </script>
 </body>
