@@ -77,17 +77,56 @@
 .feature{background:#06457e}
 .contact{background:linear-gradient(140deg,#053e77,#075f99)}
 @media(max-width:710px){.title{font-size:clamp(34px,9vw,62px);line-height:1}}
+
+/* v12: illustrated route behind the mobile hero; compact copy and actions */
+.hero-scenery{display:none}
+.hero-copy-mobile{display:none}
+@media(max-width:710px){
+  .hero{background:#06477d;padding:32px 0 45px}
+  .hero:before{display:none}
+  .hero:after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(2,37,75,.78) 0%,rgba(2,40,77,.57) 58%,rgba(2,40,77,.22) 100%)}
+  .hero-scenery{display:block;position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+  .hero-grid{position:relative;z-index:2;gap:24px}
+  .kicker{font-size:.63rem;letter-spacing:.1em;line-height:1.55;margin-bottom:15px;max-width:280px}
+  .title{font-size:clamp(36px,9vw,62px);line-height:1.02}
+  .tagline{font-size:clamp(1.08rem,4.6vw,1.28rem);line-height:1.43;letter-spacing:.015em;margin:20px 0 15px}
+  .hero-copy{font-size:.95rem;line-height:1.6;max-width:370px;margin:0 0 21px;color:#fff8e7;text-shadow:0 1px 2px rgba(0,25,50,.32)}
+  .hero-copy-desktop{display:none}.hero-copy-mobile{display:inline}
+  .hero-actions{gap:12px;align-items:center}
+  .hero-actions .btn{min-height:43px;padding:10px 14px;font-size:.66rem}
+  .hero-actions .btn-ghost{border:0;background:#05375a76;text-decoration:underline;text-underline-offset:4px;padding-inline:8px}
+  .poster-wrap{width:min(280px,75%);margin-top:2px}
+}
+@media(max-width:360px){.hero-actions{gap:5px}.hero-actions .btn{font-size:.61rem;padding:9px 10px}.hero-actions .btn-ghost{padding-inline:4px}}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="header"><div class="wrap header-in"><a class="logo" href="#top">RECALCULATING <span>.SHOW</span></a><nav class="nav" aria-label="Main navigation"><a href="#dates">Tour dates</a><a href="#about">The show</a><a href="#contact" class="nav-btn">Get in touch</a></nav></div></header>
 <main id="main">
-<section class="hero" id="top"><div class="wrap hero-grid"><div>
+<section class="hero" id="top">
+<svg class="hero-scenery" viewBox="0 0 430 920" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+<defs>
+<linearGradient id="rec-sky" x1="0" x2=".1" y1="0" y2="1"><stop offset="0" stop-color="#06437c"/><stop offset=".46" stop-color="#0c72ad"/><stop offset=".8" stop-color="#4ba0be"/><stop offset="1" stop-color="#f7bd7d"/></linearGradient>
+<radialGradient id="rec-glow"><stop offset="0" stop-color="#ffdf9e" stop-opacity=".75"/><stop offset="1" stop-color="#ffdf9e" stop-opacity="0"/></radialGradient>
+<linearGradient id="rec-road" x1="0" x2="1" y1="0" y2=".3"><stop offset="0" stop-color="#102e4a"/><stop offset="1" stop-color="#1d5178"/></linearGradient>
+</defs>
+<rect width="430" height="920" fill="url(#rec-sky)"/>
+<circle cx="385" cy="585" r="190" fill="url(#rec-glow)"/>
+<path d="M0 588 Q96 530 186 576 T430 541 V920 H0Z" fill="#1678a6" opacity=".58"/>
+<path d="M0 661 Q126 568 260 638 T430 615 V920 H0Z" fill="#105f91" opacity=".7"/>
+<path d="M0 737 Q148 641 287 705 T430 663 V920 H0Z" fill="#074877"/>
+<path d="M0 846 Q156 717 300 786 T430 755 V920 H0Z" fill="#063961" opacity=".87"/>
+<path d="M304 925 C390 845 394 813 335 781 C261 740 383 716 352 664 C326 625 374 600 370 561" fill="none" stroke="#092c4a" stroke-width="82" stroke-linecap="round" opacity=".63"/>
+<path d="M304 925 C390 845 394 813 335 781 C261 740 383 716 352 664 C326 625 374 600 370 561" fill="none" stroke="url(#rec-road)" stroke-width="68" stroke-linecap="round"/>
+<path d="M304 925 C390 845 394 813 335 781 C261 740 383 716 352 664 C326 625 374 600 370 561" fill="none" stroke="#f9e9bf" stroke-width="3" stroke-dasharray="9 19" stroke-linecap="round" opacity=".72"/>
+<g transform="translate(376 540)" opacity=".8"><path d="M0-31c-15 0-27 12-27 27 0 21 27 48 27 48S27 17 27-4C27-19 15-31 0-31Z" fill="#ec4c34" stroke="#ffede2" stroke-width="3"/><circle cy="-5" r="9" fill="#fff1df"/></g>
+</svg>
+<div class="wrap hero-grid"><div>
 <span class="kicker">Dawn Bailey &amp; Anthony Williams / Live comedy</span>
 <h1 class="title">RECALCULATING</h1>
 <p class="tagline">Two people. Two stories.<br>Plenty of wrong turns.</p>
-<p class="hero-copy">Life doesn't always take the route you planned. A brand-new live comedy show from Dawn Bailey and Anthony Williams, with stories of detours, decisions and the occasional spectacular wrong turn.</p>
+<p class="hero-copy"><span class="hero-copy-desktop">Life doesn't always take the route you planned. A brand-new live comedy show from Dawn Bailey and Anthony Williams, with stories of detours, decisions and the occasional spectacular wrong turn.</span><span class="hero-copy-mobile">A new live comedy show about life's unexpected detours and the decisions that take us there.</span></p>
 <div class="hero-actions"><a class="btn btn-light" href="#dates">See tour dates &darr;</a><a class="btn btn-ghost" href="#about">About the show</a></div>
 </div><div class="poster-wrap"><img class="poster" src="https://rockcentralpromotions.com/assets/venues/recalculating-poster.webp" width="540" height="764" alt="RECALCULATING show poster featuring Dawn Bailey and Anthony Williams against a bright blue sky and winding road" fetchpriority="high"><svg class="route-mark" viewBox="0 0 160 100" aria-hidden="true"><path d="M0 75C55 4 62 120 160 22"/></svg></div></div></section>
 <section class="section dates-section" id="dates" aria-labelledby="dates-title"><div class="wrap"><span class="eyebrow">Your next destination</span><div class="dates-toolbar"><div><h2 id="dates-title">TOUR DATES</h2><p class="section-lead">Upcoming shows and the road travelled so far.</p></div><span class="small">Dates shown in UK local time</span></div>
@@ -100,7 +139,7 @@
 <section class="section people" id="performers"><div class="wrap"><span class="eyebrow">Meet the comedians</span><h2>DAWN &amp; ANTHONY.</h2><p class="section-lead">Two established stand-up performers, bringing their own perspectives to the same question: what happens when life changes course?</p><div class="people-grid"><article class="person"><h3>DAWN BAILEY</h3><p>Stand-up comedian and one half of RECALCULATING. Her story brings its own wrong turns and unexpected destinations.</p><a href="https://dawnbaileycomedy.com/" target="_blank" rel="noopener noreferrer">Dawn&#39;s comedy website &rarr;</a></article><article class="person"><h3>ANTHONY WILLIAMS</h3><p>Stand-up comedian, Funhouse resident MC and a 2026 Spirit of Comedy finalist. Anthony is the other half of RECALCULATING.</p><a href="https://anthonywilliamscomedy.com/" target="_blank" rel="noopener noreferrer">Anthony's comedy website &rarr;</a></article></div></div></section>
 <section class="contact" id="contact"><div class="wrap contact-in"><div><span class="kicker">For promoters, venues and press</span><h2>FANCY A DETOUR?</h2><p>Interested in booking RECALCULATING or discussing a festival appearance? Get in touch with us directly.</p></div><a class="btn btn-light" href="mailto:info@rockcentralpromotions.com?subject=RECALCULATING%20Show%20Enquiry">Email about the show &rarr;</a></div></section>
 </main>
-<footer class="footer"><div class="wrap footer-in"><div><small>&copy; <span id="copyright-year">2026</span> RECALCULATING. Dawn Bailey &amp; Anthony Williams.</small><div class="release">Page v11 &middot; Updated 29 October 2026 at 16:01 GMT</div></div><small>Website and bookings: <a href="mailto:info@rockcentralpromotions.com?subject=RECALCULATING%20Show%20Enquiry">RockCentral Promotions</a></small></div></footer>
+<footer class="footer"><div class="wrap footer-in"><div><small>&copy; <span id="copyright-year">2026</span> RECALCULATING. Dawn Bailey &amp; Anthony Williams.</small><div class="release">Page v12 &middot; Updated 29 October 2026 at 16:30 GMT</div></div><small>Website and bookings: <a href="mailto:info@rockcentralpromotions.com?subject=RECALCULATING%20Show%20Enquiry">RockCentral Promotions</a></small></div></footer>
 <script>
 (function(){
 'use strict';
