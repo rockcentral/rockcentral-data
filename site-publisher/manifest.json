@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 31,
+  "revision": 32,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -52,7 +52,7 @@
     },
     {
       "path": "recalculating/index.html",
-      "sha256": "527befcf303ffb0e30abc0e17e1709c795a76f8ff1d415ca00ffae201a6bf081"
+      "sha256": "bb8634eac59129fe2f73f5cdd98c6e72ad6e192278f47be108bba2b503352c18"
     },
     {
       "path": "assets/venues/recalculating-poster.webp",
