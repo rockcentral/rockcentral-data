@@ -64,7 +64,7 @@
 <section class="section people" id="performers"><div class="wrap"><span class="eyebrow">Meet the comedians</span><h2>DAWN &amp; ANTHONY.</h2><p class="section-lead">Two established stand-up performers, bringing their own perspectives to the same question: what happens when life changes course?</p><div class="people-grid"><article class="person"><h3>DAWN BAILEY</h3><p>Stand-up comedian and one half of RECALCULATING. Her story brings its own wrong turns and unexpected destinations.</p></article><article class="person"><h3>ANTHONY WILLIAMS</h3><p>Stand-up comedian, Funhouse resident MC and a 2026 Spirit of Comedy finalist. Anthony is the other half of RECALCULATING.</p><a href="https://anthonywilliamscomedy.com/" target="_blank" rel="noopener noreferrer">Anthony's comedy website &rarr;</a></article></div></div></section>
 <section class="contact" id="contact"><div class="wrap contact-in"><div><span class="kicker">For promoters, venues and press</span><h2>FANCY A DETOUR?</h2><p>Interested in booking RECALCULATING or discussing a festival appearance? Get in touch with us directly.</p></div><a class="btn btn-light" href="mailto:info@rockcentralpromotions.com?subject=RECALCULATING%20Show%20Enquiry">Email about the show &rarr;</a></div></section>
 </main>
-<footer class="footer"><div class="wrap footer-in"><div><small>&copy; <span id="copyright-year">2026</span> RECALCULATING. Dawn Bailey &amp; Anthony Williams.</small><div class="release">Page v2 &middot; Prepared 29 October 2026</div></div><small>Website and bookings: <a href="mailto:info@rockcentralpromotions.com?subject=RECALCULATING%20Show%20Enquiry">RockCentral Promotions</a></small></div></footer>
+<footer class="footer"><div class="wrap footer-in"><div><small>&copy; <span id="copyright-year">2026</span> RECALCULATING. Dawn Bailey &amp; Anthony Williams.</small><div class="release">Page v3 &middot; Prepared 29 October 2026</div></div><small>Website and bookings: <a href="mailto:info@rockcentralpromotions.com?subject=RECALCULATING%20Show%20Enquiry">RockCentral Promotions</a></small></div></footer>
 <script>
 (function(){
 'use strict';
@@ -78,7 +78,35 @@ var past=e.date<today,day=new Intl.DateTimeFormat('en-GB',{day:'2-digit',timeZon
 return '<div class="tour-row'+(past?' past':'')+'"><div class="date"><span class="day">'+day+'</span><span class="month">'+month+'</span><span class="dow">'+dow+'</span></div><div class="city">'+esc(e.town)+'</div><div class="venue-cell"><div class="venue">'+esc(e.venue)+'</div><div class="details">'+esc(e.show_type||'Live comedy')+' · '+(e.time?esc(t):'Start time TBC')+'</div></div><div class="performance">'+esc(e.show_type||'Live comedy')+'</div><div class="action">'+label+'</div></div>';
 }
 function render(data){var today=currentDateISO();data.sort(function(a,b){return a.date.localeCompare(b.date)||(a.time||'').localeCompare(b.time||'');});var markup=data.map(function(x){return rowHTML(x,today);}).join('');container.innerHTML=markup||'<p class="empty">New performance dates will be announced here.</p>';}
-fetch('data/tour-dates.csv',{cache:'no-store'}).then(function(r){if(!r.ok)throw Error('File unavailable');return r.text();}).then(function(v){render(parseCSV(v));}).catch(function(){ /* The two starter rows remain visible when opened as a local file. */ });
+// The public Google Sheet is the source of truth; our hosted CSV is a safe fallback.
+var sheetLoaded=false, fallbackStarted=false;
+function loadBackup(){
+  if(sheetLoaded||fallbackStarted)return;
+  fallbackStarted=true;
+  fetch('data/tour-dates.csv',{cache:'no-store'}).then(function(r){if(!r.ok)throw Error('File unavailable');return r.text();})
+    .then(function(v){var parsed=parseCSV(v);if(parsed.length&&parsed[0].date)render(parsed);})
+    .catch(function(){ /* Static dates remain visible if the backup is unavailable. */ });
+}
+window.recalculatingSheetLoaded=function(reply){
+  if(sheetLoaded)return;
+  try{
+    if(!reply||reply.status!=='ok'||!reply.table)throw Error('Sheet not publicly readable');
+    var columns=(reply.table.cols||[]).map(function(c){return String(c.label||'').trim().toLowerCase();});
+    var expected=['date','time','town','venue','show_type','ticket_url','status','notes'];
+    if(expected.some(function(h,i){return columns[i]!==h;}))throw Error('Unexpected sheet headers');
+    var entries=(reply.table.rows||[]).map(function(r){
+      var item={};expected.forEach(function(h,i){var cell=(r.c||[])[i];item[h]=cell&&cell.v!=null?String(cell.v).trim():'';});return item;
+    }).filter(function(r){return /^\d{4}-\d{2}-\d{2}$/.test(r.date);});
+    if(!entries.length)throw Error('No valid tour dates');
+    sheetLoaded=true;render(entries);
+  }catch(ex){loadBackup();}
+};
+var script=document.createElement('script');
+script.async=true;
+script.src='https://docs.google.com/spreadsheets/d/1T8eW7FDrSZ1R8ndsdauqVu0VAfJnI2KCMgBPh3GNOIg/gviz/tq?tqx=out%3Ajson%3BresponseHandler%3ArecalculatingSheetLoaded&gid=180771545&headers=1';
+script.onerror=loadBackup;
+document.head.appendChild(script);
+setTimeout(loadBackup,5500);
 })();
 </script>
 </body>
