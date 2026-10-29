@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 24,
+  "revision": 25,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -49,6 +49,14 @@
     {
       "path": "icf2027/index.html",
       "sha256": "d38f680d26371517c2b0227f225a991617400fa72433b5142168d4aac07c756b"
+    },
+    {
+      "path": "recalculating/index.html",
+      "sha256": "7b1d74a208f2465060ea629b6278a35bcf2e293cf0cf6c8dab2725ec0b8d27b3"
+    },
+    {
+      "path": "recalculating/data/tour-dates.csv",
+      "sha256": "5e87e6db0e392fa85b5df56b14820b8ee6f526a659ab9172ad80e17dde4b722e"
     }
   ]
 }
