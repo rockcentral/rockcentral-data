@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 27,
+  "revision": 28,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -52,11 +52,7 @@
     },
     {
       "path": "recalculating/index.html",
-      "sha256": "82577aaec318319795cc371343aa770c3c5d2dfbab32efd0d29962a13d00ba07"
-    },
-    {
-      "path": "recalculating/data/tour-dates.csv",
-      "sha256": "9487a6936a46a5d58f1717558bd487fe519cbf3d00ede927028618afd9fb3fbd"
+      "sha256": "4a146443609051ee95296668d53835fa203f6e270bd9f593c3c00ec8a4576ed3"
     }
   ]
 }
