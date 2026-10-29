@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 28,
+  "revision": 29,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -52,7 +52,11 @@
     },
     {
       "path": "recalculating/index.html",
-      "sha256": "4a146443609051ee95296668d53835fa203f6e270bd9f593c3c00ec8a4576ed3"
+      "sha256": "88a63d39138416b1c724e96c77c01f2c0e48d4c1052d2206fa0ce17d6de46e20"
+    },
+    {
+      "path": "recalculating/assets/poster.webp",
+      "sha256": "264cc1c4c607406250a517a908b0333c075c0484905084d5b65565804b18ea61"
     }
   ]
 }
