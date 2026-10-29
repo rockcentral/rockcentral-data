@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 22,
+  "revision": 23,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -45,6 +45,10 @@
     {
       "path": "assets/venues/elements-tom.webp",
       "sha256": "a4cfaf1d83a39019590ac744dfba65328d1a0b35fbdbc774f330670540ee7cca"
+    },
+    {
+      "path": "icf2027/index.html",
+      "sha256": "3980ed39e13d13f9c517b2cff429e8d563dc34e580de2181e575a5a151904a7c"
     }
   ]
 }
