@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 29,
+  "revision": 30,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -52,10 +52,10 @@
     },
     {
       "path": "recalculating/index.html",
-      "sha256": "88a63d39138416b1c724e96c77c01f2c0e48d4c1052d2206fa0ce17d6de46e20"
+      "sha256": "b283a605635643b78af83b768da622a24513fce7320e9d1bf4237025d142ca2f"
     },
     {
-      "path": "recalculating/assets/poster.webp",
+      "path": "assets/venues/recalculating-poster.webp",
       "sha256": "264cc1c4c607406250a517a908b0333c075c0484905084d5b65565804b18ea61"
     }
   ]
