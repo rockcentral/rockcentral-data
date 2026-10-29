@@ -41,6 +41,30 @@
 @media(max-width:710px){.wrap{width:calc(100% - 34px)}.header-in{min-height:65px}.logo{font-size:26px}.logo span{display:none}.nav{gap:13px}.nav a{font-size:.64rem}.nav a:nth-child(2){display:none}.hero{padding:43px 0 55px}.hero-grid{grid-template-columns:1fr;gap:35px}.title{font-size:clamp(74px,18vw,132px)}.tagline{margin-top:26px}.poster-wrap{width:min(290px,75%);justify-self:center}.route-mark{display:none}.section{padding:51px 0 57px}.dates-toolbar .small{margin-bottom:13px}.tour-row{grid-template-columns:70px 1fr 115px;gap:9px;padding:18px 2px}.city{grid-column:2;grid-row:1;font-size:1.75rem}.date{grid-column:1;grid-row:1 / span 2}.date .day{font-size:2.3rem}.venue-cell{grid-column:2;grid-row:2}.action{grid-column:3;grid-row:1 / span 2;align-self:center}.ticket-link{min-width:100px;padding:10px 9px;font-size:.61rem}.status{font-size:.65rem}.about-grid,.people-grid{grid-template-columns:1fr}.about-grid{gap:22px}.feature{padding:27px}.contact-in{display:block}.contact .btn{margin-top:24px}}
 @media(max-width:400px){.logo{font-size:22px}.nav{gap:10px}.title{font-size:clamp(62px,17vw,85px)}.tour-row{grid-template-columns:58px minmax(0,1fr) 91px}.venue{font-size:.76rem}.city{font-size:1.55rem}.ticket-link{min-width:0;width:100%;font-size:.58rem}.action{min-width:0}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+
+/* v7 desktop type balance and higher-contrast colour treatment */
+:root{--blue:#064b90;--ink:#092945;--red:#ba3124;--line:#a9bdca}
+.header{background:#053968f7;border-bottom:1px solid #b8daf044}
+.hero{background:radial-gradient(ellipse at 83% 17%,#126da8 0%,transparent 46%),linear-gradient(152deg,#053b72 0%,#07538e 66%,#0876b5 100%)}
+.title{font-size:clamp(46px,6.3vw,94px);line-height:.96;letter-spacing:0;white-space:nowrap;overflow-wrap:normal;text-wrap:nowrap}
+.kicker,.hero-copy{color:#fff}
+.tagline{color:#fff9ed}
+.section-lead{color:#294860}
+.dates{border-top-color:#0b2e4d}
+.tour-row{border-bottom-color:#aebfcb}
+.tour-row:not(.past):hover{background:#f2f7fb}
+.date .dow,.details,.performance{color:#36566d}
+.dates-toolbar .small,.status{color:#405f77}
+.ticket-link{background:#ba3124;color:#fff}
+.ticket-link:hover{background:#922317}
+.about{background:#fff2dc}
+.about p,.person p{color:#294860}
+.person{background:#fffdfa;border-color:#afc3d0}
+.person a{color:#074783}
+.person a:hover{color:#032c54}
+.feature{background:#06457e}
+.contact{background:linear-gradient(140deg,#053e77,#075f99)}
+@media(max-width:710px){.title{font-size:clamp(34px,9vw,62px);line-height:1}}
 </style>
 </head>
 <body>
@@ -54,17 +78,17 @@
 <p class="hero-copy">Life doesn't always take the route you planned. A brand-new live comedy show from Dawn Bailey and Anthony Williams, with stories of detours, decisions and the occasional spectacular wrong turn.</p>
 <div class="hero-actions"><a class="btn btn-light" href="#dates">See tour dates &darr;</a><a class="btn btn-ghost" href="#about">About the show</a></div>
 </div><div class="poster-wrap"><img class="poster" src="/assets/venues/recalculating-poster.webp" width="540" height="764" alt="RECALCULATING show poster featuring Dawn Bailey and Anthony Williams against a bright blue sky and winding road" fetchpriority="high"><svg class="route-mark" viewBox="0 0 160 100" aria-hidden="true"><path d="M0 75C55 4 62 120 160 22"/></svg></div></div></section>
-<section class="section dates-section" id="dates" aria-labelledby="dates-title"><div class="wrap"><span class="eyebrow">Your next destination</span><div class="dates-toolbar"><div><h2 id="dates-title">TOUR DATES</h2><p class="section-lead">Upcoming shows and the road travelled so far. Past performances stay in the list, but their booking links disappear once the date has passed.</p></div><span class="small">Dates shown in UK local time</span></div>
+<section class="section dates-section" id="dates" aria-labelledby="dates-title"><div class="wrap"><span class="eyebrow">Your next destination</span><div class="dates-toolbar"><div><h2 id="dates-title">TOUR DATES</h2><p class="section-lead">Upcoming shows and the road travelled so far.</p></div><span class="small">Dates shown in UK local time</span></div>
 <div class="dates" id="tour-dates" aria-live="polite">
 <!-- Accessible starter content remains useful offline; script refreshes it from CSV on hosted site. -->
 <div class="tour-row"><div class="date"><span class="day">09</span><span class="month">DEC 2026</span><span class="dow">WED</span></div><div class="city">HATHERN</div><div class="venue-cell"><div class="venue">Dew Drop Inn</div><div class="details">Double work in progress · 7.30pm</div></div><div class="performance">Double work in progress</div><div class="action"><a class="ticket-link" href="https://www.ticketsource.com/laffalot-promotions/dew-drop-comedy-club-anthony-williams-amp-dawn-bailey-double-work-in-progress/e-dkoolgo" target="_blank" rel="noopener noreferrer">Tickets &rarr;</a></div></div>
 <div class="tour-row"><div class="date"><span class="day">13</span><span class="month">FEB 2027</span><span class="dow">SAT</span></div><div class="city">LEICESTER</div><div class="venue-cell"><div class="venue">Real Ale Classroom</div><div class="details">Independent Comedy Festival · 7.30pm</div></div><div class="performance">Independent Comedy Festival</div><div class="action"><a class="ticket-link" href="https://indiecomedyfest.co.uk/tickets" target="_blank" rel="noopener noreferrer">Tickets &rarr;</a></div></div>
 </div></div></section>
-<section class="section about" id="about"><div class="wrap about-grid"><div><span class="eyebrow">About the show</span><h2>THE SCENIC <em>ROUTE.</em></h2><p>At some point, the life you planned and the life you're living stop looking quite the same. Sometimes you follow the route. Sometimes you turn off, start again and hope the sat-nav knows what it's doing.</p><p><strong>RECALCULATING</strong> brings two voices and two stories together in one comedy show about the unexpected directions life can take.</p><p>The show is being developed through work-in-progress performances ahead of its appearance at Leicester's Independent Comedy Festival.</p></div><div class="feature"><p class="quote">TWO PEOPLE.<br>TWO STORIES.<br>PLENTY OF<br>WRONG TURNS.</p><p class="footnote">No sat-nav can prepare you for this.</p></div></div></section>
-<section class="section people" id="performers"><div class="wrap"><span class="eyebrow">Meet the comedians</span><h2>DAWN &amp; ANTHONY.</h2><p class="section-lead">Two established stand-up performers, bringing their own perspectives to the same question: what happens when life changes course?</p><div class="people-grid"><article class="person"><h3>DAWN BAILEY</h3><p>Stand-up comedian and one half of RECALCULATING. Her story brings its own wrong turns and unexpected destinations.</p></article><article class="person"><h3>ANTHONY WILLIAMS</h3><p>Stand-up comedian, Funhouse resident MC and a 2026 Spirit of Comedy finalist. Anthony is the other half of RECALCULATING.</p><a href="https://anthonywilliamscomedy.com/" target="_blank" rel="noopener noreferrer">Anthony's comedy website &rarr;</a></article></div></div></section>
+<section class="section about" id="about"><div class="wrap about-grid"><div><span class="eyebrow">About the show</span><h2>THE SCENIC <em>ROUTE.</em></h2><p>At some point, the life you planned and the life you're living stop looking quite the same. Sometimes you follow the route. Sometimes you turn off, start again and hope the sat-nav knows what it's doing.</p><p><strong>RECALCULATING</strong> brings two voices and two stories together in one comedy show about the unexpected directions life can take.</p></div><div class="feature"><p class="quote">TWO PEOPLE.<br>TWO STORIES.<br>PLENTY OF<br>WRONG TURNS.</p><p class="footnote">No sat-nav can prepare you for this.</p></div></div></section>
+<section class="section people" id="performers"><div class="wrap"><span class="eyebrow">Meet the comedians</span><h2>DAWN &amp; ANTHONY.</h2><p class="section-lead">Two established stand-up performers, bringing their own perspectives to the same question: what happens when life changes course?</p><div class="people-grid"><article class="person"><h3>DAWN BAILEY</h3><p>Stand-up comedian and one half of RECALCULATING. Her story brings its own wrong turns and unexpected destinations.</p><a href="https://dawnbaileycomedy.com/" target="_blank" rel="noopener noreferrer">Dawn&#39;s comedy website &rarr;</a></article><article class="person"><h3>ANTHONY WILLIAMS</h3><p>Stand-up comedian, Funhouse resident MC and a 2026 Spirit of Comedy finalist. Anthony is the other half of RECALCULATING.</p><a href="https://anthonywilliamscomedy.com/" target="_blank" rel="noopener noreferrer">Anthony's comedy website &rarr;</a></article></div></div></section>
 <section class="contact" id="contact"><div class="wrap contact-in"><div><span class="kicker">For promoters, venues and press</span><h2>FANCY A DETOUR?</h2><p>Interested in booking RECALCULATING or discussing a festival appearance? Get in touch with us directly.</p></div><a class="btn btn-light" href="mailto:info@rockcentralpromotions.com?subject=RECALCULATING%20Show%20Enquiry">Email about the show &rarr;</a></div></section>
 </main>
-<footer class="footer"><div class="wrap footer-in"><div><small>&copy; <span id="copyright-year">2026</span> RECALCULATING. Dawn Bailey &amp; Anthony Williams.</small><div class="release">Page v6 &middot; Updated 29 October 2026</div></div><small>Website and bookings: <a href="mailto:info@rockcentralpromotions.com?subject=RECALCULATING%20Show%20Enquiry">RockCentral Promotions</a></small></div></footer>
+<footer class="footer"><div class="wrap footer-in"><div><small>&copy; <span id="copyright-year">2026</span> RECALCULATING. Dawn Bailey &amp; Anthony Williams.</small><div class="release">Page v7 &middot; Updated 29 October 2026 at 13:33 GMT</div></div><small>Website and bookings: <a href="mailto:info@rockcentralpromotions.com?subject=RECALCULATING%20Show%20Enquiry">RockCentral Promotions</a></small></div></footer>
 <script>
 (function(){
 'use strict';
