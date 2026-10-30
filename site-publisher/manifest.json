@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 40,
+  "revision": 41,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -64,7 +64,7 @@
     },
     {
       "path": "recalculating/epk/index.html",
-      "sha256": "c1b8499403bb516dd4aa1c5947c0165beac364f44a0d95eb923fe5ecd2776239"
+      "sha256": "9b9234891a0e391becd1aad87cbf92a477c6e8b713165f89fb7307f0deec20f2"
     }
   ]
 }
