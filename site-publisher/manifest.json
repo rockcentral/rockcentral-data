@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 38,
+  "revision": 39,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -52,7 +52,7 @@
     },
     {
       "path": "recalculating/index.html",
-      "sha256": "21cfa51047b54ddf9f87f580aea8704c789d7e82429fe92a67ade4c3e4cf6250"
+      "sha256": "4e12ba428e5ca95ea859aa9821ae21416f9ad18cab2066b3fe31c082af1af5d2"
     },
     {
       "path": "assets/venues/recalculating-poster.webp",
@@ -61,6 +61,10 @@
     {
       "path": "assets/venues/recalculating-favicon.png",
       "sha256": "703c7cb78820bd46191181eea68ffdfede155d4a824804da702c08fd4636d1dd"
+    },
+    {
+      "path": "recalculating/epk/index.html",
+      "sha256": "f4a661dd4712ad285b35e0f510064cbbfd43adca13a90e4386b4100843ec9d1e"
     }
   ]
 }
