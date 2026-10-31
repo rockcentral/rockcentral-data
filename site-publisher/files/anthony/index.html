@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anthony Williams | Stand-up Comedian & MC</title>
+  <meta name="description" content="Anthony Williams is a Derbyshire-based stand-up comedian and professional MC, working comedy clubs and live events across the UK. Watch clips, see live dates and book Anthony.">
+  <meta name="theme-color" content="#0b0b0b">
+  <link rel="canonical" href="https://anthonywilliamscomedy.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:site_name" content="Anthony Williams">
+  <meta property="og:url" content="https://anthonywilliamscomedy.com/">
+  <meta property="og:title" content="Anthony Williams | Stand-up Comedian &amp; MC">
+  <meta property="og:description" content="Derbyshire-based comedian and professional MC. Watch Anthony perform, find upcoming live dates and enquire about bookings across the UK.">
+  <meta property="og:image" content="https://anthonywilliamscomedy.com/anthony-williams-social.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="800">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:alt" content="Anthony Williams, stand-up comedian and professional MC">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Anthony Williams | Stand-up Comedian &amp; MC">
+  <meta name="twitter:description" content="Derbyshire-based comedian and professional MC. Watch clips, find live dates and enquire about bookings.">
+  <meta name="twitter:image" content="https://anthonywilliamscomedy.com/anthony-williams-social.jpg">
+  <meta name="twitter:image:alt" content="Anthony Williams, stand-up comedian and professional MC">
+  <style>
+    :root{
+      --yellow:#ffd21a;
+      --ink:#0b0b0b;
+      --charcoal:#151515;
+      --panel:#1d1d1d;
+      --line:rgba(255,255,255,.13);
+      --soft:rgba(255,255,255,.70);
+      --white:#fff;
+      --max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:var(--ink);
+      color:var(--white);
+      line-height:1.5;
+    }
+    a{color:inherit}
+    img{max-width:100%;display:block}
+    button,input,textarea{font:inherit}
+    .shell{width:min(var(--max),calc(100% - 34px));margin:auto}
+    .topbar{
+      position:sticky;top:0;z-index:20;
+      background:rgba(11,11,11,.86);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px;
+    }
+    .brand{
+      font-weight:950;text-decoration:none;letter-spacing:-.04em;font-size:1.28rem;text-transform:uppercase;
+    }
+    .brand span{color:var(--yellow)}
+    .navlinks{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+    .navlinks a{font-size:.92rem;text-decoration:none;font-weight:800;color:#e7e7e7}
+    .navlinks a:hover,.navlinks a:focus-visible{color:var(--yellow)}
+    .nav-cta{padding:10px 14px;background:var(--yellow);color:#111!important;border-radius:7px}
+
+    .hero{
+      min-height:calc(100vh - 72px);
+      display:grid;
+      align-items:end;
+      position:relative;
+      overflow:hidden;
+      border-bottom:1px solid var(--line);
+      background:#0d0d0d;
+    }
+    .hero::after{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(90deg,rgba(0,0,0,.93) 0%,rgba(0,0,0,.78) 36%,rgba(0,0,0,.20) 72%,rgba(0,0,0,.08) 100%),
+                 linear-gradient(0deg,rgba(0,0,0,.78) 0%,transparent 48%);
+      pointer-events:none;
+    }
+    .hero-image{
+      position:absolute;inset:0;margin-left:auto;width:min(58vw,820px);height:100%;object-fit:cover;object-position:center top;
+      filter:saturate(.92) contrast(1.04);
+    }
+    .hero-copy{position:relative;z-index:2;padding:clamp(58px,8vw,105px) 0 72px;max-width:720px}
+    .kicker{margin:0 0 13px;color:var(--yellow);font-size:.85rem;font-weight:950;letter-spacing:.18em;text-transform:uppercase}
+    h1{
+      margin:0;font-size:clamp(4rem,10.5vw,9.2rem);line-height:.78;letter-spacing:-.075em;text-transform:uppercase;
+      font-weight:1000;
+    }
+    h1 span{display:block;color:var(--yellow)}
+
+    .hero h1{
+      opacity:0;
+      transform:translateY(34px);
+      animation:heroNameIn 1.15s cubic-bezier(.22,.61,.36,1) .32s forwards;
+    }
+    @keyframes heroNameIn{
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .hero h1{
+        opacity:1;
+        transform:none;
+        animation:none;
+      }
+    }
+
+    .hero-lede{max-width:660px;font-size:clamp(1.08rem,2.2vw,1.48rem);color:#f1f1f1;margin:28px 0 26px;line-height:1.55}
+    .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .button{
+      display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:12px 18px;
+      border:1px solid rgba(255,210,26,.52);border-radius:8px;text-decoration:none;font-weight:900;letter-spacing:.01em;
+      background:#171717;color:#fff;transition:transform .15s ease,background .15s ease,border-color .15s ease,color .15s ease;
+    }
+    .button:hover,.button:focus-visible{transform:translateY(-2px);border-color:rgba(255,210,26,.65)}
+    .button.primary{background:var(--yellow);color:#111;border-color:var(--yellow)}
+    .button.ghost{background:rgba(0,0,0,.45)}
+
+    .cred-strip{border-bottom:1px solid var(--line);background:#111}
+    .cred-list{display:flex;gap:10px 28px;flex-wrap:wrap;align-items:center;padding:19px 0;font-weight:850;color:#ececec}
+    .cred-list span::before{content:"•";color:var(--yellow);margin-right:10px}
+    .cred-list span:first-child::before{display:none}
+
+    section{padding:90px 0}
+    .section-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:70px;align-items:start}
+    .eyebrow{color:var(--yellow);font-size:.8rem;font-weight:950;letter-spacing:.18em;text-transform:uppercase;margin:0 0 12px}
+    h2{font-size:clamp(2.35rem,5vw,4.8rem);line-height:.94;letter-spacing:-.05em;margin:0 0 24px;text-transform:uppercase}
+    .lead{font-size:1.14rem;color:#e9e9e9;max-width:750px;line-height:1.72}
+    .muted{color:var(--soft)}
+
+    .video-panel{background:#050505;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .video-wrap{aspect-ratio:16/9;background:#000;overflow:hidden;border:1px solid var(--line)}
+    .video-wrap iframe{width:100%;height:100%;border:0;display:block}
+    .performance-clip{margin-bottom:36px}
+    .performance-clip h3{margin:0 0 14px;font-size:clamp(18px,2vw,24px);line-height:1.3}
+    .video-meta{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-top:18px;color:#d7d7d7;flex-wrap:wrap}
+
+    .dates{background:#101010;scroll-margin-top:76px}
+    .gig-list{display:grid;gap:10px}
+    .gig-card{
+      display:grid;grid-template-columns:92px minmax(0,1fr) auto;align-items:center;gap:22px;
+      padding:15px 0;border-top:1px solid var(--line);
+    }
+    .gig-card:last-child{border-bottom:1px solid var(--line)}
+    .gig-date{text-align:center;border:2px solid var(--yellow);background:#090909}
+    .gig-weekday,.gig-month{display:block;background:var(--yellow);color:#111;font-weight:950;letter-spacing:.12em;font-size:.68rem;text-transform:uppercase}
+    .gig-weekday{padding:4px 5px 0}.gig-month{padding:0 5px 4px}
+    .gig-day{display:block;padding:6px 4px 8px;font-size:2rem;line-height:1;font-weight:1000}
+    .gig-location{margin:0;color:var(--yellow);font-size:1.55rem;font-weight:1000;text-transform:uppercase;letter-spacing:.015em}
+    .gig-venue{margin:2px 0 0;font-size:1.08rem;font-weight:850}
+    .gig-meta{margin:4px 0 0;color:#aaa;font-size:.93rem}
+    .gig-ticket{min-width:122px}
+    .gig-ticket.is-info{background:#171717;color:#ddd}
+    .gig-message{padding:20px 0;color:#aaa;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .gig-more-wrap{display:flex;justify-content:flex-start;margin-top:22px}
+    .gig-more{cursor:pointer}
+
+    .quote-feature{background:var(--yellow);color:#111}
+    .quote-feature blockquote{margin:0;padding:0}
+    .quote-feature blockquote p{font-size:clamp(2rem,4.7vw,4.5rem);line-height:1.02;letter-spacing:-.045em;font-weight:950;margin:0;max-width:1060px}
+    .quote-feature footer{margin-top:26px;font-weight:900;font-size:1.05rem}
+    .mini-quotes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:55px;padding-top:40px;border-top:1px solid rgba(0,0,0,.28)}
+    .mini-quotes p{font-size:1.03rem;line-height:1.65;margin:0 0 14px}.mini-quotes strong{font-size:.92rem;text-transform:uppercase;letter-spacing:.05em}
+
+    .about{background:#0d0d0d}
+    .about-copy p{font-size:1.12rem;line-height:1.78;color:#e5e5e5;margin-top:0}
+    .stat-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+    .stat{background:#141414;padding:28px}
+    .stat strong{display:block;font-size:2rem;line-height:1;color:var(--yellow);margin-bottom:8px}
+    .stat span{color:#c8c8c8;font-size:.95rem}
+
+    .promoters{background:#141414;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .promoter-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:64px;align-items:start}
+    .headshot-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .headshot-card{background:#0e0e0e;border:1px solid var(--line)}
+    .headshot-card img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top}
+    .headshot-card-body{padding:12px 14px}
+    .headshot-card-body .button{width:100%;min-height:40px;padding:10px 12px;font-size:.83rem;white-space:nowrap}
+    .headshot-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+    .pack-list{display:grid;gap:0;margin:28px 0}
+    .pack-item{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-top:1px solid var(--line)}
+    .pack-item:last-child{border-bottom:1px solid var(--line)}
+    .pack-item b{color:#fff}.pack-item span{color:#aaa;text-align:right}
+
+    .contact{padding:92px 0 105px}
+    .contact-box{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end;border-top:2px solid var(--yellow);padding-top:34px}
+    .contact-box h2{max-width:850px;margin-bottom:12px}
+    .contact-box p{max-width:700px;color:#cfcfcf;font-size:1.06rem}
+    .contact-email{font-weight:900;font-size:1.05rem}
+    .contact-routes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;border-top:2px solid var(--yellow);padding-top:34px}
+    .contact-route{background:#141414;border:1px solid var(--line);padding:28px;display:flex;flex-direction:column;align-items:flex-start}
+    .contact-route h3{font-size:clamp(1.55rem,2.8vw,2.25rem);line-height:1.05;margin:0 0 12px;letter-spacing:-.025em}
+    .contact-route p{color:#cfcfcf;font-size:1.02rem;line-height:1.65;margin:0 0 24px;max-width:540px}
+    .contact-route .button{margin-top:auto}
+
+    footer.site-footer{padding:28px 0 42px;border-top:1px solid var(--line);color:#949494;font-size:.9rem}
+    .footer-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .footer-links{display:flex;gap:18px;flex-wrap:wrap}
+    .footer-links a{color:#c8c8c8;text-decoration:none}.footer-links a:hover{color:var(--yellow)}
+
+
+    .reveal-section > .shell{
+      opacity:0;
+      transform:translateY(52px) scale(.992);
+      transition:
+        opacity .85s cubic-bezier(.22,.61,.36,1),
+        transform .85s cubic-bezier(.22,.61,.36,1);
+      will-change:opacity,transform;
+    }
+    .reveal-section.is-visible > .shell{
+      opacity:1;
+      transform:translateY(0) scale(1);
+    }
+    @media (prefers-reduced-motion: reduce){
+      .reveal-section > .shell{
+        opacity:1!important;
+        transform:none!important;
+        transition:none!important;
+      }
+    }
+
+    @media(max-width:900px){
+      .navlinks a:not(.nav-cta){display:none}
+      .hero{min-height:760px;align-items:end}
+      .hero-image{width:100%;height:70%;top:0;object-position:center top}
+      .hero::after{background:linear-gradient(0deg,#0b0b0b 0%,rgba(0,0,0,.84) 42%,rgba(0,0,0,.18) 78%,rgba(0,0,0,.08) 100%)}
+      .hero-copy{padding-top:360px}
+      .section-grid,.promoter-grid{grid-template-columns:1fr;gap:38px}
+      .headshot-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .mini-quotes{grid-template-columns:1fr}
+      .contact-box{grid-template-columns:1fr;align-items:start}
+      .contact-routes{grid-template-columns:1fr}
+    }
+    @media(max-width:680px){
+      .shell{width:min(var(--max),calc(100% - 24px))}
+      .nav{min-height:62px}.topbar{position:relative}
+      .hero{min-height:auto}.hero-copy{padding:247px 0 54px}
+      h1{font-size:clamp(3.9rem,21vw,6.2rem)}
+      section{padding:68px 0}
+      .cred-list{display:grid;gap:8px}.cred-list span::before{display:inline!important}
+      .gig-card{grid-template-columns:74px minmax(0,1fr);gap:14px;padding:14px 0}
+      .gig-ticket{grid-column:1/-1;width:100%}
+      .gig-location{font-size:1.25rem}
+      .headshot-gallery{grid-template-columns:1fr}
+      .headshot-card img{aspect-ratio:4/5}
+      .stat-grid{grid-template-columns:1fr}
+    }
+
+    .header-actions{display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:flex-end}
+    .social-links{display:flex;align-items:center;gap:8px}
+    .social-link{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:44px;padding:8px 11px;border:1px solid rgba(255,255,255,.3);border-radius:7px;text-decoration:none;font-size:.82rem;font-weight:850;background:#171717;color:#fff}
+    .social-link svg{width:18px;height:18px;flex-shrink:0}
+    .social-link:hover,.social-link:focus-visible{color:var(--yellow);border-color:var(--yellow)}
+    .social-link:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
+    @media(max-width:1100px){.nav{flex-wrap:wrap;gap:12px;padding:12px 0}.header-actions{gap:12px}.navlinks{gap:14px}}
+    @media(max-width:680px){.header-actions{width:100%;justify-content:space-between;gap:10px}.social-links{flex-wrap:wrap;gap:6px}.social-link{padding:8px 10px}.navlinks .nav-cta{font-size:.82rem;padding:11px 12px}}
+
+    .menu-toggle{display:none}
+    @media(max-width:900px){
+      .nav{position:relative;justify-content:space-between;gap:12px;padding:10px 0}
+      .brand{font-size:clamp(.95rem,3.8vw,1.28rem)}
+      .menu-toggle{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:44px;padding:8px 10px;background:#171717;border:1px solid var(--line);border-radius:7px;color:#fff;font-weight:800;cursor:pointer}
+      .menu-toggle svg{width:20px;height:20px}
+      .menu-toggle:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
+      .header-actions{display:none;width:100%;flex-direction:column;align-items:stretch;gap:16px;padding:14px 0 8px;border-top:1px solid var(--line)}
+      .header-actions.is-open{display:flex}
+      .header-actions .navlinks{order:-1;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+      .header-actions .navlinks a:not(.nav-cta){display:flex;align-items:center;min-height:44px;padding:8px 12px;background:#171717;border-radius:7px}
+      .header-actions .nav-cta{grid-column:1/-1;text-align:center;padding:12px}
+      .social-links{display:flex;flex-wrap:wrap;gap:8px}
+      .social-link{flex:1;font-size:.78rem;padding:8px;min-height:44px}
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Anthony Williams",
+    "url":"https://anthonywilliamscomedy.com/",
+    "jobTitle":"Stand-up comedian and MC",
+    "image":"https://rockcentralpromotions.com/assets/headshots/A92A0660.jpg",
+    "sameAs":[
+      "https://www.facebook.com/anthonywilliamscomedy",
+      "https://tixevery.com/events/rockcentral/artists/cmr2n4v720064am66oknrndja",
+      "https://www.instagram.com/anthonywilliams.comedy/"
+    ]
+  }
+  </script>
+  <!-- Site version: 2026.10.31.1 | Updated: 31 October 2026 -->
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell nav">
+      <a class="brand" href="#top">Anthony <span>Williams</span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="header-menu" aria-label="Open navigation menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg><span>Menu</span></button>
+      <div class="header-actions" id="header-menu">
+        <nav class="social-links" aria-label="Anthony on social media">
+          <a class="social-link" href="https://www.facebook.com/anthonywilliamscomedy" target="_blank" rel="noopener noreferrer" aria-label="Anthony Williams on Facebook (opens in a new tab)">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 22v-9h3l.5-4H14V7c0-1.2.4-2 2-2h2V1.4A24 24 0 0 0 15 1c-3 0-5 1.8-5 5v3H7v4h3v9z"/></svg>Facebook
+          </a>
+
+          <a class="social-link" href="https://www.instagram.com/anthonywilliams.comedy/" target="_blank" rel="noopener noreferrer" aria-label="Anthony Williams on Instagram (opens in a new tab)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Instagram
+          </a>
+          <a class="social-link" href="https://www.youtube.com/watch?v=_l2p9OqBZak" target="_blank" rel="noopener noreferrer" aria-label="Watch Anthony Williams on YouTube (opens in a new tab)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l6 3-6 3z" fill="currentColor" stroke="none"/></svg>YouTube
+          </a>
+        </nav>
+      <nav class="navlinks" aria-label="Main navigation">
+        <a href="#live">Live</a>
+        <a href="#watch">Watch</a>
+        <a href="#about">About</a>
+        <a href="#promoters">Promoters</a>
+        <a class="nav-cta" href="#contact">Book Anthony</a>
+      </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <img class="hero-image" src="https://rockcentralpromotions.com/assets/headshots/A92A0660.jpg" alt="Anthony Williams, stand-up comedian and MC">
+      <div class="shell hero-copy">
+        <p class="kicker">Stand-up comedian · professional MC</p>
+        <h1 id="hero-title">Anthony <span>Williams</span></h1>
+        <p class="hero-lede">Warm, quick and audience-focused stand-up from a Derbyshire-based comedian and professional MC working stages across the UK.</p>
+        <div class="actions">
+          <a class="button" href="#watch">Watch Anthony</a>
+          <a class="button" href="#live">Live dates</a>
+          <a class="button" href="#promoters">Promoter pack</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="cred-strip">
+      <div class="shell cred-list" aria-label="Career highlights">
+        <span>Creatures Comedian of the Year 2026 finalist</span>
+        <span>Established UK circuit comic</span>
+        <span>Trusted show manager, sound tech and MC</span>
+      </div>
+    </div>
+
+    <section id="watch" class="reveal-section video-panel">
+      <div class="shell">
+        <div class="section-grid">
+          <div>
+            <p class="eyebrow">Watch</p>
+            <h2>Watch Anthony perform</h2>
+          </div>
+          <div>
+            <article class="performance-clip">
+              <h3>MC at The Canalhouse, Nottingham</h3>
+              <p>Unedited footage from October 2026, for promoters and bookers to see Anthony’s MC style in a live club setting.</p>
+              <div class="video-wrap">
+                <iframe src="https://www.youtube-nocookie.com/embed/zsj3PODR9HE" title="Anthony Williams compering The Canalhouse, Nottingham, October 2026: unedited MC footage" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+              <div class="video-meta">
+                <span>MC / compere · October 2026 · Unedited</span>
+                <a class="button" href="https://youtu.be/zsj3PODR9HE" target="_blank" rel="noopener noreferrer">Watch MC footage on YouTube</a>
+              </div>
+            </article>
+            <article class="performance-clip">
+              <h3>Creatures Comedy Comedian of the Year Final</h3>
+              <div class="video-wrap">
+                <iframe src="https://www.youtube-nocookie.com/embed/zIN3xVVfWIg" title="Anthony Williams: Creatures Comedy Comedian of the Year Final" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+              <div class="video-meta">
+                <span>7 minutes</span>
+                <a class="button" href="https://youtu.be/zIN3xVVfWIg" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+              </div>
+            </article>
+            <article class="performance-clip">
+              <h3>The Spirit of Comedy Leeds Semi-Final Winner</h3>
+              <div class="video-wrap">
+                <iframe src="https://www.youtube-nocookie.com/embed/3A2mfMyi84A" title="Anthony Williams: The Spirit of Comedy Leeds Semi-Final Winner" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+              <div class="video-meta">
+                <span>2 minutes 23 seconds</span>
+                <a class="button" href="https://youtube.com/shorts/3A2mfMyi84A" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+              </div>
+            </article>
+            <div class="video-wrap">
+              <iframe src="https://www.youtube-nocookie.com/embed/_l2p9OqBZak" title="Anthony Williams 30-minute headline comedy set" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="video-meta">
+              <span>30-minute headline set · North Yorkshire</span>
+              <a class="button" href="https://tixevery.com/events/rockcentral/artists/cmr2n4v720064am66oknrndja" target="_blank" rel="noopener">More clips & profile</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="live" class="reveal-section dates">
+      <div class="shell">
+        <div class="section-grid">
+          <div>
+            <p class="eyebrow">Live</p>
+            <h2>Upcoming gigs</h2>
+            <p class="lead">Upcoming club dates and public appearances.</p>
+          </div>
+          <div id="gig-list" class="gig-list" aria-live="polite">
+            <div class="gig-message">Loading upcoming dates…</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal-section quote-feature" aria-labelledby="reviews-title">
+      <div class="shell">
+        <p class="eyebrow" style="color:#111">What people say</p>
+        <blockquote>
+          <p id="reviews-title">“One of the best MCs I have worked with recently. A really warm on-stage presence with a great mixture of audience interaction and proper funny material.”</p>
+          <footer>Phil Walker</footer>
+        </blockquote>
+        <div class="mini-quotes">
+          <div><p>“A safe pair of hands and always has my audiences in stitches. That’s why I have him back over and over again.”</p><strong>Steve Rimmer · Hull Comedy</strong></div>
+          <div><p>“Creates a real intimacy in whatever room he’s in, creating a relationship with the audience that sets everyone up for success.”</p><strong>Vix Leyton</strong></div>
+          <div><p>“No matter the spot you need to fill or the size of the room, Anthony will be among the safest pair of hands you could book.”</p><strong>Kevin Daniel</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="reveal-section about">
+      <div class="shell section-grid">
+        <div>
+          <p class="eyebrow">About</p>
+          <h2>About Anthony</h2>
+        </div>
+        <div class="about-copy">
+          <p>Anthony Williams is a Derbyshire-based stand-up comedian and professional MC who has been performing since 2019. His style mixes warm audience interaction with polished material and a relaxed, confident stage presence.</p>
+          <p>He works regularly as an MC, opener, middle and closer, including paid work with Funhouse Comedy, Gag n Bone Man, Hilarity Bites, Jokes on Us, PIE Entertainment and Plane Comedy. He also produces and hosts professional comedy nights through RockCentral Promotions.</p>
+          <p>Anthony is proud to be represented by <a href="https://www.hoomacomedy.com/mustardtalentagency" target="_blank" rel="noopener">Mustard Talent Agency</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="promoters" class="reveal-section promoters">
+      <div class="shell promoter-grid">
+        <div class="headshot-gallery" aria-label="Anthony Williams headshots">
+          <article class="headshot-card">
+            <img src="https://rockcentralpromotions.com/assets/headshots/A92A0660.jpg" alt="Anthony Williams smiling with a microphone">
+            <div class="headshot-card-body">
+              <a class="button" href="https://rockcentralpromotions.com/assets/headshots/A92A0660.jpg" target="_blank" rel="noopener">Download</a>
+            </div>
+          </article>
+          <article class="headshot-card">
+            <img src="https://rockcentralpromotions.com/assets/headshots/A92A0825.jpg" alt="Anthony Williams promotional portrait">
+            <div class="headshot-card-body">
+              <a class="button" href="https://rockcentralpromotions.com/assets/headshots/A92A0825.jpg" target="_blank" rel="noopener">Download</a>
+            </div>
+          </article>
+          <article class="headshot-card">
+            <img src="https://rockcentralpromotions.com/assets/headshots/A92A0754.jpg" alt="Anthony Williams pointing towards the camera">
+            <div class="headshot-card-body">
+              <a class="button" href="https://rockcentralpromotions.com/assets/headshots/A92A0754.jpg" target="_blank" rel="noopener">Download</a>
+            </div>
+          </article>
+          <article class="headshot-card">
+            <img src="https://rockcentralpromotions.com/assets/headshots/A92A0609.jpg" alt="Anthony Williams landscape promotional portrait">
+            <div class="headshot-card-body">
+              <a class="button" href="https://rockcentralpromotions.com/assets/headshots/A92A0609.jpg" target="_blank" rel="noopener">Download</a>
+            </div>
+          </article>
+        </div>
+        <div>
+          <p class="eyebrow">Promoters</p>
+          <h2>Promoter pack.</h2>
+          <p class="lead">Headshots available individually or as a full ZIP.</p>
+          <div class="headshot-actions">
+            
+            <a class="button primary" href="https://rockcentralpromotions.com/assets/headshots/anthony-williams-headshots.zip">Download all headshots</a>
+            <a class="button" href="https://tixevery.com/events/rockcentral/artists/cmr2n4v720064am66oknrndja" target="_blank" rel="noopener">Artist profile</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="reveal-section contact">
+      <div class="shell">
+        <p class="eyebrow">Bookings & enquiries</p>
+        <h2>Work with Anthony.</h2>
+        <div class="contact-routes">
+          <article class="contact-route">
+            <h3>Book Anthony for your show</h3>
+            <p>For stand-up, MC and other performance bookings.</p>
+            <a class="button" href="mailto:danielhooma@gmail.com?subject=Anthony%20Williams%20booking%20enquiry">Book via Mustard Talent</a>
+          </article>
+          <article class="contact-route">
+            <h3>Putting on a night or managing a show?</h3>
+            <p>I also run RockCentral Promotions, producing professional comedy nights for pubs, clubs, breweries, arts centres and theatres. RockCentral can handle the line-up, production and show management, whether you want a regular comedy night or a one-off event.</p>
+            <a class="button" href="https://rockcentralpromotions.com/venues/" target="_blank" rel="noopener">Bring comedy to your venue</a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-row">
+      <span>© <span id="year"></span> Anthony Williams<br><small>v2026.10.31.1 · Updated 31 October 2026</small></span>
+      <div class="footer-links">
+        <a href="https://rockcentralpromotions.com/" target="_blank" rel="noopener">RockCentral Promotions</a>
+        <a href="https://www.instagram.com/anthonywilliams.comedy/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://tixevery.com/events/rockcentral/artists/cmr2n4v720064am66oknrndja" target="_blank" rel="noopener">TixEvery</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    (() => {
+      const feedUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSwimrrAx_VjdssD2ahn6MfrTx9lOtmlHHE7YvhQkU9eFHH12WHMMD215_0FBi-FxE27htq4M06llt2/pub?gid=746924671&single=true&output=csv&_=' + Date.now();
+      const list = document.getElementById('gig-list');
+
+      function parseCSV(text) {
+        const rows = []; let row = [], cell = '', quoted = false;
+        for (let i = 0; i < text.length; i++) {
+          const c = text[i], next = text[i + 1];
+          if (c === '"' && quoted && next === '"') { cell += '"'; i++; }
+          else if (c === '"') quoted = !quoted;
+          else if (c === ',' && !quoted) { row.push(cell); cell = ''; }
+          else if ((c === '\n' || c === '\r') && !quoted) {
+            if (c === '\r' && next === '\n') i++;
+            row.push(cell); cell = '';
+            if (row.some(v => v.trim() !== '')) rows.push(row);
+            row = [];
+          } else cell += c;
+        }
+        if (cell.length || row.length) { row.push(cell); if (row.some(v => v.trim() !== '')) rows.push(row); }
+        if (!rows.length) return [];
+        const headers = rows.shift().map(h => h.trim());
+        return rows.map(r => Object.fromEntries(headers.map((h,i) => [h, (r[i] || '').trim()])));
+      }
+
+      function parseDate(value) {
+        const v = value.trim();
+        let m = v.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+        if (m) return new Date(+m[1], +m[2]-1, +m[3]);
+        m = v.match(/^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})$/);
+        if (m) return new Date(+m[3], +m[2]-1, +m[1]);
+        return null;
+      }
+
+      function formatTime(value) {
+        const v = (value || '').trim();
+        const m = v.match(/^(\d{1,2}):(\d{2})$/);
+        if (!m) return v;
+        let h = +m[1], mins = m[2];
+        const suffix = h >= 12 ? 'pm' : 'am';
+        h = h % 12 || 12;
+        return mins === '00' ? `${h}${suffix}` : `${h}:${mins}${suffix}`;
+      }
+
+      function addText(parent, tag, className, text) {
+        const el = document.createElement(tag); el.className = className; el.textContent = text; parent.appendChild(el); return el;
+      }
+
+      fetch(feedUrl, { cache: 'no-store' })
+        .then(r => { if (!r.ok) throw new Error('Feed unavailable'); return r.text(); })
+        .then(text => {
+          const today = new Date(); today.setHours(0,0,0,0);
+          const windowEnd = new Date(today); windowEnd.setDate(windowEnd.getDate() + 30);
+          const gigs = parseCSV(text).map(g => ({...g, _date: parseDate(g.Date || '')}))
+            .filter(g => g._date && g._date >= today && (g.Status || '').toLowerCase() !== 'hidden')
+            .sort((a,b) => a._date - b._date);
+
+          function buildGigCard(g) {
+            const card = document.createElement('article'); card.className = 'gig-card';
+            const date = document.createElement('div'); date.className = 'gig-date';
+            addText(date, 'span', 'gig-weekday', g._date.toLocaleDateString('en-GB',{weekday:'short'}).toUpperCase());
+            addText(date, 'span', 'gig-month', g._date.toLocaleDateString('en-GB',{month:'short'}).toUpperCase());
+            addText(date, 'span', 'gig-day', String(g._date.getDate())); card.appendChild(date);
+            const info = document.createElement('div');
+            addText(info, 'p', 'gig-location', g.Location || 'Live');
+            addText(info, 'p', 'gig-venue', g.Venue || 'Venue TBC');
+            const dateLine = `${g._date.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'})}${g.Time ? ' · ' + formatTime(g.Time) : ''}`;
+            addText(info, 'p', 'gig-meta', dateLine);
+            const roleLine = [g.Role, g.Notes].filter(Boolean).join(' · ');
+            if (roleLine) addText(info, 'p', 'gig-meta', roleLine);
+            card.appendChild(info);
+            if (g['Ticket URL']) {
+              const a = document.createElement('a'); a.className = 'button gig-ticket primary'; a.href = g['Ticket URL']; a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'Tickets'; card.appendChild(a);
+            } else {
+              addText(card, 'span', 'button gig-ticket is-info', (g.Status || '').toLowerCase() === 'info soon' ? 'Info soon' : 'Details soon');
+            }
+            return card;
+          }
+
+          function render(showAll = false) {
+            list.replaceChildren();
+            if (!gigs.length) { addText(list, 'div', 'gig-message', 'No public dates currently listed. Check back soon.'); return; }
+            const visibleGigs = showAll ? gigs : gigs.slice(0, 4);
+            visibleGigs.forEach(g => list.appendChild(buildGigCard(g)));
+            if (gigs.length > 4) {
+              const wrap = document.createElement('div'); wrap.className = 'gig-more-wrap';
+              const button = document.createElement('button');
+              button.type = 'button'; button.className = 'button gig-more';
+              button.textContent = showAll ? 'Show fewer ↑' : 'Show all upcoming gigs ↓';
+              button.addEventListener('click', () => {
+                if (showAll) {
+                  render(false);
+                  requestAnimationFrame(() => {
+                    document.getElementById('live')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  });
+                } else {
+                  render(true);
+                }
+              });
+              wrap.appendChild(button); list.appendChild(wrap);
+            }
+          }
+          render(false);
+        })
+        .catch(() => { list.replaceChildren(); addText(list, 'div', 'gig-message', 'Upcoming dates are temporarily unavailable. Please check back shortly.'); });
+    })();
+  </script>
+
+  <script>
+    (() => {
+      const sections = document.querySelectorAll('.reveal-section');
+
+      if (!('IntersectionObserver' in window)) {
+        sections.forEach(section => section.classList.add('is-visible'));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.08,
+        rootMargin: '0px 0px -18% 0px'
+      });
+
+      sections.forEach(section => observer.observe(section));
+    })();
+  </script>
+  <script>
+    (() => {
+      const toggle = document.querySelector('.menu-toggle');
+      const menu = document.getElementById('header-menu');
+      function closeMenu() {
+        menu.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open navigation menu');
+      }
+      toggle.addEventListener('click', () => {
+        const open = toggle.getAttribute('aria-expanded') !== 'true';
+        menu.classList.toggle('is-open', open);
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+      });
+      menu.addEventListener('click', event => { if (event.target.closest('a')) closeMenu(); });
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') { closeMenu(); toggle.focus(); }
+      });
+      document.addEventListener('click', event => {
+        if (!event.target.closest('.topbar')) closeMenu();
+      });
+      window.matchMedia('(min-width:901px)').addEventListener('change', closeMenu);
+    })();
+  </script>
+</body>
+</html>
