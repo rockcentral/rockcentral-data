@@ -35,9 +35,10 @@ main .content{padding:45px 0 65px}.section-title{font-size:clamp(2.6rem,5vw,4rem
 input[type=url]{display:block;width:100%;min-width:0;border:1px solid #707077;border-radius:4px;background:#101013;color:white;padding:15px;font:500 15px/1.5 var(--body)}
 input::placeholder{color:#9898a1}.hint{font-size:.79rem;color:#bbb;margin-top:7px}
 .btn{border:1px solid var(--yellow);border-radius:4px;background:var(--yellow);color:#101010;padding:14px 19px;min-height:46px;font:900 .76rem/1.2 var(--body);text-transform:uppercase;letter-spacing:.04em;cursor:pointer}
-.btn:hover{background:#fff58a}.actions{margin-top:19px}.message{font-size:.84rem;margin-top:12px;min-height:1.3em;color:#bbb}.message.good{color:#b7edbd}.message.error{color:#ffaaa9}
+.btn:hover{background:#fff58a}.btn.secondary{background:transparent;color:var(--yellow)}.btn.secondary:hover{background:#2d2d28}.actions{margin-top:19px}.message{font-size:.84rem;margin-top:12px;min-height:1.3em;color:#bbb}.message.good{color:#b7edbd}.message.error{color:#ffaaa9}
 #result[hidden]{display:none}.result-heading{border-top:1px solid var(--line);margin-top:24px;padding-top:24px}.result-heading h3{font-size:2rem;margin:0 0 7px}
 .codebox{margin-top:14px;background:#0b0c0e;border:1px solid #424248;border-radius:5px}pre{margin:0;padding:19px;color:#eee;white-space:pre-wrap;overflow-wrap:anywhere;overflow-x:auto;font:13px/1.6 Consolas,monospace}
+.preview-area{border-top:1px solid var(--line);margin-top:26px;padding-top:24px}.preview-area h3{font-size:2rem;margin:0 0 7px}.preview-area p{margin-bottom:13px}#previewFrame{display:block;width:100%;height:540px;margin-top:18px;border:1px solid #606068;border-radius:5px;background:#fff}#previewFrame[hidden]{display:none}
 .community{margin-top:27px;padding:19px 22px;border-left:4px solid var(--yellow);background:#19191c}.community p{font-size:.88rem;margin:0;color:#ddd}.community strong{color:#fff}
 footer{background:#080809;border-top:1px solid var(--line);padding:23px 0}.foot{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;align-items:center}.foot a{font-size:.78rem;font-weight:800;text-decoration:none;color:#eee}.foot small{font-size:.72rem;color:#b8b8bd}
 @media(max-width:820px){.steps{grid-template-columns:1fr}.step{padding:20px}.hero{padding:43px 0}main .content{padding:34px 0 50px}}
@@ -78,12 +79,13 @@ footer{background:#080809;border-top:1px solid var(--line);padding:23px 0}.foot{
 <div class="codebox"><pre><code id="codeOutput"></code></pre></div>
 <div class="actions"><button class="btn" id="copyBtn" type="button">Copy the code</button></div>
 <div class="message" id="copyMessage" role="status" aria-live="polite"></div>
+<div class="preview-area" aria-labelledby="previewTitle"><h3 id="previewTitle">PREVIEW YOUR WIDGET.</h3><p>See how the live event listing looks before adding it to your website.</p><div class="actions"><button class="btn secondary" id="previewBtn" type="button">Load live preview</button></div><iframe id="previewFrame" title="Live TixEvery venue widget preview" sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox" loading="lazy" hidden></iframe></div>
 </div>
 </section>
 <div class="community"><p><strong>Made for the comedy community.</strong> This is a free tool put together by RockCentral Promotions to help venues share their festival shows. If it works for you, brilliant. Feel free to share it.</p></div>
 </div>
 </main>
-<footer><div class="wrap foot"><a href="/">RockCentral Promotions</a><small>Version 1.3 | Last updated 2 November 2026, 11:33 GMT</small></div></footer>
+<footer><div class="wrap foot"><a href="/">RockCentral Promotions</a><small>Version 1.4 | Last updated 2 November 2026</small></div></footer>
 <script>
 (function(){
 'use strict';
@@ -93,6 +95,8 @@ var result=document.getElementById('result');
 var output=document.getElementById('codeOutput');
 var copyMessage=document.getElementById('copyMessage');
 var code='';
+var previewFrame=document.getElementById('previewFrame');
+function clearPreview(){previewFrame.hidden=true;previewFrame.removeAttribute('srcdoc');}
 function setMessage(el,text,kind){el.textContent=text;el.className='message'+(kind?' '+kind:'');}
 function generate(){
 var u;
@@ -103,13 +107,21 @@ var match=u.pathname.match(/^\/events\/([a-z0-9][a-z0-9-]*)\/venues\/([a-z0-9-]+
 if(!match){throw Error();}
 code='<div\n  data-tixevery-widget="venue"\n  data-organiser="'+match[1]+'"\n  data-size="standard"\n  data-show-logo="false"\n  data-show-prices="true"\n  data-venue-id="'+match[2]+'"\n></div>\n\n<script async src="https://tixevery.com/public/widgets/embed.js"></'+'script>';
 output.textContent=code;
+clearPreview();
 result.hidden=false;
 setMessage(message,'Your widget code is ready.','good');
 setMessage(copyMessage,'','');
-}catch(e){code='';result.hidden=true;setMessage(message,'Please paste the full TixEvery venue listing URL (the one containing /venues/).','error');}
+}catch(e){code='';result.hidden=true;clearPreview();setMessage(message,'Please paste the full TixEvery venue listing URL (the one containing /venues/).','error');}
 }
 document.getElementById('generator').addEventListener('submit',function(event){event.preventDefault();generate();});
-input.addEventListener('input',function(){if(code){code='';result.hidden=true;setMessage(message,'','');}});
+input.addEventListener('input',function(){clearPreview();if(code){code='';result.hidden=true;setMessage(message,'','');}});
+document.getElementById('previewBtn').addEventListener('click',function(){
+if(!code)return;
+var doc='<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{font:16px/1.5 system-ui,Arial,sans-serif;margin:14px;color:#18243a;background:#fff}*{box-sizing:border-box}</style></head><body>'+code+'</body></html>';
+previewFrame.srcdoc=doc;
+previewFrame.hidden=false;
+previewFrame.scrollIntoView({behavior:'smooth',block:'nearest'});
+});
 document.getElementById('copyBtn').addEventListener('click',async function(){
 if(!code)return;
 try{if(!navigator.clipboard||!window.isSecureContext)throw Error();await navigator.clipboard.writeText(code);}
