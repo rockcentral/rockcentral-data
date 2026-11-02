@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TixEvery venue widget generator | Independent Comedy Festival</title>
+<meta name="description" content="Find your festival venue on TixEvery, paste its URL and copy an events widget for your own website.">
+<link rel="canonical" href="https://rockcentralpromotions.com/icf/widget/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<meta name="theme-color" content="#0d0d0e">
+<meta property="og:site_name" content="RockCentral Promotions">
+<meta property="og:title" content="Create a TixEvery venue widget">
+<meta property="og:description" content="A free venue widget generator for the Independent Comedy Festival community.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#0d0d0e;--panel:#1b1b1e;--ink:#f8f8f6;--muted:#ccc;--line:#3a3a3f;--yellow:#ffea00;--display:'Bebas Neue',Impact,Arial,sans-serif;--body:Montserrat,Arial,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.7 var(--body)}
+a{color:var(--yellow);text-underline-offset:3px}a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--yellow);outline-offset:4px}
+h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.05;letter-spacing:.02em}
+.wrap{width:min(1040px,calc(100% - 38px));margin:auto}.skip{position:absolute;top:-100px;left:10px;background:var(--yellow);color:#111;padding:9px}.skip:focus{top:10px}
+.site-header{background:#080809;border-bottom:1px solid var(--line)}.head{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.brand{font:400 clamp(24px,3vw,35px)/1 var(--display);color:#fff;text-decoration:none}.brand span{color:var(--yellow)}
+.head>a:last-child{color:#eee;font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;text-decoration:none}
+.hero{background:radial-gradient(circle at 90% 0%,rgba(255,234,0,.1),transparent 43%),linear-gradient(145deg,#1d1d21,var(--bg));border-bottom:1px solid var(--line);padding:58px 0 50px}
+.eyebrow{font-size:.72rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);display:block;margin-bottom:15px}
+h1{font-size:clamp(3.7rem,9vw,7rem);max-width:880px;margin-bottom:17px}h1 em{font-style:normal;color:var(--yellow)}.hero p{font-size:clamp(1rem,1.5vw,1.13rem);color:#e0e0e4;max-width:720px;margin:0}
+main .content{padding:45px 0 65px}.section-title{font-size:clamp(2.6rem,5vw,4rem);margin-bottom:20px}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin-bottom:36px}
+.step{background:linear-gradient(150deg,#222226,#19191c);border:1px solid var(--line);border-top:3px solid var(--yellow);border-radius:5px;padding:23px}
+.step .number{display:block;color:var(--yellow);font-size:.72rem;font-weight:900;letter-spacing:.1em;margin-bottom:13px}.step h3{font-size:2rem;margin-bottom:10px}.step p{font-size:.9rem;color:#ddd;margin-bottom:10px}.step p:last-child{margin-bottom:0}.step a{font-size:.8rem;font-weight:800}
+.panel{border:1px solid var(--line);background:var(--panel);border-radius:6px;padding:clamp(20px,3.5vw,38px)}
+.panel h2{font-size:clamp(2.5rem,5vw,3.5rem);margin-bottom:10px}.panel p{color:#ddd}.field-label{display:block;font-weight:800;font-size:.87rem;margin:21px 0 10px}
+input[type=url]{display:block;width:100%;min-width:0;border:1px solid #707077;border-radius:4px;background:#101013;color:white;padding:15px;font:500 15px/1.5 var(--body)}
+input::placeholder{color:#9898a1}.hint{font-size:.79rem;color:#bbb;margin-top:7px}
+.btn{border:1px solid var(--yellow);border-radius:4px;background:var(--yellow);color:#101010;padding:14px 19px;min-height:46px;font:900 .76rem/1.2 var(--body);text-transform:uppercase;letter-spacing:.04em;cursor:pointer}
+.btn:hover{background:#fff58a}.actions{margin-top:19px}.message{font-size:.84rem;margin-top:12px;min-height:1.3em;color:#bbb}.message.good{color:#b7edbd}.message.error{color:#ffaaa9}
+#result[hidden]{display:none}.result-heading{border-top:1px solid var(--line);margin-top:24px;padding-top:24px}.result-heading h3{font-size:2rem;margin:0 0 7px}
+.codebox{margin-top:14px;background:#0b0c0e;border:1px solid #424248;border-radius:5px}pre{margin:0;padding:19px;color:#eee;white-space:pre-wrap;overflow-wrap:anywhere;overflow-x:auto;font:13px/1.6 Consolas,monospace}
+.community{margin-top:27px;padding:19px 22px;border-left:4px solid var(--yellow);background:#19191c}.community p{font-size:.88rem;margin:0;color:#ddd}.community strong{color:#fff}
+footer{background:#080809;border-top:1px solid var(--line);padding:23px 0}.foot{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;align-items:center}.foot a{font-size:.78rem;font-weight:800;text-decoration:none;color:#eee}.foot small{font-size:.72rem;color:#b8b8bd}
+@media(max-width:820px){.steps{grid-template-columns:1fr}.step{padding:20px}.hero{padding:43px 0}main .content{padding:34px 0 50px}}
+@media(max-width:520px){.wrap{width:calc(100% - 30px)}.head{padding:16px 0;gap:11px}.hero h1{font-size:clamp(3.45rem,15vw,5rem)}.actions .btn{width:100%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap head"><a class="brand" href="/">ROCKCENTRAL<span>PROMOTIONS</span></a><a href="https://tixevery.com/events/independent-comedy-festival" target="_blank" rel="noopener noreferrer">Festival listings &rarr;</a></div></header>
+<main id="main">
+<section class="hero"><div class="wrap">
+<span class="eyebrow">Independent Comedy Festival / Free community tool</span>
+<h1>PUT YOUR VENUE'S <em>SHOWS ON YOUR SITE.</em></h1>
+<p>Create a TixEvery events widget for your venue in a few clicks. No coding knowledge needed.</p>
+</div></section>
+<div class="wrap content">
+<section aria-labelledby="howTitle">
+<h2 class="section-title" id="howTitle">FIRST, GET YOUR VENUE LINK.</h2>
+<div class="steps">
+<article class="step"><span class="number">STEP 01</span><h3>OPEN THE FESTIVAL LISTINGS.</h3><p>Go to the Independent Comedy Festival page on TixEvery.</p><a href="https://tixevery.com/events/independent-comedy-festival" target="_blank" rel="noopener noreferrer">Open the festival listings &rarr;</a></article>
+<article class="step"><span class="number">STEP 02</span><h3>FIND YOUR VENUE.</h3><p>Type your venue's name into the search bar and open the matching venue listing.</p></article>
+<article class="step"><span class="number">STEP 03</span><h3>COPY THE URL.</h3><p>Copy the full address from your browser, then paste it into the box below.</p></article>
+</div>
+</section>
+<section class="panel" aria-labelledby="generatorTitle">
+<h2 id="generatorTitle">NOW MAKE YOUR WIDGET.</h2>
+<p>Paste your venue listing URL and generate the code to add to your website.</p>
+<form id="generator" novalidate>
+<label class="field-label" for="venueUrl">Your TixEvery venue URL</label>
+<input id="venueUrl" name="venueUrl" type="url" required inputmode="url" autocomplete="url" spellcheck="false" placeholder="https://tixevery.com/events/.../venues/..." aria-describedby="urlHint">
+<div class="hint" id="urlHint">The link will contain <code>/venues/</code>.</div>
+<div class="actions"><button class="btn" type="submit">Generate my widget code</button></div>
+</form>
+<div class="message" id="formMessage" role="status" aria-live="polite"></div>
+<div id="result" hidden>
+<div class="result-heading"><h3>YOUR EMBED CODE.</h3><p>Copy this HTML and paste it into a custom HTML or code block on your website.</p></div>
+<div class="codebox"><pre><code id="codeOutput"></code></pre></div>
+<div class="actions"><button class="btn" id="copyBtn" type="button">Copy the code</button></div>
+<div class="message" id="copyMessage" role="status" aria-live="polite"></div>
+</div>
+</section>
+<div class="community"><p><strong>Made for the comedy community.</strong> This is a free tool put together by RockCentral Promotions to help venues share their festival shows. If it works for you, brilliant. Feel free to share it.</p></div>
+</div>
+</main>
+<footer><div class="wrap foot"><a href="/">RockCentral Promotions</a><small>Version 1.3 | Last updated 2 November 2026, 11:33 GMT</small></div></footer>
+<script>
+(function(){
+'use strict';
+var input=document.getElementById('venueUrl');
+var message=document.getElementById('formMessage');
+var result=document.getElementById('result');
+var output=document.getElementById('codeOutput');
+var copyMessage=document.getElementById('copyMessage');
+var code='';
+function setMessage(el,text,kind){el.textContent=text;el.className='message'+(kind?' '+kind:'');}
+function generate(){
+var u;
+try{
+u=new URL(input.value.trim());
+if(u.protocol!=='https:'||!['tixevery.com','www.tixevery.com'].includes(u.hostname.toLowerCase()))throw Error();
+var match=u.pathname.match(/^\/events\/([a-z0-9][a-z0-9-]*)\/venues\/([a-z0-9-]+)\/?$/i);
+if(!match){throw Error();}
+code='<div\n  data-tixevery-widget="venue"\n  data-organiser="'+match[1]+'"\n  data-size="standard"\n  data-show-logo="false"\n  data-show-prices="true"\n  data-venue-id="'+match[2]+'"\n></div>\n\n<script async src="https://tixevery.com/public/widgets/embed.js"></'+'script>';
+output.textContent=code;
+result.hidden=false;
+setMessage(message,'Your widget code is ready.','good');
+setMessage(copyMessage,'','');
+}catch(e){code='';result.hidden=true;setMessage(message,'Please paste the full TixEvery venue listing URL (the one containing /venues/).','error');}
+}
+document.getElementById('generator').addEventListener('submit',function(event){event.preventDefault();generate();});
+input.addEventListener('input',function(){if(code){code='';result.hidden=true;setMessage(message,'','');}});
+document.getElementById('copyBtn').addEventListener('click',async function(){
+if(!code)return;
+try{if(!navigator.clipboard||!window.isSecureContext)throw Error();await navigator.clipboard.writeText(code);}
+catch(e){var t=document.createElement('textarea');t.value=code;t.style.position='fixed';t.style.left='-9999px';document.body.appendChild(t);t.focus();t.select();var copied=document.execCommand('copy');t.remove();if(!copied){setMessage(copyMessage,'Select the code above and copy it manually.','error');return;}}
+setMessage(copyMessage,'Copied. Paste it into your website HTML block.','good');
+});
+})();
+</script>
+</body></html>
