@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 42,
+  "revision": 43,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -69,6 +69,10 @@
     {
       "path": "anthony/index.html",
       "sha256": "e4a81452cc58b8f2bf3515538c153a1b18db332ff7af1f70a52f1efbb10f952b"
+    },
+    {
+      "path": "icf/widget/index.html",
+      "sha256": "c3e67143a263f7e4bcde138665ca7dde8d7d99fd5aa3f241838a199538ceb2b7"
     }
   ]
 }
