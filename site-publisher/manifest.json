@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 46,
+  "revision": 47,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -77,6 +77,14 @@
     {
       "path": "belperdirections/index.html",
       "sha256": "c78b9d87064b3918c03738c7b55fb68388ec7ba35aa323d6f998fafbaa5c408d"
+    },
+    {
+      "path": "icf/real-ale-classroom/index.html",
+      "sha256": "49d5fbe68066c1b5171856e99a7a5da62e0e2a9b8076a53c5a40d5b3d30e2948"
+    },
+    {
+      "path": "index.html",
+      "sha256": "26b7131c723a5bf680d9f99b08cc7a2c08dde5becf8782ee9924860a0d346d90"
     }
   ]
 }
