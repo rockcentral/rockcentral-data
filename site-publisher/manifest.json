@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 45,
+  "revision": 46,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -76,7 +76,7 @@
     },
     {
       "path": "belperdirections/index.html",
-      "sha256": "e2c08f9edce9b09adb477f9bc4328cf21f19853029f1d9af8b5314b3fe6e6f31"
+      "sha256": "c78b9d87064b3918c03738c7b55fb68388ec7ba35aa323d6f998fafbaa5c408d"
     }
   ]
 }
