@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 51,
+  "revision": 52,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -88,11 +88,15 @@
     },
     {
       "path": "social-club/index.html",
-      "sha256": "9fd8b9f61cb19a01a9412ea1708ae54dade530f5e8c2eca39777ddabc5c6a95b"
+      "sha256": "78007499fd99b56c7d6b2ecab96768bed26c0440ea9a18eebe36a95dd16813f1"
     },
     {
       "path": "social-club/committee/index.html",
-      "sha256": "de1c11673bd7eaa268dc1a437d53f7d9886521a10d79b2e0fe6ab10e776a289b"
+      "sha256": "2e6f43e3edb4835204915f89689631e472c296b4d5afd73b4da43dc8bdf65e9b"
+    },
+    {
+      "path": "social-club/our-new-premises/index.html",
+      "sha256": "3e13055bc48ef43354e546cb34ae922daa86dff26da268b9e4df0789e9f14805"
     }
   ]
 }
