@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 52,
+  "revision": 53,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -88,15 +88,47 @@
     },
     {
       "path": "social-club/index.html",
-      "sha256": "78007499fd99b56c7d6b2ecab96768bed26c0440ea9a18eebe36a95dd16813f1"
+      "sha256": "f95644f2bd31ac688e242aa07e22fd1eb16d77da10956321b44d0dc41ede8678"
     },
     {
       "path": "social-club/committee/index.html",
-      "sha256": "2e6f43e3edb4835204915f89689631e472c296b4d5afd73b4da43dc8bdf65e9b"
+      "sha256": "89d85cdb9b0ad8bcf5fd42d86aae7c638baffcd82e9cdce7794d4d10813e3712"
     },
     {
       "path": "social-club/our-new-premises/index.html",
-      "sha256": "3e13055bc48ef43354e546cb34ae922daa86dff26da268b9e4df0789e9f14805"
+      "sha256": "90253407ee3addb7b60d52e7994ea14615e4908379e10c7cf880460d5a66c49c"
+    },
+    {
+      "path": "social-club/whats-on/index.html",
+      "sha256": "4bd539a9da4b695ba1884e92faab440b815a82cef4b9c953945b53c061b31351"
+    },
+    {
+      "path": "social-club/notices/index.html",
+      "sha256": "dfc4fde959048e1b2735c1fdec55300a6a7ee6308be9aaa83eb7ddadef986e03"
+    },
+    {
+      "path": "social-club/minutes/index.html",
+      "sha256": "d640108430dca21aec76d37e881558ce7378efa8624e92d2cfae55c712cd0452"
+    },
+    {
+      "path": "social-club/premises-update/index.html",
+      "sha256": "a90a62f24a2add7f4d5c82ea37391ed5c55873006ba1cf031ad719746d01a90e"
+    },
+    {
+      "path": "social-club/history/index.html",
+      "sha256": "e8438c030adb1e02a6375e59b271e682bc3e66db605ef5824ff008cabc6bbf78"
+    },
+    {
+      "path": "social-club/rules/index.html",
+      "sha256": "7bd4cf825a520327b6edce5c47fbaaf157282adadce8a20886ff29e4867c80a4"
+    },
+    {
+      "path": "social-club/room-hire/index.html",
+      "sha256": "064d70b3265f653d05cc9383d82b9e7d96f7fae60c687b6b5a32f6ba566838ca"
+    },
+    {
+      "path": "social-club/sports/index.html",
+      "sha256": "2aa536a89c2fc7354bcae2763616eacef641f1fb0976eb88df10086afd5638ac"
     }
   ]
 }
