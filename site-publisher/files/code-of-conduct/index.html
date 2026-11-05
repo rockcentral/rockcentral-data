@@ -48,8 +48,8 @@ li::marker{color:var(--yellow)}
 .site-nav a:hover{background:var(--panel2)}
 .site-nav .nav-cta{background:var(--yellow);color:var(--black);border:1px solid var(--yellow)}
 .site-nav .nav-cta:hover{background:#fff477}
-.hero{background:radial-gradient(circle at 85% 18%,rgba(255,234,0,.11),transparent 33%),linear-gradient(135deg,#111114,#080809);color:var(--ink);overflow:hidden;position:relative;border-bottom:1px solid var(--line)}
-.hero:after{content:"";position:absolute;width:400px;height:400px;right:-145px;top:30px;border:52px solid rgba(255,234,0,.055);border-radius:50%;pointer-events:none}
+.hero{background:#111;color:var(--ink);overflow:hidden;position:relative;border-bottom:1px solid var(--line)}
+
 .hero-inner{padding:80px 0 85px;position:relative;z-index:1}
 .eyebrow{font-size:.73rem;font-weight:900;letter-spacing:.15em;text-transform:uppercase;color:var(--yellow)}
 .hero .eyebrow{color:var(--yellow)}
@@ -89,8 +89,8 @@ li::marker{color:var(--yellow)}
 .policy-item p,.policy-item li{font-size:.88rem;line-height:1.8;color:#d9d9dc}
 .policy-item.full{grid-column:1/-1}
 .policy-list{margin-bottom:0}
-.reporting{background:linear-gradient(135deg,#212123,#111112);color:var(--ink);border:1px solid #55554f;border-left:5px solid var(--yellow);border-radius:9px;padding:37px 39px;position:relative;overflow:hidden}
-.reporting:before{content:"";position:absolute;right:-35px;top:-40px;width:180px;height:180px;border:30px solid rgba(255,234,0,.05);border-radius:50%}
+.reporting{background:#1a1a1a;color:var(--ink);border:1px solid #55554f;border-left:5px solid var(--yellow);border-radius:9px;padding:37px 39px;position:relative;overflow:hidden}
+
 .reporting .eyebrow{color:var(--yellow)}
 .reporting h2{color:var(--ink);font-size:clamp(3.1rem,5.5vw,5rem);text-transform:uppercase;margin:13px 0 18px;position:relative}
 .reporting p{max-width:690px;color:#e2e2e4}
@@ -159,6 +159,15 @@ body{font-family:Arial,Helvetica,sans-serif;color:#000;background:#fff;font-size
 .bottom-grid{display:block}
 .eyebrow,.rule .rule-no,.section-number{color:#555}
 }
+
+.rule{background:transparent;border:0;border-top:1px solid var(--line);padding:24px 0;border-radius:0}
+.rules-grid{gap:20px 32px}
+.policy{background:transparent;border:0;border-top:1px solid var(--line);border-radius:0;padding:26px 0}
+.section h2,.reporting h2{font-size:clamp(2.6rem,4.5vw,3.6rem);line-height:1.05}
+.reporting{border-radius:3px}
+.contents{top:110px}
+@media(max-width:860px){.contents{position:static}}
+@media print{.rule,.policy{border:0;background:none}.contents{position:static}}
 </style>
 </head>
 <body>
@@ -190,7 +199,7 @@ body{font-family:Arial,Helvetica,sans-serif;color:#000;background:#fff;font-size
 </aside>
 <div class="content-main">
 <section class="section" id="principles">
-<span class="section-number">01 / Our approach</span>
+
 <h2>WHO THIS CODE<br>APPLIES TO.</h2>
 <p class="section-lead">These are RockCentral's standards for the people taking part in, working at or attending our events.</p>
 <div class="policy">
@@ -199,31 +208,31 @@ body{font-family:Arial,Helvetica,sans-serif;color:#000;background:#fff;font-size
 </div>
 </section>
 <section class="section" id="professional">
-<span class="section-number">02 / How we treat people</span>
+
 <h2>RESPECT &amp;<br>PROFESSIONALISM.</h2>
 <p class="section-lead">We expect people to treat one another decently, on stage and off.</p>
 <div class="rules-grid">
-<article class="rule"><div class="rule-no">01 / EVERYONE</div><h3>Respect others</h3><ul>
+<article class="rule"><div class="rule-no">EVERYONE</div><h3>Respect others</h3><ul>
 <li>Treat people with dignity and respect, regardless of background or identity.</li>
 <li>Respect personal boundaries and consent, including during audience interaction.</li>
 <li>Do not bully, threaten, intimidate, harass or discriminate against others.</li>
 <li>Follow reasonable instructions relating to safety, accessibility and venue rules.</li>
 <li>Do not retaliate against someone who raises a concern in good faith.</li>
 </ul><p>Disagreement and criticism are not automatically misconduct. How you behave towards others matters.</p></article>
-<article class="rule"><div class="rule-no">02 / PERFORMERS AND MCS</div><h3>Be professional</h3><ul>
+<article class="rule"><div class="rule-no">PERFORMERS AND MCS</div><h3>Be professional</h3><ul>
 <li>Arrive at the agreed time, communicate delays and be ready to perform when required.</li>
 <li>Respect fellow performers' sets, venue staff, organisers and audience members.</li>
 <li>Look after the venue and its equipment; avoid unnecessary disruption backstage.</li>
 <li>Be fit to perform. Anyone impaired by alcohol or drugs may be removed from the line-up.</li>
 <li>Tell the promoter as soon as possible if illness, travel problems or another issue affects your booking.</li>
 </ul></article>
-<article class="rule wide"><div class="rule-no">03 / COMMUNICATION</div><h3>On and offline</h3>
+<article class="rule wide"><div class="rule-no">COMMUNICATION</div><h3>On and offline</h3>
 <p>Professional standards extend to social media and communications connected with our events. Honest feedback and disagreement are welcome; harassment, threats, intimidation and personal abuse are not.</p>
 </article>
 </div>
 </section>
 <section class="section" id="creative-freedom">
-<span class="section-number">03 / Our editorial standards</span>
+
 <h2>COMEDY &amp;<br>CREATIVE FREEDOM.</h2>
 <p class="section-lead">RockCentral supports comedians exploring difficult, controversial and sensitive subjects. We do not ban topics simply because they are uncomfortable or provocative.</p>
 <div class="policy">
@@ -237,7 +246,7 @@ body{font-family:Arial,Helvetica,sans-serif;color:#000;background:#fff;font-size
 </div>
 </section>
 <section class="section" id="sexual-harassment">
-<span class="section-number">04 / Personal safety</span>
+
 <h2>SEXUAL HARASSMENT<br>&amp; BOUNDARIES.</h2>
 <p class="section-lead">Sexual harassment is not acceptable at RockCentral events. Being a comedian, part of a show or in a social setting is not an excuse.</p>
 <div class="policy"><div class="policy-grid">
@@ -254,31 +263,31 @@ body{font-family:Arial,Helvetica,sans-serif;color:#000;background:#fff;font-size
 </div></div>
 </section>
 <section class="section reporting" id="reporting">
-<span class="eyebrow">05 / Speak to us</span><h2>RAISE A CONCERN.</h2>
+<h2>RAISE A CONCERN.</h2>
 <p>If you experience or witness something concerning at a RockCentral event, please tell us. You can speak to the MC, promoter or a member of the venue team at the event. If the concern involves one of those people, speak to somebody else you feel able to approach.</p>
 <p>After an event, email <a href="mailto:info@rockcentralpromotions.com">info@rockcentralpromotions.com</a>. You can begin with a brief message asking to discuss a concern; you do not have to set out sensitive details in your first email.</p>
 <p>We understand reporting may be difficult, particularly if you may work with the person involved again. You can raise a concern about something you experienced or witnessed. If someone is in immediate danger, call <strong>999</strong>.</p>
 <a class="action" href="mailto:info@rockcentralpromotions.com?subject=Confidential%20concern%20about%20a%20RockCentral%20event">Email RockCentral &rarr;</a>
 </section>
 <section class="section" id="response">
-<span class="section-number">06 / Taking concerns seriously</span><h2>HOW WE RESPOND.</h2>
+<h2>HOW WE RESPOND.</h2>
 <p class="section-lead">We aim to respond promptly, fairly and proportionately, taking account of the circumstances and the needs of those involved.</p>
 <div class="rules-grid">
-<article class="rule"><div class="rule-no">01 / FIRST STEPS</div><h3>Listen and assess</h3>
+<article class="rule"><div class="rule-no">FIRST STEPS</div><h3>Listen and assess</h3>
 <p>We will consider whether anyone needs immediate support or protection, listen to the concern, seek relevant information where appropriate and work with the venue to address immediate risks.</p>
 <p>Information will be handled sensitively and shared only where reasonably necessary to address a concern, protect people or meet legal obligations. We cannot promise absolute confidentiality.</p>
 </article>
-<article class="rule"><div class="rule-no">02 / POSSIBLE ACTIONS</div><h3>Consequences</h3>
+<article class="rule"><div class="rule-no">POSSIBLE ACTIONS</div><h3>Consequences</h3>
 <p>Depending on the seriousness and circumstances, action may include a warning, stopping a performance, removal from an event, cancellation of future bookings or exclusion from future RockCentral events.</p>
 <p>We will not tolerate retaliation against anyone raising a concern in good faith or helping us establish what happened.</p>
 </article>
-<article class="rule wide"><div class="rule-no">03 / SERIOUS INCIDENTS</div><h3>Outside support and authorities</h3>
+<article class="rule wide"><div class="rule-no">SERIOUS INCIDENTS</div><h3>Outside support and authorities</h3>
 <p>Serious incidents may require contact with the police or other appropriate authorities. Where possible, we will discuss this with the person affected, although safety concerns or legal duties may sometimes require us to act without their agreement.</p>
 </article>
 </div>
 </section>
 <section class="section" id="resources">
-<span class="section-number">07 / Advice and support</span><h2>INDEPENDENT<br>SUPPORT.</h2>
+<h2>INDEPENDENT<br>SUPPORT.</h2>
 <p class="section-lead">If you would rather seek advice outside RockCentral, these organisations offer information and support. They are independent of RockCentral Promotions.</p>
 <div class="bottom-grid">
 <div class="minor-card"><h3><a href="https://getofflivecomedy.org/" target="_blank" rel="noopener noreferrer">Get Off! Live Comedy &nearr;</a></h3><p>Works to address sexual harassment in the UK live comedy industry and provides information and links to support resources.</p></div>
@@ -287,13 +296,13 @@ body{font-family:Arial,Helvetica,sans-serif;color:#000;background:#fff;font-size
 <p style="margin-top:24px">We will review this code periodically and update it where necessary as our events and industry guidance develop.</p>
 </section>
 <section class="section" id="policy-download">
-<span class="section-number">08 / Keep a copy</span><h2>SAVE THIS CODE.</h2>
+<h2>SAVE THIS CODE.</h2>
 <p class="section-lead">You can print or save the full RockCentral Code of Conduct as a PDF for your records.</p>
 <button class="action" type="button" onclick="window.print()">Print / Save as PDF &rarr;</button>
 <p class="pdf-note">Choose &ldquo;Save as PDF&rdquo; in your browser's print window.</p>
 </section>
 </div></div>
 </main>
-<footer class="footer"><div class="container footer-inner"><div><h2>ROCKCENTRAL PROMOTIONS</h2><small>Independent live comedy since 2019.</small></div><nav aria-label="Footer navigation"><a href="/">Home</a><a href="/gigs/">All shows</a><a href="/venues/">For venues</a><a href="/contact/">Contact</a><a href="https://fb.me/rockcentralpromotions">Facebook</a><a href="https://www.instagram.com/rockcentralpromotions/">Instagram</a></nav></div><div class="container release-meta" aria-label="Page version and update time"><span>Page v9</span><span>Last updated <time datetime="2026-10-23T17:20:00+01:00">23 October 2026, 17:20 BST</time></span></div></footer>
+<footer class="footer"><div class="container footer-inner"><div><h2>ROCKCENTRAL PROMOTIONS</h2><small>Independent live comedy since 2019.</small></div><nav aria-label="Footer navigation"><a href="/">Home</a><a href="/gigs/">All shows</a><a href="/venues/">For venues</a><a href="/contact/">Contact</a><a href="https://fb.me/rockcentralpromotions">Facebook</a><a href="https://www.instagram.com/rockcentralpromotions/">Instagram</a></nav></div><div class="container release-meta" aria-label="Page version and update time"><span>Page v10</span><span>Last updated <time datetime="2026-11-05">5 November 2026</time></span></div></footer>
 </body>
 </html>
