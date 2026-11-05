@@ -35,7 +35,7 @@ h1,h2,h3{font-family:"Bebas Neue",Impact,"Arial Narrow",sans-serif;line-height:1
 .nav a:hover{background:var(--panel2)}
 .nav a[aria-current="page"]{color:var(--yellow)}
 .nav a.cta{background:var(--yellow);color:#080808}.nav a.cta:hover{background:#fff47d}
-.hero{background:radial-gradient(circle at 88% 15%,rgba(255,234,0,.11),transparent 35%),linear-gradient(145deg,#19191a,#080809);border-bottom:1px solid var(--line);overflow:hidden;position:relative}
+.hero{background:#111;border-bottom:1px solid var(--line);overflow:hidden;position:relative}
 .hero:after{content:"";position:absolute;right:-200px;bottom:-240px;width:490px;height:490px;border:55px solid rgba(255,234,0,.04);border-radius:50%;pointer-events:none}
 .hero-inner{padding:85px 0 78px;position:relative;z-index:1}
 .eyebrow{color:var(--yellow);font-size:.73rem;text-transform:uppercase;letter-spacing:.16em;font-weight:900}
@@ -95,7 +95,7 @@ h1,h2,h3{font-family:"Bebas Neue",Impact,"Arial Narrow",sans-serif;line-height:1
 .town{text-decoration:none}
 /* Compact, text-led cards. Keep the name and subtitle together. */
     .town-grid {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:26px}
-    .town {position:relative;min-height:116px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:7px;padding:24px 20px 17px;background:linear-gradient(135deg,#222,#111);border:1px solid #444;border-radius:5px;transition:background .2s,border-color .2s,transform .2s,box-shadow .2s}
+    .town {position:relative;min-height:116px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:7px;padding:24px 20px 17px;background:#191919;border:1px solid #444;border-radius:5px;transition:background .2s,border-color .2s,transform .2s,box-shadow .2s}
     .town-arrow {position:absolute;top:10px;right:14px;color:var(--yellow);font-size:19px;line-height:1;pointer-events:none}
     .town[hidden] {display:none!important}
     .town:hover,.town:focus,.town:active {background:#252525;border-color:var(--yellow);box-shadow:inset 0 0 0 1px var(--yellow)}
@@ -107,7 +107,7 @@ h1,h2,h3{font-family:"Bebas Neue",Impact,"Arial Narrow",sans-serif;line-height:1
     .inactive-title {font:400 clamp(30px,3.3vw,42px)/1 var(--display);letter-spacing:.025em;margin:0}
     .inactive-intro {color:#aaa;font-size:13px;margin:8px 0 0}
     .inactive-venues .town-grid {margin-top:20px}
-    .town.inactive {min-height:133px;background:linear-gradient(135deg,#191919,#101010);border-color:#343434;gap:5px;padding-bottom:15px}
+    .town.inactive {min-height:133px;background:#151515;border-color:#343434;gap:5px;padding-bottom:15px}
     .town.inactive .town-name {color:#bdbdbd}
     .town.inactive .town-sub {color:#999}
     .town.inactive .town-arrow {color:#737373}
@@ -137,6 +137,7 @@ h1,h2,h3{font-family:"Bebas Neue",Impact,"Arial Narrow",sans-serif;line-height:1
 }
 @media(prefers-reduced-motion:reduce){.town{transition:none}}
 </style>
+<!-- Presentation cleanup: 5 November 2026. Booking configuration preserved. -->
 </head>
 <body>
 <a class="skip" href="#shows">Skip to upcoming shows</a>
@@ -153,7 +154,7 @@ h1,h2,h3{font-family:"Bebas Neue",Impact,"Arial Narrow",sans-serif;line-height:1
 <div class="hero-features"><span>Live stand-up</span><span>Great local venues</span><span>Secure booking</span></div>
 </div></section>
 <section id="shows" class="section"><div class="container">
-<div class="section-heading"><span class="eyebrow">Your next night out starts here</span><h2>COMING UP NEXT.</h2><p>Find a show below. Our upcoming events, dates and ticket availability are supplied by TixEvery.</p></div>
+<div class="section-heading"><h2>COMING UP NEXT.</h2><p>Find a show below. Our upcoming events, dates and ticket availability are supplied by TixEvery.</p></div>
 <div class="booking-panel">
 <div class="booking-head"><h3>ROCKCENTRAL SHOWS</h3><span>Upcoming events</span></div>
 <div class="widget-wrap">
@@ -165,7 +166,7 @@ h1,h2,h3{font-family:"Bebas Neue",Impact,"Arial Narrow",sans-serif;line-height:1
 <p class="booking-note">All ticket payments are processed by TixEvery. Please check the event page for final times, pricing and availability.</p>
 </div></section>
 <section class="section venues" id="venues"><div class="container">
-<div class="section-heading"><span class="eyebrow">Closer than you think</span><h2>FIND COMEDY NEAR YOU.</h2><p>Want to see what's on at your local comedy club? Pick a venue to explore its upcoming nights.</p></div>
+<div class="section-heading"><h2>FIND COMEDY NEAR YOU.</h2><p>Want to see what's on at your local comedy club? Pick a venue to explore its upcoming nights.</p></div>
 <div class="town-grid" id="active-town-grid" aria-label="Venues currently advertising shows">
 <a class="town" href="/belper/"><span class="town-arrow" aria-hidden="true">↗</span><span class="town-name">Belper</span><span class="town-sub">Comedy Club</span></a>
 <a class="town" href="/heanor/"><span class="town-arrow" aria-hidden="true">↗</span><span class="town-name">Heanor</span><span class="town-sub">Comedy Club</span></a>
@@ -185,7 +186,7 @@ h1,h2,h3{font-family:"Bebas Neue",Impact,"Arial Narrow",sans-serif;line-height:1
 <a class="town inactive" href="/brookfield/" aria-label="Brookfield, no dates announced"><span class="town-arrow" aria-hidden="true">↗</span><span class="town-name long">Brookfield</span><span class="town-sub">Comedy Club</span><span class="town-status">No dates announced</span></a>
 <a class="town inactive" href="/icf/" aria-label="Independent Comedy Festival, no dates announced"><span class="town-arrow" aria-hidden="true">↗</span><span class="town-name long">Independent Comedy Festival</span><span class="town-sub">INDIE COM FEST</span><span class="town-status">No dates announced</span></a>
 <a class="town inactive" href="/somercotes/" aria-label="Somercotes, no dates announced"><span class="town-arrow" aria-hidden="true">↗</span><span class="town-name long">Somercotes</span><span class="town-sub">Little Premier Comedy Club</span><span class="town-status">No dates announced</span></a>
-<a class="town inactive" href="/ramfest/" aria-label="Ram Fest, no dates announced"><span class="town-arrow" aria-hidden="true">↗</span><span class="town-name">Ram Fest</span><span class="town-sub">Derby&#39;s Independent Comedy Festival</span><span class="town-status">No dates announced</span></a>
+
 </div>
 </div>
 <div class="features"><div><h3>Proper live comedy</h3><p>Real stand-up and a brilliant atmosphere, right where you live.</p></div><div><h3>Local venues</h3><p>Club nights and special events across the Midlands and beyond.</p></div><div><h3>Book direct</h3><p>Choose your show and pay securely through TixEvery.</p></div></div>
@@ -255,6 +256,8 @@ h1,h2,h3{font-family:"Bebas Neue",Impact,"Arial Narrow",sans-serif;line-height:1
 
           // Only same-site venue links are allowed, and every folder appears once.
           if (!name || name.length > 70 || !/^\/[a-z0-9-]+\/$/.test(path) || seen.has(path)) continue;
+          // Hide Ram Fest until its venue page is available.
+          if (path === '/ramfest/') continue;
           seen.add(path);
           validRows++;
           const enabled = checked === true || /^(true|yes|1|on)$/i.test(String(checked));

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 59,
+  "revision": 60,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -12,7 +12,7 @@
     },
     {
       "path": "gigs/index.html",
-      "sha256": "0540d1ae2475b2205270e49a022c003a96a206be4a0fd184e8e509a0b3447bad"
+      "sha256": "8084f52c2813bc2dd72053d4469eb277ac687e88c21f7502deef09a8748859a0"
     },
     {
       "path": "assets/venues/publisher-verification.png",
@@ -20,7 +20,7 @@
     },
     {
       "path": "community/index.html",
-      "sha256": "4403d92edcdfade1a16e8e1f8a48916ad36f8f9ef2b979071d338b33c170f426"
+      "sha256": "480249de6bfb1dc1ed24290ca98f02cf7eeccfc10f98d1ae5f7b63049dc67871"
     },
     {
       "path": "assets/social/og-community.jpg",
@@ -28,11 +28,11 @@
     },
     {
       "path": "duffield/index.html",
-      "sha256": "8ebc420b710572d36637d6ee3d021afeefde8060fadd5b3b88628ad1dfc17fb2"
+      "sha256": "61e3d0f8a94b10358b2d6840980f7803b78b6a2247a03a1ed7e567af234241bf"
     },
     {
       "path": "cleckheaton/index.html",
-      "sha256": "a9e5700f3aec529d2c260516437cbe9c65920f7254c75afc0494dc64e38c1938"
+      "sha256": "d46f30915f39518f216218b0b94ffb4d87cde4aa853684075200352d528dfe72"
     },
     {
       "path": "assets/venues/the-meat-drunkery-cleckheaton.jpg",
@@ -40,7 +40,7 @@
     },
     {
       "path": "elements/index.html",
-      "sha256": "1e17181c14c9c02c91c32de3974fb35be520b8a0f8b5a1775a1a8f59e9f35539"
+      "sha256": "8183526c4b6ca94a6d2c3755003c13e07b8df03d09d5d755515cc4827bd5cdbd"
     },
     {
       "path": "assets/venues/elements-tom.webp",
@@ -80,7 +80,7 @@
     },
     {
       "path": "icf/real-ale-classroom/index.html",
-      "sha256": "1e06dd2be67dad7adcc85a8a22a4b69c0418daa8c463f0a5dbbbde4b6647a682"
+      "sha256": "cbdfb694f6469c500b318594a79a98c0fb876bc1ca239ddb783ef007d56baeaf"
     },
     {
       "path": "index.html",
@@ -137,6 +137,30 @@
     {
       "path": "contact/index.html",
       "sha256": "e5ce5a46e5eeb38740397b25e966924d903f336b2c02a51e2002d166210d51ac"
+    },
+    {
+      "path": "belper/index.html",
+      "sha256": "38e6f978c3d0e310b520f1a5affce9749a4b1ca4e42713092207ac5693690d4a"
+    },
+    {
+      "path": "bolly/index.html",
+      "sha256": "e3383ebf6e7fd629877f341f2e93378e9887555ee709f83c1de96f20c899b7d0"
+    },
+    {
+      "path": "heanor/index.html",
+      "sha256": "c4364cec7e6e81062f32bdaaa9a5ea5fb9d2850bb7814e97dfcc1288159cc601"
+    },
+    {
+      "path": "odsal/index.html",
+      "sha256": "dd023df0d79625404a1acec7860eaa9276e546b2eae5884fae869445a24e70a1"
+    },
+    {
+      "path": "pentrich/index.html",
+      "sha256": "5cb23561e75a6594c13377ffd3689b300ebf93483be8fe4d52a372b94e1c2927"
+    },
+    {
+      "path": "somercotes/index.html",
+      "sha256": "e91b2a79342ce000bc4e9d3208c8c8dabee22e0a365d88f4272cfb34904ceb98"
     }
   ]
 }
