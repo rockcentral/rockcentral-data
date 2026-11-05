@@ -402,6 +402,8 @@
 
           // Only same-site venue links are allowed, and every folder appears once.
           if (!name || name.length > 70 || !/^\/(?:[a-z0-9-]+\/)+$/.test(path) || seen.has(path)) continue;
+          // Hide Ram Fest until its venue page is available. Keep its sheet record.
+          if (path === '/ramfest/') continue;
           seen.add(path);
           validRows++;
           const enabled = checked === true || /^(true|yes|1|on)$/i.test(String(checked));
