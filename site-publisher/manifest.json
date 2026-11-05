@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 62,
+  "revision": 63,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -8,11 +8,11 @@
     },
     {
       "path": "code-of-conduct/index.html",
-      "sha256": "76f00df36825307dc4830a6434f926b4ee43794352275de11d15ca9f8ff6f95f"
+      "sha256": "6b1be97d5b3af5a816e5100b63fad52dc6022f0b6ddbb7033329aaff70b51ea8"
     },
     {
       "path": "gigs/index.html",
-      "sha256": "8084f52c2813bc2dd72053d4469eb277ac687e88c21f7502deef09a8748859a0"
+      "sha256": "1b4b8733f39adf2ab28e5c9b5a6bcb93ff3f0bf6be838f9e18fcbb8376da4038"
     },
     {
       "path": "assets/venues/publisher-verification.png",
@@ -28,11 +28,11 @@
     },
     {
       "path": "duffield/index.html",
-      "sha256": "61e3d0f8a94b10358b2d6840980f7803b78b6a2247a03a1ed7e567af234241bf"
+      "sha256": "873fa53d90930b919e0838417e37de63519fb148099d69ed0f35499fbb90b815"
     },
     {
       "path": "cleckheaton/index.html",
-      "sha256": "d46f30915f39518f216218b0b94ffb4d87cde4aa853684075200352d528dfe72"
+      "sha256": "6004fd939026e05e2e404142ed63ba6dcf343ec0b548144902558a7db3242f4d"
     },
     {
       "path": "assets/venues/the-meat-drunkery-cleckheaton.jpg",
@@ -40,7 +40,7 @@
     },
     {
       "path": "elements/index.html",
-      "sha256": "8183526c4b6ca94a6d2c3755003c13e07b8df03d09d5d755515cc4827bd5cdbd"
+      "sha256": "350d0a093199e46231e452a48cbb84adffa6745808c3f6514e8ce37d982422c0"
     },
     {
       "path": "assets/venues/elements-tom.webp",
@@ -48,11 +48,11 @@
     },
     {
       "path": "icf2027/index.html",
-      "sha256": "d38f680d26371517c2b0227f225a991617400fa72433b5142168d4aac07c756b"
+      "sha256": "1f23ca5c0dcd4848a993997402a2472d6477e798a682d49cebec4ad404fde48a"
     },
     {
       "path": "recalculating/index.html",
-      "sha256": "4e12ba428e5ca95ea859aa9821ae21416f9ad18cab2066b3fe31c082af1af5d2"
+      "sha256": "479ab4397d42348febe96b502067dfd11005412f50aa6d7cf89f6d56aa9840c3"
     },
     {
       "path": "assets/venues/recalculating-poster.webp",
@@ -64,27 +64,27 @@
     },
     {
       "path": "recalculating/epk/index.html",
-      "sha256": "9b9234891a0e391becd1aad87cbf92a477c6e8b713165f89fb7307f0deec20f2"
+      "sha256": "cd9809eca47900920768dc629a87f685c7ac7ef883f73f860d18771e17170b60"
     },
     {
       "path": "anthony/index.html",
-      "sha256": "e4a81452cc58b8f2bf3515538c153a1b18db332ff7af1f70a52f1efbb10f952b"
+      "sha256": "d5408c3b1294d18f188e18b0c06d281e2a736d00a287b7843e5acd16c978061d"
     },
     {
       "path": "icf/widget/index.html",
-      "sha256": "7d5d1dc5d538a6d3d56fb16523a4e294ab6fdbbfabdc5a9cc00cbe53f0ce5bf5"
+      "sha256": "d9f90b8b9787bc8f81160d41cdfd8d5a3d511192c57b3cc28f17486cae3ba1f4"
     },
     {
       "path": "belperdirections/index.html",
-      "sha256": "c78b9d87064b3918c03738c7b55fb68388ec7ba35aa323d6f998fafbaa5c408d"
+      "sha256": "537f160e877bbfbfba232bd153884aeec3db120b7d7b1a11885f8dd8a62996a5"
     },
     {
       "path": "icf/real-ale-classroom/index.html",
-      "sha256": "afa5e3764d482320fe373378ea17519f35c1d16a460eae08a41f1f361add2e84"
+      "sha256": "ad20b3b553d35594ef7a4b4263c1fd610ce656339705c2a2073b52ebf7546fe6"
     },
     {
       "path": "index.html",
-      "sha256": "ac6a2bcf87c074db0b2a3bd9454b511acfe420f2595c0b6582552422aa50956e"
+      "sha256": "11a93e2d94694c8d9c867ff483ef7f00fd5053904c714bba8351c14c3f83bf6a"
     },
     {
       "path": "social-club/index.html",
@@ -136,31 +136,31 @@
     },
     {
       "path": "contact/index.html",
-      "sha256": "e5ce5a46e5eeb38740397b25e966924d903f336b2c02a51e2002d166210d51ac"
+      "sha256": "bd8840eca8c29a2f5caa29794c969617081099387a07973945f12801ceaef35c"
     },
     {
       "path": "belper/index.html",
-      "sha256": "38e6f978c3d0e310b520f1a5affce9749a4b1ca4e42713092207ac5693690d4a"
+      "sha256": "20ee3a91d11711afb7acd333630f8adacb9e065c9c12fa3829aee22e0574a1f9"
     },
     {
       "path": "bolly/index.html",
-      "sha256": "e3383ebf6e7fd629877f341f2e93378e9887555ee709f83c1de96f20c899b7d0"
+      "sha256": "fdc92b89c7f8a26c4ae598f753f65c3b7f0bae9dbfef82f5006ed7c95f7e38e7"
     },
     {
       "path": "heanor/index.html",
-      "sha256": "c4364cec7e6e81062f32bdaaa9a5ea5fb9d2850bb7814e97dfcc1288159cc601"
+      "sha256": "04040afd9100384a6258f35effee2cb180357d2df82215291e51ed52a508b93f"
     },
     {
       "path": "odsal/index.html",
-      "sha256": "dd023df0d79625404a1acec7860eaa9276e546b2eae5884fae869445a24e70a1"
+      "sha256": "182081395e32d0022f2ba8a2db14aee3705f6639f1114e4d557e2592b17430b6"
     },
     {
       "path": "pentrich/index.html",
-      "sha256": "5cb23561e75a6594c13377ffd3689b300ebf93483be8fe4d52a372b94e1c2927"
+      "sha256": "2a82f9e355e7ab3a2c5187fd80bcd2bf87f8dc45765d1c01146709b4aff188e3"
     },
     {
       "path": "somercotes/index.html",
-      "sha256": "e91b2a79342ce000bc4e9d3208c8c8dabee22e0a365d88f4272cfb34904ceb98"
+      "sha256": "62034c9842e36fd59edbeec5ef56c598865f8d1742838f3f0683c47d07e51f02"
     }
   ]
 }

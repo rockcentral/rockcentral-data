@@ -45,13 +45,14 @@ footer{background:#080809;border-top:1px solid var(--line);padding:23px 0}.foot{
 @media(max-width:520px){.wrap{width:calc(100% - 30px)}.head{padding:16px 0;gap:11px}.hero h1{font-size:clamp(3.45rem,15vw,5rem)}.actions .btn{width:100%}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
+<!-- Content clarity review: 5 November 2026; redundant introductory text removed. -->
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header"><div class="wrap head"><a class="brand" href="/">ROCKCENTRAL<span>PROMOTIONS</span></a><a href="https://tixevery.com/events/independent-comedy-festival" target="_blank" rel="noopener noreferrer">Festival listings &rarr;</a></div></header>
 <main id="main">
 <section class="hero"><div class="wrap">
-<span class="eyebrow">Independent Comedy Festival / Free community tool</span>
+
 <h1>PUT YOUR VENUE'S <em>SHOWS ON YOUR SITE.</em></h1>
 <p>Create a TixEvery events widget for your venue in a few clicks. No coding knowledge needed.</p>
 </div></section>
@@ -117,7 +118,8 @@ document.getElementById('generator').addEventListener('submit',function(event){e
 input.addEventListener('input',function(){clearPreview();if(code){code='';result.hidden=true;setMessage(message,'','');}});
 document.getElementById('previewBtn').addEventListener('click',function(){
 if(!code)return;
-var doc='<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{font:16px/1.5 system-ui,Arial,sans-serif;margin:14px;color:#18243a;background:#fff}*{box-sizing:border-box}</style></head><body>'+code+'</body></html>';
+var doc='<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{font:16px/1.5 system-ui,Arial,sans-serif;margin:14px;color:#18243a;background:#fff}*{box-sizing:border-box}</style><!-- Content clarity review: 5 November 2026; redundant introductory text removed. -->
+</head><body>'+code+'</body></html>';
 previewFrame.srcdoc=doc;
 previewFrame.hidden=false;
 previewFrame.scrollIntoView({behavior:'smooth',block:'nearest'});
