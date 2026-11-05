@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 60,
+  "revision": 61,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -80,7 +80,7 @@
     },
     {
       "path": "icf/real-ale-classroom/index.html",
-      "sha256": "cbdfb694f6469c500b318594a79a98c0fb876bc1ca239ddb783ef007d56baeaf"
+      "sha256": "afa5e3764d482320fe373378ea17519f35c1d16a460eae08a41f1f361add2e84"
     },
     {
       "path": "index.html",
