@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 66,
+  "revision": 67,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -88,47 +88,47 @@
     },
     {
       "path": "social-club/index.html",
-      "sha256": "c98ff3324a1c9ef4486b1c8795fc3368119c979e182382f10ed8ee45da21a47a"
+      "sha256": "4ce483cca994738a085e25130910b23a5e27f88241adc66f03a17dd5b3c385a7"
     },
     {
       "path": "social-club/committee/index.html",
-      "sha256": "9e7591948583dfbf422ae6ef55d092597f8db15dc4e9cca379a9f65682c5dc55"
+      "sha256": "36b38394965b70cf96b59595f7931272cf9d65d4d1ed97dc4e5a1377c5aa5ebc"
     },
     {
       "path": "social-club/our-new-premises/index.html",
-      "sha256": "2169fbf5efe88c3410cb416012e310eb6735cbd70c739dd2b42c5fa27deff180"
+      "sha256": "8af261b47e783567d6b2b8ff9d932e84c0bdebd400521ea9ac78a1fcb0e6bb9f"
     },
     {
       "path": "social-club/whats-on/index.html",
-      "sha256": "ce0a93a74f53a3fae79188e8c7c6eef5f09af9e28879883e82d4b9cdb7b13420"
+      "sha256": "d66c928565b31e94af08c4ecc6358d3ae51d21e9a38a34e3103711e65a254274"
     },
     {
       "path": "social-club/notices/index.html",
-      "sha256": "7801e2c2fffd99f0f0cd6c8e827d099fde777d890b70c86a22f06d76c514ca05"
+      "sha256": "6ab243786fa019e9c4195e7c97a941f9b11ea8752e859d75632169681bac1545"
     },
     {
       "path": "social-club/minutes/index.html",
-      "sha256": "7d0e24ffd0fb5f5e428e5c62856f17abfbddb30bc49a63b8718f0b2bcb97768e"
+      "sha256": "e7bc9c1999b6a91748a3a4b37225d34df9e570dbe947ec9c9943c924192d8412"
     },
     {
       "path": "social-club/premises-update/index.html",
-      "sha256": "8737cd2b2852a86bcc256387d20ef52746546d7299215b03337602a6047ccacd"
+      "sha256": "7ea3ace70b5dae529c9a7665f4185ece973e4741dadef6ae0de1b7ba2f4d430f"
     },
     {
       "path": "social-club/history/index.html",
-      "sha256": "acae40ad7aae6f4d216f9dbf72986786109416e5adec6541e131227c04b9a857"
+      "sha256": "c93f080cf6f8435bd786b0b1b868aaa7a9b1dc036709aa74662278a15d09511b"
     },
     {
       "path": "social-club/rules/index.html",
-      "sha256": "bb0ee1c37f56003f9213d8102e99f2e02b362eee6bed845a5573673647d897f3"
+      "sha256": "5399758a45ebff58a4a5ce0655ca7fd1144cf585d4a9184b5e59b01d494e149b"
     },
     {
       "path": "social-club/room-hire/index.html",
-      "sha256": "546b9dcefa032ad6de51806632455f957392ed05b6dbd9604b8f91752ca24020"
+      "sha256": "4f35d3d59eb7a53df9faacc908ea96e58966eaa983dce07a2b4847e37ea148ec"
     },
     {
       "path": "social-club/sports/index.html",
-      "sha256": "510cbe0ed4440175ee31083f7631c903729677c7d21054bbe4f7a38b9265f1b8"
+      "sha256": "63edf3468422805f1a125073835d707ca9aeaf8f1b003dde7c71585bcf043830"
     },
     {
       "path": "venues/index.html",
@@ -164,7 +164,7 @@
     },
     {
       "path": "social-club/host-the-club/index.html",
-      "sha256": "342d2749bb6c5dc79e6226eed770562120139c1159b533da47071e8a37fd8ee7"
+      "sha256": "75d449de53687eecc2bdf9e5ae4528794289eb2e7b2538d27982d2052837a388"
     }
   ]
 }
