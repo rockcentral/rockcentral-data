@@ -9,12 +9,11 @@
 <meta name="description" content="Kevin Daniel. Award-winning Scottish stand-up comedian. Live dates, biography and press information.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@600;700;800;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#101519;--navy:#192129;--panel:#202b33;--cream:#f6f0e5;--gold:#f0b777;--line:#36414b;--soft:#b6c0c7}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--ink);color:var(--cream);font-family:Arial,Helvetica,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}a{color:inherit}button{font:inherit;cursor:pointer}
-.wrap{width:min(1140px,calc(100% - 40px));margin:auto}.preview{padding:8px;background:var(--gold);color:#151a1e;text-align:center;font-size:11px;letter-spacing:.17em;font-weight:bold;text-transform:uppercase}
-.skip{position:absolute;left:-10000px}.skip:focus{left:10px;top:10px;z-index:50;background:white;color:black;padding:10px}
+.wrap{width:min(1140px,calc(100% - 40px));margin:auto}.skip{position:absolute;left:-10000px}.skip:focus{left:10px;top:10px;z-index:50;background:white;color:black;padding:10px}
 header{position:sticky;top:0;z-index:10;background:rgba(16,21,25,.97);border-bottom:1px solid var(--line);backdrop-filter:blur(15px)}.navrow{height:76px;display:flex;align-items:center;justify-content:space-between;gap:22px}.logo{text-decoration:none;font-size:25px;font-weight:900;letter-spacing:-.07em}.logo b{color:var(--gold)}nav{display:flex;align-items:center;gap:25px}nav a{font-size:12px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;font-weight:bold}nav a:hover{color:var(--gold)}.menubtn{display:none;background:transparent;border:1px solid var(--line);color:white;padding:8px 12px;border-radius:4px}
 .hero{position:relative;overflow:hidden;background:radial-gradient(circle at 86% 35%,#553e30 0%,#192129 32%,#101519 70%);border-bottom:1px solid var(--line)}
 .herogrid{display:grid;grid-template-columns:1.25fr .75fr;min-height:570px;gap:55px;align-items:center;padding:85px 0}.eyebrow,.kicker{font-size:12px;letter-spacing:.2em;color:var(--gold);font-weight:900;text-transform:uppercase}.hero h1{font-size:clamp(75px,10vw,143px);line-height:.85;letter-spacing:-.095em;margin:24px 0 30px;font-weight:900}.hero h1 span{display:block;color:var(--gold)}.intro{font-size:clamp(19px,2.1vw,26px);line-height:1.32;letter-spacing:-.02em;max-width:590px}.muted{color:var(--soft)}.heronote{font-size:14px;max-width:560px}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
@@ -104,12 +103,48 @@ header{background:rgba(5,22,45,.96)}
 .video-card .video-note{margin:14px 0 0;font-size:12px}
 @media(max-width:800px){.video-grid{grid-template-columns:1fr}.hero h1{font-size:clamp(62px,12vw,98px)}}
 @media(max-width:480px){.hero h1{font-size:clamp(56px,14vw,72px)}.video-card{padding:16px}}
+
+/* Version 0.3.4: restored geometric display lettering, clean viewport and mobile menu. */
+.logo,
+.hero h1,
+h2 {
+  font-family: 'League Spartan', Montserrat, Arial, sans-serif;
+}
+.logo {
+  font-size: 27px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  white-space: nowrap;
+}
+.logo b { font-weight: 800; }
+.hero h1 {
+  font-weight: 800;
+  line-height: .94;
+  letter-spacing: -0.045em;
+}
+.hero h1 span { font-weight: 800; }
+h2 {
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+.menubtn {
+  border: 0;
+  border-radius: 0;
+  padding: 10px 0 10px 14px;
+  background: transparent;
+  font-weight: 600;
+}
+.menubtn:hover { color: var(--gold); }
+@media(max-width:480px) {
+  .logo { font-size: 25px; }
+  .hero h1 { font-size: clamp(56px, 13.5vw, 72px); }
+}
 </style>
 </head>
 <body>
 <a href="#main" class="skip">Skip to content</a>
-<div class="preview">Work in progress / Kevin Daniel website preview</div>
-<header><div class="wrap navrow"><a href="#top" class="logo">Kevin <b>Daniel</b></a><button class="menubtn" id="menu" aria-expanded="false" aria-controls="nav">Menu</button><nav id="nav" aria-label="Main navigation"><a href="#gigs">Gigs</a><a href="#about">About</a><a href="#press">Press kit</a><a href="#watch">Watch</a><a href="#contact">Contact</a></nav></div></header>
+<header><div class="wrap navrow"><a href="#top" class="logo">KEVIN <b>DANIEL</b></a><button class="menubtn" id="menu" aria-expanded="false" aria-controls="nav">Menu</button><nav id="nav" aria-label="Main navigation"><a href="#gigs">Gigs</a><a href="#about">About</a><a href="#press">Press kit</a><a href="#watch">Watch</a><a href="#contact">Contact</a></nav></div></header>
 <main id="main">
 <section id="top" class="hero"><div class="wrap herogrid"><div><h1>KEVIN <span>DANIEL</span></h1><p class="intro">Born in Glasgow. On stages across Britain. A storyteller with a sharp eye for the ridiculous.</p><p class="heronote muted">Winner of Leicester Comedy Festival's Silver Stand-Up 2024. Performing stand-up since 2019 at leading clubs and festivals across the UK.</p></div><div class="hero-carousel" role="region" aria-roledescription="carousel" aria-label="Kevin performing and promoter reviews" tabindex="0">
   <div class="hero-track" id="hero-track" aria-live="off">
@@ -155,7 +190,7 @@ header{background:rgba(5,22,45,.96)}
 <section id="press" class="section alt"><div class="wrap"><div class="sectionhead"><div><h2>Press kit</h2></div></div><div class="pressgrid"><div class="panel"><h3>Complete kit</h3><p>The original complete press ZIP remains available on Kevin's current website. We will migrate the approved originals here, so the full pack and individual downloads are always in step.</p><a class="subtlelink" href="https://kevindanielcomedy.co.uk/press/" target="_blank" rel="noopener">Current press pack &rarr;</a><p style="margin-top:18px"><small>Direct ZIP download and approved photography will be added after retrieving the originals.</small></p></div><div class="panel"><h3>Individual files</h3><div class="item"><div><b>Short biography</b><small>Plain text</small></div><button type="button" class="dl" data-bio="short">Download</button></div><div class="item"><div><b>Full biography</b><small>Plain text</small></div><button type="button" class="dl" data-bio="full">Download</button></div><div class="item"><div><b>Approved headshots</b><small>High resolution</small></div><span class="waiting">To follow</span></div><div class="item"><div><b>Posters and artwork</b><small>Promotional assets</small></div><span class="waiting">To follow</span></div></div></div></div></section>
 <section id="contact" class="section"><div class="wrap contact"><div><h2>Get in touch</h2><p style="margin-top:20px">For gig bookings, interviews and press enquiries, drop Kevin an email.</p></div><a class="contact-email" href="mailto:info@kevindanielcomedy.co.uk">info@kevindanielcomedy.co.uk</a></div></section>
 </main>
-<footer><div class="wrap"><span>&copy; 2026 Kevin Daniel. Version 0.3.3, concept pending Kevin's approval.</span><span><a href="https://www.youtube.com/@kevindanielcomedy" target="_blank" rel="noopener">YouTube</a> / <a href="https://kevindanielcomedy.co.uk/" target="_blank" rel="noopener">Current site</a></span></div></footer>
+<footer><div class="wrap"><span>&copy; 2026 Kevin Daniel. Version 0.3.4, concept pending Kevin's approval.</span><span><a href="https://www.youtube.com/@kevindanielcomedy" target="_blank" rel="noopener">YouTube</a> / <a href="https://kevindanielcomedy.co.uk/" target="_blank" rel="noopener">Current site</a></span></div></footer>
 <script>
 
 (function(){
