@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 69,
+  "revision": 70,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -165,6 +165,10 @@
     {
       "path": "social-club/host-the-club/index.html",
       "sha256": "75d449de53687eecc2bdf9e5ae4528794289eb2e7b2538d27982d2052837a388"
+    },
+    {
+      "path": "kevin/index.html",
+      "sha256": "9139b91b8fd75521e5051eccf49f3e6095ae23377ed9e7b21b669192c7913f96"
     }
   ]
 }
