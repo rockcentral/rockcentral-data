@@ -51,3 +51,10 @@ Test mobile/desktop, verify all ticket URLs, connect Kevin's own sheet, update c
 - A v0.2 offline deployment package was assembled containing `kevin/press/index.html`, individual photo downloads, lightweight WebP thumbnails, PDF, original unchanged ZIP, short/full editable biographies, photo-credit note and `kevin/content/epk.json`. ZIP link and all local asset paths validated; original source ZIP verified byte-for-byte.
 - Package is NOT deployed to hosting and is NOT committed in GitHub because binary asset publishing to nested directories has not yet been configured. Keep staging public press section pointed at existing live archive until binary assets are on-server.
 - Preferred EPK hero: DSCF1455-3.jpg (black-and-white smiling portrait); optional home hero: DSCF1332-2.jpg (colour headshot). Final artwork needs Kevin's approval.
+
+## Homepage design feedback / revision 73
+- Use Montserrat, with 700-weight prominent headings and title-case navigation. Remove trailing punctuation from display headings and wordmark.
+- Avoid generic all-caps eyebrow labels, fluffy microcopy, decorative marketing ribbons and unnecessary CTA buttons. Booking buttons remain essential in the gig list.
+- The right-hand homepage hero is a three-slide rotating carousel mixing existing live-performance photographs and properly attributed promoter quotes. Slides can be paused; reduced-motion preference disables auto-rotation; swipe/keyboard arrows supported. Missing images gracefully leave readable quote slides.
+- Two of the preview gallery photos are temporarily referenced from `kevindanielcomedy.co.uk`, and another is from Just the Tonic. These are staging-only references, not final asset deployment. Before public launch, confirm source photographer permissions/credits, bring the files under `/kevin/assets/` and remove hotlinks.
+- Source committed to `site-publisher/files/kevin/index.html`; publishing manifest revision 73, checksum `3d6ce075c4a0ca53455d0ba36fc84125849c2c08f2f3604de0c5112e418bb3c8`.
