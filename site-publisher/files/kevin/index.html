@@ -660,6 +660,115 @@ footer .legal-links a{text-decoration:underline;text-underline-offset:4px}
   .hero .hero-photo-credit{animation:none!important}
 }
 
+
+/* v0.3.13: source-based biography, 2024 award feature and a clean timeline */
+#about .about-content{max-width:1140px}
+#about .about-lead-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.22fr) minmax(270px,.78fr);
+  align-items:start;
+  column-gap:clamp(35px,5.5vw,90px);
+  row-gap:35px;
+}
+#about .about-text{max-width:740px;margin-top:25px}
+#about .about-text p{
+  font-size:clamp(16px,1.35vw,18px);
+  line-height:1.76;
+  color:var(--soft);
+  margin-bottom:16px;
+}
+#about .award-feature{
+  margin:4px 0 0;
+  padding:0;
+}
+#about .award-photo-frame{
+  position:relative;
+  background:#092748;
+  min-height:240px;
+}
+#about .award-photo-frame img{
+  display:block;
+  width:100%;
+  height:auto;
+  min-height:240px;
+  max-height:440px;
+  object-fit:cover;
+  object-position:center 28%;
+  background:#092748;
+}
+#about .award-photo-fallback{
+  display:block;
+  color:#b4dcfa;
+  font-size:12px;
+  margin-top:8px;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+#about .award-feature figcaption{
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+  margin-top:15px;
+}
+#about .award-feature figcaption strong{
+  font-family:'League Spartan',Montserrat,Arial,sans-serif;
+  font-size:clamp(22px,2.5vw,30px);
+  line-height:1.12;
+  font-weight:700;
+  letter-spacing:-.02em;
+}
+#about .award-feature figcaption span{font-size:15px;color:var(--soft)}
+#about .award-feature figcaption small{font-size:11px;color:#bbcad9}
+#about .career-history{margin-top:clamp(54px,7vw,96px)}
+#about .career-history h3{
+  font-family:'League Spartan',Montserrat,Arial,sans-serif;
+  font-size:clamp(29px,4vw,45px);
+  letter-spacing:-.035em;
+  line-height:1.1;
+  margin:0 0 20px;
+}
+#about .career-timeline{margin:0;padding:0;list-style:none}
+#about .career-timeline li{
+  display:grid;
+  grid-template-columns:110px minmax(0,1fr);
+  gap:20px;
+  border-top:1px solid rgba(185,220,255,.23);
+  padding:23px 0;
+}
+#about .career-timeline li:last-child{border-bottom:1px solid rgba(185,220,255,.23)}
+#about .career-timeline time{
+  font-family:'League Spartan',Montserrat,Arial,sans-serif;
+  color:#abd9ff;
+  font-size:29px;
+  font-weight:700;
+  line-height:1;
+}
+#about .career-timeline h4{
+  font-size:17px;
+  line-height:1.35;
+  font-weight:700;
+  margin:0 0 7px;
+}
+#about .career-timeline p{
+  color:var(--soft);
+  font-size:15px;
+  line-height:1.7;
+  margin:0;
+  max-width:780px;
+}
+@media(max-width:800px){
+  #about .about-lead-grid{grid-template-columns:1fr;gap:30px}
+  #about .award-feature{max-width:520px}
+  #about .career-history{margin-top:58px}
+}
+@media(max-width:480px){
+  #about .award-photo-frame img{max-height:380px}
+  #about .career-timeline li{grid-template-columns:66px minmax(0,1fr);gap:12px;padding:19px 0}
+  #about .career-timeline time{font-size:22px}
+  #about .career-timeline h4{font-size:16px}
+  #about .career-timeline p{font-size:14px}
+}
+
 </style>
 </head>
 <body>
@@ -685,7 +794,57 @@ footer .legal-links a{text-decoration:underline;text-underline-offset:4px}
   </div>
   <div class="hero-carousel-controls"><span id="hero-count">1 of 3</span><button type="button" class="carousel-toggle" id="carousel-toggle" aria-label="Pause photo carousel">Pause</button></div>
 </div></div></section>
-<section id="about" class="section alt"><div class="wrap about-content"><h2>About Kevin</h2><div class="about-text"><p>Born in Glasgow, Kevin moved to England in 2000 and started performing stand-up in 2019. He has appeared at clubs including The Frog and Bucket, The Stand, Glee Club and Just the Tonic, and taken shows to comedy festivals around the UK.</p><p>He won the Silver Stand-Up competition at Leicester Comedy Festival in 2024, after reaching the British Comedian of the Year semi-finals in both 2022 and 2023.</p></div></div></section>
+<section id="about" class="section alt">
+  <div class="wrap about-content">
+    <div class="about-lead-grid">
+      <div class="about-narrative">
+        <h2>About Kevin</h2>
+        <div class="about-text">
+          <p>Kevin Daniel is an award-winning Scottish stand-up comedian based in the Midlands. Born in Glasgow, he moved to England in 2000 and first took to the stage as a stand-up in 2019.</p>
+          <p>He progressed from open spots and gong shows to regular paid work at comedy clubs across the UK. His credits include The Frog and Bucket, Hot Water, The Stand, Glee Club, Just the Tonic, Blackpool Comedy Station, Buzz Comedy, Comedy Hot Spots, The Hull Comedy Lounge and Funhouse Comedy, among many others.</p>
+          <p>Kevin's comedy brings together relatable stories, assured stagecraft and carefully crafted jokes. He has taken his own shows to the Edinburgh Fringe, Leicester Comedy Festival, Glasgow International Comedy Festival, Brighton Comedy Festival and Cambridge Fringe Festival.</p>
+          <p>He has also supported Jack Gleadow, Nathan Caton and Fiona Allen on their UK tours. In 2024 he won Leicester Comedy Festival's Silver Stand-Up competition.</p>
+        </div>
+      </div>
+      <figure class="award-feature">
+        <div class="award-photo-frame">
+          <img src="https://kevindanielcomedy.co.uk/wp-content/uploads/2024/03/kevin-daniel-comedy-002-1-scaled.jpg" alt="Kevin Daniel celebrating his 2024 Silver Stand-Up competition win" loading="lazy" decoding="async">
+          <a class="award-photo-fallback" href="https://kevindanielcomedy.co.uk/team/kevin-daniel/" target="_blank" rel="noopener noreferrer">See Kevin's award photograph on his original site</a>
+        </div>
+        <figcaption>
+          <strong>2024 Silver Stand-Up winner</strong>
+          <span>Leicester Comedy Festival</span>
+          <small>Photograph &copy; 2024 Leicester Comedy Festival</small>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="career-history">
+      <h3>Career highlights</h3>
+      <ol class="career-timeline">
+        <li>
+          <time datetime="2024">2024</time>
+          <div><h4>Silver Stand-Up champion</h4><p>Won the Leicester Comedy Festival competition and performed his first full-hour show, <em>What's the Worst That Can Happen?</em>, to two sold-out audiences at the festival.</p></div>
+        </li>
+        <li>
+          <time datetime="2023">2023</time>
+          <div><h4>First solo show and growing recognition</h4><p>Sold-out work-in-progress performances of <em>Freedom</em> at Leicester and Glasgow comedy festivals. Supported Fiona Allen, reached the British Comedian of the Year semi-finals and featured in Chortle's Ones to Watch list.</p></div>
+        </li>
+        <li>
+          <time datetime="2022">2022</time>
+          <div><h4>British Comedian of the Year semi-finalist</h4><p>Reached the competition's semi-finals and supported Nathan Caton on tour.</p></div>
+        </li>
+        <li>
+          <time datetime="2021">2021</time>
+          <div><h4>Breakthrough recognition</h4><p>Finalist for Midlands Comedy Awards Breakthrough Act and tour support for Jack Gleadow.</p></div>
+        </li>
+        <li>
+          <time datetime="2019">2019</time>
+          <div><h4>First steps on stage</h4><p>Started performing stand-up and became a Midlands Comedy Awards Best New Act finalist.</p></div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
 <section id="watch" class="section"><div class="wrap">
   <div class="sectionhead"><div><h2>Watch Kevin</h2></div></div>
   <p class="lead">Stand-up clips and more from Kevin's two YouTube channels.</p>
@@ -719,7 +878,7 @@ footer .legal-links a{text-decoration:underline;text-underline-offset:4px}
 </div>
 </div><a class="contact-email" href="mailto:info@kevindanielcomedy.co.uk">info@kevindanielcomedy.co.uk</a></div></section>
 </main>
-<footer><div class="wrap"><span>&copy; 2026 Kevin Daniel. Version 0.3.12, concept pending Kevin's approval.</span><span class="legal-links"><a href="https://kevindanielcomedy.co.uk/privacy-policy/" target="_blank" rel="noopener noreferrer">Privacy policy</a><a href="https://kevindanielcomedy.co.uk/" target="_blank" rel="noopener noreferrer">Current site</a></span></div></footer>
+<footer><div class="wrap"><span>&copy; 2026 Kevin Daniel. Version 0.3.13, concept pending Kevin's approval.</span><span class="legal-links"><a href="https://kevindanielcomedy.co.uk/privacy-policy/" target="_blank" rel="noopener noreferrer">Privacy policy</a><a href="https://kevindanielcomedy.co.uk/" target="_blank" rel="noopener noreferrer">Current site</a></span></div></footer>
 <script>
 
 (function(){
