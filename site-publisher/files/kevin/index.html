@@ -275,6 +275,29 @@ h2 {
   .hero::after{opacity:0!important}
 }
 
+
+/* v0.3.8: editorial sections instead of decorative card containers. */
+.about-content{max-width:1140px}
+.about-text{max-width:760px;margin-top:28px}
+.about-text p{color:var(--soft);font-size:clamp(16px,1.5vw,19px);line-height:1.75;margin-bottom:16px}
+#watch .video-grid{gap:clamp(25px,4vw,58px);align-items:start;margin-top:30px}
+#watch .video-card{padding:0;background:transparent;border:0;border-radius:0;box-shadow:none}
+#watch .video-card h3{margin:0 0 10px;font-size:clamp(20px,2vw,25px)}
+#watch .video-card p{margin-bottom:16px}
+#watch .video-player{box-shadow:none;border:0}
+#watch .channel-link{margin-top:15px}
+#press .pressgrid{gap:clamp(32px,6vw,96px);align-items:start}
+#press .panel{background:transparent;border:0;border-radius:0;box-shadow:none;padding:0}
+#press .panel h3{margin-bottom:15px}
+#press .panel p{line-height:1.7}
+#press .item{border-bottom:1px solid rgba(187,213,237,.21);padding:17px 0}
+#press .item:last-child{border-bottom:0}
+@media(max-width:800px){
+  .about-text{margin-top:24px}
+  #watch .video-grid{gap:45px}
+  #press .pressgrid{gap:42px}
+}
+
 </style>
 </head>
 <body>
@@ -300,7 +323,7 @@ h2 {
 </div></div><small class="hero-photo-credit">Photo &copy; Steve Best</small></section>
 <section id="gigs" class="section"><div class="wrap"><div class="sectionhead"><div><h2>See Kevin live</h2></div></div><p class="lead">Find a show, choose your date and book tickets. These initial dates are being migrated from Kevin's current website. Direct booking links are shown where verified.</p><div id="giglist" class="giglist" aria-live="polite"></div><div class="morewrap"><button type="button" class="more" id="more" hidden>See more dates</button></div></div></section>
 <div class="mobile-carousel-slot" id="mobile-carousel-slot"></div>
-<section id="about" class="section alt"><div class="wrap feature"><div class="featureart"><em>Born in Glasgow.<br>On stage across<br>the UK.</em></div><div><h2>About Kevin</h2><p style="margin-top:24px">Born in Glasgow, Kevin moved to England in 2000 and started performing stand-up in 2019. He has appeared at clubs including The Frog and Bucket, The Stand, Glee Club and Just the Tonic, and taken shows to comedy festivals around the UK.</p><p>He won the Silver Stand-Up competition at Leicester Comedy Festival in 2024, after reaching the British Comedian of the Year semi-finals in both 2022 and 2023.</p></div></div></section>
+<section id="about" class="section alt"><div class="wrap about-content"><h2>About Kevin</h2><div class="about-text"><p>Born in Glasgow, Kevin moved to England in 2000 and started performing stand-up in 2019. He has appeared at clubs including The Frog and Bucket, The Stand, Glee Club and Just the Tonic, and taken shows to comedy festivals around the UK.</p><p>He won the Silver Stand-Up competition at Leicester Comedy Festival in 2024, after reaching the British Comedian of the Year semi-finals in both 2022 and 2023.</p></div></div></section>
 <section id="watch" class="section"><div class="wrap">
   <div class="sectionhead"><div><h2>Watch Kevin</h2></div></div>
   <p class="lead">Stand-up clips and more from Kevin's two YouTube channels.</p>
@@ -326,7 +349,7 @@ h2 {
 <section id="press" class="section alt"><div class="wrap"><div class="sectionhead"><div><h2>Press kit</h2></div></div><div class="pressgrid"><div class="panel"><h3>Complete kit</h3><p>The original complete press ZIP remains available on Kevin's current website. We will migrate the approved originals here, so the full pack and individual downloads are always in step.</p><a class="subtlelink" href="https://kevindanielcomedy.co.uk/press/" target="_blank" rel="noopener">Current press pack &rarr;</a><p style="margin-top:18px"><small>Direct ZIP download and approved photography will be added after retrieving the originals.</small></p></div><div class="panel"><h3>Individual files</h3><div class="item"><div><b>Short biography</b><small>Plain text</small></div><button type="button" class="dl" data-bio="short">Download</button></div><div class="item"><div><b>Full biography</b><small>Plain text</small></div><button type="button" class="dl" data-bio="full">Download</button></div><div class="item"><div><b>Approved headshots</b><small>High resolution</small></div><span class="waiting">To follow</span></div><div class="item"><div><b>Posters and artwork</b><small>Promotional assets</small></div><span class="waiting">To follow</span></div></div></div></div></section>
 <section id="contact" class="section"><div class="wrap contact"><div><h2>Get in touch</h2><p style="margin-top:20px">For gig bookings, interviews and press enquiries, drop Kevin an email.</p></div><a class="contact-email" href="mailto:info@kevindanielcomedy.co.uk">info@kevindanielcomedy.co.uk</a></div></section>
 </main>
-<footer><div class="wrap"><span>&copy; 2026 Kevin Daniel. Version 0.3.7, concept pending Kevin's approval.</span><span><a href="https://www.youtube.com/@kevindanielcomedy" target="_blank" rel="noopener">YouTube</a> / <a href="https://kevindanielcomedy.co.uk/" target="_blank" rel="noopener">Current site</a></span></div></footer>
+<footer><div class="wrap"><span>&copy; 2026 Kevin Daniel. Version 0.3.8, concept pending Kevin's approval.</span><span><a href="https://www.youtube.com/@kevindanielcomedy" target="_blank" rel="noopener">YouTube</a> / <a href="https://kevindanielcomedy.co.uk/" target="_blank" rel="noopener">Current site</a></span></div></footer>
 <script>
 
 (function(){
