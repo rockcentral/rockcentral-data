@@ -42,3 +42,12 @@ Obtain the existing approved ZIP from Kevin. Inventory contents, image rights an
 
 ## Before domain launch
 Test mobile/desktop, verify all ticket URLs, connect Kevin's own sheet, update contact, test download links, connect full kit ZIP, audit images/credits and redirects, apply canonical on final domain, set HTTPS, remove noindex only after Kevin approves launch. Check that `kevindanielcomedy.co.uk` redirects correctly, preferably page to page.
+
+## EPK source archive received (9 November 2026)
+- Source ZIP: presskit-kevin-daniel-comedy.zip, 1.4MB, SHA-256 `45d43c33f6f5648b661576e1d2cdc8d01f2570fb167a1f2ecab79abe952a894e`.
+- Contents: six JPEG originals (DSCF1268-3, DSCF1279-2, DSCF1332-2, DSCF1361-2, DSCF1374-3, DSCF1455-3) and original three-page PDF.
+- All photos © Steve Best (https://www.stevebest.com/); photographer attribution is REQUIRED according to Kevin's press PDF. Do not omit credits on public press page.
+- PDF includes biography, seven attributed promoter testimonials, contact/social links, and photo-usage note. Creation date February 2025; check details and former-domain URLs before final launch.
+- A v0.2 offline deployment package was assembled containing `kevin/press/index.html`, individual photo downloads, lightweight WebP thumbnails, PDF, original unchanged ZIP, short/full editable biographies, photo-credit note and `kevin/content/epk.json`. ZIP link and all local asset paths validated; original source ZIP verified byte-for-byte.
+- Package is NOT deployed to hosting and is NOT committed in GitHub because binary asset publishing to nested directories has not yet been configured. Keep staging public press section pointed at existing live archive until binary assets are on-server.
+- Preferred EPK hero: DSCF1455-3.jpg (black-and-white smiling portrait); optional home hero: DSCF1332-2.jpg (colour headshot). Final artwork needs Kevin's approval.
