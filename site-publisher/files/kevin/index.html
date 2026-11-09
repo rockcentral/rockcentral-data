@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow,noarchive">
-<meta name="theme-color" content="#101519">
+<meta name="theme-color" content="#061b37">
 <title>Kevin Daniel | Stand-Up Comedian | Site Preview</title>
 <meta name="description" content="Kevin Daniel. Award-winning Scottish stand-up comedian. Live dates, biography and press information.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -70,14 +70,48 @@ h2{font-weight:700;letter-spacing:-.055em}
 @media(max-width:800px){.herogrid{grid-template-columns:1fr;min-height:unset;padding:58px 0;gap:28px}.hero h1{font-size:clamp(66px,13vw,105px)}.hero-carousel{height:400px}nav a{font-size:15px}}
 @media(max-width:480px){.hero h1{font-size:clamp(59px,15vw,75px)}.hero-carousel{height:340px}.hero-slide figcaption{left:19px;right:19px;bottom:52px}.hero-slide blockquote{font-size:22px}.hero-carousel-controls{padding:8px 19px}}
 @media(prefers-reduced-motion:reduce){.hero-track{scroll-behavior:auto!important}}
+
+/* Scottish-blue direction. White typography; no decorative flag motif. */
+:root{--ink:#061a35;--navy:#09284e;--panel:#10345f;--cream:#fcfdff;--gold:#a3d9ff;--line:#35618d;--soft:#d0ddeb}
+body{background:var(--ink)}
+header{background:rgba(5,22,45,.96)}
+.hero{background:radial-gradient(ellipse at 86% 22%,#22517f 0%,#102f57 31%,#061a35 78%)}
+.hero h1{font-weight:700;letter-spacing:-.065em;line-height:1.0;font-size:clamp(67px,7.5vw,118px)}
+.hero h1 span{color:#ffffff}
+.logo b{color:var(--gold)}
+.hero-carousel{border-color:rgba(167,215,255,.38);background:#0c2a50}
+.hero-slide{background:linear-gradient(145deg,#18446c,#0a2242)}
+.hero-slide.image-unavailable{background:linear-gradient(145deg,#143c69,#081d37)}
+.hero-slide:after{background:linear-gradient(180deg,transparent 5%,rgba(8,25,46,.2) 35%,rgba(3,12,26,.96) 100%)}
+.hero-carousel-controls{background:rgba(4,19,41,.82);border-color:rgba(170,215,255,.25)}
+.hero-slide small{color:#e1eaf4}
+.gig .date,.date{background:#123660;border-color:#4676a6}
+.alt{background:#0b2548}
+.featureart{background:repeating-linear-gradient(130deg,rgba(255,255,255,.018) 0 1px,transparent 1px 34px),linear-gradient(135deg,#153d6a,#071c37)}
+.panel{background:#11315a}
+.video-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:34px}
+.video-card{background:#0e2b52;border:1px solid var(--line);padding:22px;min-width:0}
+.video-card h3{font-size:25px;font-weight:700;letter-spacing:-.045em;margin:0 0 6px}
+.video-card p{font-size:14px;color:var(--soft);margin:0 0 20px}
+.video-player{position:relative;aspect-ratio:16/9;background:#040d1b;overflow:hidden}
+.video-player iframe{display:block;position:absolute;inset:0;width:100%;height:100%;border:0}
+.channel-link{display:inline-block;margin-top:17px;color:var(--gold);font-weight:600;font-size:13px;text-decoration:underline;text-underline-offset:4px}
+.video-placeholder{background:linear-gradient(135deg,#12355b,#071b35);border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;padding:24px}
+.pending-video{text-align:center;max-width:300px}
+.pending-video span{display:block;font-size:35px;color:#a3d9ff}
+.pending-video strong{display:block;font-size:17px;font-weight:700;margin:6px 0 8px}
+.pending-video small{display:block;font-size:12px;line-height:1.5;color:var(--soft)}
+.video-card .video-note{margin:14px 0 0;font-size:12px}
+@media(max-width:800px){.video-grid{grid-template-columns:1fr}.hero h1{font-size:clamp(62px,12vw,98px)}}
+@media(max-width:480px){.hero h1{font-size:clamp(56px,14vw,72px)}.video-card{padding:16px}}
 </style>
 </head>
 <body>
 <a href="#main" class="skip">Skip to content</a>
 <div class="preview">Work in progress / Kevin Daniel website preview</div>
-<header><div class="wrap navrow"><a href="#top" class="logo">Kevin <b>Daniel</b></a><button class="menubtn" id="menu" aria-expanded="false" aria-controls="nav">Menu</button><nav id="nav" aria-label="Main navigation"><a href="#gigs">Gigs</a><a href="#about">About</a><a href="#reviews">Reviews</a><a href="#press">Press kit</a><a href="https://www.youtube.com/@kevindanielcomedy" target="_blank" rel="noopener">Watch</a><a href="#contact">Contact</a></nav></div></header>
+<header><div class="wrap navrow"><a href="#top" class="logo">Kevin <b>Daniel</b></a><button class="menubtn" id="menu" aria-expanded="false" aria-controls="nav">Menu</button><nav id="nav" aria-label="Main navigation"><a href="#gigs">Gigs</a><a href="#about">About</a><a href="#press">Press kit</a><a href="#watch">Watch</a><a href="#contact">Contact</a></nav></div></header>
 <main id="main">
-<section id="top" class="hero"><div class="wrap herogrid"><div><h1>Kevin <span>Daniel</span></h1><p class="intro">Born in Glasgow. On stages across Britain. A storyteller with a sharp eye for the ridiculous.</p><p class="heronote muted">Winner of Leicester Comedy Festival's Silver Stand-Up 2024. Performing stand-up since 2019 at leading clubs and festivals across the UK.</p></div><div class="hero-carousel" role="region" aria-roledescription="carousel" aria-label="Kevin performing and promoter reviews" tabindex="0">
+<section id="top" class="hero"><div class="wrap herogrid"><div><h1>KEVIN <span>DANIEL</span></h1><p class="intro">Born in Glasgow. On stages across Britain. A storyteller with a sharp eye for the ridiculous.</p><p class="heronote muted">Winner of Leicester Comedy Festival's Silver Stand-Up 2024. Performing stand-up since 2019 at leading clubs and festivals across the UK.</p></div><div class="hero-carousel" role="region" aria-roledescription="carousel" aria-label="Kevin performing and promoter reviews" tabindex="0">
   <div class="hero-track" id="hero-track" aria-live="off">
     <figure class="hero-slide">
       <img src="https://www.justthetonic.com/artistimages/kevin-daniel/gallery/JusttheTonicKevinDaniel.JPG" alt="Kevin Daniel performing stand-up with a microphone at Just the Tonic" loading="eager">
@@ -85,22 +119,43 @@ h2{font-weight:700;letter-spacing:-.055em}
     </figure>
     <figure class="hero-slide">
       <img src="https://kevindanielcomedy.co.uk/wp-content/uploads/2024/03/kevin-daniel-comedy-024.jpg" alt="Kevin Daniel on stage at Comedy Hotspot" loading="lazy">
-      <figcaption><blockquote>"Kevin Daniel is headline-quality hilarious, a very funny man, with broad appeal."</blockquote><cite>Agraman, Buzz Comedy</cite><small>Stage photo: Kevin's existing gallery</small></figcaption>
+      <figcaption><blockquote>"His stage presence is already at the levels of top pro comics."</blockquote><cite>Jim Howarth, Comedy Hot Spots</cite><small>Stage photograph: Comedy Hotspot</small></figcaption>
     </figure>
     <figure class="hero-slide">
       <img src="https://kevindanielcomedy.co.uk/wp-content/uploads/2024/03/kevin-daniel-comedy-022.jpg" alt="Kevin Daniel performing at Ian Whitcombe Comedy" loading="lazy">
-      <figcaption><blockquote>"A very assured, very confident and very funny comedian."</blockquote><cite>Jim Howarth, Comedy Hot Spots</cite><small>Stage photo: Kevin's existing gallery</small></figcaption>
+      <figcaption><blockquote>"Kevin is devastatingly funny, with a mix of relatable stories and crowd work."</blockquote><cite>Rob Halden, Juice Comedy</cite><small>Stage photo: Kevin's existing gallery</small></figcaption>
     </figure>
   </div>
   <div class="hero-carousel-controls"><span id="hero-count">1 of 3</span><button type="button" class="carousel-toggle" id="carousel-toggle" aria-label="Pause photo carousel">Pause</button></div>
 </div></div></section>
 <section id="gigs" class="section"><div class="wrap"><div class="sectionhead"><div><h2>See Kevin live</h2></div></div><p class="lead">Find a show, choose your date and book tickets. These initial dates are being migrated from Kevin's current website. Direct booking links are shown where verified.</p><div id="giglist" class="giglist" aria-live="polite"></div><div class="morewrap"><button type="button" class="more" id="more" hidden>See more dates</button></div></div></section>
 <section id="about" class="section alt"><div class="wrap feature"><div class="featureart"><em>Born in Glasgow.<br>On stage across<br>the UK.</em></div><div><h2>About Kevin</h2><p style="margin-top:24px">Born in Glasgow, Kevin moved to England in 2000 and started performing stand-up in 2019. He has appeared at clubs including The Frog and Bucket, The Stand, Glee Club and Just the Tonic, and taken shows to comedy festivals around the UK.</p><p>He won the Silver Stand-Up competition at Leicester Comedy Festival in 2024, after reaching the British Comedian of the Year semi-finals in both 2022 and 2023.</p></div></div></section>
-<section id="reviews" class="section"><div class="wrap"><div class="sectionhead"><div><h2>What promoters say</h2></div></div><div class="quotes"><div class="quote"><blockquote>"Kevin has a natural ability to fill a room with laughter."</blockquote><cite>Laura Williams / Just the Tonic</cite></div><div class="quote"><blockquote>"A very funny man, with broad appeal."</blockquote><cite>Agraman / Buzz Comedy</cite></div><div class="quote"><blockquote>"His stage presence is already at the levels of top pro comics."</blockquote><cite>Jim Howarth / Comedy Hot Spots</cite></div></div></div></section>
+<section id="watch" class="section"><div class="wrap">
+  <div class="sectionhead"><div><h2>Watch Kevin</h2></div></div>
+  <p class="lead">Stand-up clips and more from Kevin's two YouTube channels.</p>
+  <div class="video-grid">
+    <article class="video-card">
+      <h3>Kevin Daniel Comedy</h3>
+      <p>Stand-up clips from Kevin's comedy channel.</p>
+      <div class="video-player">
+        <iframe loading="lazy" width="560" height="315" src="https://www.youtube-nocookie.com/embed/4MezP4Yg1iU" title="Kevin Daniel Comedy: Harrogate is posh" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+      <a class="channel-link" href="https://www.youtube.com/@kevindanielcomedy" target="_blank" rel="noopener noreferrer">Kevin Daniel Comedy on YouTube &#8599;</a>
+    </article>
+    <article class="video-card">
+      <h3>One Gig at a Time</h3>
+      <p>Kevin's second YouTube channel.</p>
+      <div class="video-player video-placeholder" role="status">
+        <div class="pending-video"><span aria-hidden="true">&#9655;</span><strong>Video coming soon</strong><small>Waiting for Kevin's channel or video URL so we can embed the right content.</small></div>
+      </div>
+      <p class="video-note">This slot is ready to connect once we have a verified YouTube URL.</p>
+    </article>
+  </div>
+</div></section>
 <section id="press" class="section alt"><div class="wrap"><div class="sectionhead"><div><h2>Press kit</h2></div></div><div class="pressgrid"><div class="panel"><h3>Complete kit</h3><p>The original complete press ZIP remains available on Kevin's current website. We will migrate the approved originals here, so the full pack and individual downloads are always in step.</p><a class="subtlelink" href="https://kevindanielcomedy.co.uk/press/" target="_blank" rel="noopener">Current press pack &rarr;</a><p style="margin-top:18px"><small>Direct ZIP download and approved photography will be added after retrieving the originals.</small></p></div><div class="panel"><h3>Individual files</h3><div class="item"><div><b>Short biography</b><small>Plain text</small></div><button type="button" class="dl" data-bio="short">Download</button></div><div class="item"><div><b>Full biography</b><small>Plain text</small></div><button type="button" class="dl" data-bio="full">Download</button></div><div class="item"><div><b>Approved headshots</b><small>High resolution</small></div><span class="waiting">To follow</span></div><div class="item"><div><b>Posters and artwork</b><small>Promotional assets</small></div><span class="waiting">To follow</span></div></div></div></div></section>
 <section id="contact" class="section"><div class="wrap contact"><div><h2>Get in touch</h2><p style="margin-top:20px">For gig bookings, interviews and press enquiries, drop Kevin an email.</p></div><a class="contact-email" href="mailto:info@kevindanielcomedy.co.uk">info@kevindanielcomedy.co.uk</a></div></section>
 </main>
-<footer><div class="wrap"><span>&copy; 2026 Kevin Daniel. Version 0.1, concept pending Kevin's approval.</span><span><a href="https://www.youtube.com/@kevindanielcomedy" target="_blank" rel="noopener">YouTube</a> / <a href="https://kevindanielcomedy.co.uk/" target="_blank" rel="noopener">Current site</a></span></div></footer>
+<footer><div class="wrap"><span>&copy; 2026 Kevin Daniel. Version 0.3, concept pending Kevin's approval.</span><span><a href="https://www.youtube.com/@kevindanielcomedy" target="_blank" rel="noopener">YouTube</a> / <a href="https://kevindanielcomedy.co.uk/" target="_blank" rel="noopener">Current site</a></span></div></footer>
 <script>
 
 (function(){
