@@ -1040,6 +1040,42 @@ header nav a:hover,header nav a:focus-visible{color:#FFFFFF;text-decoration:unde
     transition:none!important;
   }
 }
+
+/* v0.3.20: mobile career years must not compete for horizontal space with titles. */
+@media(max-width:800px){
+  #about .career-timeline li{
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    column-gap:0;
+    row-gap:7px;
+    padding:22px 0 25px;
+    align-items:start;
+  }
+  #about .career-timeline time{
+    display:block;
+    width:auto;
+    min-width:0;
+    margin:0 0 3px;
+    font-size:27px;
+    line-height:1.1;
+    letter-spacing:-.03em;
+  }
+  #about .career-timeline li>div{
+    width:100%;
+    min-width:0;
+  }
+  #about .career-timeline h4{
+    margin:0 0 8px;
+    font-size:clamp(16px,4.2vw,18px);
+    line-height:1.35;
+    overflow-wrap:normal;
+  }
+  #about .career-timeline p{
+    font-size:15px;
+    line-height:1.62;
+    overflow-wrap:break-word;
+  }
+}
 </style>
 </head>
 <body>
@@ -1148,7 +1184,7 @@ header nav a:hover,header nav a:focus-visible{color:#FFFFFF;text-decoration:unde
 </div>
 </div><a class="contact-email" href="mailto:info@kevindanielcomedy.co.uk">info@kevindanielcomedy.co.uk</a></div></section>
 </main>
-<footer><div class="wrap"><span>&copy; 2026 Kevin Daniel. Version 0.3.19, concept pending Kevin's approval.</span><span class="legal-links"><a href="privacy/">Privacy policy</a></span></div></footer>
+<footer><div class="wrap"><span>&copy; 2026 Kevin Daniel. Version 0.3.20, concept pending Kevin's approval.</span><span class="legal-links"><a href="privacy/">Privacy policy</a></span></div></footer>
 <script>
 (function(){
   // Set up reveals only after the gig calendar has rendered its dynamic rows.
