@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow,noarchive">
-<meta name="theme-color" content="#1b458f">
+<meta name="theme-color" content="#002D54">
 <title>Kevin Daniel | Stand-Up Comedian | Site Preview</title>
 <meta name="description" content="Kevin Daniel. Award-winning Scottish stand-up comedian. Live dates, biography and press information.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -942,6 +942,104 @@ header .logo,header .logo b,nav a,.hero-shell h1,.hero-shell h1 span{color:var(-
 @media(prefers-reduced-motion:reduce){
   .hero .hero-copy,.hero .hero-photo-credit{animation:none!important}
 }
+
+/* v0.3.17: deep Scottish navy, Saltire blue accents and pure white typography. */
+:root{
+  --rangers-blue:#002D54;
+  --deep-blue:#002D54;
+  --saltire-blue:#0065BD;
+  --rangers-white:#FFFFFF;
+  --ink:var(--deep-blue);
+  --navy:#002643;
+  --panel:#004274;
+  --cream:var(--rangers-white);
+  --gold:var(--rangers-white);
+  --soft:rgba(255,255,255,.86);
+  --line:rgba(255,255,255,.23);
+}
+html{background:var(--deep-blue)}
+body{background:var(--deep-blue);color:#FFFFFF}
+header{background:rgba(0,45,84,.985);border-bottom-color:rgba(255,255,255,.23)}
+header .logo,header .logo b,header nav a,.hero-shell h1,.hero-shell h1 span{color:#FFFFFF}
+header nav a:hover,header nav a:focus-visible{color:#FFFFFF;text-decoration:underline;text-underline-offset:5px}
+@media(max-width:800px){
+  header nav{background:#002D54;border-bottom-color:rgba(255,255,255,.23)}
+}
+.hero{background:linear-gradient(105deg,#002D54 0%,#004274 65%,#002D54 100%)}
+@media(min-width:801px){
+  .hero::after{
+    background:linear-gradient(90deg,
+      #002D54 0%,rgba(0,45,84,.97) 25%,rgba(0,45,84,.76) 47%,
+      rgba(0,45,84,.25) 78%,rgba(0,45,84,.08) 100%);
+  }
+}
+@media(max-width:800px){
+  .hero{
+    background-color:#002D54;
+    background-image:linear-gradient(180deg,
+       rgba(0,45,84,.34) 0%,
+       rgba(0,101,189,.12) 36%,
+       rgba(0,45,84,.67) 72%,
+       rgba(0,29,56,.96) 100%),
+       url('data:image/webp;base64,UklGRuANAABXRUJQVlA4INQNAACwfwCdASoYAXUBPzGQwFiuqa80pZJrmpAmCWduul7VV6GhsI+L/vTtP8GAiT8hUe+g8aW3WfQhfBa0BdUNHwI7ubRlnURB3BmG4OOkCdp1hCqcHm81Bru5JsMnX2GFUpK4h52c7+dtlUy5cIhzllZIegbTy2245qLvMS81KM2kHiExkn2qcmcyO+VDZ0D4vZ8KEO9p07BzBVuD+8Od+a03rd/U894j7DAJrfC8e56gXYixPneP9xQkHCFwDXjcJ+xo9/7/dglJJPMO94tSd2fD8D6I31khyS6TiWCt0G1mzKJaGNPBklZF8xXLqObSeQ89spF3d1gdDo6F/E/+HxPJr6jgySknIV/RTTPeHIAD6O0lQ3ITwI+DddV0M45U7qvRwlJiFgP047tZyRdXYVtXEIpnnL9ksQv+bZTqesNboum8b6br0niupdcEC7j0AFKgG2nhmzsKup90EoXNEo0duz00E/ZFIeGFSJhUzxcBaPIUAW/YctdTZFKDgNeZRRbODFqgPjR2lL5zRCrkOchrBuqb5QOB35UISIIrcOBtplRoj/jDmCOjjAT4RLWQkztbtVozCbKjkaYSF14bcwK1hWA/YRIBCezMV89kTigFYp2vUzJileVoYoGBN0HtruZVt+k5nzSVk8FNOkvJ/eQaB9uhagyPZUZWYXaP6P0CVJbWW7DT6h5EnRd99Ok0eaUZtgzWv67suWuzfE64VHyffh9Eq+bOARQ8I8DQLQh0wL6C7OM5iyaUQIJi+lvgIdkPVf//46bbhcvkKeR04YXxVdCNG2gYsHsb+akYl++6SrRm01EDyCObU2jMLEf7y+5Ym0RRcQAWDXQ3Y0AA2c1DIxRKQrKlhT8BM9QcmChCIKsXqudHz+GzZ9n+Y7AZhndxLG0vZ1cgszQOK3/AaOZ3141LALcEevbP3FEQxxw7+jzfeEFdKKPt0PDUKbcBNTyyC5qTGb6BJK8OCVAMLkc6PPBfWBYdkvukKFfXpf/8IVuS5EykyQDf1jFYTNTgX4mzy05+/+nJbReSy/cHhOQBlkqpl6lZ1L1aX+PzzKqZowd6RIRFGx1QmptBJ0xIYaPaAaqgqRcNCukwfdEhdg60R4jP0N1PqHjNuVex5b+zY7b44Gux0ojAfphCBEw7UQqk0uQFNyAUfBCNkftVtcss6b6c3XzKjADqVSVma87jH5newVWpDK05s849rBOFxoDQgZLiNyBjl1AWiWX7kqiQzVW9Qg1Ts5Mfmru+GDq1r/co5iglcsDLLXoUX7GyIxVRgl7GtC220it6gKdhBYsHm83GsEnFRfutY5RKUYRtAV2v3QbIsV+IJfU/VCcYjP51+oSQhIapOg0IDWEmNNxB8ReRhuIAAP7tcDSIQOHecdWxgdFv7s6EiIAY6DnwNjtLNuWhRNYNHAQvhKdaepvhB/5zf3KtITqf2Kuh3u2NgY6Lb8fGrgoD0xSKAGpwoFgpr16ECKBeLxxNx+AEFS4X7bb6GTQwr5oZeT/0Cip4HZdE3FzHhHTpMOVU10DXWkN9xHzc4SCNTOkMpZn7t+0b9rt54RSJbpJlbl9bc22AAXocKglcXplilq2pXelp6ZPWXvr3CRWVTCsUR4BRW+BQQlQrny+Hcu3t5K24L6qJJq/gzmHbImN144sJvr7NLivAUcxvhg8qpWwWBWU11kAa5YEIY2Hm8s19wCAYmgZu5PjzM1S9KqA6Kjc4+zFXXrzk13ZfyDQN8h90LmWLfk29R1PM9P9LX8FvnC/GksRvZrPLSkL3K/l9d2xwGhAtHnhTcmicHzg60ai5wMDGsGogFy7TquMV1l9eKE0lI+AyPAICVjB3as9Na/ke0RLGK9q3X3szKw/bzZXW1VMYF7rldPJW+GVDs/JlAPcRRx3/eIQSYG9bajXVdOYSmSWw2ORhv1EjycwU6wklR8LzHGQ7v6rsANT5FiKITO6r3ZXJYUKJvQa52f23HToA6K5lhDyiqRQ462Ic0os3nktazXR7+t+2rKzWAirhH4OZmySAGFKZCyBiUL6vFEQeSIQjYAH1kJzgX2hr6v1uO5T8/Hsv9qo+0T471nbdH8Maq1nkUGcuORPVpCXnljT80wUE8R5fba2api+gJ/UQZW1SQCt/fPIaDdtsgwdzSjq3KT0qSuLuWgGqmAQNumHnl+xSvI1il01eeCt1/i+B/VoeUx6cdqG/f/tvSCNijLVJxhsg/OtJQKL8nc5o27OxqJXJV6TxUxTEMs+jlj4Qom5Yjs2wNHZqrQoX3iViq5NPC14ESYWivrrlzekdeVDuGf76zgvBECqepFl1RNVqSKou47QBJk+trvhWgYH3tkI0szehwLNu/4tP51KDEwC0/JfmZGd0YX1WBd3sP43giBWGqQHvmG60Tm9lIP/05TBtr1DQBI4SheWg3yxNqgcANi8XDpbnTmxTP/O0vz7Jb/LG9+IJlRr+Z/U5T9H0GDNao/87X850lmA9RFDmkWz2pX2VOA4LcmsX8x3AVrechO3LrHa63Z0vVMzma4tXAAfs4qDFsKjd84ToXOtvDB7cYCUPOGJaMlYxGkuKGh5SeMRlPIEaqC5srwGc65fO+9TOI7O0pWIQP0w8fPqedkSni3Y4hacMmZpLqwUdulYfuONYEWIxN6jqAPmZUutUEnYDCjrws6krE8fAVJ/qtOHZpi4I3bQrEHWsd+yOjZhWTDeHo+40qZExIsuVyEj0o/RxbtLyj1gWzSx627QkphtfZ4Ee8LIpA10fQAVXeFU/XObMdkZkeRWwFGlAfdH74XDTeuCfL/6yDgqx026jRoaK+tLef+arper0UwHQX4sYF4m2HiqG21guDS4AqX8UIvFrHAEVKxiiQCpJs2Yg26UIiTaJkJ6gWRBVexXq1Il98EDn+tZKQcJAqTO5PjSENB1K9Zan0N8qORAOvgCIjEgircqN0kuaNf6egtzXNNxZfldo8aXyeaTrCy48ejwyFUG/J9ZqBlQ1J4bl/+UpfZG05Dv5VINv8YFKsztNDG1vyN/VOCu5zSN7bCsz/sPhCkG1B+mpBY1vOjDbM8rpUCcU6+yakemsLFrRB/6mvHCnh5eVg6GWnqsXBTKwvUdJ+UQmUx0xwa3dV0MViLZ5pxB7ig5jO8/5+rCK24Uwzi6VpcAdF0CG2f3la3bil5TdksSNpMl2kKv5Lb1oTj0Smg2x9MKiQ0RFDhqrdGmXbuouS55yJt0UbJtHpLn2j4MSyYcunHOqkyGbLXnAyfeBFYxcfY3vP1fnoWFVVT80+0Stvr+TsE4IsonLh09Es4CN5GT/2GLhkfuoR3I8iMviE9meo7I9SKRohv1JOnj57+QA4j+XjVP37t84NtTEID04lLNCndA2X+wyfAlLzONkBxi2UQKlOoj1MGvk4R1Fx7GiNidLHX+Cl3bGjdU2Gq52eu1Of1bkcq/+XhyxamnsEDpZvDuWAdcl0GMVMK9ogkyOKh8jNnoLa0LNMFVFsxxehZtmiGIwEszMt3Q+FsomV0st20pUvIF/mCfMJQO1J9cUAYToU/A1WongrFurYAOJlg91b4UzAfB7+VQnLrCG7/d93ygCfQfCL5ncyOzdWcMPfA+Fgcmv6o1rZbI1TNKTvLYUjDzAbrBvLLvn8uaXjmMKnjW49VoLIdii1D26YSQ3LBMpiMP//Do+Pt9DclR6F1SQRpgfEd91o5fTCnvLHXBuaQ8+9KT4ghDs1OlpdXDlLFFCDaz2QFpjnpKabeE76P8rf0edmm2wr8CqmP9HJUaVDBqyyeELWYCrlc/ry6FtmZMib1SiwOBwuASFwPXrsatUYmw+4zAkvVi2vbXKodTHpL4HmRxGRRZGcUmRVqmy1gjre9wm/c7HYgNP7CQxC5Gv/RSK4AWYSDZJAMp0ggbHapnra5p8TbfwN4vHqEEkFpm2N2Yy2ecL5nI+E/L2FwojvXmzlzT+djcls/uE4qazjcYfuhs1sTFlHhJLJRNgCPUTRkdkSKDGqKxGUyIHDrMPlgPgg70mTeNtBTaBr8/HoCUrt+WRNlLKbEPJRe/ADj2gKmkOCYf+c7UsBsP/88pM/poZZsyI8o16EPTjU/FyaSjfujvmeR9TGv68+Lcg8S0J61qZMNeSSmoeM/AUdY1eeDNLEymNVrW88N+gkov6kJg+qJOCFcdqnj7gCUXJCmfjd8CSdd/heE5x++Wbc6gG/0M4MyPw/caigkCa7di2zVq5CkIvJI5wcqtRrvNmnfD/RaIJl6Yyqa5e2HbHksOZ4eF42jzsmswk9W/Enwb7xYuQrIBteTjNTfzaI34cQbO62Df626qIm8HsklIeaKSLC+cZAsStTEZenonqjMTExsJiGF3eRoyxm3vPFC7MKRzBlW/SOycrAMZbwUqOLtgXmpPuHdm6GURlKInB0qupGDSo3kniryUxQO5Xf29XQiEILqE7tbeYgevVyrAlL/Q+bdP2UkCN/89s11ulNohsJh8KTbWM3UbUn7+WPR50BgluF+30YemdJlTFaTbgHC/LgQ4NclTHrZ+Rl2ed4vjTFy0Kmw6bkZLhpEZjBFoyRBBAlLy98hBbsk5sOIpA7LEDNGSsClK/mPwg3VmvqNbV+sz4p1oAAGH/RAo6WipDTy7tNJeDRaFpiTHlRc9/XMoWoMkICFWqgjVb1NE1KWvPsUpTBJe35NQYshdmiVCQQQfkuLpoY8FzeyUrcHJycBp6VnUjv0yIAAA=');
+    background-size:100% 100%,auto 128%;
+    background-position:center,center 25%;
+    background-repeat:no-repeat;
+  }
+  .hero::after{background:#002D54}
+}
+.alt{background:#002643}
+.moments{background:var(--deep-blue)}
+.moments .hero-carousel-controls{background:rgba(0,45,84,.82)}
+.gig .date{background:var(--saltire-blue);border-color:rgba(255,255,255,.32)}
+.gig .date .dow,.gig .date .mon,.gig .date .num{color:#FFFFFF}
+.btn.primary{background:#FFFFFF;color:#002D54;border-color:#FFFFFF}
+.btn.primary:hover{background:#eef5ff;border-color:#eef5ff}
+#about .career-timeline time{color:#FFFFFF}
+#about .award-photo-frame,#about .award-photo-frame img{background:#002643}
+#watch .video-player{background:#001a32}
+#watch .video-card,#press .panel{background:transparent}
+#contact .social-links a,.contact-email,.channel-link,footer .legal-links a{color:#FFFFFF}
+#contact .social-links a:hover,.contact-email:hover,.channel-link:hover{color:#FFFFFF}
+#press .item{border-color:rgba(255,255,255,.23)}
+/* A consistent, tabular, lining-numeral year treatment for every timeline entry. */
+#about .career-timeline time{
+  display:block;
+  font-family:Montserrat,Arial,sans-serif;
+  font-size:32px;
+  font-weight:800;
+  font-style:normal;
+  line-height:1.05;
+  letter-spacing:-.035em;
+  font-variant-numeric:lining-nums tabular-nums;
+  font-feature-settings:"lnum" 1,"tnum" 1;
+}
+@media(max-width:800px){
+  #about .career-timeline time{font-size:26px;letter-spacing:-.03em}
+}
+/* Every section reveals on mobile; content within About and subsequent sections follows individually. */
+@media(max-width:800px){
+  html.kevin-reveals .reveal-mobile:not(.is-visible){
+    opacity:0;
+    transform:translateY(30px);
+  }
+  html.kevin-reveals .reveal-mobile{
+    transition:opacity .85s ease-out,transform .85s cubic-bezier(.2,.75,.2,1);
+  }
+}
+@media(min-width:801px){
+  html.kevin-reveals .reveal-desktop{
+    transition:opacity .8s ease-out,transform .8s cubic-bezier(.2,.75,.2,1);
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  html.kevin-reveals .reveal-mobile,
+  html.kevin-reveals .reveal-desktop{
+    opacity:1!important;
+    transform:none!important;
+    transition:none!important;
+  }
+}
 </style>
 </head>
 <body>
@@ -1050,22 +1148,45 @@ header .logo,header .logo b,nav a,.hero-shell h1,.hero-shell h1 span{color:var(-
 </div>
 </div><a class="contact-email" href="mailto:info@kevindanielcomedy.co.uk">info@kevindanielcomedy.co.uk</a></div></section>
 </main>
-<footer><div class="wrap"><span>&copy; 2026 Kevin Daniel. Version 0.3.16, concept pending Kevin's approval.</span><span class="legal-links"><a href="https://kevindanielcomedy.co.uk/privacy-policy/" target="_blank" rel="noopener noreferrer">Privacy policy</a><a href="https://kevindanielcomedy.co.uk/" target="_blank" rel="noopener noreferrer">Current site</a></span></div></footer>
+<footer><div class="wrap"><span>&copy; 2026 Kevin Daniel. Version 0.3.17, concept pending Kevin's approval.</span><span class="legal-links"><a href="https://kevindanielcomedy.co.uk/privacy-policy/" target="_blank" rel="noopener noreferrer">Privacy policy</a><a href="https://kevindanielcomedy.co.uk/" target="_blank" rel="noopener noreferrer">Current site</a></span></div></footer>
 <script>
 (function(){
+  // Set up reveals only after the gig calendar has rendered its dynamic rows.
+  // Without JavaScript or IntersectionObserver, content remains visible.
   if(!('IntersectionObserver' in window)||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  const desktops=document.querySelectorAll('#gigs, .moments, #about, #watch, #press, #contact');
-  const mobiles=document.querySelectorAll('#about .about-text p, #about .career-timeline li');
-  const targets=[];
-  desktops.forEach(node=>{node.classList.add('reveal-desktop');targets.push(node)});
-  mobiles.forEach(node=>{node.classList.add('reveal-mobile');targets.push(node)});
-  const observer=new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}
+  function setupReveals(){
+    const allSections=document.querySelectorAll('main > section:not(.hero)');
+    const mobileDetails=document.querySelectorAll(
+      '#gigs .gig, #about .about-text p, #about .career-timeline li, '+
+      '#watch .video-card, #press .panel, #press .item, '+
+      '#contact .contact > div, #contact .contact-email'
+    );
+    const targets=new Set();
+    allSections.forEach(node=>{
+      node.classList.add('reveal-desktop','reveal-mobile');
+      targets.add(node);
     });
-  },{rootMargin:'0px 0px -7% 0px',threshold:.08});
-  targets.forEach(node=>observer.observe(node));
-  document.documentElement.classList.add('kevin-reveals');
+    mobileDetails.forEach(node=>{
+      node.classList.add('reveal-mobile');
+      targets.add(node);
+    });
+    if(!targets.size)return;
+    const observer=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },{rootMargin:'0px 0px -10% 0px',threshold:.06});
+    targets.forEach(node=>observer.observe(node));
+    document.documentElement.classList.add('kevin-reveals');
+  }
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',setupReveals,{once:true});
+  }else{
+    setupReveals();
+  }
 })();
 
 (function(){
