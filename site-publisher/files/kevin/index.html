@@ -9,7 +9,7 @@
 <meta name="description" content="Kevin Daniel. Award-winning Scottish stand-up comedian. Live dates, biography and press information.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@600;700;800;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@700;800;900&family=League+Spartan:wght@600;700;800;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#101519;--navy:#192129;--panel:#202b33;--cream:#f6f0e5;--gold:#f0b777;--line:#36414b;--soft:#b6c0c7}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--ink);color:var(--cream);font-family:Arial,Helvetica,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}a{color:inherit}button{font:inherit;cursor:pointer}
@@ -140,6 +140,30 @@ h2 {
   .logo { font-size: 25px; }
   .hero h1 { font-size: clamp(56px, 13.5vw, 72px); }
 }
+
+/* v0.3.5: sharpen the N and future M with Futura-style Jost Black.
+   This intentionally affects only Kevin's wordmarks, not body type or section headings. */
+.logo,
+.hero h1,
+.hero h1 span {
+  font-family: 'Jost', 'League Spartan', Montserrat, Arial, sans-serif;
+  font-weight: 900;
+  font-synthesis: none;
+}
+.logo { letter-spacing: -0.065em; }
+.logo b { font-weight: 900; }
+.hero h1 {
+  font-size: clamp(65px,7.3vw,115px);
+  line-height: .96;
+  letter-spacing: -.067em;
+}
+@media(max-width:800px) {
+  .hero h1 { font-size: clamp(62px,11.5vw,94px); }
+}
+@media(max-width:480px) {
+  .hero h1 { font-size: clamp(55px,13.5vw,70px); }
+  .logo { font-size: 25px; }
+}
 </style>
 </head>
 <body>
@@ -190,7 +214,7 @@ h2 {
 <section id="press" class="section alt"><div class="wrap"><div class="sectionhead"><div><h2>Press kit</h2></div></div><div class="pressgrid"><div class="panel"><h3>Complete kit</h3><p>The original complete press ZIP remains available on Kevin's current website. We will migrate the approved originals here, so the full pack and individual downloads are always in step.</p><a class="subtlelink" href="https://kevindanielcomedy.co.uk/press/" target="_blank" rel="noopener">Current press pack &rarr;</a><p style="margin-top:18px"><small>Direct ZIP download and approved photography will be added after retrieving the originals.</small></p></div><div class="panel"><h3>Individual files</h3><div class="item"><div><b>Short biography</b><small>Plain text</small></div><button type="button" class="dl" data-bio="short">Download</button></div><div class="item"><div><b>Full biography</b><small>Plain text</small></div><button type="button" class="dl" data-bio="full">Download</button></div><div class="item"><div><b>Approved headshots</b><small>High resolution</small></div><span class="waiting">To follow</span></div><div class="item"><div><b>Posters and artwork</b><small>Promotional assets</small></div><span class="waiting">To follow</span></div></div></div></div></section>
 <section id="contact" class="section"><div class="wrap contact"><div><h2>Get in touch</h2><p style="margin-top:20px">For gig bookings, interviews and press enquiries, drop Kevin an email.</p></div><a class="contact-email" href="mailto:info@kevindanielcomedy.co.uk">info@kevindanielcomedy.co.uk</a></div></section>
 </main>
-<footer><div class="wrap"><span>&copy; 2026 Kevin Daniel. Version 0.3.4, concept pending Kevin's approval.</span><span><a href="https://www.youtube.com/@kevindanielcomedy" target="_blank" rel="noopener">YouTube</a> / <a href="https://kevindanielcomedy.co.uk/" target="_blank" rel="noopener">Current site</a></span></div></footer>
+<footer><div class="wrap"><span>&copy; 2026 Kevin Daniel. Version 0.3.5, concept pending Kevin's approval.</span><span><a href="https://www.youtube.com/@kevindanielcomedy" target="_blank" rel="noopener">YouTube</a> / <a href="https://kevindanielcomedy.co.uk/" target="_blank" rel="noopener">Current site</a></span></div></footer>
 <script>
 
 (function(){
