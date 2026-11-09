@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 89,
+  "revision": 90,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -168,7 +168,7 @@
     },
     {
       "path": "kevin/index.html",
-      "sha256": "0a7cfc0c1f17f1f0bbeb372d7e1fead2de310bdd6262d0c2458a2d479ee2a301"
+      "sha256": "26ee31b2374eafb2ed4bede531e441808de733432468e8fa40a0e6cfff374f38"
     }
   ]
 }
