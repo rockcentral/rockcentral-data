@@ -573,6 +573,93 @@ footer .legal-links a{text-decoration:underline;text-underline-offset:4px}
   .hero::after{opacity:0!important}
   .hero-shell h1,.hero .hero-copy,.hero .hero-photo-credit{animation:none!important}
 }
+
+/* v0.3.12: sideways-looking Steve Best portrait on desktop, shared fade reveal. */
+.hero{position:relative;isolation:isolate;overflow:hidden}
+.hero .hero-shell{position:relative;z-index:2}
+.hero .hero-shell h1{
+  animation:kevinHeroReveal .95s ease-out .48s both;
+}
+.hero .hero-copy{
+  animation:kevinHeroReveal 1.05s ease-out .85s both;
+}
+@media(min-width:801px){
+  .hero{
+    background:linear-gradient(110deg,#061a35 5%,#0a2e58 65%,#164774 100%);
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    inset:0 0 0 auto;
+    width:62%;
+    background-image:url('data:image/webp;base64,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');
+    background-size:cover;
+    background-position:center 37%;
+    background-repeat:no-repeat;
+    filter:grayscale(1) sepia(1) hue-rotate(163deg) saturate(1.8) brightness(.75);
+    opacity:.82;
+    pointer-events:none;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(90deg,
+      #061a35 0%,
+      rgba(6,26,53,.98) 31%,
+      rgba(6,26,53,.83) 48%,
+      rgba(8,36,72,.35) 77%,
+      rgba(8,36,72,.17) 100%);
+    pointer-events:none;
+  }
+  .hero .hero-shell{
+    min-height:clamp(435px,40vw,560px);
+    align-items:flex-start;
+    justify-content:center;
+    padding:60px 0 76px;
+  }
+  .hero .hero-shell h1{font-size:clamp(59px,8vw,118px);margin-bottom:25px}
+  .hero .hero-copy{max-width:720px}
+  .hero .hero-copy .intro{max-width:650px}
+  .hero .hero-photo-credit{
+    position:absolute;
+    display:block;
+    right:0;
+    bottom:16px;
+    color:#e8f2ff;
+    font-size:11px;
+    opacity:.86;
+    text-shadow:0 1px 8px #061a35;
+    animation:kevinHeroReveal .9s ease-out 1.05s both;
+  }
+}
+@media(max-width:800px){
+  .hero::before{display:none}
+  .hero .hero-shell h1{
+    position:absolute;
+    top:clamp(145px,29svh,232px);
+    left:0;
+    right:0;
+    z-index:2;
+    margin:0;
+    animation:kevinHeroReveal .95s ease-out .56s both;
+  }
+  .hero .hero-copy{animation:kevinHeroReveal 1.05s ease-out .92s both}
+  .hero .hero-photo-credit{animation:kevinHeroReveal .9s ease-out 1.08s both}
+  .hero{background-size:100% 100%,auto 132%;background-position:center,center 24%}
+}
+@media(max-width:480px){
+  .hero .hero-shell h1{top:clamp(145px,27svh,215px)}
+}
+@media(max-width:360px){
+  .hero .hero-shell h1{top:140px}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero .hero-shell h1,
+  .hero .hero-copy,
+  .hero .hero-photo-credit{animation:none!important}
+}
+
 </style>
 </head>
 <body>
@@ -632,7 +719,7 @@ footer .legal-links a{text-decoration:underline;text-underline-offset:4px}
 </div>
 </div><a class="contact-email" href="mailto:info@kevindanielcomedy.co.uk">info@kevindanielcomedy.co.uk</a></div></section>
 </main>
-<footer><div class="wrap"><span>&copy; 2026 Kevin Daniel. Version 0.3.11, concept pending Kevin's approval.</span><span class="legal-links"><a href="https://kevindanielcomedy.co.uk/privacy-policy/" target="_blank" rel="noopener noreferrer">Privacy policy</a><a href="https://kevindanielcomedy.co.uk/" target="_blank" rel="noopener noreferrer">Current site</a></span></div></footer>
+<footer><div class="wrap"><span>&copy; 2026 Kevin Daniel. Version 0.3.12, concept pending Kevin's approval.</span><span class="legal-links"><a href="https://kevindanielcomedy.co.uk/privacy-policy/" target="_blank" rel="noopener noreferrer">Privacy policy</a><a href="https://kevindanielcomedy.co.uk/" target="_blank" rel="noopener noreferrer">Current site</a></span></div></footer>
 <script>
 
 (function(){
