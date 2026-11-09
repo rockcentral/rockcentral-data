@@ -769,6 +769,63 @@ footer .legal-links a{text-decoration:underline;text-underline-offset:4px}
   #about .career-timeline p{font-size:14px}
 }
 
+
+/* v0.3.14: blend portrait edges, readable date hierarchy and scroll reveals. */
+@media(min-width:801px){
+  .hero::before{
+    /* Smoothly fade the portrait into the solid Scottish-blue backdrop. */
+    width:70%;
+    inset:0 0 0 auto;
+    background-position:center 37%;
+    -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.08) 10%,rgba(0,0,0,.46) 36%,#000 68%);
+    mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.08) 10%,rgba(0,0,0,.46) 36%,#000 68%);
+  }
+  .hero::after{
+    background:linear-gradient(90deg,#061a35 0%,rgba(6,26,53,.98) 26%,rgba(6,26,53,.76) 46%,rgba(8,36,72,.28) 80%,rgba(8,36,72,.16) 100%);
+  }
+}
+/* Gigs: equally sized weekday and month with a prominent numeric day. */
+.gig .date{min-height:91px;gap:1px;padding:7px 3px}
+.gig .date .dow,.gig .date .mon{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.08em;
+  line-height:1.2;
+  color:#c3ddf4;
+}
+.gig .date .num{font-size:31px;line-height:1.05;font-weight:800;color:#fff}
+@media(max-width:800px){
+  .gig .date{min-height:83px;gap:0;padding:6px 3px}
+  .gig .date .num{font-size:27px}
+  .gig .date .dow,.gig .date .mon{font-size:10px}
+}
+/* One-time IntersectionObserver reveals. No motion or hidden content if JS is unavailable. */
+@media(min-width:801px){
+  html.kevin-reveals .reveal-desktop:not(.is-visible){
+    opacity:0;
+    transform:translateY(24px);
+  }
+  html.kevin-reveals .reveal-desktop{
+    transition:opacity .75s ease,transform .75s cubic-bezier(.22,1,.36,1);
+  }
+}
+@media(max-width:800px){
+  html.kevin-reveals .reveal-mobile:not(.is-visible){
+    opacity:0;
+    transform:translateY(23px);
+  }
+  html.kevin-reveals .reveal-mobile{
+    transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1);
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  html.kevin-reveals .reveal-desktop,
+  html.kevin-reveals .reveal-mobile{
+    opacity:1!important;
+    transform:none!important;
+    transition:none!important;
+  }
+}
 </style>
 </head>
 <body>
@@ -809,7 +866,6 @@ footer .legal-links a{text-decoration:underline;text-underline-offset:4px}
       <figure class="award-feature">
         <div class="award-photo-frame">
           <img src="https://kevindanielcomedy.co.uk/wp-content/uploads/2024/03/kevin-daniel-comedy-002-1-scaled.jpg" alt="Kevin Daniel celebrating his 2024 Silver Stand-Up competition win" loading="lazy" decoding="async">
-          <a class="award-photo-fallback" href="https://kevindanielcomedy.co.uk/team/kevin-daniel/" target="_blank" rel="noopener noreferrer">See Kevin's award photograph on his original site</a>
         </div>
         <figcaption>
           <strong>2024 Silver Stand-Up winner</strong>
@@ -878,8 +934,23 @@ footer .legal-links a{text-decoration:underline;text-underline-offset:4px}
 </div>
 </div><a class="contact-email" href="mailto:info@kevindanielcomedy.co.uk">info@kevindanielcomedy.co.uk</a></div></section>
 </main>
-<footer><div class="wrap"><span>&copy; 2026 Kevin Daniel. Version 0.3.13, concept pending Kevin's approval.</span><span class="legal-links"><a href="https://kevindanielcomedy.co.uk/privacy-policy/" target="_blank" rel="noopener noreferrer">Privacy policy</a><a href="https://kevindanielcomedy.co.uk/" target="_blank" rel="noopener noreferrer">Current site</a></span></div></footer>
+<footer><div class="wrap"><span>&copy; 2026 Kevin Daniel. Version 0.3.14, concept pending Kevin's approval.</span><span class="legal-links"><a href="https://kevindanielcomedy.co.uk/privacy-policy/" target="_blank" rel="noopener noreferrer">Privacy policy</a><a href="https://kevindanielcomedy.co.uk/" target="_blank" rel="noopener noreferrer">Current site</a></span></div></footer>
 <script>
+(function(){
+  if(!('IntersectionObserver' in window)||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const desktops=document.querySelectorAll('#gigs, .moments, #about, #watch, #press, #contact');
+  const mobiles=document.querySelectorAll('#about .about-text p, #about .career-timeline li');
+  const targets=[];
+  desktops.forEach(node=>{node.classList.add('reveal-desktop');targets.push(node)});
+  mobiles.forEach(node=>{node.classList.add('reveal-mobile');targets.push(node)});
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}
+    });
+  },{rootMargin:'0px 0px -7% 0px',threshold:.08});
+  targets.forEach(node=>observer.observe(node));
+  document.documentElement.classList.add('kevin-reveals');
+})();
 
 (function(){
   const hero=document.querySelector('.hero');
@@ -941,7 +1012,7 @@ const gigs=[
 const list=document.getElementById('giglist'),more=document.getElementById('more');let expanded=false;
 const pad=n=>String(n).padStart(2,'0'),now=new Date(),today=now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate()),future=gigs.filter(g=>g[0]>=today);
 function make(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e}
-function render(){list.replaceChildren();const show=expanded?future:future.slice(0,6);if(show.length===0)list.append(make('p','muted','More dates to follow.'));show.forEach(g=>{const row=make('article','gig'),date=make('div','date'),dt=new Date(g[0]+'T12:00:00');date.append(make('span','mon',dt.toLocaleString('en-GB',{month:'short'}).toUpperCase()),make('span','num',String(dt.getDate())));const details=make('div','details');details.append(make('h3','',g[2]),make('p','',g[3]+' / '+g[1]));const action=make('div','gigaction'),link=make('a','btn '+(g[5]?'primary':'outline'),g[5]?'Book tickets >':'Booking info >');link.href=g[4];link.target='_blank';link.rel='noopener noreferrer';action.append(link);if(!g[5])action.append(make('small','','Direct ticket link to be confirmed'));row.append(date,details,action);list.append(row)});more.hidden=future.length<=6;more.textContent=expanded?'Show fewer dates':'Show all dates'}
+function render(){list.replaceChildren();const show=expanded?future:future.slice(0,6);if(show.length===0)list.append(make('p','muted','More dates to follow.'));show.forEach(g=>{const row=make('article','gig'),date=make('div','date'),dt=new Date(g[0]+'T12:00:00');date.setAttribute('aria-label',dt.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'}));date.append(make('span','dow',dt.toLocaleString('en-GB',{weekday:'short'}).toUpperCase()),make('span','num',String(dt.getDate())),make('span','mon',dt.toLocaleString('en-GB',{month:'short'}).toUpperCase()));const details=make('div','details');details.append(make('h3','',g[2]),make('p','',g[3]+' / '+g[1]));const action=make('div','gigaction'),link=make('a','btn '+(g[5]?'primary':'outline'),g[5]?'Book tickets >':'Booking info >');link.href=g[4];link.target='_blank';link.rel='noopener noreferrer';action.append(link);if(!g[5])action.append(make('small','','Direct ticket link to be confirmed'));row.append(date,details,action);list.append(row)});more.hidden=future.length<=6;more.textContent=expanded?'Show fewer dates':'Show all dates'}
 render();more.addEventListener('click',()=>{expanded=!expanded;render()});
 const menu=document.getElementById('menu'),nav=document.getElementById('nav');menu.addEventListener('click',()=>{const state=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(state))});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false')}));
 const bio={
