@@ -50,6 +50,19 @@
  .nav-group-title{margin-bottom:4px}
  .nav-menu a{padding:7px 9px}
 }
+
+/* Example programme on the venue-booking page */
+.host-programme{max-width:920px;margin-left:auto;margin-right:auto}
+.host-programme-intro{max-width:740px;margin-bottom:24px}
+.host-programme-board{border:1px solid #bcb095;background:#fbf8ee}
+.host-programme-head,.host-programme-row{display:grid;grid-template-columns:minmax(145px,29%) 1fr;gap:18px;align-items:center;padding:15px 24px}
+.host-programme-head{background:var(--wine);color:var(--cream);font:700 11px Arial,sans-serif;letter-spacing:1.5px;text-transform:uppercase}
+.host-programme-row{border-top:1px solid #dfd5c1;font-size:18px}
+.host-programme-row time{font:700 13px Arial,sans-serif;color:var(--wine);font-variant-numeric:tabular-nums}
+.host-programme-break{background:#ede3cd}
+.host-programme-end{background:#e7dcc3;font-weight:bold;color:var(--wine);border-top:2px solid var(--wine)}
+.host-programme .host-small{margin-top:17px}
+@media(max-width:680px){.host-programme-head,.host-programme-row{grid-template-columns:125px 1fr;gap:10px;padding:14px 13px}.host-programme-row{font-size:16px}.host-programme-row time{font-size:12px}}
 </style></head><body><div class="top">Established 1968 · Standards will be maintained</div><header><div class="mast"><svg class="crest" viewBox="0 0 100 116" role="img" aria-label="Grimblewick and Clagworth Social Club crest" xmlns="http://www.w3.org/2000/svg"><path d="M3 4H97L92 82L50 112L8 82Z" fill="#58232b"/><path d="M3 4H97" stroke="#b49756" stroke-width="7"/><text x="50" y="51" text-anchor="middle" fill="#b49756" font-family="Georgia,serif" font-size="31">G&amp;C</text><text x="50" y="70" text-anchor="middle" fill="#d3bd84" font-family="Arial,sans-serif" font-size="8" letter-spacing="1">SOCIAL CLUB</text></svg><div class="brand">Grimblewick & Clagworth<br>Social Club<small>Fellowship · Variety · Ample parking*</small></div></div><nav class="nav" aria-label="Main navigation"><div class="nav-inner"><a class="nav-primary" href="/social-club/">The Club</a><a class="nav-primary" href="/social-club/whats-on/">What’s On &amp; Tickets</a><a class="nav-primary" href="/social-club/host-the-club/" aria-current="page">For Venues</a><details class="nav-more"><summary>Club Business <span class="nav-caret" aria-hidden="true">▾</span></summary><div class="nav-menu" aria-label="Club Business pages"><div class="nav-group"><div class="nav-group-title">Club notices</div><a href="/social-club/notices/">Noticeboard</a><a href="/social-club/committee/">The Committee</a><a href="/social-club/minutes/">Committee Minutes</a><a href="/social-club/rules/">Club Rules</a></div><div class="nav-group"><div class="nav-group-title">Club life</div><a href="/social-club/sports/">Sports &amp; Societies</a><a href="/social-club/history/">Club History</a></div><div class="nav-group"><div class="nav-group-title">The premises</div><a href="/social-club/room-hire/">Our Room Hire</a><a href="/social-club/premises-update/">Premises Update</a><a href="/social-club/our-new-premises/">Our New Premises</a></div></div></details></div></nav></header>
 <main>
 <section class="host-hero">
@@ -69,6 +82,22 @@
 <article class="host-panel"><div class="label">More potential homes</div><h3>Pubs &amp; function rooms</h3><p>Have a separate space and an audience who enjoy a good afternoon out? We'd love to hear about it.</p></article>
 <article class="host-panel"><div class="label">Also welcome</div><h3>Halls &amp; independent promoters</h3><p>Community venues and comedians who run their own nights can host a special event too.</p></article>
 </div>
+</section>
+<section class="host-programme" aria-labelledby="typical-running-order">
+<div class="label">A typical afternoon at the club</div>
+<h2 id="typical-running-order">The afternoon programme.</h2>
+<p class="host-programme-intro">An example of how a visiting social might run, from the first welcome to the committee's preferred departure time.</p>
+<div class="host-programme-board">
+<div class="host-programme-head"><span>Time</span><span>Entertainment</span></div>
+<div class="host-programme-row"><time datetime="14:30">2.30pm</time><span>Club compere</span></div>
+<div class="host-programme-row"><time datetime="14:40">2.40–3.10pm</time><span>Musical turn</span></div>
+<div class="host-programme-row"><time datetime="15:10">3.10–3.40pm</time><span>Speciality act</span></div>
+<div class="host-programme-row host-programme-break"><time datetime="15:40">3.40–4.15pm</time><span>Bingo and break</span></div>
+<div class="host-programme-row"><time datetime="16:15">4.15–4.55pm</time><span>Compere &amp; comic turn</span></div>
+<div class="host-programme-row"><time datetime="16:55">4.55–5.30pm</time><span>Musical turn</span></div>
+<div class="host-programme-row host-programme-end"><time datetime="17:30">5.30pm</time><span>Get out of the club</span></div>
+</div>
+<p class="host-small">All timings are approximate and can be adjusted to suit the venue, audience and final line-up. The committee asks that members take the 5.30pm instruction seriously.</p>
 </section>
 <section>
 <div class="label">Straightforward arrangements</div>
@@ -92,4 +121,4 @@
 </section>
 <section class="notice"><div class="label">A note from the Secretary</div><h3>All host venues will be treated with respect.</h3><p>The committee cannot, at this stage, give the same undertaking regarding the raffle.</p><span class="stamp">ENQUIRIES WELCOME</span></section>
 </main>
-<footer class="footer"><strong>GRIMBLEWICK & CLAGWORTH SOCIAL CLUB</strong><br>Fellowship. Variety. Standards.<br><span>*Parking subject to the venue. The club accepts that this is less of a motto.</span><p class="disclosure">Grimblewick & Clagworth is a fictional social club presenting real live variety events, produced by <a href="https://rockcentralpromotions.com">RockCentral Promotions</a>. Club history, committee members, notices and minutes are fictional. No shows or host venues are confirmed yet.<br>Website v2.3 · Updated 9 November 2026</p></footer></body></html>
+<footer class="footer"><strong>GRIMBLEWICK & CLAGWORTH SOCIAL CLUB</strong><br>Fellowship. Variety. Standards.<br><span>*Parking subject to the venue. The club accepts that this is less of a motto.</span><p class="disclosure">Grimblewick & Clagworth is a fictional social club presenting real live variety events, produced by <a href="https://rockcentralpromotions.com">RockCentral Promotions</a>. Club history, committee members, notices and minutes are fictional. No shows or host venues are confirmed yet.<br>Website v2.6 · Updated 10 November 2026</p></footer></body></html>
