@@ -1084,12 +1084,14 @@ header nav a:hover,header nav a:focus-visible{color:#FFFFFF;text-decoration:unde
   --navy:#111316;
   --panel:#191c20;
   --cream:#f8f8f7;
-  --gold:#edd36a;
+  --accent:#edd36a;
+  --accent-hover:#f7e38e;
+  --gold:var(--accent);
   --soft:#c4c5c7;
   --line:#35383d;
   --rangers-blue:#08090b;
   --deep-blue:#08090b;
-  --saltire-blue:#edd36a;
+  --saltire-blue:var(--accent);
   --rangers-white:#f8f8f7;
 }
 html,body{background:#08090b;color:var(--cream)}
@@ -1134,7 +1136,7 @@ header nav a:hover,header nav a:focus-visible{color:var(--gold);text-decoration:
 .gig .date .num{color:#fff}
 .btn{border-color:#777b80}
 .btn.primary{background:var(--gold);color:#111;border-color:var(--gold)}
-.btn.primary:hover{background:#f7e38e;border-color:#f7e38e}
+.btn.primary:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
 .btn.outline:hover,.more:hover{border-color:var(--gold)}
 .more{border-color:#777b80}
 #about .award-photo-frame,#about .award-photo-frame img{background:#181a1e}
@@ -1153,11 +1155,112 @@ footer a:hover,.channel-link:hover,.contact-email:hover{color:var(--gold)}
 #press .item{border-color:var(--line)}
 :focus-visible{outline-color:var(--gold)}
 
+
+/* v0.3.24: compact, accessible colour preview. The picker is staging-only
+   and changes only the accent token, never the photograph or layout layers. */
+.accent-preview{
+  background:#131417;
+  border-bottom:1px solid #303238;
+  color:#f5f5f5;
+}
+.accent-preview-inner{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:17px;
+  padding:12px 0;
+}
+.accent-preview-label{
+  font-size:13px;
+  font-weight:700;
+  line-height:1.25;
+  white-space:nowrap;
+}
+.accent-preview-label small{
+  display:block;
+  color:#aeb1b5;
+  font-size:10px;
+  font-weight:400;
+  margin-top:2px;
+}
+.accent-options{display:flex;flex-wrap:wrap;align-items:center;gap:5px}
+.accent-option{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  min-height:40px;
+  padding:6px 8px;
+  color:#d0d2d4;
+  background:transparent;
+  border:1px solid transparent;
+  border-radius:5px;
+  font-family:inherit;
+  font-size:12px;
+  cursor:pointer;
+}
+.accent-option:hover,.accent-option[aria-pressed="true"]{color:#fff;background:#25272b}
+.accent-option[aria-pressed="true"]{border-color:#505258}
+.accent-dot{
+  display:inline-block;
+  width:19px;
+  height:19px;
+  flex:0 0 19px;
+  border-radius:50%;
+  background:var(--swatch);
+  border:1px solid rgba(255,255,255,.2);
+}
+.accent-option[aria-pressed="true"] .accent-dot{box-shadow:0 0 0 2px #17181a,0 0 0 4px var(--swatch)}
+.accent-copy{
+  background:transparent;
+  color:#e5e5e5;
+  border:1px solid #595b61;
+  padding:9px 11px;
+  border-radius:4px;
+  font-family:inherit;
+  font-size:12px;
+  white-space:nowrap;
+  cursor:pointer;
+}
+.accent-copy:hover{border-color:var(--accent);color:var(--accent)}
+.accent-option:focus-visible,.accent-copy:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.visually-hidden{
+  position:absolute!important;width:1px!important;height:1px!important;
+  padding:0!important;margin:-1px!important;overflow:hidden!important;
+  clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important;
+}
+@media(max-width:800px){
+  .accent-preview-inner{gap:7px 10px;flex-wrap:wrap;justify-content:space-between;padding:9px 0 11px}
+  .accent-preview-label{flex:1 1 100%;font-size:12px}
+  .accent-preview-label small{display:inline;margin-left:7px}
+  .accent-options{gap:1px;flex:1 1 auto;justify-content:space-between}
+  .accent-option{flex-direction:column;gap:4px;padding:6px 3px 3px;min-height:46px;min-width:44px;font-size:10px}
+  .accent-dot{width:17px;height:17px;flex-basis:17px}
+  .accent-copy{font-size:11px;padding:8px 7px}
+}
+@media(max-width:360px){
+  .accent-options{flex:1 1 100%}
+  .accent-copy{margin-left:auto}
+}
+
 </style>
 </head>
 <body>
 <a href="#main" class="skip">Skip to content</a>
 <header><div class="wrap navrow"><a href="#top" class="logo">KEVIN <b>DANIEL</b></a><button class="menubtn" id="menu" aria-expanded="false" aria-controls="nav">Menu</button><nav id="nav" aria-label="Main navigation"><a href="#gigs">Gigs</a><a href="#about">About</a><a href="#press">Press kit</a><a href="#watch">Watch</a><a href="#contact">Contact</a></nav></div></header>
+<aside class="accent-preview" aria-label="Try accent colours">
+  <div class="wrap accent-preview-inner">
+    <span class="accent-preview-label">Try a colour <small>Preview only</small></span>
+    <div class="accent-options" role="group" aria-label="Select an accent colour">
+      <button type="button" class="accent-option" data-accent="yellow" aria-pressed="true"><span class="accent-dot" style="--swatch:#edd36a" aria-hidden="true"></span><span class="accent-name">Yellow</span></button>
+      <button type="button" class="accent-option" data-accent="red" aria-pressed="false"><span class="accent-dot" style="--swatch:#e85d62" aria-hidden="true"></span><span class="accent-name">Red</span></button>
+      <button type="button" class="accent-option" data-accent="orange" aria-pressed="false"><span class="accent-dot" style="--swatch:#ff9555" aria-hidden="true"></span><span class="accent-name">Orange</span></button>
+      <button type="button" class="accent-option" data-accent="teal" aria-pressed="false"><span class="accent-dot" style="--swatch:#61c9b6" aria-hidden="true"></span><span class="accent-name">Teal</span></button>
+      <button type="button" class="accent-option" data-accent="purple" aria-pressed="false"><span class="accent-dot" style="--swatch:#b5a0ff" aria-hidden="true"></span><span class="accent-name">Purple</span></button>
+    </div>
+    <button class="accent-copy" type="button" id="accent-copy" title="Copy a link to the selected colour">Copy link</button>
+    <span id="accent-status" class="visually-hidden" role="status" aria-live="polite"></span>
+  </div>
+</aside>
 <main id="main">
 <section id="top" class="hero"><div class="wrap hero-shell"><h1>KEVIN <span>DANIEL</span></h1><div class="hero-copy"><p class="intro">Born in Glasgow. On stages across Britain. A storyteller with a sharp eye for the ridiculous.</p><p class="heronote muted">Winner of Leicester Comedy Festival's Silver Stand-Up 2024. Performing stand-up since 2019 at leading clubs and festivals across the UK.</p></div><small class="hero-photo-credit">Photo &copy; Steve Best</small></div></section>
 <section id="gigs" class="section"><div class="wrap"><div class="sectionhead"><div><h2>See Kevin live</h2></div></div><p class="lead">Find a show, choose your date and book tickets. These initial dates are being migrated from Kevin's current website. Direct booking links are shown where verified.</p><div id="giglist" class="giglist" aria-live="polite"></div><div class="morewrap"><button type="button" class="more" id="more" hidden>See more dates</button></div></div></section>
@@ -1261,7 +1364,7 @@ footer a:hover,.channel-link:hover,.contact-email:hover{color:var(--gold)}
 </div>
 </div><a class="contact-email" href="mailto:info@kevindanielcomedy.co.uk">info@kevindanielcomedy.co.uk</a></div></section>
 </main>
-<footer><div class="wrap"><span>&copy; 2026 Kevin Daniel. Version 0.3.23, concept pending Kevin's approval.</span><span class="legal-links"><a href="privacy/">Privacy policy</a></span></div></footer>
+<footer><div class="wrap"><span>&copy; 2026 Kevin Daniel. Version 0.3.24, concept pending Kevin's approval.</span><span class="legal-links"><a href="privacy/">Privacy policy</a></span></div></footer>
 <script>
 (function(){
   // Set up reveals only after the gig calendar has rendered its dynamic rows.
@@ -1371,6 +1474,58 @@ full:"Kevin Daniel is an award-winning Scottish stand-up comedian based in the M
 };
 document.querySelectorAll('[data-bio]').forEach(b=>b.addEventListener('click',()=>{const kind=b.getAttribute('data-bio'),obj=new Blob([bio[kind]+'\n'],{type:'text/plain;charset=utf-8'}),url=URL.createObjectURL(obj),link=document.createElement('a');link.href=url;link.download='kevin-daniel-'+kind+'-biography.txt';document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}));
 })();
+
+(function(){
+  // Whitelisted presets only: URL parameters do not get interpreted as CSS.
+  const presets={
+    yellow:['#edd36a','#f7e38e'],
+    red:['#e85d62','#f47b80'],
+    orange:['#ff9555','#ffb17e'],
+    teal:['#61c9b6','#82ddcb'],
+    purple:['#b5a0ff','#cebeff']
+  };
+  const buttons=Array.from(document.querySelectorAll('.accent-option'));
+  const copy=document.getElementById('accent-copy');
+  const status=document.getElementById('accent-status');
+  if(!buttons.length||!copy)return;
+  const params=new URLSearchParams(window.location.search);
+  let stored=null;
+  try{stored=window.localStorage.getItem('kevin-preview-accent')}catch(_){}
+  let selected=Object.prototype.hasOwnProperty.call(presets,params.get('accent'))?params.get('accent'):
+    Object.prototype.hasOwnProperty.call(presets,stored)?stored:'yellow';
+  function apply(name,changeUrl){
+    if(!Object.prototype.hasOwnProperty.call(presets,name))return;
+    selected=name;
+    document.documentElement.style.setProperty('--accent',presets[name][0]);
+    document.documentElement.style.setProperty('--accent-hover',presets[name][1]);
+    buttons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.accent===name)));
+    if(changeUrl){
+      const url=new URL(window.location.href);
+      url.searchParams.set('accent',name);
+      window.history.replaceState(window.history.state,'',url.href);
+      try{window.localStorage.setItem('kevin-preview-accent',name)}catch(_){}
+    }
+    status.textContent=name[0].toUpperCase()+name.slice(1)+' accent selected';
+    copy.textContent='Copy link';
+  }
+  buttons.forEach(b=>b.addEventListener('click',()=>apply(b.dataset.accent,true)));
+  copy.addEventListener('click',async()=>{
+    const url=new URL(window.location.href);
+    url.searchParams.set('accent',selected);
+    const link=url.href;
+    try{
+      if(!navigator.clipboard||!navigator.clipboard.writeText)throw new Error('Clipboard unavailable');
+      await navigator.clipboard.writeText(link);
+      copy.textContent='Copied!';
+      status.textContent='Shareable '+selected+' link copied';
+    }catch(_){
+      // In-app browsers sometimes deny clipboard access. Let Kevin copy manually.
+      window.prompt('Copy this link to share the '+selected+' version:',link);
+    }
+  });
+  apply(selected,false);
+})();
+
 </script>
 </body>
 </html>
