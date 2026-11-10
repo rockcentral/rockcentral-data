@@ -1099,7 +1099,8 @@ header .logo b{color:var(--gold)}
 header nav a{color:#f7f7f7}
 header nav a:hover,header nav a:focus-visible{color:var(--gold);text-decoration:none}
 .menubtn:hover,.menubtn:focus-visible{color:var(--gold)}
-.hero{background:#08090b}
+/* Set only the fallback colour here: background shorthand would erase the mobile photo layer. */
+.hero{background-color:#08090b}
 .hero-shell h1,.hero-shell h1 span{color:#fff}
 .hero .hero-copy .heronote{color:#d5d5d5}
 @media(min-width:801px){
@@ -1260,7 +1261,7 @@ footer a:hover,.channel-link:hover,.contact-email:hover{color:var(--gold)}
 </div>
 </div><a class="contact-email" href="mailto:info@kevindanielcomedy.co.uk">info@kevindanielcomedy.co.uk</a></div></section>
 </main>
-<footer><div class="wrap"><span>&copy; 2026 Kevin Daniel. Version 0.3.21, concept pending Kevin's approval.</span><span class="legal-links"><a href="privacy/">Privacy policy</a></span></div></footer>
+<footer><div class="wrap"><span>&copy; 2026 Kevin Daniel. Version 0.3.22, concept pending Kevin's approval.</span><span class="legal-links"><a href="privacy/">Privacy policy</a></span></div></footer>
 <script>
 (function(){
   // Set up reveals only after the gig calendar has rendered its dynamic rows.
