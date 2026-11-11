@@ -1540,8 +1540,8 @@ fetch('./gigs.json?ts='+Date.now(),{cache:'no-store'})
   .then(response=>{if(!response.ok)throw Error('Gig feed unavailable');return response.json()})
   .then(feed=>{
     if(feed.schema!==1||!Array.isArray(feed.gigs))throw Error('Invalid gig feed');
-    const parsed=feed.gigs.filter(g=>g&&/^\\d{4}-\\d{2}-\\d{2}$/.test(g.date)&&typeof g.title==='string'&&typeof g.venue==='string').map(g=>{
-      const url=typeof g.url==='string'&&/^https:\\/\\//i.test(g.url)?g.url:'';
+    const parsed=feed.gigs.filter(g=>g&&/^\d{4}-\d{2}-\d{2}$/.test(g.date)&&typeof g.title==='string'&&typeof g.venue==='string').map(g=>{
+      const url=typeof g.url==='string'&&/^https:\/\//i.test(g.url)?g.url:'';
       return [g.date,g.time||'Time TBC',g.title,g.venue,url,g.ticketStatus==='On sale'&&!!url,g.ticketStatus||'Info soon'];
     });
     gigs=parsed;render();
