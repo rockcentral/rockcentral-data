@@ -1,11 +1,11 @@
 /**
  * ANTHONY GIG ALERTS
- * VERSION 0.8.3 (11 November 2026)
+ * VERSION 0.8.4 (11 November 2026)
  * Requires Code.gs v0.2.6, AnthonyAutoPublisher.gs v0.5.3,
- * AnthonyDailyWorkflow.gs v0.8.3.
+ * AnthonyDailyWorkflow.gs v0.8.4.
  * Private alert content only. No calendar or website writes.
  */
-const AW_ALERT_VERSION='0.8.3';
+const AW_ALERT_VERSION='0.8.4';
 const AW_ALERT_TO='alerts@rockcentralpromotions.com';
 const AW_ALERT_STATE_KEY='aw_alert_v080_review_baseline';
 const AW_ALERT_URGENT_KEY='aw_alert_v080_urgent_baseline';
@@ -58,7 +58,7 @@ function awAlertUrgentItems_(plan,privateRows,changedKeys){
     if(v[AW_COL.publish]==='Yes' && v[AW_COL.review]==='Needs review')
       reasons.push('Previously approved public booking needs renewed review');
     if(!reasons.length)continue;
-    result.push({id:awV05OpaqueId_(link.key)+'|'+reasons.join(', '),
+    result.push({id:awV05OpaqueId_(link.key),
       text:'Public row '+link.publicRow+', private row '+row.sheetRow+
       ': '+awAlertPublicTag_(row)+' | '+reasons.join('; ')});
   }
