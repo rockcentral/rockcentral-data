@@ -1431,7 +1431,7 @@ header .logo,header .logo b{color:#fff}
 </div>
 </div><a class="contact-email" href="mailto:info@kevindanielcomedy.co.uk">info@kevindanielcomedy.co.uk</a></div></section>
 </main>
-<footer><div class="wrap"><span>&copy; 2026 Kevin Daniel. Version 0.3.33, concept pending Kevin's approval.</span><span class="legal-links"><a href="privacy/">Privacy policy</a></span></div></footer>
+<footer><div class="wrap"><span>&copy; 2026 Kevin Daniel. Version 0.3.34, concept pending Kevin's approval.</span><span class="legal-links"><a href="privacy/">Privacy policy</a></span></div></footer>
 <script>
 (function(){
   // Set up reveals only after the gig calendar has rendered its dynamic rows.
@@ -1568,7 +1568,7 @@ fetch(publicGigCsv+'&_='+Date.now(),{cache:'no-store'})
       .filter(g=>g['Ticket Status']!=='Cancelled')
       .map(g=>{
         const url=/^https:\/\//i.test(g['Ticket Link'])?g['Ticket Link']:'';
-        const venue=[g.Venue,g.Location].filter(Boolean).join(', ');
+        const venue=g.Location&&!g.Venue.toLowerCase().includes(g.Location.toLowerCase()) ? g.Venue+', '+g.Location : g.Venue;
         return [g.Date,g.Time||'Time TBC',g.Show,venue,url,g['Ticket Status']==='On sale'&&!!url,g['Ticket Status']||'Info soon'];
       });
     gigs=clean;render();
