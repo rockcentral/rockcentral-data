@@ -1,9 +1,9 @@
-# Anthony automatic gig publisher v0.4.0
+# Anthony automatic gig publisher v0.4.1
 
 Installation: add a NEW script file named **AnthonyAutoPublisher** to the existing Google Apps Script project, leaving Code.gs v0.2.2 and AnthonyPublicBridge v0.3.1 alone.
 
 Functions:
-- `testAnthonyAutoPublisher` for eight no-write logic tests.
+- `testAnthonyAutoPublisher` for eleven no-write logic tests.
 - `previewAnthonyAutoPublisher` for no-write live publication preview.
 - `publishAnthonyConfirmedGigs` to append brand-new safe gigs only to public Google Sheet, which the website already reads.
 - `dailyAnthonyGigWorkflow` performs calendar → private register, then conservative public append.
@@ -18,3 +18,6 @@ Known limitations:
 - Existing calendar bookings whose locations are vague will be held. They are not necessarily missing gigs.
 - Cancellations and date moves are flagged in the private register, not automatically deleted/changed in live public listings. Public date changes need a separate verified update path.
 - Never use a calendar title containing fee or internal booking notes directly as a website headline.
+
+### v0.4.1 duplicate fix
+The same-day postcode is compared as well as the venue name. This prevents Wittering Parish Hall being duplicated under the Wittering SAS Club display name. A same-day identical postcode is conservatively treated as already listed even when the venue name differs. Thornbury remains eligible for the next preview. Do not enable the daily trigger until live preview and a controlled append are checked.
