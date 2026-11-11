@@ -1,7 +1,7 @@
 /**
  * ANTHONY WILLIAMS: AUTOMATIC PUBLIC GIG PUBLISHER
- * VERSION: 0.4.0 (11 November 2026)
- * New: conservative private-register -> existing public-sheet publishing.
+ * VERSION: 0.4.1 (11 November 2026)
+ * Fix: postcode-and-address duplicate detection, including Wittering.
  *
  * Keeps existing public gig rows and ticket links unchanged.
  * Only publishes new gigs when a reliable public venue and town can be
@@ -12,7 +12,7 @@
  * Requires Code.gs v0.2.2 and AnthonyPublicBridge v0.3.1.
  * Test before using any write/trigger function.
  */
-const AW_PUBLISH_VERSION='0.4.0';
+const AW_PUBLISH_VERSION='0.4.1';
 const AW_VERIFIED_GIGS=Object.freeze({
   // Researched against the promoter's own public event page.
   'mjvlc8pkv10181gbdce89drafg@google.com|slot:1': {
@@ -27,6 +27,21 @@ const AW_VERIFIED_GIGS=Object.freeze({
 
 function awNormaliseVenue_(text) {
   return String(text||'').toLowerCase().replace(/[^a-z0-9]/g,'');
+}
+function awUKPostcode_(text) {
+  const m=String(text||'').toUpperCase().match(/\b(?:GIR\s?0AA|(?:[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2}))\b/);
+  return m ? m[0].replace(/\s+/g,'') : '';
+}
+function awLikelySamePublicGig_(publicRow, d) {
+  const oldVenue=awNormaliseVenue_(publicRow.venue);
+  const newVenue=awNormaliseVenue_(d.venue);
+  if(oldVenue && newVenue && oldVenue===newVenue) return true;
+  const oldPostcode=awUKPostcode_(publicRow.address);
+  const newPostcode=awUKPostcode_(d.address);
+  if(oldPostcode && newPostcode && oldPostcode===newPostcode) return true;
+  // Distinct public venue names can be alternate labels for the same building.
+  // No automated write is allowed when the address is too ambiguous.
+  return false;
 }
 function awRoleFromTitle_(title) {
   const t=String(title||'').toLowerCase();
@@ -78,7 +93,7 @@ function awAutoPublishPlan_(workingRows,publicRows) {
     const sameDate=publicRows.filter(x=>x.date===d.date);
     // Same date, different venue: safe to add if venue is unambiguous;
     // exact same venue already on public feed: skip, never edit existing row.
-    if(sameDate.some(x=>awNormaliseVenue_(x.venue)===awNormaliseVenue_(d.venue)))return;
+    if(sameDate.some(x=>awLikelySamePublicGig_(x,d)))return;
     if(sameDate.some(x=>!x.venue || !x.location || 
         (awNormaliseVenue_(x.location)===awNormaliseVenue_(d.location) &&
          !x.venue))) {
@@ -177,7 +192,23 @@ function testAnthonyAutoPublisher() {
     noVenueMeansNoPublish:awAutoPublicDetails_(row('x','MC Comedy Night','2027-05-20',''))===null,
     otherSameDateGigCanCoexist:awAutoPublishPlan_([normal],[published]).plan.length===1,
     repeatIdempotent:awAutoPublishPlan_([normal],[{date:normal.v[AW_COL.date],
-      venue:'Town Hall',location:'Lancaster'}]).plan.length===0
+      venue:'Town Hall',location:'Lancaster'}]).plan.length===0,
+    witteringPostcodeDuplicateBlocked:awAutoPublishPlan_([
+      row('wittering','MC – Hats Funny Comedy, Wittering SAS Club','2026-11-14',
+        'Wittering Parish Hall, Peterborough, PE8 6BD')
+    ],[{
+      date:'2026-11-14',venue:'Wittering SAS Club (Parish Hall)',
+      address:'Wittering Parish Hall, Peterborough, PE8 6BD',
+      location:'Wittering'
+    }]).plan.length===0,
+    thornburyNewListingStillProposed:awAutoPublishPlan_([
+      row('thornbury','Armstrong Theatre Thornbury - Clean opener 20','2027-08-27',
+        'The Armstrong Theatre, Thornbury, Bristol BS35 2BJ')
+    ],[]).plan.length===1,
+    sameDateDifferentPostcodesAllowed:awAutoPublishPlan_([normal],[{
+      date:'2027-05-20',venue:'Other Hall',location:'Lancaster',
+      address:'Somewhere else, Lancaster, LA1 2ZZ'
+    }]).plan.length===1
   };
   Logger.log(JSON.stringify({version:AW_PUBLISH_VERSION,checks},null,2));
   if(Object.values(checks).some(x=>!x))
