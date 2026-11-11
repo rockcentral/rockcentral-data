@@ -1,12 +1,12 @@
 /**
- * ANTHONY GIG RECONCILIATION - VERSION 0.6.0 (11 NOV 2026)
+ * ANTHONY GIG RECONCILIATION - VERSION 0.6.1 (11 NOV 2026)
  * Read-only preview followed by deliberate link-only write.
  * No hardcoded gig, venue, date, postcode, ticket or act details.
  * Requires Code.gs v0.2.2, AnthonyPublicBridge v0.3.1,
  * AnthonyAutoPublisher v0.5.3 (awV05OpaqueId_ and awV05Read_).
  * NEVER changes public columns A:I or private review/approval fields.
  */
-const AW_LINK_VERSION='0.6.0';
+const AW_LINK_VERSION='0.6.1';
 const AW_LINK_STOP=new Set([
   'the','and','for','with','comedy','club','gig','mc','opener','opening',
   'closer','closing','middle','headline','headliner','venue','live',
@@ -58,12 +58,13 @@ function awLinkCandidate_(r,p) {
 }
 function awLinkPlan_(privateRows,publicRows) {
   const open=publicRows.filter(p=>p.date>=awIso_(new Date())&&!p.key);
+  const existingKeys=new Set(publicRows.map(x=>x.key).filter(Boolean));
   const active=privateRows.filter(r=>
     r.v[AW_COL.sync]==='Active' &&
     r.v[AW_COL.date]>=awIso_(new Date()) &&
+    !existingKeys.has(awV05OpaqueId_(r.v[AW_COL.key])) &&
     !/\b(?:fixture|test)\b/i.test(r.v[AW_COL.title]||''));
-  const existingKeys=new Set(publicRows.map(x=>x.key).filter(Boolean));
-  const options=active.filter(r=>!existingKeys.has(awV05OpaqueId_(r.v[AW_COL.key])))
+  const options=active
     .flatMap(r=>open.filter(p=>p.date===r.v[AW_COL.date])
       .map(p=>awLinkCandidate_(r,p)).filter(Boolean));
   const matches=[],review=[];
