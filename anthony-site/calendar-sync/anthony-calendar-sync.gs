@@ -1,7 +1,7 @@
 /**
  * ANTHONY WILLIAMS: PRIVATE GIG CALENDAR SYNC
- * VERSION: 0.2.1 (11 November 2026)
- * Changes: correct combined-booking detection; Blue Monkey / MC stays a single gig.
+ * VERSION: 0.2.2 (11 November 2026)
+ * Changes: future-only sync window from UK midnight; no imports of past gig dates.
  * Every run logs the version. If the log shows another version, the
  * latest script has not been pasted/saved in Apps Script.
  * Calendar is source of incoming bookings. This does NOT touch
@@ -14,14 +14,14 @@
  * Run testAnthonyCalendarSyncRules, then previewAnthonyCalendarSync,
  * then syncAnthonyCalendarToRegister to import privately.
  */
-const ANTHONY_SYNC_VERSION = '0.2.1';
+const ANTHONY_SYNC_VERSION = '0.2.2';
 
 const AW_SYNC = Object.freeze({
   calendarId: 'c_0e0019db66d2f8790454b5a421ca31d9f8c938902045761a39e1679dfd87b9fc@group.calendar.google.com',
   workingSheetId: '1f-pkmgRWbZObOkv1o0lBeHKo8CEI75WKczG6NCcSmuE',
   tab: 'Gig Register',
   timezone: 'Europe/London',
-  daysBehind: 7,
+  daysBehind: 0,
   daysAhead: 400,
   columns: 21
 });
@@ -59,10 +59,12 @@ function awCalendar_() {
 }
 function awWindow_() {
   const now = new Date();
-  return {
-    from: new Date(now.getTime() - AW_SYNC.daysBehind * 86400000),
-    to: new Date(now.getTime() + AW_SYNC.daysAhead * 86400000)
-  };
+  // Apps Script project timezone is Europe/London (appsscript.json).
+  // Start at local midnight rather than seven days ago or the current hour.
+  const from = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const to = new Date(from);
+  to.setDate(to.getDate() + AW_SYNC.daysAhead);
+  return { from, to };
 }
 function awReadEvents_(from, to) {
   return awCalendar_().getEvents(from, to).map(event => {
@@ -138,6 +140,9 @@ function awPlan_(events, stored, fromIso, toIso) {
     if (ambiguousIds.has(e.id) || combinedIds.has(e.id)) return;
     const dates = awDates_(e);
     dates.forEach((date,slot) => {
+      // A multi-day calendar event may start before today.
+      // Only sync performances within the current/future window.
+      if (date < fromIso || date >= toIso) return;
       const key = e.id + '|slot:' + (slot+1);
       seen.add(key);
       const old = existing.get(key);
@@ -309,7 +314,9 @@ function testAnthonyCalendarSyncRules() {
     genuineUnknownFormatRecognised:p([event('short','2026-11-18','20 for Marty Riley in Hudds')],empty).actions.length===1,
     partyExcluded:p([event('party','2026-11-18','Funhouse Xmas party')],empty).actions.length===0,
     placeholderExcluded:p([event('placeholder','2026-11-18','ICF Leicester dates placeholder')],empty).actions.length===0,
-    blueMonkeySingleGig:p([event('blue','2027-02-28','GIG - Blue Monkey / MC')],empty).actions.length===1
+    blueMonkeySingleGig:p([event('blue','2027-02-28','GIG - Blue Monkey / MC')],empty).actions.length===1,
+    pastGigNotImported:awPlan_([event('old','2026-11-05')],empty,'2026-11-11','2027-12-01').actions.length===0,
+    todayGigIncluded:awPlan_([event('today','2026-11-11')],empty,'2026-11-11','2027-12-01').actions.length===1
   };
   Logger.log(JSON.stringify({version:ANTHONY_SYNC_VERSION,checks},null,2));
   if(Object.values(checks).some(v=>!v))
