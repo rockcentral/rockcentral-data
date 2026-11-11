@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 110,
+  "revision": 111,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -168,7 +168,7 @@
     },
     {
       "path": "kevin/index.html",
-      "sha256": "774f0625ad1c1dc37f1fae5633c9d3215e6fd1cb0a148933ee01fb9d6bd9966d"
+      "sha256": "e85c2e901516701b42a77379ea6f3a29ff7912da5dde02af82598a6f616ce982"
     },
     {
       "path": "kevin/privacy/index.html",
@@ -177,6 +177,10 @@
     {
       "path": "kevin/preview/index.html",
       "sha256": "287a86b30b07d63d85df905310e401f941b6b51c07241d200b1f3c0c40404402"
+    },
+    {
+      "path": "kevin/gigs.json",
+      "sha256": "a588b06bc8c06afd68e999255613d9928c6c098072f8500c92c2864a6e6117a7"
     }
   ]
 }
