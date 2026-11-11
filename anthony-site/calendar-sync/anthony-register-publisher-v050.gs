@@ -1,6 +1,6 @@
 /**
  * ANTHONY WILLIAMS: REGISTER-LED PUBLIC PUBLISHER
- * VERSION: 0.5.2 (11 November 2026)
+ * VERSION: 0.5.3 (11 November 2026)
  *
  * No venue, show, time or ticket information is hardcoded here.
  * Private register is the source for APPROVED public fields.
@@ -11,7 +11,7 @@
  * Replaces AnthonyAutoPublisher v0.4.2; do NOT retain both scripts.
  * No automatic trigger in v0.5.0. Test + preview before first write.
  */
-const AW_REGISTER_PUBLISH_VERSION='0.5.2';
+const AW_REGISTER_PUBLISH_VERSION='0.5.3';
 const AW_PUBLIC_KEY_HEADER='Listing Sync ID';
 function awV05OpaqueId_(rawKey) {
   const digest=Utilities.computeDigest(
@@ -205,13 +205,13 @@ function publishAnthonyApprovedGigs() {
 }
 function testAnthonyRegisterPublisher() {
   const now='2026-11-11';
-  const sample=(key,title='Malton MC')=>{
+  const sample=(key,title='Example MC')=>{
     const v=Array(AW_SYNC.columns).fill('');
     v[AW_COL.key]=key;v[AW_COL.date]='2027-02-26';
-    v[AW_COL.title]=title;v[AW_COL.location]='The Milton Rooms, Malton';
+    v[AW_COL.title]=title;v[AW_COL.location]='Example Hall, Exampletown';
     v[AW_COL.sync]='Active';v[AW_COL.review]='Approved';
-    v[AW_COL.publish]='Yes';v[AW_COL.publicVenue]='The Milton Rooms';
-    v[AW_COL.publicLocation]='Malton';v[AW_COL.publicTime]='20:00';
+    v[AW_COL.publish]='Yes';v[AW_COL.publicVenue]='Example Hall';
+    v[AW_COL.publicLocation]='Exampletown';v[AW_COL.publicTime]='20:00';
     v[AW_COL.ticketStatus]='Info soon';
     return {sheetRow:2,v};
   };
@@ -237,7 +237,7 @@ function testAnthonyRegisterPublisher() {
       x.v[AW_COL.date]='2027-03-05';
       return awV05Plan_([x],[linked],now).linked[0].check==='DATE_CHANGED_NEEDS_REVIEW';})(),
     noPrivateTitlePublished:!JSON.stringify(awV05WriteRows_([{key:'a',details:d}]))
-      .includes('Malton MC'),
+      .includes('Example MC'),
     liveWithoutTicketHeld:(()=>{const x=sample('a');x.v[AW_COL.ticketStatus]='Live';
       return awV05Proposal_(x,now).state==='HOLD';})(),
     mixedRoleHeld:awV05Proposal_(sample('b','MC and opener'),now).state==='HOLD',
