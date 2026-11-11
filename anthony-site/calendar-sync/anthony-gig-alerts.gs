@@ -1,11 +1,11 @@
 /**
  * ANTHONY GIG ALERTS
- * VERSION 0.8.0 (11 November 2026)
+ * VERSION 0.8.1 (11 November 2026)
  * Requires Code.gs v0.2.6, AnthonyAutoPublisher.gs v0.5.3,
  * AnthonyDailyWorkflow.gs v0.8.0.
  * Private alert content only. No calendar or website writes.
  */
-const AW_ALERT_VERSION='0.8.0';
+const AW_ALERT_VERSION='0.8.1';
 const AW_ALERT_TO='alerts@rockcentralpromotions.com';
 const AW_ALERT_STATE_KEY='aw_alert_v080_review_baseline';
 const AW_ALERT_URGENT_KEY='aw_alert_v080_urgent_baseline';
@@ -32,7 +32,7 @@ function awAlertReviewItems_(privateRows,publicRows,today){
        linked.has(awV05OpaqueId_(v[AW_COL.key])) ||
        v[AW_COL.review]==='Ignored')continue;
     const proposal=awV05Proposal_(row,today);
-    if(proposal.state==='SKIP')continue;
+    if(proposal.state==='SKIP' || proposal.state==='READY')continue;
     const desc=proposal.state==='READY'?
       'Approved and awaiting publisher run':
       proposal.reason;
@@ -169,6 +169,14 @@ function testAnthonyAlertRules(){
     holdNotReported:(()=>{const x={sheetRow:2,v:[...v]};x.v[AW_COL.sync]='Hold';
       return awAlertReviewItems_([x],[],'2027-01-01').length===0;})(),
     privateFeeHidden:!awAlertPlain_('MC £200 - Example').includes('£200'),
+    approvedReadyIsNotReported:(()=>{
+      const x={sheetRow:2,v:[...v]};
+      x.v[AW_COL.review]='Approved';x.v[AW_COL.publish]='Yes';
+      x.v[AW_COL.publicVenue]='Fictional Hall';
+      x.v[AW_COL.publicLocation]='Fictional Town';
+      x.v[AW_COL.ticketStatus]='Info soon';
+      return awAlertReviewItems_([x],[],'2027-01-01').length===0;
+    })(),
     cancelledLinkedUrgent:(()=>{
       const x={sheetRow:2,v:[...v]};x.v[AW_COL.sync]='Cancelled';
       const p={linked:[{privateRow:2,publicRow:10,key:v[AW_COL.key],
