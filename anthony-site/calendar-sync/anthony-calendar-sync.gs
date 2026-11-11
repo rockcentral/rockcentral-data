@@ -1,6 +1,6 @@
 /**
  * ANTHONY WILLIAMS: PRIVATE GIG CALENDAR SYNC
- * VERSION: 0.2.5 (11 November 2026)
+ * VERSION: 0.2.6 (11 November 2026)
  * Changes: private descriptions and states; preserve prior approvals on first migration.
  * Every run logs the version. If the log shows another version, the
  * latest script has not been pasted/saved in Apps Script.
@@ -14,7 +14,7 @@
  * Run testAnthonyCalendarSyncRules, then previewAnthonyCalendarSync,
  * then syncAnthonyCalendarToRegister to import privately.
  */
-const ANTHONY_SYNC_VERSION = '0.2.5';
+const ANTHONY_SYNC_VERSION = '0.2.6';
 
 const AW_SYNC = Object.freeze({
   calendarId: 'c_0e0019db66d2f8790454b5a421ca31d9f8c938902045761a39e1679dfd87b9fc@group.calendar.google.com',
@@ -306,7 +306,7 @@ function syncAnthonyCalendarToRegister() {
       publicFieldsWritten:0,websiteWrites:0,calendarWrites:0
     };
     Logger.log(JSON.stringify(report,null,2));
-    return report;
+    return Object.assign({},report,{changedKeys:edits.map(x=>x.key)});
   } finally {lock.releaseLock();}
 }
 
