@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "updated": "2026-11-11",
+  "gigs": [
+    {
+      "date": "2026-11-12",
+      "time": "19:30",
+      "title": "Funhouse Comedy",
+      "venue": "The Regal, Stowmarket, Stowmarket",
+      "url": "https://regalstowmarket.co.uk/RegalStowmarket.dll/WhatsOn?f=2480072",
+      "ticketStatus": "On sale"
+    },
+    {
+      "date": "2026-11-13",
+      "time": "19:30",
+      "title": "Comedy Night",
+      "venue": "Cosby Golf Club, Leicester",
+      "url": "https://kevindanielcomedy.co.uk/events/list/",
+      "ticketStatus": "Info soon"
+    },
+    {
+      "date": "2026-11-26",
+      "time": "20:00",
+      "title": "Funhouse Comedy",
+      "venue": "The Final Whistle, Southwell, Southwell",
+      "url": "https://www.skiddle.com/whats-on/Nottingham/The-Final-Whistle%2C/Funhouse-Comedy-Club---Comedy-Night/43123479/",
+      "ticketStatus": "On sale"
+    },
+    {
+      "date": "2026-11-27",
+      "time": "20:00",
+      "title": "The Last Laugh Comedy Club",
+      "venue": "Sheffield City Hall, Sheffield",
+      "url": "https://wegottickets.com/f/25502",
+      "ticketStatus": "On sale"
+    },
+    {
+      "date": "2026-11-28",
+      "time": "20:00",
+      "title": "The Last Laugh Comedy Club",
+      "venue": "Sheffield City Hall, Sheffield",
+      "url": "https://wegottickets.com/f/30180",
+      "ticketStatus": "On sale"
+    },
+    {
+      "date": "2026-12-01",
+      "time": "20:00",
+      "title": "Guildhall Comedy Club",
+      "venue": "Gloucester Guildhall, Gloucester",
+      "url": "https://www.gloucesterguildhall.co.uk/events/guildhall-comedy-club-kevin-daniel-ashley-frieze/",
+      "ticketStatus": "On sale"
+    },
+    {
+      "date": "2026-12-04",
+      "time": "19:30",
+      "title": "Smiley Faces Comedy Night",
+      "venue": "Radstock, Radstock",
+      "url": "https://kevindanielcomedy.co.uk/events/list/",
+      "ticketStatus": "Info soon"
+    },
+    {
+      "date": "2026-12-05",
+      "time": "19:00",
+      "title": "Just the Tonic (early show)",
+      "venue": "Metronome, Nottingham",
+      "url": "https://www.justthetonic.com/nottingham-comedy/shows/saturday-5-dec-2026/7375/",
+      "ticketStatus": "On sale"
+    },
+    {
+      "date": "2026-12-05",
+      "time": "21:00",
+      "title": "Just the Tonic (late show)",
+      "venue": "Metronome, Nottingham",
+      "url": "https://www.justthetonic.com/nottingham-comedy",
+      "ticketStatus": "Info soon"
+    },
+    {
+      "date": "2026-12-12",
+      "time": "19:30",
+      "title": "Amuzin Comedy",
+      "venue": "The Meeting Place, Spital Mill, Chesterfield",
+      "url": "https://kevindanielcomedy.co.uk/events/list/",
+      "ticketStatus": "Info soon"
+    },
+    {
+      "date": "2026-12-18",
+      "time": "20:00",
+      "title": "Just the Tonic",
+      "venue": "NG-One, Nottingham",
+      "url": "https://www.justthetonic.com/nottingham-comedy",
+      "ticketStatus": "Info soon"
+    },
+    {
+      "date": "2026-12-27",
+      "time": "20:00",
+      "title": "Funhouse Comedy",
+      "venue": "The Pavilion at Ingleside, Cirencester",
+      "url": "https://www.skiddle.com/whats-on/Gloucester/The-Pavilion-At-Ingleside/Funhouse-Comedy-Club---Comedy-Night/43174763/",
+      "ticketStatus": "On sale"
+    }
+  ]
+}
