@@ -1,5 +1,9 @@
 /**
- * ANTHONY WILLIAMS: PRIVATE gig calendar sync, beta.
+ * ANTHONY WILLIAMS: PRIVATE GIG CALENDAR SYNC
+ * VERSION: 0.2.0 (11 November 2026)
+ * Changes: improved gig recognition, combined-booking review, concise preview.
+ * Every run logs the version. If the log shows another version, the
+ * latest script has not been pasted/saved in Apps Script.
  * Calendar is source of incoming bookings. This does NOT touch
  * the public website, the published feed, or calendar entries.
  *
@@ -10,6 +14,8 @@
  * Run testAnthonyCalendarSyncRules, then previewAnthonyCalendarSync,
  * then syncAnthonyCalendarToRegister to import privately.
  */
+const ANTHONY_SYNC_VERSION = '0.2.0';
+
 const AW_SYNC = Object.freeze({
   calendarId: 'c_0e0019db66d2f8790454b5a421ca31d9f8c938902045761a39e1679dfd87b9fc@group.calendar.google.com',
   workingSheetId: '1f-pkmgRWbZObOkv1o0lBeHKo8CEI75WKczG6NCcSmuE',
@@ -206,6 +212,7 @@ function previewAnthonyCalendarSync() {
   const counts = {};
   changes.forEach(x=>{ counts[x.action]=(counts[x.action]||0)+1; });
   const report = {
+    version:ANTHONY_SYNC_VERSION,
     mode:'DRY_RUN_NO_WRITES',calendarEventsRead:p.calendarEventsRead,
     classifiedGigEvents:p.classifiedGigEvents,
     plannedChangeCounts:counts,
@@ -255,6 +262,7 @@ function syncAnthonyCalendarToRegister() {
       }
     });
     const report={
+      version:ANTHONY_SYNC_VERSION,
       mode:'PRIVATE_REGISTER_ONLY',calendarEventsRead:plan.calendarEventsRead,
       added:add.length,moved:edits.filter(x=>x.action==='REVIEW_MOVED').length,
       sourceUpdated:edits.filter(x=>x.action==='UPDATE_SOURCE').length,
@@ -302,7 +310,7 @@ function testAnthonyCalendarSyncRules() {
     partyExcluded:p([event('party','2026-11-18','Funhouse Xmas party')],empty).actions.length===0,
     placeholderExcluded:p([event('placeholder','2026-11-18','ICF Leicester dates placeholder')],empty).actions.length===0
   };
-  Logger.log(JSON.stringify(checks,null,2));
+  Logger.log(JSON.stringify({version:ANTHONY_SYNC_VERSION,checks},null,2));
   if(Object.values(checks).some(v=>!v))
     throw new Error('Fixture failure '+JSON.stringify(checks));
   return checks;
