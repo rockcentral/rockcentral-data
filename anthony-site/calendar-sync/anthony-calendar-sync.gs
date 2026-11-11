@@ -1,7 +1,7 @@
 /**
  * ANTHONY WILLIAMS: PRIVATE GIG CALENDAR SYNC
- * VERSION: 0.2.0 (11 November 2026)
- * Changes: improved gig recognition, combined-booking review, concise preview.
+ * VERSION: 0.2.1 (11 November 2026)
+ * Changes: correct combined-booking detection; Blue Monkey / MC stays a single gig.
  * Every run logs the version. If the log shows another version, the
  * latest script has not been pasted/saved in Apps Script.
  * Calendar is source of incoming bookings. This does NOT touch
@@ -14,7 +14,7 @@
  * Run testAnthonyCalendarSyncRules, then previewAnthonyCalendarSync,
  * then syncAnthonyCalendarToRegister to import privately.
  */
-const ANTHONY_SYNC_VERSION = '0.2.0';
+const ANTHONY_SYNC_VERSION = '0.2.1';
 
 const AW_SYNC = Object.freeze({
   calendarId: 'c_0e0019db66d2f8790454b5a421ca31d9f8c938902045761a39e1679dfd87b9fc@group.calendar.google.com',
@@ -82,7 +82,7 @@ function awReadEvents_(from, to) {
 }
 function awCombinedBooking_(event) {
   const t = (event.title || '').toLowerCase();
-  return /\bdouble\b|\bdouble.?header\b|\bdouble.?gig\b|\s\/\s.*\b(?:comedy|rockcentral|club|mc)\b/.test(t);
+  return /\bdouble\b|\bdouble.?header\b|\bdouble.?gig\b/.test(t);
 }
 function awClassify_(event) {
   const title = (event.title || '').toLowerCase();
@@ -308,7 +308,8 @@ function testAnthonyCalendarSyncRules() {
     combinedBookingHeld:p([event('double','2026-11-18','Caves / Duffield - RockCentral Promotions (double)')],empty).actions.length===0,
     genuineUnknownFormatRecognised:p([event('short','2026-11-18','20 for Marty Riley in Hudds')],empty).actions.length===1,
     partyExcluded:p([event('party','2026-11-18','Funhouse Xmas party')],empty).actions.length===0,
-    placeholderExcluded:p([event('placeholder','2026-11-18','ICF Leicester dates placeholder')],empty).actions.length===0
+    placeholderExcluded:p([event('placeholder','2026-11-18','ICF Leicester dates placeholder')],empty).actions.length===0,
+    blueMonkeySingleGig:p([event('blue','2027-02-28','GIG - Blue Monkey / MC')],empty).actions.length===1
   };
   Logger.log(JSON.stringify({version:ANTHONY_SYNC_VERSION,checks},null,2));
   if(Object.values(checks).some(v=>!v))
