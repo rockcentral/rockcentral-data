@@ -1,7 +1,7 @@
 /**
  * ANTHONY WILLIAMS: AUTOMATIC PUBLIC GIG PUBLISHER
- * VERSION: 0.4.1 (11 November 2026)
- * Fix: postcode-and-address duplicate detection, including Wittering.
+ * VERSION: 0.4.2 (11 November 2026)
+ * Fix: preflight target cell validation before write; defend against partial writes.
  *
  * Keeps existing public gig rows and ticket links unchanged.
  * Only publishes new gigs when a reliable public venue and town can be
@@ -12,7 +12,7 @@
  * Requires Code.gs v0.2.2 and AnthonyPublicBridge v0.3.1.
  * Test before using any write/trigger function.
  */
-const AW_PUBLISH_VERSION='0.4.1';
+const AW_PUBLISH_VERSION='0.4.2';
 const AW_VERIFIED_GIGS=Object.freeze({
   // Researched against the promoter's own public event page.
   'mjvlc8pkv10181gbdce89drafg@google.com|slot:1': {
@@ -127,6 +127,21 @@ function awPublicRowsForWrite_(items) {
  * Manually invocable, or called by a time trigger AFTER validation.
  * Appends ONLY brand new rows, never overwrites existing public listings.
  */
+function awValidatePublicTarget_(sheet, firstRow, count) {
+  if(!count)return;
+  // Columns G/H are status and role; the Role column must NOT inherit
+  // the Status dropdown (Live / Info soon / Hidden).
+  const target=sheet.getRange(firstRow,7,count,2);
+  const rules=target.getDataValidations();
+  for(let i=0;i<rules.length;i++){
+    const g=rules[i][0], h=rules[i][1];
+    if(!g) throw new Error('Public Status validation missing at G'+(firstRow+i));
+    if(h) {
+      throw new Error('Role cell H'+(firstRow+i)+
+        ' has validation rules. Fix the sheet before publishing.');
+    }
+  }
+}
 function publishAnthonyConfirmedGigs() {
   const lock=LockService.getScriptLock();
   if(!lock.tryLock(15000))throw new Error('Another publisher is running');
@@ -136,8 +151,19 @@ function publishAnthonyConfirmedGigs() {
     const current=awReadPublicFeed_();
     const p=awAutoPublishPlan_(awReadRegister_().rows,current);
     const batch=awPublicRowsForWrite_(p.plan);
-    if(batch.length)
-      sheet.getRange(sheet.getLastRow()+1,1,batch.length,9).setValues(batch);
+    if(batch.length) {
+      const firstRow=sheet.getLastRow()+1;
+      awValidatePublicTarget_(sheet,firstRow,batch.length);
+      sheet.getRange(firstRow,1,batch.length,9).setValues(batch);
+      SpreadsheetApp.flush(); // Surface validation/write errors before success log.
+      const saved=sheet.getRange(firstRow,1,batch.length,9).getDisplayValues();
+      for(let i=0;i<batch.length;i++){
+        if(saved[i][0]!==batch[i][0] || saved[i][3]!==batch[i][3] ||
+           saved[i][6]!==batch[i][6] || saved[i][7]!==batch[i][7]){
+          throw new Error('Written public row '+(firstRow+i)+' failed verification');
+        }
+      }
+    }
     const report={
       version:AW_PUBLISH_VERSION,mode:'PUBLICATION_OF_CONFIDENT_NEW_GIGS_ONLY',
       added:batch.length,held:p.held.length,
