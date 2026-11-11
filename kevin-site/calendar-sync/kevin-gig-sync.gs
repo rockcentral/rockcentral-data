@@ -43,6 +43,8 @@ function fetchKevinBuiltInEvents_(start, end) {
       // iCalUID, NOT the register's Calendar API ID
       id: e.getId(),
       summary: e.getTitle(),
+      // Check test marker privately; never include full booking notes in reports.
+      testOnly: /\btest\s+only\b|\btest\s+event\b/i.test(e.getDescription() || ''),
       location: e.getLocation(),
       status: 'confirmed',
       start: allDay ? { date: fmt(begin) } :
@@ -68,7 +70,7 @@ function compareKevinBuiltIn_(events, rows, start, end) {
                                       r.ticketStatus !== 'Cancelled');
     if (candidates.length === 0) {
       proposals.push({
-        action: 'REVIEW_POSSIBLE_NEW_GIG', dates: dates,
+        action: event.testOnly || /\btest\b/i.test(event.summary) ? 'TEST_GIG_DETECTED' : 'REVIEW_POSSIBLE_NEW_GIG', dates: dates,
         calendarTitle: event.summary, calendarLocation: event.location || '',
         note: 'Date has no active register gig. Human review; DO NOT add automatically.'
       });
@@ -148,7 +150,9 @@ function toIsoDate_(value) {
 }
 
 function isGig_(event) {
-  return /^\s*(?:GIG\b|MY SHOW\b)/i.test(event.summary || '');
+  const title = event.summary || '';
+  return /^\s*(?:GIG\b|MY SHOW\b)/i.test(title) ||
+    /\btest\b.*\bgig\b/i.test(title);
 }
 
 function eventDates_(event) {
@@ -266,7 +270,9 @@ function testKevinGigSyncRules() {
     multiDayPreserved: check([event('fixture-1', 'GIG TWO NIGHTS', '2026-11-17', '2026-11-19')],
       base.concat([{ ...base[0], row: 3, date: '2026-11-18' }])).proposalCount === 0,
     sameDateDoublePreserved: check([event('fixture-1', 'GIG TWO SHOWS', '2026-11-17', '2026-11-18')],
-      base.concat([{ ...base[0], row: 3 }])).proposalCount === 0
+      base.concat([{ ...base[0], row: 3 }])).proposalCount === 0,
+    kevinTestDetected: check([{...event('fixture-2', 'NEW TEST TRST TEST GIG', '2026-11-18', '2026-11-19'), testOnly: true}], base)
+      .proposals.some(x => x.action === 'TEST_GIG_DETECTED')
   };
   if (Object.values(results).some(v => !v)) throw new Error('Fixture failure: ' + JSON.stringify(results));
   Logger.log(JSON.stringify(results, null, 2));
