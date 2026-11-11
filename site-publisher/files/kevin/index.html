@@ -1346,7 +1346,7 @@ header .logo,header .logo b{color:#fff}
     </div>
   </div>
 </section>
-<section id="gigs" class="section"><div class="wrap"><div class="sectionhead"><div><h2>See Kevin live</h2></div></div><p class="lead">Find a show, choose your date and book tickets. Upcoming public shows from Kevin's gig register. Direct booking links are shown where verified.</p><div id="giglist" class="giglist" aria-live="polite"></div><div class="morewrap"><button type="button" class="more" id="more" hidden>See more dates</button></div></div></section>
+<section id="gigs" class="section"><div class="wrap"><div class="sectionhead"><div><h2>See Kevin live</h2></div></div><p class="lead">Find a show, choose your date and book tickets. Upcoming public shows from Kevin's gig register. The listings update from his public Google Sheet; direct booking links appear where available.</p><div id="giglist" class="giglist" aria-live="polite"></div><div class="morewrap"><button type="button" class="more" id="more" hidden>See more dates</button></div></div></section>
 
 <section id="about" class="section alt">
   <div class="wrap about-content">
@@ -1431,7 +1431,7 @@ header .logo,header .logo b{color:#fff}
 </div>
 </div><a class="contact-email" href="mailto:info@kevindanielcomedy.co.uk">info@kevindanielcomedy.co.uk</a></div></section>
 </main>
-<footer><div class="wrap"><span>&copy; 2026 Kevin Daniel. Version 0.3.32, concept pending Kevin's approval.</span><span class="legal-links"><a href="privacy/">Privacy policy</a></span></div></footer>
+<footer><div class="wrap"><span>&copy; 2026 Kevin Daniel. Version 0.3.33, concept pending Kevin's approval.</span><span class="legal-links"><a href="privacy/">Privacy policy</a></span></div></footer>
 <script>
 (function(){
   // Set up reveals only after the gig calendar has rendered its dynamic rows.
@@ -1534,19 +1534,48 @@ const pad=n=>String(n).padStart(2,'0'),now=new Date(),today=now.getFullYear()+'-
 function make(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e}
 function render(){const future=gigs.filter(g=>g[0]>=today).sort((a,b)=>a[0].localeCompare(b[0])||a[1].localeCompare(b[1]));list.replaceChildren();const show=expanded?future:future.slice(0,6);if(show.length===0)list.append(make('p','muted','More dates to follow.'));show.forEach(g=>{const row=make('article','gig'),date=make('div','date'),dt=new Date(g[0]+'T12:00:00');date.setAttribute('aria-label',dt.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'}));date.append(make('span','dow',dt.toLocaleString('en-GB',{weekday:'short'}).toUpperCase()),make('span','num',String(dt.getDate())),make('span','mon',dt.toLocaleString('en-GB',{month:'short'}).toUpperCase()));const details=make('div','details');details.append(make('h3','',g[2]),make('p','',g[3]+' / '+g[1]));const action=make('div','gigaction'),url=typeof g[4]==='string'&&/^https:\/\//i.test(g[4])?g[4]:'';if(g[6]==='Sold out'){action.append(make('span','btn outline','Sold out'))}else if(url){const link=make('a','btn '+(g[5]?'primary':'outline'),g[5]?'Book tickets >':'Booking info >');link.href=url;link.target='_blank';link.rel='noopener noreferrer';action.append(link);if(!g[5])action.append(make('small','','Direct ticket link to be confirmed'))}else{action.append(make('small','','Ticket information coming soon'))}row.append(date,details,action);list.append(row)});more.hidden=future.length<=6;more.textContent=expanded?'Show fewer dates':'Show all dates'}
 render();more.addEventListener('click',()=>{expanded=!expanded;render()});
-// Public-only feed. The original list above is a fallback if the publisher is unavailable.
-// No calendar descriptions, contact details or financial columns are fetched by this page.
-fetch('./gigs.json?ts='+Date.now(),{cache:'no-store'})
-  .then(response=>{if(!response.ok)throw Error('Gig feed unavailable');return response.json()})
-  .then(feed=>{
-    if(feed.schema!==1||!Array.isArray(feed.gigs))throw Error('Invalid gig feed');
-    const parsed=feed.gigs.filter(g=>g&&/^\d{4}-\d{2}-\d{2}$/.test(g.date)&&typeof g.title==='string'&&typeof g.venue==='string').map(g=>{
-      const url=typeof g.url==='string'&&/^https:\/\//i.test(g.url)?g.url:'';
-      return [g.date,g.time||'Time TBC',g.title,g.venue,url,g.ticketStatus==='On sale'&&!!url,g.ticketStatus||'Info soon'];
-    });
-    gigs=parsed;render();
+// Public-only Google Sheet feed. Routine gig updates no longer need GitHub publication.
+// The published Sheet includes Date, Time, Show, Venue, Location, Ticket Link and Ticket Status only.
+// The existing static dates above are used solely if the Google Sheets feed is temporarily unavailable.
+const publicGigCsv = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTOUT9632zg2CfAC6WTOb5bapzLUsd_A0dO0pYIju3O88Pdtef7uvzSLEWrStLUPAsFd1XHm9kGazxw/pub?gid=1548267219&single=true&output=csv';
+function parseGigCSV(csv){
+  const rows=[];let row=[],cell='',quoted=false;
+  for(let i=0;i<csv.length;i++){
+    const c=csv[i],next=csv[i+1];
+    if(c==='"'&&quoted&&next==='"'){cell+='"';i++}
+    else if(c==='"'){quoted=!quoted}
+    else if(c===','&&!quoted){row.push(cell);cell=''}
+    else if((c==='\n'||c==='\r')&&!quoted){
+      if(c==='\r'&&next==='\n')i++;
+      row.push(cell);cell='';
+      if(row.some(v=>v.trim()!==''))rows.push(row);
+      row=[];
+    }else cell+=c;
+  }
+  if(cell.length||row.length){row.push(cell);if(row.some(v=>v.trim()!==''))rows.push(row)}
+  if(!rows.length)return [];
+  const columns=rows.shift().map(x=>x.trim().replace(/^\uFEFF/,''));
+  return rows.map(cells=>Object.fromEntries(columns.map((name,i)=>[name,(cells[i]||'').trim()])));
+}
+fetch(publicGigCsv+'&_='+Date.now(),{cache:'no-store'})
+  .then(response=>{if(!response.ok)throw Error('Public gig sheet unavailable');return response.text()})
+  .then(csv=>{
+    const parsed=parseGigCSV(csv);
+    if(!parsed.length)throw Error('Public gig sheet is empty or has no approved rows');
+    const required=['Date','Time','Show','Venue','Location','Ticket Link','Ticket Status'];
+    if(!required.every(name=>Object.hasOwn(parsed[0],name)))throw Error('Unexpected gig sheet columns');
+    const clean=parsed.filter(g=>/^\d{4}-\d{2}-\d{2}$/.test(g.Date)&&g.Show&&g.Venue)
+      .filter(g=>g['Ticket Status']!=='Cancelled')
+      .map(g=>{
+        const url=/^https:\/\//i.test(g['Ticket Link'])?g['Ticket Link']:'';
+        const venue=[g.Venue,g.Location].filter(Boolean).join(', ');
+        return [g.Date,g.Time||'Time TBC',g.Show,venue,url,g['Ticket Status']==='On sale'&&!!url,g['Ticket Status']||'Info soon'];
+      });
+    gigs=clean;render();
   })
-  .catch(()=>{/* Keep the existing published gig list as a safe fallback. */});
+  .catch(error=>{
+    console.warn('Kevin gigs: public Google Sheet unavailable; using last-resort static fallback.',error);
+  });
 
 const menu=document.getElementById('menu'),nav=document.getElementById('nav');menu.addEventListener('click',()=>{const state=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(state))});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false')}));
 const bio={
