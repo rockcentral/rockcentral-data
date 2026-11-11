@@ -1,6 +1,6 @@
 /**
  * ANTHONY WILLIAMS: REGISTER-LED PUBLIC PUBLISHER
- * VERSION: 0.5.0 (11 November 2026)
+ * VERSION: 0.5.1 (11 November 2026)
  *
  * No venue, show, time or ticket information is hardcoded here.
  * Private register is the source for APPROVED public fields.
@@ -11,7 +11,7 @@
  * Replaces AnthonyAutoPublisher v0.4.2; do NOT retain both scripts.
  * No automatic trigger in v0.5.0. Test + preview before first write.
  */
-const AW_REGISTER_PUBLISH_VERSION='0.5.0';
+const AW_REGISTER_PUBLISH_VERSION='0.5.1';
 const AW_PUBLIC_KEY_HEADER='Performance Key';
 
 function awV05Clean_(v) {return String(v===null||v===undefined?'':v).trim();}
@@ -110,9 +110,9 @@ function awV05Plan_(privateRows,publicRows,today) {
     }
     if(existing.length===1) {
       linked.push({privateRow:r.sheetRow,publicRow:existing[0].row,key,
-        check:state.state==='READY' &&
-          existing[0].date!==state.details.date?'DATE_CHANGED_NEEDS_REVIEW':
-          state.state==='HOLD'?'PUBLIC_LISTING_NEEDS_REVIEW':'ALREADY_LINKED'});
+        check:existing[0].date!==awV05Clean_(v[AW_COL.date])
+          ?'DATE_CHANGED_NEEDS_REVIEW'
+          :state.state==='HOLD'?'PUBLIC_LISTING_NEEDS_REVIEW':'ALREADY_LINKED'});
       return;
     }
     if(state.state==='SKIP'){skipped.push(r.sheetRow);return;}
@@ -236,7 +236,12 @@ function testAnthonyRegisterPublisher() {
     liveWithoutTicketHeld:(()=>{const x=sample('a');x.v[AW_COL.ticketStatus]='Live';
       return awV05Proposal_(x,now).state==='HOLD';})(),
     mixedRoleHeld:awV05Proposal_(sample('b','MC and opener'),now).state==='HOLD',
-    duplicateKeyHeld:awV05Plan_([p,sample('calendar-uid|slot:1')],[],now).review.length===1
+    duplicateKeyHeld:awV05Plan_([p,sample('calendar-uid|slot:1')],[],now).review.length===1,
+    unapprovedLinkedMoveStillFlagged:(()=>{
+      const x=sample('calendar-uid|slot:1');
+      x.v[AW_COL.date]='2027-03-05';x.v[AW_COL.review]='Date changed';
+      return awV05Plan_([x],[linked],now).linked[0].check==='DATE_CHANGED_NEEDS_REVIEW';
+    })()
   };
   Logger.log(JSON.stringify({version:AW_REGISTER_PUBLISH_VERSION,tests},null,2));
   if(Object.values(tests).some(v=>!v))
