@@ -18,43 +18,98 @@ function previewKevinGigSync() {
   const today = new Date();
   const start = new Date(today.getTime() - KEVIN_SYNC.daysBehind * 86400000);
   const end = new Date(today.getTime() + KEVIN_SYNC.daysAhead * 86400000);
-  const report = compareKevinGigSync_(fetchKevinEvents_(start, end),
-                                      readKevinRegister_(), start, end);
+  const report = compareKevinBuiltIn_(fetchKevinBuiltInEvents_(start, end),
+                                       readKevinRegister_(), start, end);
   Logger.log(JSON.stringify(report, null, 2));
   return report;
 }
 
-// Only Google Calendar read via REST. No event creation or mutation.
-function fetchKevinEvents_(start, end) {
-  const root = 'https://www.googleapis.com/calendar/v3/calendars/' +
-    encodeURIComponent(KEVIN_SYNC.calendarId) + '/events';
-  const token = ScriptApp.getOAuthToken();
-  const all = [];
-  let pageToken = '';
-  do {
-    const params = {
-      timeMin: start.toISOString(),
-      timeMax: end.toISOString(),
-      maxResults: 250,
-      singleEvents: true,
-      showDeleted: false
+/**
+ * Built-in CalendarApp avoids the separate Google Cloud Calendar API.
+ * IMPORTANT: CalendarApp IDs are iCalUIDs, unlike the existing register's
+ * Calendar API event IDs. Therefore this prototype matches dates only,
+ * reports possible matches for review, and NEVER writes event IDs.
+ */
+function fetchKevinBuiltInEvents_(start, end) {
+  const calendar = CalendarApp.getCalendarById(KEVIN_SYNC.calendarId);
+  if (!calendar) throw new Error("Kevin's shared calendar is not accessible.");
+  const tz = KEVIN_SYNC.timezone;
+  return calendar.getEvents(start, end).map(e => {
+    const allDay = e.isAllDayEvent();
+    const begin = allDay ? e.getAllDayStartDate() : e.getStartTime();
+    const finish = allDay ? e.getAllDayEndDate() : e.getEndTime();
+    const fmt = d => Utilities.formatDate(d, tz, 'yyyy-MM-dd');
+    return {
+      // iCalUID, NOT the register's Calendar API ID
+      id: e.getId(),
+      summary: e.getTitle(),
+      location: e.getLocation(),
+      status: 'confirmed',
+      start: allDay ? { date: fmt(begin) } :
+        { dateTime: Utilities.formatDate(begin, tz, "yyyy-MM-dd'T'HH:mm:ss") },
+      end: allDay ? { date: fmt(finish) } :
+        { dateTime: Utilities.formatDate(finish, tz, "yyyy-MM-dd'T'HH:mm:ss") }
     };
-    if (pageToken) params.pageToken = pageToken;
-    const query = Object.keys(params).map(k =>
-      encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
-    const response = UrlFetchApp.fetch(root + '?' + query, {
-      headers: { Authorization: 'Bearer ' + token },
-      muteHttpExceptions: true
-    });
-    if (response.getResponseCode() !== 200) {
-      throw new Error('Calendar read failed: HTTP ' + response.getResponseCode() +
-        ', ' + response.getContentText().slice(0, 300));
+  });
+}
+
+/** Safe date-only reconciliation. No IDs or verified fields are written. */
+function compareKevinBuiltIn_(events, rows, start, end) {
+  const from = Utilities.formatDate(start, KEVIN_SYNC.timezone, 'yyyy-MM-dd');
+  const through = Utilities.formatDate(end, KEVIN_SYNC.timezone, 'yyyy-MM-dd');
+  const gigEvents = events.filter(isGig_);
+  const proposals = [];
+  const seenRows = {};
+  let matchedByDate = 0;
+  let ambiguousMatches = 0;
+  gigEvents.forEach(event => {
+    const dates = eventDates_(event);
+    const candidates = rows.filter(r => dates.indexOf(r.date) !== -1 &&
+                                      r.ticketStatus !== 'Cancelled');
+    if (candidates.length === 0) {
+      proposals.push({
+        action: 'REVIEW_POSSIBLE_NEW_GIG', dates: dates,
+        calendarTitle: event.summary, calendarLocation: event.location || '',
+        note: 'Date has no active register gig. Human review; DO NOT add automatically.'
+      });
+      return;
     }
-    const body = JSON.parse(response.getContentText());
-    all.push.apply(all, body.items || []);
-    pageToken = body.nextPageToken || '';
-  } while (pageToken);
-  return all;
+    candidates.forEach(r => { seenRows[r.row] = true; });
+    matchedByDate++;
+    const candidateIds = [...new Set(candidates.map(r => r.id || 'legacy:' + r.row))];
+    if (candidateIds.length > 1) {
+      ambiguousMatches++;
+      proposals.push({
+        action: 'REVIEW_AMBIGUOUS_DATE_MATCH', dates: dates,
+        calendarTitle: event.summary,
+        candidateRows: candidates.map(r => r.row),
+        note: 'Multiple existing bookings on same date. Do not merge automatically.'
+      });
+    }
+    const missingDates = dates.filter(d => !candidates.some(r => r.date === d));
+    if (missingDates.length) proposals.push({
+      action: 'REVIEW_ADDITIONAL_DATE', dates: missingDates,
+      calendarTitle: event.summary, candidateRows: candidates.map(r => r.row),
+      note: 'Calendar spans a date not in matched register rows.'
+    });
+  });
+  const unobserved = rows.filter(r => r.id && r.date >= from &&
+    r.date < through && r.ticketStatus !== 'Cancelled' && !seenRows[r.row]);
+  // Omission is NOT a cancellation: source calendars and recurrence may differ.
+  unobserved.forEach(r => proposals.push({
+    action: 'REVIEW_NOT_FOUND_BY_DATE', date: r.date, registerRow: r.row,
+    venue: r.venue, note: 'Do not cancel, unpublish or overwrite automatically.'
+  }));
+  return {
+    mode: 'DRY_RUN_ONLY', matching: 'DATE_ONLY_PROVISIONAL',
+    warning: 'CalendarApp uses different event identifiers from working register. No ID changes permitted.',
+    generatedAt: new Date().toISOString(),
+    calendarRange: { from: from, throughExclusive: through },
+    calendarEventsRead: events.length, gigEventsRead: gigEvents.length,
+    registerRowsRead: rows.length, matchedByDate: matchedByDate,
+    ambiguousMatches: ambiguousMatches, proposalCount: proposals.length,
+    proposals: proposals, spreadsheetWrites: 0, calendarWrites: 0
+  };
 }
 
 function readKevinRegister_() {
