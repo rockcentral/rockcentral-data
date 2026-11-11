@@ -36,7 +36,7 @@ function awReadPublicFeed_() {
 function awPublicTokenize_(text) {
   const stop = new Set(['the','club','comedy','gig','for','with','and','at',
     'of','a','in','to','live','night','mc','open','opening','middle',
-    'closer','closing','room','funhouse','rockcentral','promotions']);
+    'closer','closing','room','venue','funhouse','rockcentral','promotions']);
   return String(text||'').toLowerCase()
     .replace(/[^a-z0-9]+/g,' ').trim().split(/\s+/).filter(x=>x.length>2 && !stop.has(x));
 }
@@ -52,7 +52,7 @@ function awPublicMatch_(row,publicRows) {
   // Date-only matching is a possibility, NEVER proof.
   const calendarTokens = new Set(awPublicTokenize_(row.v[AW_COL.title]+' '+
     row.v[AW_COL.location]));
-  const publicTokens = awPublicTokenize_(one.venue+' '+one.location+' '+one.notes);
+  const publicTokens = awPublicTokenize_(one.venue+' '+one.notes);
   const shared = publicTokens.filter(x=>calendarTokens.has(x));
   return {
     classification:shared.length
