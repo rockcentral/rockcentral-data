@@ -1,11 +1,11 @@
 /**
  * ANTHONY GIG WORKFLOW / LEGACY BACKFILL
- * VERSION 0.7.2 (11 November 2026)
+ * VERSION 0.7.3 (11 November 2026)
  * No hardcoded gig or venue information.
- * Requires Code.gs v0.2.3 and AnthonyAutoPublisher v0.5.3.
+ * Requires Code.gs v0.2.6 and AnthonyAutoPublisher v0.5.3.
  * This file does not change the calendar or public listing details.
  */
-const AW_WORKFLOW_VERSION='0.7.2';
+const AW_WORKFLOW_VERSION='0.7.3';
 function awV07BackfillPlan_(privateRows,publicRows){
   const keyed=new Map();
   for(const p of publicRows)if(p.key){
@@ -90,9 +90,11 @@ function dailyAnthonySafeWorkflow(){
   const publicData=awV05Read_();
   const plan=awV05Plan_(privateRows,publicData.rows,awIso_(new Date()));
   const privateByRow=new Map(privateRows.map(x=>[x.sheetRow,x]));
+  const justChanged=new Set(source.changedKeys||[]);
   const changed=plan.linked.filter(x=>{
     const r=privateByRow.get(x.privateRow);
     return x.check==='DATE_CHANGED_NEEDS_REVIEW' ||
+      justChanged.has(x.key) ||
       !r || r.v[AW_COL.sync]!=='Active';
   });
   // Fail closed if a previously published booking moved, was cancelled
