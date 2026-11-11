@@ -1,12 +1,12 @@
 /**
  * ANTHONY GIG ALERTS
- * VERSION 0.8.5 (11 November 2026)
+ * VERSION 0.8.6 (11 November 2026)
  * Requires Code.gs v0.2.6, AnthonyAutoPublisher.gs v0.5.3,
  * AnthonyDailyWorkflow.gs v0.8.5.
  * Private alert content only. No calendar or website writes.
  */
-const AW_ALERT_VERSION='0.8.5';
-const AW_ALERT_TO='alerts@rockcentralpromotions.com';
+const AW_ALERT_VERSION='0.8.6';
+const AW_ALERT_TO='info@rockcentralpromotions.com';
 const AW_ALERT_STATE_KEY='aw_alert_v080_review_baseline';
 const AW_ALERT_URGENT_KEY='aw_alert_v080_urgent_baseline';
 const AW_ALERT_FAILURE_KEY='aw_alert_v080_failure';
