@@ -1,11 +1,11 @@
 /**
  * ANTHONY GIG ALERTS
- * VERSION 0.8.1 (11 November 2026)
+ * VERSION 0.8.2 (11 November 2026)
  * Requires Code.gs v0.2.6, AnthonyAutoPublisher.gs v0.5.3,
- * AnthonyDailyWorkflow.gs v0.8.0.
+ * AnthonyDailyWorkflow.gs v0.8.2.
  * Private alert content only. No calendar or website writes.
  */
-const AW_ALERT_VERSION='0.8.1';
+const AW_ALERT_VERSION='0.8.2';
 const AW_ALERT_TO='alerts@rockcentralpromotions.com';
 const AW_ALERT_STATE_KEY='aw_alert_v080_review_baseline';
 const AW_ALERT_URGENT_KEY='aw_alert_v080_urgent_baseline';
@@ -55,6 +55,8 @@ function awAlertUrgentItems_(plan,privateRows,changedKeys){
     if(v[AW_COL.sync]!=='Active')reasons.push('Booking is '+v[AW_COL.sync]);
     if(changed.has(link.key))reasons.push('Calendar booking details have changed');
     if(v[AW_COL.review]==='Date changed')reasons.push('Date change has not been reviewed');
+    if(v[AW_COL.publish]==='Yes' && v[AW_COL.review]==='Needs review')
+      reasons.push('Previously approved public booking needs renewed review');
     if(!reasons.length)continue;
     result.push({id:awV05OpaqueId_(link.key)+'|'+reasons.join(', '),
       text:'Public row '+link.publicRow+', private row '+row.sheetRow+
@@ -176,6 +178,13 @@ function testAnthonyAlertRules(){
       x.v[AW_COL.publicLocation]='Fictional Town';
       x.v[AW_COL.ticketStatus]='Info soon';
       return awAlertReviewItems_([x],[],'2027-01-01').length===0;
+    })(),
+    previouslyApprovedNeedsReviewUrgent:(()=>{
+      const x={sheetRow:2,v:[...v]};
+      x.v[AW_COL.publish]='Yes';x.v[AW_COL.review]='Needs review';
+      const p={linked:[{privateRow:2,publicRow:10,key:v[AW_COL.key],
+        check:'PUBLIC_LISTING_NEEDS_REVIEW'}]};
+      return awAlertUrgentItems_(p,[x],[]).length===1;
     })(),
     cancelledLinkedUrgent:(()=>{
       const x={sheetRow:2,v:[...v]};x.v[AW_COL.sync]='Cancelled';
