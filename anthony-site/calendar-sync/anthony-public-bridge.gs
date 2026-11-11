@@ -1,6 +1,7 @@
 /**
  * ANTHONY WILLIAMS: PUBLIC GIG FEED RECONCILIATION
- * VERSION: 0.3.0 (11 November 2026)
+ * VERSION: 0.3.1 (11 November 2026)
+ * Fix: multiple private gigs sharing a public date now require manual review.
  * Added: read-only cross-check between PRIVATE working register and
  *        existing LIVE public gig sheet, without touching live data.
  *
@@ -10,7 +11,7 @@
  * ONLY run previewAnthonyPublicFeedMatches() / testAnthonyPublicFeedMatches().
  * THERE ARE NO WRITE FUNCTIONS IN THIS FILE.
  */
-const AW_PUBLIC_BRIDGE_VERSION = '0.3.0';
+const AW_PUBLIC_BRIDGE_VERSION = '0.3.1';
 const AW_PUBLIC_FEED = Object.freeze({
   sheetId:'12fHnBXl7DU5i0vKiXlMTHRGLUWCSwvDLvmXR_2-Xzp8',
   tab:'Public Gigs'
@@ -69,12 +70,26 @@ function awReconcilePublic_(workingRows,publicRows,today) {
     !/\bfixture\b|\btest\b/i.test(r.v[AW_COL.title]||'')
   );
   const futurePublic=publicRows.filter(r=>r.date>=today);
-  const reviews=futureWorking.map(r=>({
-    privateRow:r.sheetRow,
-    date:r.v[AW_COL.date],
-    privateCalendarTitle:r.v[AW_COL.title],
-    ...awPublicMatch_(r,futurePublic)
-  }));
+  const privateByDate = new Map();
+  futureWorking.forEach(r => {
+    const date = r.v[AW_COL.date];
+    privateByDate.set(date,(privateByDate.get(date)||0)+1);
+  });
+  const reviews=futureWorking.map(r=>{
+    const date=r.v[AW_COL.date];
+    const publicSameDate=futurePublic.filter(x=>x.date===date);
+    const collision=privateByDate.get(date)>1 && publicSameDate.length;
+    return {
+      privateRow:r.sheetRow,
+      date,
+      privateCalendarTitle:r.v[AW_COL.title],
+      ...(collision ? {
+        classification:'MULTIPLE_PRIVATE_GIGS_SAME_DATE',
+        matches:publicSameDate.map(x=>x.sheetRow),
+        note:'Several private bookings share this date; link individual gigs manually.'
+      } : awPublicMatch_(r,futurePublic))
+    };
+  });
   const counts={};
   reviews.forEach(r=>{counts[r.classification]=(counts[r.classification]||0)+1;});
   const workingDates=new Set(futureWorking.map(r=>r.v[AW_COL.date]));
@@ -131,7 +146,10 @@ function testAnthonyPublicFeedMatches() {
       awReconcilePublic_([privateRow(3,'2026-11-05','GIG OLD')],[], '2026-11-11')
         .privateFutureRows===0,
     noWriteActions:
-      awReconcilePublic_([sample],[same],'2026-11-11').publicFeedWrites===0
+      awReconcilePublic_([sample],[same],'2026-11-11').publicFeedWrites===0,
+    twoPrivateOnePublicHeld:
+      awReconcilePublic_([sample,privateRow(4,date,'Wallasey closing')],[same],'2026-11-11')
+        .privateMatchCounts.MULTIPLE_PRIVATE_GIGS_SAME_DATE===2
   };
   Logger.log(JSON.stringify({version:AW_PUBLIC_BRIDGE_VERSION,checks},null,2));
   if(Object.values(checks).some(v=>!v))
