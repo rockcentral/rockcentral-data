@@ -1,11 +1,11 @@
 /**
  * ANTHONY GIG WORKFLOW / LEGACY BACKFILL
- * VERSION 0.7.4 (11 November 2026)
+ * VERSION 0.8.1 (11 November 2026)
  * No hardcoded gig or venue information.
  * Requires Code.gs v0.2.6 and AnthonyAutoPublisher v0.5.3.
  * This file does not change the calendar or public listing details.
  */
-const AW_WORKFLOW_VERSION='0.7.4';
+const AW_WORKFLOW_VERSION='0.8.1';
 function awV07BackfillPlan_(privateRows,publicRows){
   const keyed=new Map();
   for(const p of publicRows)if(p.key){
@@ -93,33 +93,44 @@ function backfillAnthonyPrivateRegister(){
   }finally{lock.releaseLock();}
 }
 function dailyAnthonySafeWorkflow(){
-  const source=syncAnthonyCalendarToRegister();
-  const privateRows=awReadRegister_().rows;
-  const publicData=awV05Read_();
-  const plan=awV05Plan_(privateRows,publicData.rows,awIso_(new Date()));
-  const privateByRow=new Map(privateRows.map(x=>[x.sheetRow,x]));
-  const justChanged=new Set(source.changedKeys||[]);
-  const changed=plan.linked.filter(x=>{
-    const r=privateByRow.get(x.privateRow);
-    return x.check==='DATE_CHANGED_NEEDS_REVIEW' ||
-      justChanged.has(x.key) ||
-      !r || r.v[AW_COL.sync]!=='Active';
-  });
-  // Fail closed if a previously published booking moved, was cancelled
-  // or disappeared. These public changes require human review.
-  if(changed.length)throw new Error('Existing public gig(s) need urgent review: '+
-    changed.map(x=>'public row '+x.publicRow).join(', '));
-  const publish=publishAnthonyApprovedGigs();
-  const report={version:AW_WORKFLOW_VERSION,
-    mode:'DAILY_SAFE_SYNC',
-    newCalendarRows:source.added,
-    movedCalendarRows:source.moved,
-    missingFromCalendar:source.missingFlagged,
-    publicNewApprovedRows:publish.published,
-    needsManualReview:plan.review.length,
-    calendarWrites:0,
-    existingPublicRowsModified:0};
-  Logger.log(JSON.stringify(report,null,2));return report;
+  try {
+    const source=syncAnthonyCalendarToRegister();
+    const privateRows=awReadRegister_().rows;
+    const publicData=awV05Read_();
+    const plan=awV05Plan_(privateRows,publicData.rows,awIso_(new Date()));
+    // Send deduplicated notifications BEFORE deciding to publish.
+    const alerts=awAlertProcess_(privateRows,publicData.rows,plan,source);
+    if(alerts.urgentOutstanding>0) {
+      // These gigs need a human decision; fail closed without spamming
+      // a second technical error email for the same condition.
+      const error=new Error('Published gig(s) need review: '+
+        alerts.urgentOutstanding+' active urgent issue(s).');
+      error.awAlertAlreadySent=true;
+      throw error;
+    }
+    const publish=publishAnthonyApprovedGigs();
+    awAlertClearFailure_();
+    const report={version:AW_WORKFLOW_VERSION,
+      mode:'DAILY_SAFE_SYNC_WITH_ALERTS',
+      newCalendarRows:source.added,
+      movedCalendarRows:source.moved,
+      missingFromCalendar:source.missingFlagged,
+      publicNewApprovedRows:publish.published,
+      reviewOutstanding:alerts.reviewOutstanding,
+      newReviewAlerts:alerts.newReviewAlerts,
+      newUrgentAlerts:alerts.newUrgentAlerts,
+      calendarWrites:0,
+      existingPublicRowsModified:0};
+    Logger.log(JSON.stringify(report,null,2));return report;
+  } catch(error) {
+    if(!error.awAlertAlreadySent){
+      try {awAlertWorkflowFailure_(error);}
+      catch(mailError) {
+        Logger.log('ALERT DELIVERY ERROR: '+mailError.message);
+      }
+    }
+    throw error;
+  }
 }
 function enableAnthonySafeDailyTrigger(){
   const fn='dailyAnthonySafeWorkflow';
