@@ -1515,28 +1515,15 @@ track.addEventListener('scroll',()=>{clearTimeout(scrollTimer);scrollTimer=setTi
 setInterval(()=>{if(!paused&&!hovered&&!focused&&!document.hidden)show(current+1)},6500);
 })();
 (function(){
-let gigs=[
-['2026-11-12','19:30','Funhouse Comedy','The Regal, Stowmarket','https://regalstowmarket.co.uk/RegalStowmarket.dll/WhatsOn?f=2480072',true],
-['2026-11-13','19:30','Comedy Night','Cosby Golf Club, Leicester','https://kevindanielcomedy.co.uk/events/list/',false],
-['2026-11-26','19:30','Funhouse Comedy','The Final Whistle, Southwell','https://wegottickets.com/f/24107',true],
-['2026-11-27','19:30','The Last Laugh Comedy Club','Sheffield City Hall','https://www.lastlaughcomedy.co.uk/',false],
-['2026-11-28','19:30','The Last Laugh Comedy Club','Sheffield City Hall','https://www.lastlaughcomedy.co.uk/',false],
-['2026-12-01','19:30','Guildhall Comedy Club','Gloucester','https://kevindanielcomedy.co.uk/events/list/',false],
-['2026-12-04','19:30','Smiley Faces Comedy Night','Radstock','https://kevindanielcomedy.co.uk/events/list/',false],
-['2026-12-05','18:00','Just the Tonic (early show)','Nottingham','https://kevindanielcomedy.co.uk/events/list/',false],
-['2026-12-05','20:30','Just the Tonic (late show)','Nottingham','https://kevindanielcomedy.co.uk/events/list/',false],
-['2026-12-12','19:30','Amuzin Comedy','Chesterfield','https://kevindanielcomedy.co.uk/events/list/',false],
-['2026-12-18','19:30','Just the Tonic','NG-One, Nottingham','https://kevindanielcomedy.co.uk/events/list/',false],
-['2026-12-27','19:30','Funhouse Comedy','Cirencester','https://kevindanielcomedy.co.uk/events/list/',false]
-];
+let gigs=[];
 const list=document.getElementById('giglist'),more=document.getElementById('more');let expanded=false;
 const pad=n=>String(n).padStart(2,'0'),now=new Date(),today=now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate());
 function make(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e}
-function render(){const future=gigs.filter(g=>g[0]>=today).sort((a,b)=>a[0].localeCompare(b[0])||a[1].localeCompare(b[1]));list.replaceChildren();const show=expanded?future:future.slice(0,6);if(show.length===0)list.append(make('p','muted','More dates to follow.'));show.forEach(g=>{const row=make('article','gig'),date=make('div','date'),dt=new Date(g[0]+'T12:00:00');date.setAttribute('aria-label',dt.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'}));date.append(make('span','dow',dt.toLocaleString('en-GB',{weekday:'short'}).toUpperCase()),make('span','num',String(dt.getDate())),make('span','mon',dt.toLocaleString('en-GB',{month:'short'}).toUpperCase()));const details=make('div','details');details.append(make('h3','',g[2]),make('p','',g[3]+' / '+g[1]));const action=make('div','gigaction'),url=typeof g[4]==='string'&&/^https:\/\//i.test(g[4])?g[4]:'';if(g[6]==='Sold out'){action.append(make('span','btn outline','Sold out'))}else if(url){const link=make('a','btn '+(g[5]?'primary':'outline'),g[5]?'Book tickets >':'Booking info >');link.href=url;link.target='_blank';link.rel='noopener noreferrer';action.append(link);if(!g[5])action.append(make('small','','Direct ticket link to be confirmed'))}else{action.append(make('small','','Ticket information coming soon'))}row.append(date,details,action);list.append(row)});more.hidden=future.length<=6;more.textContent=expanded?'Show fewer dates':'Show all dates'}
+function render(){const future=gigs.filter(g=>g[0]>=today).sort((a,b)=>a[0].localeCompare(b[0])||a[1].localeCompare(b[1]));list.replaceChildren();const show=expanded?future:future.slice(0,6);if(show.length===0)list.append(make('p','muted','More dates to follow.'));show.forEach(g=>{const row=make('article','gig'),date=make('div','date'),dt=new Date(g[0]+'T12:00:00');date.setAttribute('aria-label',dt.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'}));date.append(make('span','dow',dt.toLocaleString('en-GB',{weekday:'short'}).toUpperCase()),make('span','num',String(dt.getDate())),make('span','mon',dt.toLocaleString('en-GB',{month:'short'}).toUpperCase()));const details=make('div','details');details.append(make('h3','',g[2]),make('p','',g[3]+' / '+g[1]));const action=make('div','gigaction'),url=typeof g[4]==='string'&&/^https:\/\//i.test(g[4])?g[4]:'';if(g[6]==='Sold out'){action.append(make('span','btn outline','Sold out'))}else if(url){const link=make('a','btn '+(g[5]?'primary':'outline'),g[5]?'Book tickets >':'Booking info >');link.href=url;link.target='_blank';link.rel='noopener noreferrer';action.append(link);if(!g[5])action.append(make('small','','Direct ticket link to be confirmed'))}else{action.append(make('small','','MORE INFO SOON'))}row.append(date,details,action);list.append(row)});more.hidden=future.length<=6;more.textContent=expanded?'Show fewer dates':'Show all dates'}
 render();more.addEventListener('click',()=>{expanded=!expanded;render()});
 // Public-only Google Sheet feed. Routine gig updates no longer need GitHub publication.
 // The published Sheet includes Date, Time, Show, Venue, Location, Ticket Link and Ticket Status only.
-// The existing static dates above are used solely if the Google Sheets feed is temporarily unavailable.
+// No historical static gigs are displayed if the Google Sheets feed is unavailable.
 const publicGigCsv = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTOUT9632zg2CfAC6WTOb5bapzLUsd_A0dO0pYIju3O88Pdtef7uvzSLEWrStLUPAsFd1XHm9kGazxw/pub?gid=1548267219&single=true&output=csv';
 function parseGigCSV(csv){
   const rows=[];let row=[],cell='',quoted=false;
@@ -1574,7 +1561,9 @@ fetch(publicGigCsv+'&_='+Date.now(),{cache:'no-store'})
     gigs=clean;render();
   })
   .catch(error=>{
-    console.warn('Kevin gigs: public Google Sheet unavailable; using last-resort static fallback.',error);
+    console.warn('Kevin gigs: public Google Sheet unavailable.',error);
+    list.replaceChildren(make('p','muted','Gig listings temporarily unavailable. Please try again shortly.'));
+    more.hidden=true;
   });
 
 const menu=document.getElementById('menu'),nav=document.getElementById('nav');menu.addEventListener('click',()=>{const state=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(state))});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false')}));
