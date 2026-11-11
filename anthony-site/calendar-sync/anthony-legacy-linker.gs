@@ -1,12 +1,12 @@
 /**
- * ANTHONY GIG RECONCILIATION - VERSION 0.6.1 (11 NOV 2026)
+ * ANTHONY GIG RECONCILIATION - VERSION 0.6.2 (11 NOV 2026)
  * Read-only preview followed by deliberate link-only write.
  * No hardcoded gig, venue, date, postcode, ticket or act details.
  * Requires Code.gs v0.2.2, AnthonyPublicBridge v0.3.1,
  * AnthonyAutoPublisher v0.5.3 (awV05OpaqueId_ and awV05Read_).
  * NEVER changes public columns A:I or private review/approval fields.
  */
-const AW_LINK_VERSION='0.6.1';
+const AW_LINK_VERSION='0.6.2';
 const AW_LINK_STOP=new Set([
   'the','and','for','with','comedy','club','gig','mc','opener','opening',
   'closer','closing','middle','headline','headliner','venue','live',
@@ -69,7 +69,7 @@ function awLinkPlan_(privateRows,publicRows) {
       .map(p=>awLinkCandidate_(r,p)).filter(Boolean));
   const matches=[],review=[];
   const occupiedPriv=new Set(),occupiedPub=new Set();
-  const best=options.filter(x=>x.grounded && x.score>=7)
+  const best=options.filter(x=>x.grounded && x.score>=8 && (x.signals.postcodeMatch || x.signals.venueWords.length>=2 || (x.signals.venueWords.length>=1 && x.signals.townWords.length>=1) || (x.signals.townWords.length>=1 && x.signals.promoterWords.length>=1)))
     .sort((a,b)=>b.score-a.score||a.privateRow-b.privateRow);
   for(const option of best){
     if(occupiedPriv.has(option.privateRow)||occupiedPub.has(option.publicRow))continue;
@@ -125,16 +125,23 @@ function linkAnthonyLegacyGigs(){
     const {sheet,privateRows,plan}=awLinkLoad_();
     const privateByRow=new Map(privateRows.map(r=>[r.sheetRow,r]));
     // Only write J in previously unlinked rows; abort if data changed.
-    for(const x of plan.matches) {
-      const cell=sheet.getRange(x.publicRow,10);
-      if(String(cell.getDisplayValue()).trim())
-        throw new Error('Link J'+x.publicRow+' is already occupied');
+    const writes=plan.matches.map(x=>{
       const privateRow=privateByRow.get(x.privateRow);
+      if(!privateRow)throw new Error('Private row no longer exists at '+x.privateRow);
       const key=privateRow.v[AW_COL.key];
       if(!key)throw new Error('Missing private key at '+x.privateRow);
-      cell.setValue(awV05OpaqueId_(key));
+      return {publicRow:x.publicRow,key:awV05OpaqueId_(key),date:x.date};
+    });
+    // Preflight every target before any write. Check date and blank link.
+    for(const x of writes) {
+      const cells=sheet.getRange(x.publicRow,1,1,10).getDisplayValues()[0];
+      if(String(cells[9]).trim() || cells[0]!==x.date)
+        throw new Error('Public listing changed since reconciliation at row '+x.publicRow);
     }
+    for(const x of writes) sheet.getRange(x.publicRow,10).setValue(x.key);
     SpreadsheetApp.flush();
+    for(const x of writes) if(sheet.getRange(x.publicRow,10).getDisplayValue()!==x.key)
+      throw new Error('Link verification failed at row '+x.publicRow);
     const result={version:AW_LINK_VERSION,mode:'LINK_ONLY',
       linked:plan.matches.length,ambiguous:plan.review.length,
       outstandingPrivate:plan.unlinkedPrivate.length,
@@ -173,7 +180,13 @@ function testAnthonyLegacyLinks(){
     ],[{...p(4,date,'Exampletown Social Club','Exampletown'),key:'already'}]).matches.length===0,
     privateTestExcluded:awLinkPlan_([
       fake(2,date,'GIG Fixture Exampletown Social Club')
-    ],[p(4,date,'Exampletown Social Club','Exampletown')]).matches.length===0
+    ],[p(4,date,'Exampletown Social Club','Exampletown')]).matches.length===0,
+    sameTownOnlyIsNotProof:awLinkPlan_([
+      fake(2,date,'Exampletown MC')
+    ],[p(4,date,'Other Venue','Exampletown','Exampletown')]).matches.length===0,
+    noTownOrVenueNotAutolinked:awLinkPlan_([
+      fake(2,date,'Mia Smith MC')
+    ],[p(4,date,'Unrelated Hall','Other Town','Mia Smith')]).matches.length===0
   };
   Logger.log(JSON.stringify({version:AW_LINK_VERSION,checks},null,2));
   if(Object.values(checks).some(x=>!x))throw new Error('Link test failed');
