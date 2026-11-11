@@ -1,4 +1,4 @@
-# Anthony gig system: register-led publisher v0.5.0
+# Anthony gig system: register-led publisher v0.5.1
 
 Updated 11 November 2026.
 
@@ -42,17 +42,17 @@ Existing entries have been linked where identity is known:
 
 All other existing public gigs remain unchanged. For unlinked legacy rows, same-date venue/postcode collisions are **held** for manual linking instead of duplicated. Multiple public bookings on one date are allowed if venues differ and identity is clear.
 
-Once a performance is linked, any date change, cancellation or other source change is detected as a **review condition**. v0.5.0 **does not** silently change or delete public listings. Existing ticket links are never overwritten.
+Once a performance is linked, any date change, cancellation or other source change is detected as a **review condition**. v0.5.1 **does not** silently change or delete public listings. Existing ticket links are never overwritten.
 
 ## Tests and operation
 
-1. Paste and save v0.5.0.
-2. Run `testAnthonyRegisterPublisher` and confirm twelve `true` results.
+1. Paste and save v0.5.1.
+2. Run `testAnthonyRegisterPublisher` and confirm thirteen `true` results.
 3. Run `previewAnthonyRegisterPublisher` and inspect the report. It makes no changes.
 4. Only after approval and preview, use `publishAnthonyApprovedGigs` for new approved entries.
 5. Re-run publisher after the first write: it should be idempotent (zero new entries).
 
-**No daily automation is enabled in v0.5.0.** Later, create a coordinated scheduled workflow after reviewing source changes, holds and error notifications. Do not run any old v0.4.x daily workflow or trigger-creation function.
+**No daily automation is enabled in v0.5.1.** Later, create a coordinated scheduled workflow after reviewing source changes, holds and error notifications. Do not run any old v0.4.x daily workflow or trigger-creation function.
 
 ## Deliberate limits
 
