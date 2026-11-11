@@ -1,11 +1,11 @@
 /**
  * ANTHONY GIG ALERTS
- * VERSION 0.8.4 (11 November 2026)
+ * VERSION 0.8.5 (11 November 2026)
  * Requires Code.gs v0.2.6, AnthonyAutoPublisher.gs v0.5.3,
- * AnthonyDailyWorkflow.gs v0.8.4.
+ * AnthonyDailyWorkflow.gs v0.8.5.
  * Private alert content only. No calendar or website writes.
  */
-const AW_ALERT_VERSION='0.8.4';
+const AW_ALERT_VERSION='0.8.5';
 const AW_ALERT_TO='alerts@rockcentralpromotions.com';
 const AW_ALERT_STATE_KEY='aw_alert_v080_review_baseline';
 const AW_ALERT_URGENT_KEY='aw_alert_v080_urgent_baseline';
@@ -161,7 +161,7 @@ function testAnthonyAlertRules(){
   const v=Array(AW_SYNC.columns).fill('');
   v[AW_COL.key]='fictional|slot:1';
   v[AW_COL.date]='2027-05-04';
-  v[AW_COL.title]='GIG - Fictional Town - MC - Test Company';
+  v[AW_COL.title]='GIG - Fictional Town - MC - Sample Agency';
   v[AW_COL.sync]='Active';v[AW_COL.review]='Needs review';
   v[AW_COL.publish]='No';
   const row={sheetRow:2,v};
