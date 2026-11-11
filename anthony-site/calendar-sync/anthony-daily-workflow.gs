@@ -1,11 +1,11 @@
 /**
  * ANTHONY GIG WORKFLOW / LEGACY BACKFILL
- * VERSION 0.7.0 (11 November 2026)
+ * VERSION 0.7.1 (11 November 2026)
  * No hardcoded gig or venue information.
  * Requires Code.gs v0.2.3 and AnthonyAutoPublisher v0.5.3.
  * This file does not change the calendar or public listing details.
  */
-const AW_WORKFLOW_VERSION='0.7.0';
+const AW_WORKFLOW_VERSION='0.7.1';
 function awV07BackfillPlan_(privateRows,publicRows){
   const keyed=new Map();
   for(const p of publicRows)if(p.key){
@@ -85,11 +85,16 @@ function dailyAnthonySafeWorkflow(){
   const privateRows=awReadRegister_().rows;
   const publicData=awV05Read_();
   const plan=awV05Plan_(privateRows,publicData.rows,awIso_(new Date()));
-  const changed=plan.linked.filter(x=>x.check==='DATE_CHANGED_NEEDS_REVIEW');
-  // Never silently publish fresh records when existing published bookings
-  // have changed date and are still awaiting review.
-  if(changed.length)throw new Error('Public listing date change(s) need review: '+
-    changed.map(x=>x.publicRow).join(', '));
+  const privateByRow=new Map(privateRows.map(x=>[x.sheetRow,x]));
+  const changed=plan.linked.filter(x=>{
+    const r=privateByRow.get(x.privateRow);
+    return x.check==='DATE_CHANGED_NEEDS_REVIEW' ||
+      !r || r.v[AW_COL.sync]!=='Active';
+  });
+  // Fail closed if a previously published booking moved, was cancelled
+  // or disappeared. These public changes require human review.
+  if(changed.length)throw new Error('Existing public gig(s) need urgent review: '+
+    changed.map(x=>'public row '+x.publicRow).join(', '));
   const publish=publishAnthonyApprovedGigs();
   const report={version:AW_WORKFLOW_VERSION,
     mode:'DAILY_SAFE_SYNC',
