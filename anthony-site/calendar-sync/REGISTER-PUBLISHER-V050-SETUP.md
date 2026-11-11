@@ -1,4 +1,4 @@
-# Anthony gig system: register-led publisher v0.5.1
+# Anthony gig system: register-led publisher v0.5.3
 
 Updated 11 November 2026.
 
@@ -6,7 +6,7 @@ Updated 11 November 2026.
 
 1. Google Calendar ("Gigs") is authoritative for whether Anthony is booked and for the performance date.
 2. `Gig Register` is the private review and enrichment layer. Every calendar booking gets a stable `Performance Key`. Calendar start time is NOT the public show start.
-3. The `RockCentral - Anthony Public Gigs` sheet is the live website feed. A:I retain the same schema. Column J is `Performance Key`, a private technical link.
+3. The `RockCentral - Anthony Public Gigs` sheet is the live website feed. A:I retain the same schema. Column J is `Listing Sync ID`, a one-way SHA-256 identifier rather than the raw private calendar UID. It is included in the public CSV but contains no raw calendar identifier.
 4. The website continues reading the existing public A:I information.
 
 ## Replace, don't add to old publisher
@@ -33,7 +33,7 @@ The public `Notes` column receives the reviewed `Public Show Title` field or a g
 
 ## Existing public listings and duplicate prevention
 
-The live public sheet has a 10th technical column `Performance Key` (J). Its A:I website columns were not changed.
+The live public sheet has a 10th technical column `Listing Sync ID` (J). Its A:I website columns were not changed.
 
 Existing entries have been linked where identity is known:
 - 14 Nov 2026 Wittering, public row 63, private row 2.
@@ -42,17 +42,17 @@ Existing entries have been linked where identity is known:
 
 All other existing public gigs remain unchanged. For unlinked legacy rows, same-date venue/postcode collisions are **held** for manual linking instead of duplicated. Multiple public bookings on one date are allowed if venues differ and identity is clear.
 
-Once a performance is linked, any date change, cancellation or other source change is detected as a **review condition**. v0.5.1 **does not** silently change or delete public listings. Existing ticket links are never overwritten.
+Once a performance is linked, any date change, cancellation or other source change is detected as a **review condition**. v0.5.3 **does not** silently change or delete public listings. Existing ticket links are never overwritten.
 
 ## Tests and operation
 
-1. Paste and save v0.5.1.
-2. Run `testAnthonyRegisterPublisher` and confirm thirteen `true` results.
+1. Paste and save v0.5.3.
+2. Run `testAnthonyRegisterPublisher` and confirm fourteen `true` results.
 3. Run `previewAnthonyRegisterPublisher` and inspect the report. It makes no changes.
 4. Only after approval and preview, use `publishAnthonyApprovedGigs` for new approved entries.
 5. Re-run publisher after the first write: it should be idempotent (zero new entries).
 
-**No daily automation is enabled in v0.5.1.** Later, create a coordinated scheduled workflow after reviewing source changes, holds and error notifications. Do not run any old v0.4.x daily workflow or trigger-creation function.
+**No daily automation is enabled in v0.5.3.** Later, create a coordinated scheduled workflow after reviewing source changes, holds and error notifications. Do not run any old v0.4.x daily workflow or trigger-creation function.
 
 ## Deliberate limits
 
