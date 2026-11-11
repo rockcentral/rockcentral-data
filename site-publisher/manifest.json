@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 105,
+  "revision": 106,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -160,7 +160,7 @@
     },
     {
       "path": "somercotes/index.html",
-      "sha256": "62034c9842e36fd59edbeec5ef56c598865f8d1742838f3f0683c47d07e51f02"
+      "sha256": "e39f65fe5636f8b016691d708bc87544d9d08832c0032ae61f89b11f79c08ac7"
     },
     {
       "path": "social-club/host-the-club/index.html",
