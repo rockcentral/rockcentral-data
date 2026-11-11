@@ -1,18 +1,23 @@
 /**
  * ANTHONY WILLIAMS: REGISTER-LED PUBLIC PUBLISHER
- * VERSION: 0.5.1 (11 November 2026)
+ * VERSION: 0.5.2 (11 November 2026)
  *
  * No venue, show, time or ticket information is hardcoded here.
  * Private register is the source for APPROVED public fields.
  * Public sheet columns A:I remain exactly as the live website expects.
- * Column J stores stable Performance Key for future reconciliation.
+ * Column J stores a SHA-256-derived opaque link, never raw calendar IDs.
  *
  * Requires Code.gs v0.2.2 and AnthonyPublicBridge v0.3.1.
  * Replaces AnthonyAutoPublisher v0.4.2; do NOT retain both scripts.
  * No automatic trigger in v0.5.0. Test + preview before first write.
  */
-const AW_REGISTER_PUBLISH_VERSION='0.5.1';
-const AW_PUBLIC_KEY_HEADER='Performance Key';
+const AW_REGISTER_PUBLISH_VERSION='0.5.2';
+const AW_PUBLIC_KEY_HEADER='Listing Sync ID';
+function awV05OpaqueId_(rawKey) {
+  const digest=Utilities.computeDigest(
+    Utilities.DigestAlgorithm.SHA_256, String(rawKey||''));
+  return digest.map(x=>('0'+(x&255).toString(16)).slice(-2)).join('');
+}
 
 function awV05Clean_(v) {return String(v===null||v===undefined?'':v).trim();}
 function awV05Venue_(v) {return awV05Clean_(v).toLowerCase().replace(/[^a-z0-9]/g,'');}
@@ -103,7 +108,7 @@ function awV05Plan_(privateRows,publicRows,today) {
     if(seen.has(key)){review.push({privateRow:r.sheetRow,reason:'Duplicate private key'});return;}
     seen.add(key);
     const state=awV05Proposal_(r,today);
-    const existing=byKey.get(key)||[];
+    const existing=byKey.get(awV05OpaqueId_(key))||[];
     if(existing.length>1){
       review.push({privateRow:r.sheetRow,reason:'Public performance key is duplicated'});
       return;
@@ -159,7 +164,7 @@ function previewAnthonyRegisterPublisher() {
 function awV05WriteRows_(items) {
   return items.map(x=>{const d=x.details;
     return [d.date,d.time,d.location,d.venue,d.address,
-      d.ticket,d.status,d.role,d.notes,x.key];
+      d.ticket,d.status,d.role,d.notes,awV05OpaqueId_(x.key)];
   });
 }
 function publishAnthonyApprovedGigs() {
@@ -214,7 +219,7 @@ function testAnthonyRegisterPublisher() {
   const d=awV05Proposal_(p,now).details;
   const legacy={row:9,date:d.date,venue:d.venue,location:d.location,
     address:d.address,key:''};
-  const linked={...legacy,key:'calendar-uid|slot:1'};
+  const linked={...legacy,key:awV05OpaqueId_('calendar-uid|slot:1')};
   const tests={
     approvedProposesOne:awV05Plan_([p],[],now).add.length===1,
     pendingReviewBlocked:(()=>{const x=sample('a');x.v[AW_COL.review]='Needs review';
@@ -237,6 +242,8 @@ function testAnthonyRegisterPublisher() {
       return awV05Proposal_(x,now).state==='HOLD';})(),
     mixedRoleHeld:awV05Proposal_(sample('b','MC and opener'),now).state==='HOLD',
     duplicateKeyHeld:awV05Plan_([p,sample('calendar-uid|slot:1')],[],now).review.length===1,
+    opaquePublicKeyDiffersFromCalendarUID:
+      awV05OpaqueId_('calendar-uid|slot:1')!=='calendar-uid|slot:1',
     unapprovedLinkedMoveStillFlagged:(()=>{
       const x=sample('calendar-uid|slot:1');
       x.v[AW_COL.date]='2027-03-05';x.v[AW_COL.review]='Date changed';
