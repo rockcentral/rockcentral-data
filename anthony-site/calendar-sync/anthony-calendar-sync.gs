@@ -74,12 +74,17 @@ function awReadEvents_(from, to) {
     };
   });
 }
+function awCombinedBooking_(event) {
+  const t = (event.title || '').toLowerCase();
+  return /\bdouble\b|\bdouble.?header\b|\bdouble.?gig\b|\s\/\s.*\b(?:comedy|rockcentral|club|mc)\b/.test(t);
+}
 function awClassify_(event) {
   const title = (event.title || '').toLowerCase();
-  if (!title || /\btest\b|\bholiday\b|\baway\b|\btravel\b|\bdarts\b|\bbirthday\b|\bcar service\b|\bdoctor\b|\bdentist\b|\b(?:xmas|christmas)\s+party\b|\bmeeting\b|\bday off\b|\bopen day\b|\bdawn\s+mc\b/.test(title))
+  if (!title || /\btest\b|\bholiday\b|\baway\b|\btravel\b|\bdarts\b|\bbirthday\b|\bcar service\b|\bdoctor\b|\bdentist\b|\b(?:xmas|christmas)\s+party\b|\bmeeting\b|\bday off\b|\bopen day\b|\bdawn\s+mc\b|\bdates placeholder\b|\bplaceholder\b/.test(title))
     return 'skip';
   if (/\bcomedy\b|\bcomedian\b|\bcompere\b|\bmc\b|\bopener\b|\bopening\b|\bmiddle\b|\bcloser\b|\bclosing\b|\bheadline\b|\bheadliner\b|\bstand.?up\b|\bgig\b|\bclub\b|\bwip\b|\blafternoon\b|\brecalculating\b|\bfunhouse\b|\bglee\b|\bjust the tonic\b|\bbelper\b|\bheanor\b|\bripley\b|\brockcentral\b|\bspiky\b|\bspirit of comedy\b/.test(title))
     return 'gig';
+  if (/\b\d{1,2}\s+(?:for|mins?|minutes?)\b|\b(?:nik hill|marty riley|red redmond|steve blood|james beckett|stu napier)\b|\broyal standard\b|\brailway variety\b/.test(title)) return 'gig';
   return 'uncertain';
 }
 function awDates_(event) {
@@ -117,12 +122,14 @@ function awPlan_(events, stored, fromIso, toIso) {
   const idCount = {};
   source.forEach(e => { idCount[e.id] = (idCount[e.id] || 0) + 1; });
   const ambiguousIds = new Set(Object.keys(idCount).filter(id => idCount[id] > 1));
+  const combinedEvents = source.filter(awCombinedBooking_);
+  const combinedIds = new Set(combinedEvents.map(e => e.id));
   const existing = new Map(stored.map(x => [x.v[AW_COL.key],x]));
   const seen = new Set();
   const operations = [];
   const stamp = awStamp_();
   source.forEach(e => {
-    if (ambiguousIds.has(e.id)) return;
+    if (ambiguousIds.has(e.id) || combinedIds.has(e.id)) return;
     const dates = awDates_(e);
     dates.forEach((date,slot) => {
       const key = e.id + '|slot:' + (slot+1);
@@ -166,7 +173,7 @@ function awPlan_(events, stored, fromIso, toIso) {
   });
   stored.forEach(old => {
     const v = old.v, id = v[AW_COL.id], date = v[AW_COL.date];
-    if (date < fromIso || date >= toIso || ambiguousIds.has(id)) return;
+    if (date < fromIso || date >= toIso || ambiguousIds.has(id) || combinedIds.has(id)) return;
     if (!seen.has(v[AW_COL.key]) && v[AW_COL.sync] !== 'Missing from calendar')
       operations.push({
         action:'FLAG_MISSING',sheetRow:old.sheetRow,
@@ -179,6 +186,7 @@ function awPlan_(events, stored, fromIso, toIso) {
     mode:'PREVIEW_OR_PRIVATE_IMPORT',calendarEventsRead:events.length,
     classifiedGigEvents:source.length, uncertainCalendarEvents:unknown,
     recurringUidConflicts:[...ambiguousIds],
+    combinedBookingsForReview:combinedEvents.map(e=>({date:e.date,title:e.title})),
     actions:operations,
     note:'No action ever writes public website fields or the public feed.'
   };
@@ -206,6 +214,7 @@ function previewAnthonyCalendarSync() {
     uncertainEventCount:p.uncertainCalendarEvents.length,
     uncertainEventSample:p.uncertainCalendarEvents.slice(0,12),
     recurringUidConflicts:p.recurringUidConflicts,
+    combinedBookingsForReview:p.combinedBookingsForReview,
     spreadsheetWrites:0,websiteWrites:0,calendarWrites:0
   };
   Logger.log(JSON.stringify(report,null,2));
@@ -251,6 +260,7 @@ function syncAnthonyCalendarToRegister() {
       sourceUpdated:edits.filter(x=>x.action==='UPDATE_SOURCE').length,
       missingFlagged:edits.filter(x=>x.action==='FLAG_MISSING').length,
       recurringUidConflicts:plan.recurringUidConflicts,
+      combinedBookingsHeld:plan.combinedBookingsForReview.length,
       uncertainEventCount:plan.uncertainCalendarEvents.length,
       publicFieldsWritten:0,websiteWrites:0,calendarWrites:0
     };
@@ -286,7 +296,11 @@ function testAnthonyCalendarSyncRules() {
     sameDateSeparateKeys:secondSameDate.length===2&&
       secondSameDate[0].key!==secondSameDate[1].key,
     testExcluded:test.length===0,
-    restoredDetected:restored.length===1&&restored[0].action==='UPDATE_SOURCE'
+    restoredDetected:restored.length===1&&restored[0].action==='UPDATE_SOURCE',
+    combinedBookingHeld:p([event('double','2026-11-18','Caves / Duffield - RockCentral Promotions (double)')],empty).actions.length===0,
+    genuineUnknownFormatRecognised:p([event('short','2026-11-18','20 for Marty Riley in Hudds')],empty).actions.length===1,
+    partyExcluded:p([event('party','2026-11-18','Funhouse Xmas party')],empty).actions.length===0,
+    placeholderExcluded:p([event('placeholder','2026-11-18','ICF Leicester dates placeholder')],empty).actions.length===0
   };
   Logger.log(JSON.stringify(checks,null,2));
   if(Object.values(checks).some(v=>!v))
