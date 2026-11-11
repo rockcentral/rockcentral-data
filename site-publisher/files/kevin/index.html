@@ -1346,7 +1346,7 @@ header .logo,header .logo b{color:#fff}
     </div>
   </div>
 </section>
-<section id="gigs" class="section"><div class="wrap"><div class="sectionhead"><div><h2>See Kevin live</h2></div></div><p class="lead">Find a show, choose your date and book tickets. These initial dates are being migrated from Kevin's current website. Direct booking links are shown where verified.</p><div id="giglist" class="giglist" aria-live="polite"></div><div class="morewrap"><button type="button" class="more" id="more" hidden>See more dates</button></div></div></section>
+<section id="gigs" class="section"><div class="wrap"><div class="sectionhead"><div><h2>See Kevin live</h2></div></div><p class="lead">Find a show, choose your date and book tickets. Upcoming public shows from Kevin's gig register. Direct booking links are shown where verified.</p><div id="giglist" class="giglist" aria-live="polite"></div><div class="morewrap"><button type="button" class="more" id="more" hidden>See more dates</button></div></div></section>
 
 <section id="about" class="section alt">
   <div class="wrap about-content">
@@ -1431,7 +1431,7 @@ header .logo,header .logo b{color:#fff}
 </div>
 </div><a class="contact-email" href="mailto:info@kevindanielcomedy.co.uk">info@kevindanielcomedy.co.uk</a></div></section>
 </main>
-<footer><div class="wrap"><span>&copy; 2026 Kevin Daniel. Version 0.3.31, concept pending Kevin's approval.</span><span class="legal-links"><a href="privacy/">Privacy policy</a></span></div></footer>
+<footer><div class="wrap"><span>&copy; 2026 Kevin Daniel. Version 0.3.32, concept pending Kevin's approval.</span><span class="legal-links"><a href="privacy/">Privacy policy</a></span></div></footer>
 <script>
 (function(){
   // Set up reveals only after the gig calendar has rendered its dynamic rows.
@@ -1515,7 +1515,7 @@ track.addEventListener('scroll',()=>{clearTimeout(scrollTimer);scrollTimer=setTi
 setInterval(()=>{if(!paused&&!hovered&&!focused&&!document.hidden)show(current+1)},6500);
 })();
 (function(){
-const gigs=[
+let gigs=[
 ['2026-11-12','19:30','Funhouse Comedy','The Regal, Stowmarket','https://regalstowmarket.co.uk/RegalStowmarket.dll/WhatsOn?f=2480072',true],
 ['2026-11-13','19:30','Comedy Night','Cosby Golf Club, Leicester','https://kevindanielcomedy.co.uk/events/list/',false],
 ['2026-11-26','19:30','Funhouse Comedy','The Final Whistle, Southwell','https://wegottickets.com/f/24107',true],
@@ -1530,10 +1530,24 @@ const gigs=[
 ['2026-12-27','19:30','Funhouse Comedy','Cirencester','https://kevindanielcomedy.co.uk/events/list/',false]
 ];
 const list=document.getElementById('giglist'),more=document.getElementById('more');let expanded=false;
-const pad=n=>String(n).padStart(2,'0'),now=new Date(),today=now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate()),future=gigs.filter(g=>g[0]>=today);
+const pad=n=>String(n).padStart(2,'0'),now=new Date(),today=now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate());
 function make(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e}
-function render(){list.replaceChildren();const show=expanded?future:future.slice(0,6);if(show.length===0)list.append(make('p','muted','More dates to follow.'));show.forEach(g=>{const row=make('article','gig'),date=make('div','date'),dt=new Date(g[0]+'T12:00:00');date.setAttribute('aria-label',dt.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'}));date.append(make('span','dow',dt.toLocaleString('en-GB',{weekday:'short'}).toUpperCase()),make('span','num',String(dt.getDate())),make('span','mon',dt.toLocaleString('en-GB',{month:'short'}).toUpperCase()));const details=make('div','details');details.append(make('h3','',g[2]),make('p','',g[3]+' / '+g[1]));const action=make('div','gigaction'),link=make('a','btn '+(g[5]?'primary':'outline'),g[5]?'Book tickets >':'Booking info >');link.href=g[4];link.target='_blank';link.rel='noopener noreferrer';action.append(link);if(!g[5])action.append(make('small','','Direct ticket link to be confirmed'));row.append(date,details,action);list.append(row)});more.hidden=future.length<=6;more.textContent=expanded?'Show fewer dates':'Show all dates'}
+function render(){const future=gigs.filter(g=>g[0]>=today).sort((a,b)=>a[0].localeCompare(b[0])||a[1].localeCompare(b[1]));list.replaceChildren();const show=expanded?future:future.slice(0,6);if(show.length===0)list.append(make('p','muted','More dates to follow.'));show.forEach(g=>{const row=make('article','gig'),date=make('div','date'),dt=new Date(g[0]+'T12:00:00');date.setAttribute('aria-label',dt.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'}));date.append(make('span','dow',dt.toLocaleString('en-GB',{weekday:'short'}).toUpperCase()),make('span','num',String(dt.getDate())),make('span','mon',dt.toLocaleString('en-GB',{month:'short'}).toUpperCase()));const details=make('div','details');details.append(make('h3','',g[2]),make('p','',g[3]+' / '+g[1]));const action=make('div','gigaction'),url=typeof g[4]==='string'&&/^https:\/\//i.test(g[4])?g[4]:'';if(g[6]==='Sold out'){action.append(make('span','btn outline','Sold out'))}else if(url){const link=make('a','btn '+(g[5]?'primary':'outline'),g[5]?'Book tickets >':'Booking info >');link.href=url;link.target='_blank';link.rel='noopener noreferrer';action.append(link);if(!g[5])action.append(make('small','','Direct ticket link to be confirmed'))}else{action.append(make('small','','Ticket information coming soon'))}row.append(date,details,action);list.append(row)});more.hidden=future.length<=6;more.textContent=expanded?'Show fewer dates':'Show all dates'}
 render();more.addEventListener('click',()=>{expanded=!expanded;render()});
+// Public-only feed. The original list above is a fallback if the publisher is unavailable.
+// No calendar descriptions, contact details or financial columns are fetched by this page.
+fetch('./gigs.json?ts='+Date.now(),{cache:'no-store'})
+  .then(response=>{if(!response.ok)throw Error('Gig feed unavailable');return response.json()})
+  .then(feed=>{
+    if(feed.schema!==1||!Array.isArray(feed.gigs))throw Error('Invalid gig feed');
+    const parsed=feed.gigs.filter(g=>g&&/^\\d{4}-\\d{2}-\\d{2}$/.test(g.date)&&typeof g.title==='string'&&typeof g.venue==='string').map(g=>{
+      const url=typeof g.url==='string'&&/^https:\\/\\//i.test(g.url)?g.url:'';
+      return [g.date,g.time||'Time TBC',g.title,g.venue,url,g.ticketStatus==='On sale'&&!!url,g.ticketStatus||'Info soon'];
+    });
+    gigs=parsed;render();
+  })
+  .catch(()=>{/* Keep the existing published gig list as a safe fallback. */});
+
 const menu=document.getElementById('menu'),nav=document.getElementById('nav');menu.addEventListener('click',()=>{const state=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(state))});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false')}));
 const bio={
 short:"Kevin Daniel is an award-winning Scottish stand-up comedian based in the Midlands. Born in Glasgow, he began performing stand-up in 2019 and won Leicester Comedy Festival's Silver Stand-Up Competition in 2024. He performs at clubs and festivals across the UK.",
