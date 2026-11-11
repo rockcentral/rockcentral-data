@@ -1,7 +1,7 @@
 /**
  * ANTHONY WILLIAMS: PRIVATE GIG CALENDAR SYNC
- * VERSION: 0.2.3 (11 November 2026)
- * Changes: read private description; handle GIG/HOLD/CANCELLED booking states.
+ * VERSION: 0.2.4 (11 November 2026)
+ * Changes: private descriptions and states; preserve prior approvals on first migration.
  * Every run logs the version. If the log shows another version, the
  * latest script has not been pasted/saved in Apps Script.
  * Calendar is source of incoming bookings. This does NOT touch
@@ -14,7 +14,7 @@
  * Run testAnthonyCalendarSyncRules, then previewAnthonyCalendarSync,
  * then syncAnthonyCalendarToRegister to import privately.
  */
-const ANTHONY_SYNC_VERSION = '0.2.3';
+const ANTHONY_SYNC_VERSION = '0.2.4';
 
 const AW_SYNC = Object.freeze({
   calendarId: 'c_0e0019db66d2f8790454b5a421ca31d9f8c938902045761a39e1679dfd87b9fc@group.calendar.google.com',
@@ -280,8 +280,16 @@ function syncAnthonyCalendarToRegister() {
         sheet.getRange(row,AW_COL.lastSeen+1).setValue(stamp);
         sheet.getRange(row,AW_COL.missingSince+1).clearContent();
         if(item.dateChanged) sheet.getRange(row,AW_COL.review+1).setValue('Date changed');
-        else if(item.action==='UPDATE_SOURCE')
-          sheet.getRange(row,AW_COL.review+1).setValue('Needs review');
+        else if(item.action==='UPDATE_SOURCE') {
+          // One-off first import of new private V/W columns should not
+          // revoke existing reviewed public details. Genuine later
+          // changes still require renewed review.
+          const prior=awReadRegister_().rows.find(x=>x.sheetRow===row);
+          const migrated=prior && !prior.v[AW_COL.bookingState] &&
+            !(prior.v[AW_COL.description]||'');
+          if(!migrated || awBookingState_(e)!=='Confirmed')
+            sheet.getRange(row,AW_COL.review+1).setValue('Needs review');
+        }
       }
     });
     const report={
