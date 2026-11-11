@@ -1,11 +1,11 @@
 /**
  * ANTHONY GIG WORKFLOW / LEGACY BACKFILL
- * VERSION 0.8.1 (11 November 2026)
+ * VERSION 0.8.2 (11 November 2026)
  * No hardcoded gig or venue information.
  * Requires Code.gs v0.2.6 and AnthonyAutoPublisher v0.5.3.
  * This file does not change the calendar or public listing details.
  */
-const AW_WORKFLOW_VERSION='0.8.1';
+const AW_WORKFLOW_VERSION='0.8.2';
 function awV07BackfillPlan_(privateRows,publicRows){
   const keyed=new Map();
   for(const p of publicRows)if(p.key){
