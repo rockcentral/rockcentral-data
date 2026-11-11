@@ -271,8 +271,10 @@ function testKevinGigSyncRules() {
       base.concat([{ ...base[0], row: 3, date: '2026-11-18' }])).proposalCount === 0,
     sameDateDoublePreserved: check([event('fixture-1', 'GIG TWO SHOWS', '2026-11-17', '2026-11-18')],
       base.concat([{ ...base[0], row: 3 }])).proposalCount === 0,
-    kevinTestDetected: check([{...event('fixture-2', 'NEW TEST TRST TEST GIG', '2026-11-18', '2026-11-19'), testOnly: true}], base)
-      .proposals.some(x => x.action === 'TEST_GIG_DETECTED')
+    kevinTestDetected: compareKevinBuiltIn_(
+      [{...event('fixture-2', 'NEW TEST TRST TEST GIG', '2026-11-18', '2026-11-19'), testOnly: true}],
+      base, windowStart, windowEnd
+    ).proposals.some(x => x.action === 'TEST_GIG_DETECTED')
   };
   if (Object.values(results).some(v => !v)) throw new Error('Fixture failure: ' + JSON.stringify(results));
   Logger.log(JSON.stringify(results, null, 2));
