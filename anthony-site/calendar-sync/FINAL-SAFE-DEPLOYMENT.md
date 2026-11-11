@@ -4,11 +4,11 @@ The system is installed in the Google Apps Script project already called **Antho
 
 ## Files to use
 
-* Replace existing `Code.gs` with `anthony-calendar-sync.gs` **v0.2.5**.
+* Replace existing `Code.gs` with `anthony-calendar-sync.gs` **v0.2.6**.
 * Keep `AnthonyPublicBridge.gs` **v0.3.1** (read-only).
 * Keep `AnthonyAutoPublisher.gs` **v0.5.3** (register-led publisher). Do not restore the older 0.4.x publisher.
 * Keep `AnthonyLegacyLinker.gs` **v0.6.2**. It has already linked 29 legacy gigs.
-* Add `AnthonyDailyWorkflow.gs` from `anthony-daily-workflow.gs` **v0.7.2**.
+* Add `AnthonyDailyWorkflow.gs` from `anthony-daily-workflow.gs` **v0.7.3**.
 
 The private register tab `Gig Register` now has columns V (Calendar Description) and W (Booking State). Its original columns A:U are unchanged.
 
@@ -16,10 +16,10 @@ The live public gig tab still has the website-facing A:I schema. Column J stores
 
 ## First-time sequence
 
-1. Save Code.gs v0.2.5. Run `testAnthonyCalendarSyncRules`. There are now 17 checks, including GIG/HOLD/CANCELLED states and private event description capture.
+1. Save Code.gs v0.2.6. Run `testAnthonyCalendarSyncRules`. There are now 17 checks, including GIG/HOLD/CANCELLED states and private event description capture.
 2. Run `previewAnthonyCalendarSync`, then `syncAnthonyCalendarToRegister`. Confirm the ordinary bookings remain recognised and the new private columns fill in. No website changes from this function.
-3. Add `AnthonyDailyWorkflow.gs` v0.7.2. Run `testAnthonyLegacyBackfill` (7 checks). Run `previewAnthonyLegacyBackfill`. It should propose enriching already-linked records using the public listings without changing the public sheet.
-4. If the preview is sensible, run `backfillAnthonyPrivateRegister` and then run it a second time to confirm zero new enrichments. This only writes J:Q in matched private rows; it retains existing verified manual details and holds conflicts.
+3. Add `AnthonyDailyWorkflow.gs` v0.7.3. Run `testAnthonyLegacyBackfill` (7 checks). Run `previewAnthonyLegacyBackfill`. It should propose enriching already-linked records using the public listings without changing the public sheet.
+4. The one-time private backfill has already been completed for 29 linked records directly using the connected spreadsheet: 30 approved public records including Malton, with Wallasey and Burton held due to missing venue details. Run `previewAnthonyLegacyBackfill` to check for residual safe matches, not to repeat the initial backfill. Re-running the backfill is idempotent.
 5. Run `previewAnthonyRegisterPublisher` (v0.5.3). It should propose no duplicate existing bookings. Any new publication requires `Approved`, `Publish? Yes`, and complete public fields.
 6. Run `dailyAnthonySafeWorkflow` once manually. It syncs calendar, then publishes only approved new public gigs. It throws an error if a linked public gig has moved or become inactive, rather than silently editing the website.
 7. Only once the manual run is clean, enable Apps Script project manifest via **Project Settings > Show "appsscript.json" manifest file in editor** and set the documented scopes in `appsscript-v070.json`. Saving new scopes may require granting permissions. Run `enableAnthonySafeDailyTrigger` once. This installs a roughly 6am Europe/London daily trigger and removes any older dailyAnthonyGigWorkflow trigger.
@@ -47,8 +47,8 @@ Do not enable the trigger before the manual run and safety checks are confirmed.
 
 ## Source file versions
 
-- Calendar Sync: v0.2.5
+- Calendar Sync: v0.2.6
 - Public Bridge: v0.3.1
 - Register Publisher: v0.5.3
 - Legacy Linker: v0.6.2
-- Daily & Private Backfill: v0.7.2
+- Daily & Private Backfill: v0.7.3
