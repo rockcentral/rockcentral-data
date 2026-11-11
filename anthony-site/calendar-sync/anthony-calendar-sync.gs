@@ -1,7 +1,7 @@
 /**
  * ANTHONY WILLIAMS: PRIVATE GIG CALENDAR SYNC
- * VERSION: 0.2.2 (11 November 2026)
- * Changes: future-only sync window from UK midnight; no imports of past gig dates.
+ * VERSION: 0.2.3 (11 November 2026)
+ * Changes: read private description; handle GIG/HOLD/CANCELLED booking states.
  * Every run logs the version. If the log shows another version, the
  * latest script has not been pasted/saved in Apps Script.
  * Calendar is source of incoming bookings. This does NOT touch
@@ -14,7 +14,7 @@
  * Run testAnthonyCalendarSyncRules, then previewAnthonyCalendarSync,
  * then syncAnthonyCalendarToRegister to import privately.
  */
-const ANTHONY_SYNC_VERSION = '0.2.2';
+const ANTHONY_SYNC_VERSION = '0.2.3';
 
 const AW_SYNC = Object.freeze({
   calendarId: 'c_0e0019db66d2f8790454b5a421ca31d9f8c938902045761a39e1679dfd87b9fc@group.calendar.google.com',
@@ -23,14 +23,15 @@ const AW_SYNC = Object.freeze({
   timezone: 'Europe/London',
   daysBehind: 0,
   daysAhead: 400,
-  columns: 21
+  columns: 23
 });
 
 const AW_COL = Object.freeze({
   key:0, id:1, date:2, endDate:3, title:4, location:5, time:6,
   allDay:7, sync:8, review:9, publish:10, publicTitle:11,
   publicVenue:12, publicLocation:13, publicTime:14, ticketUrl:15,
-  ticketStatus:16, firstSeen:17, lastSeen:18, missingSince:19, note:20
+  ticketStatus:16, firstSeen:17, lastSeen:18, missingSince:19, note:20,
+  description:21, bookingState:22
 });
 
 const AW_HEADERS = [
@@ -38,7 +39,8 @@ const AW_HEADERS = [
   'Calendar Title','Calendar Location','Calendar Start','All Day?',
   'Sync Status','Review Status','Publish?','Public Show Title',
   'Public Venue','Public Location','Public Time','Ticket URL',
-  'Ticket Status','First Seen','Last Seen','Missing Since','Internal Notes'
+  'Ticket Status','First Seen','Last Seen','Missing Since','Internal Notes',
+  'Calendar Description','Booking State'
 ];
 
 function awIso_(date) {
@@ -75,12 +77,19 @@ function awReadEvents_(from, to) {
       id: event.getId(),
       title: (event.getTitle() || '').trim(),
       location: (event.getLocation() || '').trim(),
+      description: (event.getDescription() || '').trim(),
       date: awIso_(start),
       endDate: awIso_(finish),
       time: allDay ? '' : Utilities.formatDate(start, AW_SYNC.timezone,'HH:mm'),
       allDay: allDay
     };
   });
+}
+function awBookingState_(event) {
+  const title=(event.title||'').trim();
+  if(/^CANCELLED\s*[-:]/i.test(title))return 'Cancelled';
+  if(/^HOLD\s*[-:]/i.test(title))return 'Hold';
+  return 'Confirmed';
 }
 function awCombinedBooking_(event) {
   const t = (event.title || '').toLowerCase();
@@ -90,6 +99,7 @@ function awClassify_(event) {
   const title = (event.title || '').toLowerCase();
   if (!title || /\btest\b|\bholiday\b|\baway\b|\btravel\b|\bdarts\b|\bbirthday\b|\bcar service\b|\bdoctor\b|\bdentist\b|\b(?:xmas|christmas)\s+party\b|\bmeeting\b|\bday off\b|\bopen day\b|\bdawn\s+mc\b|\bdates placeholder\b|\bplaceholder\b/.test(title))
     return 'skip';
+  if (/^(?:gig|hold|cancelled)\s*[-:]/.test(title))return 'gig';
   if (/\bcomedy\b|\bcomedian\b|\bcompere\b|\bmc\b|\bopener\b|\bopening\b|\bmiddle\b|\bcloser\b|\bclosing\b|\bheadline\b|\bheadliner\b|\bstand.?up\b|\bgig\b|\bclub\b|\bwip\b|\blafternoon\b|\brecalculating\b|\bfunhouse\b|\bglee\b|\bjust the tonic\b|\bbelper\b|\bheanor\b|\bripley\b|\brockcentral\b|\bspiky\b|\bspirit of comedy\b/.test(title))
     return 'gig';
   if (/\b\d{1,2}\s+(?:for|mins?|minutes?)\b|\b(?:nik hill|marty riley|red redmond|steve blood|james beckett|stu napier)\b|\broyal standard\b|\brailway variety\b/.test(title)) return 'gig';
@@ -163,6 +173,9 @@ function awPlan_(events, stored, fromIso, toIso) {
         value[AW_COL.firstSeen] = stamp;
         value[AW_COL.lastSeen] = stamp;
         value[AW_COL.note] = 'Imported from private calendar; not approved for website';
+        value[AW_COL.description] = e.description || '';
+        value[AW_COL.bookingState] = awBookingState_(e);
+        if(value[AW_COL.bookingState]!=='Confirmed')value[AW_COL.sync]=value[AW_COL.bookingState];
         operations.push({action:'ADD_PRIVATE',key, date, title:e.title, value});
         return;
       }
@@ -174,7 +187,9 @@ function awPlan_(events, stored, fromIso, toIso) {
         v[AW_COL.location] !== e.location ||
         v[AW_COL.time] !== e.time ||
         v[AW_COL.allDay] !== (e.allDay ? 'Yes' : 'No') ||
-        v[AW_COL.sync] !== 'Active';
+        v[AW_COL.description] !== (e.description||'') ||
+        v[AW_COL.bookingState] !== awBookingState_(e) ||
+        v[AW_COL.sync] !== (awBookingState_(e)==='Confirmed'?'Active':awBookingState_(e));
       if (sourceChanged) operations.push({
         action:dateChanged?'REVIEW_MOVED':'UPDATE_SOURCE',sheetRow:old.sheetRow,
         key, dateBefore:v[AW_COL.date],dateAfter:date,title:e.title,
@@ -258,7 +273,10 @@ function syncAnthonyCalendarToRegister() {
         sheet.getRange(row,AW_COL.date+1,1,AW_COL.allDay-AW_COL.date+1)
           .setValues([[item.dateAfter,e.endDate,e.title,e.location,
                         e.time,e.allDay?'Yes':'No']]);
-        sheet.getRange(row,AW_COL.sync+1).setValue('Active');
+        sheet.getRange(row,AW_COL.description+1,1,2)
+          .setValues([[e.description||'',awBookingState_(e)]]);
+        sheet.getRange(row,AW_COL.sync+1)
+          .setValue(awBookingState_(e)==='Confirmed'?'Active':awBookingState_(e));
         sheet.getRange(row,AW_COL.lastSeen+1).setValue(stamp);
         sheet.getRange(row,AW_COL.missingSince+1).clearContent();
         if(item.dateChanged) sheet.getRange(row,AW_COL.review+1).setValue('Date changed');
@@ -316,7 +334,10 @@ function testAnthonyCalendarSyncRules() {
     placeholderExcluded:p([event('placeholder','2026-11-18','ICF Leicester dates placeholder')],empty).actions.length===0,
     blueMonkeySingleGig:p([event('blue','2027-02-28','GIG - Blue Monkey / MC')],empty).actions.length===1,
     pastGigNotImported:awPlan_([event('old','2026-11-05')],empty,'2026-11-11','2027-12-01').actions.length===0,
-    todayGigIncluded:awPlan_([event('today','2026-11-11')],empty,'2026-11-11','2027-12-01').actions.length===1
+    todayGigIncluded:awPlan_([event('today','2026-11-11')],empty,'2026-11-11','2027-12-01').actions.length===1,
+    holdImportsPrivately:awPlan_([event('hold','2026-11-18','HOLD - Gloucester - MC')],empty,'2026-11-11','2027-12-01').actions[0].value[AW_COL.sync]==='Hold',
+    cancelledImportsPrivately:awPlan_([event('cancelled','2026-11-18','CANCELLED - Gloucester - MC')],empty,'2026-11-11','2027-12-01').actions[0].value[AW_COL.sync]==='Cancelled',
+    calendarDescriptionStored:(()=>{const e=event('desc','2026-11-18');e.description='Promoter: Example';return awPlan_([e],empty,'2026-11-11','2027-12-01').actions[0].value[AW_COL.description]==='Promoter: Example';})()
   };
   Logger.log(JSON.stringify({version:ANTHONY_SYNC_VERSION,checks},null,2));
   if(Object.values(checks).some(v=>!v))
