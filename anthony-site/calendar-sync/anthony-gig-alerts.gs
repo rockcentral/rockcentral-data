@@ -1,11 +1,11 @@
 /**
  * ANTHONY GIG ALERTS
- * VERSION 0.8.2 (11 November 2026)
+ * VERSION 0.8.3 (11 November 2026)
  * Requires Code.gs v0.2.6, AnthonyAutoPublisher.gs v0.5.3,
- * AnthonyDailyWorkflow.gs v0.8.2.
+ * AnthonyDailyWorkflow.gs v0.8.3.
  * Private alert content only. No calendar or website writes.
  */
-const AW_ALERT_VERSION='0.8.2';
+const AW_ALERT_VERSION='0.8.3';
 const AW_ALERT_TO='alerts@rockcentralpromotions.com';
 const AW_ALERT_STATE_KEY='aw_alert_v080_review_baseline';
 const AW_ALERT_URGENT_KEY='aw_alert_v080_urgent_baseline';
@@ -125,7 +125,8 @@ function initialiseAnthonyAlertBaseline(){
   if(props.getProperty(AW_ALERT_STATE_KEY)||props.getProperty(AW_ALERT_URGENT_KEY))
     throw new Error('Alert baseline already set. No changes made.');
   awAlertSave_(AW_ALERT_STATE_KEY,review.map(x=>x.id));
-  awAlertSave_(AW_ALERT_URGENT_KEY,urgent.map(x=>x.id));
+  // Existing urgent problems must STILL generate an alert on next run.
+  awAlertSave_(AW_ALERT_URGENT_KEY,[]);
   Logger.log(JSON.stringify({version:AW_ALERT_VERSION,
     mode:'ONE_TIME_SILENT_BASELINE',outstandingReview:review.length,
     urgentExisting:urgent.length,emailsSent:0},null,2));
