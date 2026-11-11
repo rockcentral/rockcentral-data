@@ -76,7 +76,7 @@ function awReadEvents_(from, to) {
 }
 function awClassify_(event) {
   const title = (event.title || '').toLowerCase();
-  if (!title || /\btest\b|\bholiday\b|\baway\b|\btravel\b|\bdarts\b|\bbirthday\b|\bcar service\b|\bdoctor\b|\bdentist\b|\bchristmas party\b|\bmeeting\b|\bday off\b|\bopen day\b/.test(title))
+  if (!title || /\btest\b|\bholiday\b|\baway\b|\btravel\b|\bdarts\b|\bbirthday\b|\bcar service\b|\bdoctor\b|\bdentist\b|\b(?:xmas|christmas)\s+party\b|\bmeeting\b|\bday off\b|\bopen day\b|\bdawn\s+mc\b/.test(title))
     return 'skip';
   if (/\bcomedy\b|\bcomedian\b|\bcompere\b|\bmc\b|\bopener\b|\bopening\b|\bmiddle\b|\bcloser\b|\bclosing\b|\bheadline\b|\bheadliner\b|\bstand.?up\b|\bgig\b|\bclub\b|\bwip\b|\blafternoon\b|\brecalculating\b|\bfunhouse\b|\bglee\b|\bjust the tonic\b|\bbelper\b|\bheanor\b|\bripley\b|\brockcentral\b|\bspiky\b|\bspirit of comedy\b/.test(title))
     return 'gig';
@@ -194,14 +194,21 @@ function awBuildPlan_() {
 }
 function previewAnthonyCalendarSync() {
   const p = awBuildPlan_().plan;
-  Logger.log(JSON.stringify({
+  const changes = p.actions.map(({value,event,...other})=>other);
+  const counts = {};
+  changes.forEach(x=>{ counts[x.action]=(counts[x.action]||0)+1; });
+  const report = {
     mode:'DRY_RUN_NO_WRITES',calendarEventsRead:p.calendarEventsRead,
     classifiedGigEvents:p.classifiedGigEvents,
-    plannedChanges:p.actions.map(({value,event,...other})=>other),
-    uncertainCalendarEvents:p.uncertainCalendarEvents,
+    plannedChangeCounts:counts,
+    changesSample:changes.slice(0,12),
+    moreChangesNotShown:Math.max(0,changes.length-12),
+    uncertainEventCount:p.uncertainCalendarEvents.length,
+    uncertainEventSample:p.uncertainCalendarEvents.slice(0,12),
     recurringUidConflicts:p.recurringUidConflicts,
     spreadsheetWrites:0,websiteWrites:0,calendarWrites:0
-  },null,2));
+  };
+  Logger.log(JSON.stringify(report,null,2));
   return p;
 }
 
