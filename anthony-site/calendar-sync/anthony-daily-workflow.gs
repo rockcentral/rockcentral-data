@@ -1,11 +1,11 @@
 /**
  * ANTHONY GIG WORKFLOW / LEGACY BACKFILL
- * VERSION 0.7.1 (11 November 2026)
+ * VERSION 0.7.2 (11 November 2026)
  * No hardcoded gig or venue information.
  * Requires Code.gs v0.2.3 and AnthonyAutoPublisher v0.5.3.
  * This file does not change the calendar or public listing details.
  */
-const AW_WORKFLOW_VERSION='0.7.1';
+const AW_WORKFLOW_VERSION='0.7.2';
 function awV07BackfillPlan_(privateRows,publicRows){
   const keyed=new Map();
   for(const p of publicRows)if(p.key){
@@ -36,7 +36,11 @@ function awV07BackfillPlan_(privateRows,publicRows){
     // If public fields were previously customised and differ, avoid overwriting
     // that manual work without an explicit review.
     const existingDetails=oldPublic.slice(2);
-    if(existingDetails.some((x,i)=>x && String(x)!==String(newPublic[i+2]))){
+    const defaultUnreviewed=v[AW_COL.review]==='Needs review' &&
+      v[AW_COL.publish]==='No';
+    if(existingDetails.some((x,i)=>x && 
+       !(defaultUnreviewed && i===5 && x==='Info soon') &&
+       String(x)!==String(newPublic[i+2]))){
       held.push({row:row.sheetRow,reason:'Private public fields conflict with live published fields',publicRow:p.row});
       continue;
     }
@@ -140,7 +144,12 @@ function testAnthonyLegacyBackfill(){
     preservesPublicFeed:plan.actions[0].privateRow===2,
     wrongDateHeld:awV07BackfillPlan_([privateRow],[wrongDate]).actions.length===0,
     conflictHeld:awV07BackfillPlan_([conflictRow],[p]).held.length===1,
-    noUnlinkedBackfill:awV07BackfillPlan_([privateRow],[]).actions.length===0
+    noUnlinkedBackfill:awV07BackfillPlan_([privateRow],[]).actions.length===0,
+    inheritedInfoSoonMayUpgradeToLive:(()=>{
+      const x={sheetRow:3,v:[...v]};
+      x.v[AW_COL.ticketStatus]='Info soon';
+      return awV07BackfillPlan_([x],[p]).actions.length===1;
+    })()
   };
   Logger.log(JSON.stringify({version:AW_WORKFLOW_VERSION,checks},null,2));
   if(Object.values(checks).some(v=>!v))throw new Error('Backfill test failed');
