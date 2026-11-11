@@ -1,11 +1,11 @@
 /**
  * ANTHONY GIG WORKFLOW / LEGACY BACKFILL
- * VERSION 0.7.3 (11 November 2026)
+ * VERSION 0.7.4 (11 November 2026)
  * No hardcoded gig or venue information.
  * Requires Code.gs v0.2.6 and AnthonyAutoPublisher v0.5.3.
  * This file does not change the calendar or public listing details.
  */
-const AW_WORKFLOW_VERSION='0.7.3';
+const AW_WORKFLOW_VERSION='0.7.4';
 function awV07BackfillPlan_(privateRows,publicRows){
   const keyed=new Map();
   for(const p of publicRows)if(p.key){
@@ -33,6 +33,14 @@ function awV07BackfillPlan_(privateRows,publicRows){
       continue;
     }
     const oldPublic=v.slice(AW_COL.review,AW_COL.ticketStatus+1);
+    // Fully approved rows can retain intentionally shorter show titles.
+    // If their critical public fields match, they need no backfill.
+    if(v[AW_COL.review]==='Approved' && v[AW_COL.publish]==='Yes' &&
+       String(v[AW_COL.publicVenue]||'')===String(p.venue||'') &&
+       String(v[AW_COL.publicLocation]||'')===String(p.location||'') &&
+       String(v[AW_COL.publicTime]||'')===String(p.time||'') &&
+       String(v[AW_COL.ticketUrl]||'')===String(p.url||'') &&
+       String(v[AW_COL.ticketStatus]||'')===String(p.status||''))continue;
     // If public fields were previously customised and differ, avoid overwriting
     // that manual work without an explicit review.
     const existingDetails=oldPublic.slice(2);
@@ -151,6 +159,16 @@ function testAnthonyLegacyBackfill(){
       const x={sheetRow:3,v:[...v]};
       x.v[AW_COL.ticketStatus]='Info soon';
       return awV07BackfillPlan_([x],[p]).actions.length===1;
+    })(),
+    approvedShortTitlePreserved:(()=>{
+      const x={sheetRow:3,v:[...v]};
+      x.v[AW_COL.review]='Approved';x.v[AW_COL.publish]='Yes';
+      x.v[AW_COL.publicTitle]='Example';
+      x.v[AW_COL.publicVenue]=p.venue;x.v[AW_COL.publicLocation]=p.location;
+      x.v[AW_COL.publicTime]=p.time;x.v[AW_COL.ticketUrl]=p.url;
+      x.v[AW_COL.ticketStatus]=p.status;
+      const z=awV07BackfillPlan_([x],[p]);
+      return z.actions.length===0&&z.held.length===0;
     })()
   };
   Logger.log(JSON.stringify({version:AW_WORKFLOW_VERSION,checks},null,2));
