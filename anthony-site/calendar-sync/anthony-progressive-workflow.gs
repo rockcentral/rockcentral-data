@@ -126,9 +126,10 @@ function awProgMerge_(p,d,row){
   const time=d.time&&(!p.time||trusted)?d.time:p.time;
   const url=d.ticket&&(!p.url||trusted)?d.ticket:p.url;
   let status=p.status;
-  if(d.status==='Hidden')status='Hidden';
+  // Never silently unhide a deliberately hidden public listing.
+  if(p.status==='Hidden')status='Hidden';
+  else if(d.status==='Hidden')status='Hidden';
   else if(d.status==='Live'&&url)status='Live';
-  else if(p.status==='Hidden'&&d.status!=='Hidden'&&trusted)status=d.status;
   else if(!status)status=d.status;
   if(status==='Live'&&!url)return {state:'HOLD',reason:'Live status without ticket URL'};
   const address=d.address&&(!p.address||trusted)?d.address:p.address;
@@ -295,6 +296,22 @@ function onAnthonyProgressiveRegisterEdit(e){
     throw error;
   }
 }
+/** Read-only plan: inspect prospective adds/updates before enabling any trigger. */
+function previewAnthonyProgressivePublication(){
+  const reg=awReadRegister_(),pub=awV05Read_();
+  const plan=awProgPlan_(reg.rows,pub.rows,awIso_(new Date()));
+  const report={version:AW_PROGRESS_VERSION,mode:'DRY_RUN_NO_WRITES',
+    wouldAdd:plan.add.length,wouldUpdate:plan.update.length,
+    alreadyLinked:plan.linked.length,held:plan.review.length,
+    proposedNew:plan.add.slice(0,10).map(x=>({
+      privateRow:x.privateRow,date:x.details.date,
+      town:x.details.location,venue:x.details.venue})),
+    proposedUpdates:plan.update.slice(0,12).map(x=>({
+      publicRow:x.row,privateRow:x.privateRow})),
+    heldSample:plan.review.slice(0,12),
+    calendarWrites:0,publicWrites:0,privateWrites:0,emailsSent:0};
+  Logger.log(JSON.stringify(report,null,2));return report;
+}
 function previewAnthonyProgressiveTriggers(){
   const triggers=ScriptApp.getProjectTriggers().map(t=>({
     handler:t.getHandlerFunction(),type:String(t.getEventType())}));
@@ -363,7 +380,10 @@ function testAnthonyProgressiveRules(){
     differentTownAllowed:!awProgPossibleCollision_(base,{
       ...proposal,location:'Preston'}),
     noDateMove:awProgMerge_(base,{...proposal,date:'2026-12-06'},fake).state==='HOLD',
-    newRolesStaySingle:awV05Role_('Gig Ribchester MC and opener')===''
+    newRolesStaySingle:awV05Role_('Gig Ribchester MC and opener')==='',
+    deliberatelyHiddenStaysHidden:awProgMerge_({...base,status:'Hidden',venue:proposal.venue},
+      proposal,fake).state==='UPDATE' &&
+      awProgMerge_({...base,status:'Hidden',venue:proposal.venue},proposal,fake).values[6]==='Hidden'
   };
   Logger.log(JSON.stringify({version:AW_PROGRESS_VERSION,checks},null,2));
   if(Object.values(checks).some(v=>!v))
