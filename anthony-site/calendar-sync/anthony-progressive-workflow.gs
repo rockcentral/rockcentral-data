@@ -34,13 +34,14 @@ function awProgTown_(title){
   return place.replace(/\b[a-z]/gi,c=>c.toUpperCase());
 }
 function awProgCanProvisional_(r,today){
-  const v=r.v,venue=awProgTown_(v[AW_COL.title]);
-  return venue && v[AW_COL.sync]==='Active' &&
-    v[AW_COL.bookingState]==='Confirmed' &&
-    v[AW_COL.date]>=today &&
-    v[AW_COL.review]==='Needs review' &&
-    v[AW_COL.publish]==='No' &&
-    awV05Role_(v[AW_COL.title]);
+  const v=r.v,town=awProgTown_(v[AW_COL.title]);
+  if(!town||v[AW_COL.sync]!=='Active'||
+     v[AW_COL.bookingState]!=='Confirmed'||
+     v[AW_COL.date]<today||
+     v[AW_COL.review]!=='Needs review'||
+     v[AW_COL.publish]!=='No'||
+     !awV05Role_(v[AW_COL.title]))return '';
+  return town;
 }
 /** Auto-approve only keys newly inserted by THIS invocation. Never revive old rejected rows. */
 function awProgApproveNew_(beforeKeys,working){
@@ -363,7 +364,26 @@ function testAnthonyProgressiveRules(){
     time:proposal.time,url:proposal.ticket,status:'Live',notes:proposal.notes,
     address:proposal.address},{...proposal,time:'',ticket:'',status:'Info soon'},fake);
   const conflict=awProgMerge_({...base,venue:'Other Pub'},proposal,fake);
+  const newPrivate={v:Array(AW_SYNC.columns).fill('')};
+  newPrivate.v[AW_COL.title]='Gig Ribchester MC';
+  newPrivate.v[AW_COL.date]='2026-11-21';
+  newPrivate.v[AW_COL.sync]='Active';
+  newPrivate.v[AW_COL.bookingState]='Confirmed';
+  newPrivate.v[AW_COL.review]='Needs review';
+  newPrivate.v[AW_COL.publish]='No';
   const checks={
+    structuredNewGigPublishesInRightTown:
+      awProgCanProvisional_(newPrivate,'2026-11-12')==='Ribchester',
+    explicitlyUnapprovedExistingGigNotTouched:(()=>{
+      const x={v:[...newPrivate.v]};
+      x.v[AW_COL.review]='Ignored';
+      return awProgCanProvisional_(x,'2026-11-12')==='';
+    })(),
+    holdNotAutoPublished:(()=>{
+      const x={v:[...newPrivate.v]};
+      x.v[AW_COL.bookingState]='Hold';
+      return awProgCanProvisional_(x,'2026-11-12')==='';
+    })(),
     plainTownRecognised:t('Gig Ribchester MC')==='Ribchester',
     hyphenatedTownRecognised:t('GIG - High Wycombe - Opener')==='High Wycombe',
     fictionalVenueNotTown:!t('Gig - LIVE AT THE APOLLO closer'),
