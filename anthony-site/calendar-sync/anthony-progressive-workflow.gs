@@ -1,6 +1,6 @@
 /**
  * ANTHONY GIGS - PROGRESSIVE PUBLICATION
- * VERSION 1.0.0, 12 November 2026
+ * VERSION 1.0.1, 12 November 2026
  *
  * One calendar booking -> provisional public listing -> verified enrichment.
  * Adds a new 15-minute handler and an installable private-register onEdit
@@ -11,7 +11,7 @@
  * Install only after testAnthonyProgressiveRules() passes and the read-only
  * preview has been inspected. Running this source merely saves functions.
  */
-const AW_PROGRESS_VERSION='1.0.0';
+const AW_PROGRESS_VERSION='1.0.1';
 const AW_PROGRESS_VERIFIED_TAG='[ROCKCENTRAL_RESEARCH_VERIFIED]';
 const AW_PROGRESS_PROVISIONAL_TAG='[ROCKCENTRAL_AUTO_PROVISIONAL]';
 const AW_PROGRESS_RUN_FN='anthonyProgressive15MinuteWorkflow';
@@ -192,12 +192,40 @@ function awProgPlan_(privateRows,publicRows,today){
   return {linked,add,update,review};
 }
 /** The single writer for additions and progressive updates; lock protects idempotency. */
+
+/** Explain PUBLIC listing changes without exposing calendar notes or booking fees. */
+function awProgPublicUpdateDetails_(oldListing,change){
+  const before=[oldListing.date,oldListing.time,oldListing.location,
+    oldListing.venue,oldListing.address,oldListing.url,
+    oldListing.status,oldListing.role,oldListing.notes];
+  const after=change.values;
+  const labels=['Date','Show time','Town','Venue','Address','Ticket link',
+    'Ticket status','Role','Public show description'];
+  const changes=[];
+  for(let i=0;i<labels.length;i++){
+    const was=awProgText_(before[i]),now=awProgText_(after[i]);
+    if(was===now)continue;
+    // The show description is already public, but never reproduce it in
+    // an email where it might accidentally contain a private note or fee.
+    if(i===8){changes.push('Public show description updated');continue;}
+    if(!was&&now)changes.push(labels[i]+' added: '+now);
+    else if(was&&!now)changes.push(labels[i]+' cleared');
+    else changes.push(labels[i]+': '+was+' -> '+now);
+  }
+  return {row:change.row,date:awProgText_(after[0]),
+    town:awProgText_(after[2]),venue:awProgText_(after[3]),
+    changes};
+}
+
 function awProgPublish_(){
   const lock=LockService.getScriptLock();
   if(!lock.tryLock(15000))throw new Error('Progressive publisher is already running');
   try{
     const pub=awV05Read_(),rows=awReadRegister_().rows;
     const plan=awProgPlan_(rows,pub.rows,awIso_(new Date()));
+    const oldListings=new Map(pub.rows.map(p=>[p.row,p]));
+    const updatedDetails=plan.update.map(u=>
+      awProgPublicUpdateDetails_(oldListings.get(u.row),u));
     // Preflight validation before any public modification.
     const sheet=pub.sheet,items=awV05WriteRows_(plan.add);
     const first=sheet.getLastRow()+1;
@@ -230,18 +258,33 @@ function awProgPublish_(){
       updated:plan.update.length,held:plan.review.length,
       newRows:plan.add.map((x,i)=>({row:first+i,
         date:x.details.date,town:x.details.location,venue:x.details.venue})),
-      updatedRows:plan.update.map(x=>x.row)};
+      updatedRows:plan.update.map(x=>x.row),updatedDetails};
   }finally{lock.releaseLock();}
 }
 function awProgNotify_(result){
   if(!result.published&&!result.updated)return;
   const lines=[
-    result.published+' new gig(s) published and '+result.updated+' existing listing(s) updated.',
-    'New: '+(result.newRows.length?result.newRows.map(x=>
-      x.date+' · '+x.town+' · '+x.venue+' (public row '+x.row+')').join('; '):'none'),
-    'Updated public rows: '+(result.updatedRows.length?result.updatedRows.join(', '):'none'),
-    'Listings only use approved private details. Missing event links remain Info soon.'
+    result.published+' new gig(s) published and '+result.updated+' existing listing(s) updated.'
   ];
+  if(result.newRows.length){
+    lines.push('','NEW LISTINGS');
+    for(const gig of result.newRows)
+      lines.push('- '+gig.date+' · '+gig.town+' · '+gig.venue+
+        ' (public row '+gig.row+')');
+  }
+  if(result.updatedDetails&&result.updatedDetails.length){
+    lines.push('','UPDATED LISTINGS');
+    for(const gig of result.updatedDetails){
+      lines.push('- '+gig.date+' · '+gig.venue+' ('+gig.town+
+        ', public row '+gig.row+')');
+      for(const detail of gig.changes)
+        lines.push('    '+detail);
+    }
+  }else if(result.updatedRows&&result.updatedRows.length){
+    // Compatibility if a stale caller did not provide detailed changes.
+    lines.push('','Updated public rows: '+result.updatedRows.join(', '));
+  }
+  lines.push('','Missing unverified ticket links remain Info soon.');
   awAlertSend_('RockCentral: gigs published or updated',lines);
 }
 function anthonyProgressive15MinuteWorkflow(){
@@ -400,6 +443,29 @@ function testAnthonyProgressiveRules(){
     differentTownAllowed:!awProgPossibleCollision_(base,{
       ...proposal,location:'Preston'}),
     noDateMove:awProgMerge_(base,{...proposal,date:'2026-12-06'},fake).state==='HOLD',
+    addressChangeNamedInEmail:(()=>{
+      const p={...base};
+      const changed={row:30,values:[p.date,p.time,p.location,p.venue,
+        'The Assembly Rooms, Hill Top, Bolsover, S44 6NG',p.url,
+        p.status,p.role,p.notes,p.key]};
+      return awProgPublicUpdateDetails_(p,changed).changes
+        .some(x=>x.includes('Address added: The Assembly Rooms'));
+    })(),
+    ticketUpgradeNamedInEmail:(()=>{
+      const changed={row:82,values:[base.date,'20:00',base.location,
+        'The Ribchester Arms','Blackburn Road, Ribchester, PR3 3ZP',
+        'https://tickets.example.com/a','Live','MC','A public show',base.key]};
+      const summary=awProgPublicUpdateDetails_(base,changed);
+      return summary.changes.some(x=>x.includes('Ticket link added:'))&&
+        summary.changes.some(x=>x.includes('Ticket status: Info soon -> Live'));
+    })(),
+    noPrivateCalendarDetailsInEmail:(()=>{
+      const p={...base,notes:'private fee £300'};
+      const changed={row:3,values:[base.date,base.time,base.location,
+        base.venue,base.address,base.url,base.status,base.role,
+        'a public description',base.key]};
+      return !JSON.stringify(awProgPublicUpdateDetails_(p,changed)).includes('£300');
+    })(),
     newRolesStaySingle:awV05Role_('Gig Ribchester MC and opener')==='',
     deliberatelyHiddenStaysHidden:awProgMerge_({...base,status:'Hidden',venue:proposal.venue},
       proposal,fake).state==='UPDATE' &&
