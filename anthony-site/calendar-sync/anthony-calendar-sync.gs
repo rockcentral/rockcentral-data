@@ -1,6 +1,6 @@
 /**
  * ANTHONY WILLIAMS: PRIVATE GIG CALENDAR SYNC
- * VERSION: 0.2.6 (11 November 2026)
+ * VERSION: 0.2.9 (12 November 2026)
  * Changes: private descriptions and states; preserve prior approvals on first migration.
  * Every run logs the version. If the log shows another version, the
  * latest script has not been pasted/saved in Apps Script.
@@ -14,7 +14,7 @@
  * Run testAnthonyCalendarSyncRules, then previewAnthonyCalendarSync,
  * then syncAnthonyCalendarToRegister to import privately.
  */
-const ANTHONY_SYNC_VERSION = '0.2.6';
+const ANTHONY_SYNC_VERSION = '0.2.9';
 
 const AW_SYNC = Object.freeze({
   calendarId: 'c_0e0019db66d2f8790454b5a421ca31d9f8c938902045761a39e1679dfd87b9fc@group.calendar.google.com',
@@ -97,6 +97,8 @@ function awCombinedBooking_(event) {
 }
 function awClassify_(event) {
   const title = (event.title || '').toLowerCase();
+  if (/^ram comedy festival$/i.test(title.trim())) return 'skip';
+  if (/^gig\s*[-:]/.test(title)) return 'gig';
   if (!title || /\btest\b|\bholiday\b|\baway\b|\btravel\b|\bdarts\b|\bbirthday\b|\bcar service\b|\bdoctor\b|\bdentist\b|\b(?:xmas|christmas)\s+party\b|\bmeeting\b|\bday off\b|\bopen day\b|\bdawn\s+mc\b|\bdates placeholder\b|\bplaceholder\b/.test(title))
     return 'skip';
   if (/^(?:gig|hold|cancelled)\s*[-:]/.test(title))return 'gig';
@@ -135,27 +137,61 @@ function awReadRegister_() {
  * deletes, restores and multiple distinct bookings on the same date.
  * Recurring events sharing an iCalUID are withheld until manually reviewed.
  */
+/** Compare known Google Calendar iCalUID suffix variants without rewriting saved keys. */
+function awCanonicalEventId_(id) {
+  return String(id || '').trim().replace(/@google\.com$/i, '');
+}
+function awCanonicalPerformanceKey_(key) {
+  const m=String(key || '').match(/^(.*)(\|slot:\d+)$/);
+  return m ? awCanonicalEventId_(m[1])+m[2] : String(key || '').trim();
+}
+
 function awPlan_(events, stored, fromIso, toIso) {
   const source = events.filter(e => awClassify_(e) === 'gig' && e.id);
   const idCount = {};
-  source.forEach(e => { idCount[e.id] = (idCount[e.id] || 0) + 1; });
+  source.forEach(e => { const id=awCanonicalEventId_(e.id); idCount[id]=(idCount[id]||0)+1; });
   const ambiguousIds = new Set(Object.keys(idCount).filter(id => idCount[id] > 1));
   const combinedEvents = source.filter(awCombinedBooking_);
-  const combinedIds = new Set(combinedEvents.map(e => e.id));
-  const existing = new Map(stored.map(x => [x.v[AW_COL.key],x]));
+  const combinedIds = new Set(combinedEvents.map(e => awCanonicalEventId_(e.id)));
+  const existing = new Map();
+  const duplicateStoredKeys = new Set();
+  stored.filter(x => x.v[AW_COL.review] !== 'Ignored').forEach(x => {
+    const canonical=awCanonicalPerformanceKey_(x.v[AW_COL.key]);
+    if(existing.has(canonical))duplicateStoredKeys.add(canonical);
+    else existing.set(canonical,x);
+  });
+  // Only reconcile confirmed Elements promoter dates; never generic same-day matches.
+  const elementsAliases = new Map();
+  stored.filter(x => x.v[AW_COL.review] !== 'Ignored').forEach(x => {
+    const v=x.v, title=String(v[AW_COL.title]||'').toLowerCase();
+    if ((v[AW_COL.date]==='2027-02-28'||v[AW_COL.date]==='2027-06-27') &&
+        /^gig\s*[-:]\s*elements,?\s*ripley\b/.test(title) &&
+        /dawn\s+mc/.test(title) &&
+        String(v[AW_COL.key]||'').endsWith('|slot:elements'))
+      elementsAliases.set(v[AW_COL.date],x);
+  });
   const seen = new Set();
   const operations = [];
   const stamp = awStamp_();
   source.forEach(e => {
-    if (ambiguousIds.has(e.id) || combinedIds.has(e.id)) return;
+    if (ambiguousIds.has(awCanonicalEventId_(e.id)) ||
+        combinedIds.has(awCanonicalEventId_(e.id))) return;
     const dates = awDates_(e);
     dates.forEach((date,slot) => {
       // A multi-day calendar event may start before today.
       // Only sync performances within the current/future window.
       if (date < fromIso || date >= toIso) return;
       const key = e.id + '|slot:' + (slot+1);
-      seen.add(key);
-      const old = existing.get(key);
+      const canonicalKey=awCanonicalPerformanceKey_(key);
+      seen.add(canonicalKey);
+      // Never choose between two existing register rows representing one event.
+      if (duplicateStoredKeys.has(canonicalKey)) return;
+      const isElements = /^gig\s*[-:]\s*elements,?\s*ripley\b/i.test(e.title) &&
+        /dawn\s+mc/i.test(e.title) &&
+        (date==='2027-02-28'||date==='2027-06-27');
+      const alias = isElements ? elementsAliases.get(date) : null;
+      const old = existing.get(canonicalKey) || alias;
+      if (alias) seen.add(awCanonicalPerformanceKey_(alias.v[AW_COL.key]));
       if (!old) {
         const value = Array(AW_SYNC.columns).fill('');
         value[AW_COL.key] = key;
@@ -192,8 +228,21 @@ function awPlan_(events, stored, fromIso, toIso) {
         v[AW_COL.sync] !== (awBookingState_(e)==='Confirmed'?'Active':awBookingState_(e));
       if (sourceChanged) operations.push({
         action:dateChanged?'REVIEW_MOVED':'UPDATE_SOURCE',sheetRow:old.sheetRow,
-        key, dateBefore:v[AW_COL.date],dateAfter:date,title:e.title,
-        event:e, dateChanged,
+        key:old.v[AW_COL.key], dateBefore:v[AW_COL.date],dateAfter:date,title:e.title,
+        event:e, dateChanged, elementsAliasReconciled:!!alias,
+        verifiedResearchOnly:!dateChanged &&
+          v[AW_COL.endDate]===e.endDate && v[AW_COL.title]===e.title &&
+          v[AW_COL.time]===e.time &&
+          v[AW_COL.allDay]===(e.allDay?'Yes':'No') &&
+          awBookingState_(e)==='Confirmed' &&
+          (v[AW_COL.sync]==='Active'||v[AW_COL.sync]==='Missing from calendar') &&
+          (e.description||'').includes('[ROCKCENTRAL_RESEARCH_VERIFIED]'),
+        cosmeticOnly: !dateChanged &&
+          v[AW_COL.endDate]===e.endDate &&
+          v[AW_COL.time]===e.time &&
+          v[AW_COL.allDay]===(e.allDay?'Yes':'No') &&
+          (v[AW_COL.bookingState]==='Confirmed' || !v[AW_COL.bookingState]) &&
+          awBookingState_(e)==='Confirmed',
         migrationOnly:!dateChanged && !v[AW_COL.bookingState] && !v[AW_COL.description] &&
           v[AW_COL.endDate]===e.endDate && v[AW_COL.title]===e.title &&
           v[AW_COL.location]===e.location && v[AW_COL.time]===e.time &&
@@ -204,8 +253,14 @@ function awPlan_(events, stored, fromIso, toIso) {
   });
   stored.forEach(old => {
     const v = old.v, id = v[AW_COL.id], date = v[AW_COL.date];
-    if (date < fromIso || date >= toIso || ambiguousIds.has(id) || combinedIds.has(id)) return;
-    if (!seen.has(v[AW_COL.key]) && v[AW_COL.sync] !== 'Missing from calendar')
+    if (v[AW_COL.review] === 'Ignored') return;
+    const canonicalId=awCanonicalEventId_(id);
+    const canonicalKey=awCanonicalPerformanceKey_(v[AW_COL.key]);
+    if (date < fromIso || date >= toIso || ambiguousIds.has(canonicalId) ||
+        combinedIds.has(canonicalId) || duplicateStoredKeys.has(canonicalKey)) return;
+    // A calendar event with an unrecognised title is not evidence of deletion.
+    if (events.some(e => awCanonicalEventId_(e.id)===canonicalId)) return;
+    if (!seen.has(canonicalKey) && v[AW_COL.sync] !== 'Missing from calendar')
       operations.push({
         action:'FLAG_MISSING',sheetRow:old.sheetRow,
         key:v[AW_COL.key],date,title:v[AW_COL.title]
@@ -217,6 +272,7 @@ function awPlan_(events, stored, fromIso, toIso) {
     mode:'PREVIEW_OR_PRIVATE_IMPORT',calendarEventsRead:events.length,
     classifiedGigEvents:source.length, uncertainCalendarEvents:unknown,
     recurringUidConflicts:[...ambiguousIds],
+    duplicateStoredPerformanceKeys:[...duplicateStoredKeys],
     combinedBookingsForReview:combinedEvents.map(e=>({date:e.date,title:e.title})),
     actions:operations,
     note:'No action ever writes public website fields or the public feed.'
@@ -246,6 +302,7 @@ function previewAnthonyCalendarSync() {
     uncertainEventCount:p.uncertainCalendarEvents.length,
     uncertainEventSample:p.uncertainCalendarEvents.slice(0,12),
     recurringUidConflicts:p.recurringUidConflicts,
+    duplicateStoredPerformanceKeys:p.duplicateStoredPerformanceKeys,
     combinedBookingsForReview:p.combinedBookingsForReview,
     spreadsheetWrites:0,websiteWrites:0,calendarWrites:0
   };
@@ -286,11 +343,26 @@ function syncAnthonyCalendarToRegister() {
         sheet.getRange(row,AW_COL.missingSince+1).clearContent();
         if(item.dateChanged) sheet.getRange(row,AW_COL.review+1).setValue('Date changed');
         else if(item.action==='UPDATE_SOURCE') {
+          // A title, location or description edit alone does not invalidate
+          // an already-approved booking when its date, time and state agree.
+          const prior = sheet.getRange(row,AW_COL.review+1).getDisplayValue();
+          const bookingStillConfirmed = awBookingState_(e)==='Confirmed';
+          const timingUnchanged = item.cosmeticOnly;
+          if (item.elementsAliasReconciled && bookingStillConfirmed && !item.dateChanged &&
+              sheet.getRange(row,AW_COL.publish+1).getDisplayValue()==='Yes') {
+            sheet.getRange(row,AW_COL.review+1).setValue('Approved');
+          } else if (prior==='Approved' && bookingStillConfirmed && timingUnchanged) {
+            // Preserve prior editorial approval for cosmetic metadata changes.
+          } else {
           // One-off first import of new private V/W columns should not
           // revoke existing reviewed public details. Genuine later
           // changes still require renewed review.
-          if(!item.migrationOnly)
+          if(!item.migrationOnly &&
+             !(item.verifiedResearchOnly &&
+               sheet.getRange(row,AW_COL.review+1).getDisplayValue()==='Approved' &&
+               sheet.getRange(row,AW_COL.publish+1).getDisplayValue()==='Yes'))
             sheet.getRange(row,AW_COL.review+1).setValue('Needs review');
+          }
         }
       }
     });
@@ -331,6 +403,30 @@ function testAnthonyCalendarSyncRules() {
     addPrivateOnly:first.action==='ADD_PRIVATE'&&
       first.value[AW_COL.publish]==='No'&&first.value[AW_COL.ticketUrl]==='',
     repeatNoDuplicate:same.length===0,
+    googleSuffixMatchesExisting:(()=>{
+      const old={sheetRow:2,v:[...first.value]};
+      old.v[AW_COL.key]='one@google.com|slot:1';
+      old.v[AW_COL.id]='one@google.com';
+      return p([event('one','2026-11-18')],[old]).actions.length===0;
+    })(),
+    googleSuffixDoesNotFlagMissing:(()=>{
+      const old={sheetRow:2,v:[...first.value]};
+      old.v[AW_COL.key]='one@google.com|slot:1';
+      old.v[AW_COL.id]='one@google.com';
+      return p([event('one','2026-11-18')],[old]).actions.length===0;
+    })(),
+    duplicateStoredVariantsHeld:(()=>{
+      const a={sheetRow:2,v:[...first.value]};
+      const b={sheetRow:3,v:[...first.value]};
+      b.v[AW_COL.key]='one@google.com|slot:1';
+      b.v[AW_COL.id]='one@google.com';
+      const plan=p([event('one','2026-11-18')],[a,b]);
+      return plan.actions.length===0 && plan.duplicateStoredPerformanceKeys.length===1;
+    })(),
+    unclassifiedEventDoesNotMarkMissing:(()=>{
+      const e=event('one','2026-11-18','Personal appointment');
+      return p([e],[existing]).actions.length===0;
+    })(),
     moveSameKey:moved.length===1&&moved[0].action==='REVIEW_MOVED'&&
       moved[0].key===first.key,
     deletionFlagNotDelete:missing.length===1&&missing[0].action==='FLAG_MISSING',
@@ -342,6 +438,15 @@ function testAnthonyCalendarSyncRules() {
     genuineUnknownFormatRecognised:p([event('short','2026-11-18','20 for Marty Riley in Hudds')],empty).actions.length===1,
     partyExcluded:p([event('party','2026-11-18','Funhouse Xmas party')],empty).actions.length===0,
     placeholderExcluded:p([event('placeholder','2026-11-18','ICF Leicester dates placeholder')],empty).actions.length===0,
+    ramPlaceholderExcluded:p([event('ram','2027-05-27','Ram Comedy Festival')],empty).actions.length===0,
+    elementsAliasNoDuplicate:(()=>{
+      const e=event('CSVConvert999','2027-02-28','GIG - Elements, Ripley Dawn MC');
+      const v=[...first.value];v[AW_COL.key]='legacy|slot:elements';
+      v[AW_COL.id]='legacy';v[AW_COL.date]='2027-02-28';
+      v[AW_COL.title]='GIG - Elements, Ripley Dawn MC';
+      const plan=p([e],[{sheetRow:63,v}]);
+      return !plan.actions.some(a=>a.action==='ADD_PRIVATE'||a.action==='FLAG_MISSING');
+    })(),
     blueMonkeySingleGig:p([event('blue','2027-02-28','GIG - Blue Monkey / MC')],empty).actions.length===1,
     pastGigNotImported:awPlan_([event('old','2026-11-05')],empty,'2026-11-11','2027-12-01').actions.length===0,
     todayGigIncluded:awPlan_([event('today','2026-11-11')],empty,'2026-11-11','2027-12-01').actions.length===1,
