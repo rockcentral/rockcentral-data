@@ -201,6 +201,10 @@ footer{background:#103456;border-top-color:#34658d}
  .contact-action{border-color:#a8c8e8}
 }
 @media(prefers-reduced-motion:reduce){.hamburger span{transition:none}}
+
+/* Responsive embedded performance video */
+.video-frame{width:100%;aspect-ratio:16/9;position:relative;overflow:hidden;background:#06172b}
+.video-frame iframe{display:block;width:100%;height:100%;border:0}
 </style>
 </head>
 <body>
@@ -260,7 +264,7 @@ footer{background:#103456;border-top-color:#34658d}
 <p>See Richard's comedy performances and videos on his YouTube channel.</p>
 <a class="btn btn--white" href="https://www.youtube.com/@richardmorton3519" target="_blank" rel="noopener noreferrer">Richard's YouTube channel ↗</a>
 </div>
-<a class="watch-art" href="https://www.youtube.com/@richardmorton3519" target="_blank" rel="noopener noreferrer" aria-label="Open Richard Morton's YouTube channel"><span aria-hidden="true">▶</span></a>
+<div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/68TRpArZ27I" title="Richard Morton stand-up comedy video" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
 </div>
 </section>
 <section class="section music-section" id="music" aria-labelledby="music-title">
