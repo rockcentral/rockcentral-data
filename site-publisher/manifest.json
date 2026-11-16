@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 120,
+  "revision": 121,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -184,7 +184,19 @@
     },
     {
       "path": "Richard/index.html",
-      "sha256": "557a6532dd7e71b2ac71fbcf7872a186c072de9c14923af31618c70bcc189aa5"
+      "sha256": "1f075c01654e54a12fe11cd923f588e029d311c604f6d335c7de27883db87e8d"
+    },
+    {
+      "path": "Richard/assets/panic-brothers.webp",
+      "sha256": "c6a35f5f973241d55a32f983bc83ddf59446459ffe46c30ea3f7d7abfbac9981"
+    },
+    {
+      "path": "Richard/assets/theme-that-never-was.webp",
+      "sha256": "738be35b3103d64d5c6e285ccb8a551845899bdf7f476ec7ec01a2afa64a116b"
+    },
+    {
+      "path": "Richard/assets/sequel-that-never-was.webp",
+      "sha256": "1753c0e76fe2230b504291083464660d99530b20856bcd417b01059de9db318d"
     }
   ]
 }
