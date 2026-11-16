@@ -8,7 +8,7 @@
 <meta name="description" content="Richard Morton is an award-winning stand-up comedian, musician and songwriter. Watch Richard, read his reviews, find live dates and get in touch about bookings.">
 <title>Richard Morton | Stand-up Comedian &amp; Musician</title>
 <style>
-:root{--ink:#171717;--muted:#5d5d5d;--paper:#fff;--soft:#f5f5f4;--line:#e2e2e0;--accent:#2463a3;--accent-hover:#174a80;--max:1160px}
+:root{--ink:#171717;--muted:#5d5d5d;--paper:#fff;--soft:#f5f5f4;--line:#e2e2e0;--accent:#2468b3;--accent-hover:#174a80;--max:1160px}
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:95px}
 body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.58 Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
@@ -143,6 +143,64 @@ footer{background:#101010;color:#cfcfcf;border-top:1px solid #333}
  .album h3{margin-top:0}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.watch-art{transition:none}}
+
+/* Blue-led editorial design. On mobile, Richard's portrait is the first thing visible. */
+.wordmark{color:var(--accent-hover)}
+nav .nav-button{background:none;color:var(--accent-hover);border:0;border-bottom:2px solid var(--accent);padding:4px 0}
+nav .nav-button:hover{background:none;color:var(--accent);border-color:var(--accent-hover)}
+.menu-toggle{border:0;background:transparent;width:50px;height:50px;padding:10px;align-items:center;justify-content:center;cursor:pointer}
+.hamburger{width:25px;display:flex;flex-direction:column;gap:5px;align-items:stretch}
+.hamburger span{height:3px;width:100%;background:var(--ink);border-radius:2px;display:block;transition:transform .2s,opacity .2s}
+.menu-toggle[aria-expanded="true"] .hamburger span:first-child{transform:translateY(8px) rotate(45deg)}
+.menu-toggle[aria-expanded="true"] .hamburger span:nth-child(2){opacity:0}
+.menu-toggle[aria-expanded="true"] .hamburger span:last-child{transform:translateY(-8px) rotate(-45deg)}
+.hero{padding:0;background:var(--accent);color:#fff}
+.hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,.82fr);align-items:stretch;gap:0}
+.hero-body{padding:clamp(65px,7vw,105px) clamp(32px,5vw,78px) clamp(65px,7vw,105px) 0;display:flex;flex-direction:column;justify-content:center;min-width:0}
+.hero h1{font-size:clamp(68px,8.35vw,122px);color:#fff;margin-bottom:32px}
+.hero-role{color:#fff;font-size:clamp(21px,2.25vw,29px);max-width:24ch}
+.hero-copy{color:#e8f2ff;line-height:1.47;font-size:clamp(17px,1.6vw,20px);max-width:35ch;margin:0}
+.hero-portrait{aspect-ratio:auto;min-height:555px;height:auto;max-width:none;margin:0;background:#171717}
+.hero-portrait img{height:100%;width:100%;object-fit:cover;object-position:center 26%}
+.reviews{background:#eaf3fd}
+.review{background:transparent;border-top:3px solid var(--accent);min-height:235px;padding:25px 22px 10px 0}
+.review cite{color:#315f88}
+.about-text a{color:var(--accent-hover)}
+.watch{background:#123b67}
+.watch p{color:#e2eaf3}
+.watch-art{background:var(--accent);border-color:#93bce5}
+.watch-art:hover{background:var(--accent-hover)}
+.dates{background:#f0f5fb}
+.date-empty{border-left:5px solid var(--accent)}
+.contact{background:#1e5d9f}
+.contact p{color:#e7f0fa}
+.contact-action{border-color:#b5d2ee}
+.contact-note{color:#e0edf9!important}
+footer{background:#103456;border-top-color:#34658d}
+@media(max-width:850px){
+ .hero{padding:0}
+ .hero-grid{gap:0}
+ .hero-body{padding:55px 25px 55px 0}
+ .hero h1{font-size:clamp(60px,8.7vw,91px)}
+ .hero-portrait{min-height:475px}
+}
+@media(max-width:680px){
+ .menu-toggle{display:flex}
+ nav .nav-button{color:var(--accent-hover);border:0;padding:10px 5px;text-align:left}
+ nav .nav-button:hover{border:0}
+ .hero{padding:0}
+ .hero .wrap{width:100%}
+ .hero-grid{display:flex;flex-direction:column;gap:0}
+ .hero-portrait{order:-1;width:100%;height:clamp(295px,77vw,430px);min-height:0;max-width:none;aspect-ratio:auto}
+ .hero-portrait img{width:100%;height:100%;object-fit:cover;object-position:center 25%}
+ .hero-body{width:100%;padding:28px 22px 38px}
+ .hero h1{font-size:clamp(61px,15.1vw,92px);margin-bottom:23px}
+ .hero-role{font-size:21px;line-height:1.25;margin-bottom:14px}
+ .hero-copy{font-size:16.5px;line-height:1.48;max-width:40ch}
+ .review{min-height:0;padding:20px 12px 10px 0}
+ .contact-action{border-color:#a8c8e8}
+}
+@media(prefers-reduced-motion:reduce){.hamburger span{transition:none}}
 </style>
 </head>
 <body>
@@ -150,7 +208,7 @@ footer{background:#101010;color:#cfcfcf;border-top:1px solid #333}
 <header>
 <div class="wrap topbar">
 <a href="#top" class="wordmark">RICHARD MORTON</a>
-<button class="menu-toggle" aria-expanded="false" aria-controls="site-nav" type="button">Menu</button>
+<button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav" type="button"><span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span></button>
 <nav id="site-nav" aria-label="Main navigation">
 <a href="#about">About</a><a href="#reviews">Reviews</a><a href="#watch">Watch</a><a href="#dates">Live dates</a><a href="#contact" class="nav-button">Get in touch</a>
 </nav>
@@ -162,19 +220,15 @@ footer{background:#101010;color:#cfcfcf;border-top:1px solid #333}
 <div class="hero-body">
 <h1 id="hero-title"><span>Richard</span><span>Morton.</span></h1>
 <p class="hero-role">Stand-up comedian. Musician. Songwriter.</p>
-<p class="hero-copy">Razor-sharp observations, infectious energy and hilarious original comedy songs.</p>
-<div class="actions"><a class="btn btn--dark" href="#watch">Watch Richard ↗</a><a class="btn btn--light" href="#contact">Booking enquiries</a></div>
+<p class="hero-copy">Time Out Comedy Award winner. Razor-sharp observations, infectious energy and hilarious original comedy songs.</p>
+
 </div>
 <figure class="hero-portrait">
 <img src="data:image/webp;base64,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" width="420" height="654" alt="Richard Morton in a black leather jacket, smiling at the camera" fetchpriority="high">
 </figure>
 </div>
 </section>
-<div class="proof" aria-label="Career highlights"><div class="wrap">
-<div class="proof-item"><strong>Time Out Comedy Award winner</strong><span>1992</span></div>
-<div class="proof-item"><strong>Founder member of The Cutting Edge</strong><span>The Comedy Store</span></div>
-<div class="proof-item"><strong>Television and BBC radio</strong><span>Never Mind the Buzzcocks · Radio 4</span></div>
-</div></div>
+
 
 <section class="section about-section" id="about" aria-labelledby="about-title">
 <div class="wrap">
@@ -237,7 +291,7 @@ footer{background:#101010;color:#cfcfcf;border-top:1px solid #333}
 <script>
 (function(){
 var button=document.querySelector('.menu-toggle'),menu=document.querySelector('#site-nav');
-if(button&&menu){button.addEventListener('click',function(){var open=menu.classList.toggle('is-open');button.setAttribute('aria-expanded',String(open));button.textContent=open?'Close':'Menu';});menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('is-open');button.setAttribute('aria-expanded','false');button.textContent='Menu';});});}
+if(button&&menu){button.addEventListener('click',function(){var open=menu.classList.toggle('is-open');button.setAttribute('aria-expanded',String(open));button.setAttribute('aria-label',open?'Close menu':'Open menu');});menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('is-open');button.setAttribute('aria-expanded','false');button.setAttribute('aria-label','Open menu');});});}
 var y=document.getElementById('year');if(y)y.textContent=String(new Date().getFullYear());
 })();
 </script>
