@@ -43,8 +43,6 @@
     .menu-toggle { display: none; background: transparent; color: var(--ink); border: 1px solid var(--line); padding: .55rem .8rem; border-radius: 6px; font: inherit; font-weight: 700; }
     .hero { padding: clamp(3rem, 7vw, 7rem) 0 5rem; overflow: hidden; }
     .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: clamp(2rem, 5vw, 6rem); }
-    .stamp { display: inline-flex; gap: .58rem; align-items: center; font-size: .74rem; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
-    .stamp::before { content: ''; display: inline-block; width: 25px; height: 2px; background: var(--orange); }
     h1, h2, h3, p { margin-top: 0; }
     h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(5rem, 10.5vw, 10.4rem); line-height: .79; letter-spacing: -.085em; margin: 1.8rem 0 2rem; }
     h1 span { display: block; }
@@ -61,23 +59,15 @@
     .cover-art::before { content: ''; position: absolute; inset: 5% 0 0 8%; background: var(--mustard); transform: rotate(7deg); box-shadow: 20px 24px 0 rgba(36,60,75,.10); z-index: -2; }
     .poster { position: relative; width: 87%; aspect-ratio: .82; background: var(--orange); color: var(--paper-light); padding: clamp(1.2rem, 3vw, 2.2rem); transform: rotate(-4deg); border: 11px solid var(--paper-light); box-shadow: 0 26px 30px rgba(35,38,32,.20); overflow: hidden; }
     .poster::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .22; background: repeating-linear-gradient(0deg, transparent 0 7px, rgba(22,35,37,.2) 8px 9px); }
-    .poster-kicker { position: relative; z-index: 1; display: flex; justify-content: space-between; gap: .5rem; font-size: clamp(.55rem, 1.2vw, .82rem); font-weight: 700; letter-spacing: .09em; text-transform: uppercase; border-bottom: 2px solid currentColor; padding-bottom: .75rem; }
     .poster-title { position: relative; z-index: 1; margin: 1.1rem 0 0; font-family: var(--serif); font-size: clamp(2.6rem, 5.25vw, 5.5rem); line-height: .86; letter-spacing: -.07em; font-weight: 700; }
     .poster-title em { display: block; font-weight: 400; }
     .vinyl { position: absolute; width: 100%; aspect-ratio: 1; border-radius: 50%; background: repeating-radial-gradient(circle at center, #1f3441 0 3px, #2d4450 4px 5px, #1e333f 6px 8px); top: 43%; left: 22%; box-shadow: -12px -12px 0 rgba(0,0,0,.12), inset 0 0 0 2px #162a36, 0 0 0 1px #182e38; }
     .vinyl::before { content: ''; position: absolute; width: 33%; aspect-ratio: 1; border-radius: 50%; left: 33.5%; top: 33.5%; background: var(--mustard); border: 3px solid #f6dfa0; box-shadow: inset 0 0 0 2px #b98b3e; }
     .vinyl::after { content: ''; position: absolute; width: 2.4%; aspect-ratio: 1; border-radius: 50%; left: 48.8%; top: 48.8%; background: var(--ink); }
     .vinyl-label { position: absolute; top: 61%; left: 48%; width: 24%; text-align: center; transform: rotate(-12deg); font-size: clamp(.62rem, 1vw, .9rem); font-family: var(--serif); font-weight: 700; line-height: 1.05; z-index: 2; color: var(--ink); }
-    .poster-bottom { position: absolute; bottom: 1.8rem; left: 1.8rem; z-index: 2; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; font-size: clamp(.7rem, 1.3vw, 1rem); }
-    .disc-badge { position: absolute; right: -1%; bottom: 7%; width: 114px; height: 114px; border: 2px solid var(--ink); border-radius: 50%; background: var(--paper-light); z-index: 2; display: grid; place-items: center; text-align: center; transform: rotate(13deg); font-weight: 800; line-height: 1.1; font-size: .78rem; padding: .5rem; }
-    .ribbon { background: var(--ink); color: var(--paper-light); overflow: hidden; }
-    .ribbon-inner { min-height: 76px; display: flex; justify-content: space-between; gap: 1.4rem; align-items: center; }
-    .ribbon p { margin: 0; font-family: var(--serif); font-size: clamp(1rem, 2vw, 1.48rem); }
-    .ribbon p:last-child { color: var(--mustard); font-size: .83rem; font-family: var(--sans); font-weight: 700; text-align: right; }
     section { scroll-margin-top: 2rem; }
     .section-space { padding-block: clamp(4.5rem, 8vw, 8.5rem); }
     .section-header { margin-bottom: 3rem; }
-    .eyebrow { font-size: .78rem; font-weight: 700; letter-spacing: .08em; color: var(--orange-deep); margin-bottom: .75rem; }
     h2 { font: 400 clamp(2.8rem, 6.1vw, 5.5rem)/.98 var(--serif); letter-spacing: -.065em; margin-bottom: .9rem; }
     h2 em { color: var(--orange); font-weight: 400; }
     .intro-section { border-bottom: 1px solid var(--line); }
@@ -111,9 +101,7 @@
     .record-text { position: absolute; z-index: 1; color: var(--ink); text-align: center; font: 700 clamp(.82rem, 1.6vw, 1.35rem)/1.06 var(--serif); max-width: 22%; }
     .music-card h3 { font: 400 clamp(1.4rem, 2vw, 2rem)/1.1 var(--serif); margin: 1.25rem 0 .55rem; letter-spacing: -.035em; }
     .music-card p { font-size: .9rem; color: var(--ink-soft); margin-bottom: .4rem; }
-    .type-tag { font-size: .69rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; color: var(--orange-deep); margin-top: 1rem; }
     .listen-section { background: var(--ink); color: var(--paper-light); }
-    .listen-section .eyebrow { color: var(--mustard); }
     .listen-section h2 em { color: var(--mustard); }
     .listen-section .section-lead { max-width: 55ch; opacity: .83; }
     .media-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 1.5rem; margin-top: 3.2rem; }
@@ -133,7 +121,7 @@
     .appearance-list strong { font: 400 clamp(1.17rem, 2vw, 1.45rem)/1.2 var(--serif); }
     .appearance-list span { color: var(--ink-soft); font-size: .82rem; text-align: right; }
     .dates-section { background: var(--orange); color: var(--paper-light); }
-    .dates-section .eyebrow, .dates-section h2 em { color: #ffe1a5; }
+    .dates-section h2 em { color: #ffe1a5; }
     .dates-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
     .dates-panel { padding: 3rem; border: 1px solid rgba(255,255,255,.65); position: relative; }
     .dates-panel::before, .dates-panel::after { content: ''; width: 16px; height: 16px; border-radius: 50%; background: var(--orange); border: 1px solid rgba(255,255,255,.65); position: absolute; top: calc(50% - 8px); }
@@ -181,10 +169,6 @@
       .cover-art { min-height: 390px; }
       .poster { width: 83%; }
       .poster-title { font-size: clamp(2.5rem, 10vw, 4.6rem); }
-      .poster-bottom { bottom: 1.1rem; left: 1.1rem; font-size: .7rem; }
-      .disc-badge { width: 82px; height: 82px; font-size: .6rem; }
-      .ribbon-inner { min-height: 105px; flex-direction: column; align-items: start; justify-content: center; gap: .5rem; }
-      .ribbon p:last-child { text-align: left; }
       .credit-strip, .music-grid, .quote-grid, .media-grid { grid-template-columns: 1fr; }
       .quote-grid blockquote:last-child { border-left: 0; padding: 2rem 0 0; border-top: 1px solid rgba(36,60,75,.4); }
       .record-image { height: 340px; }
@@ -218,32 +202,30 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="wrap hero-grid">
         <div>
-          <div class="stamp">An original in more ways than one</div>
+          
           <h1 id="hero-title"><span>Richard</span><span>Morton.</span></h1>
           <p class="hero-intro">Stand-up. Songs. Stories. A very good reason to bring a guitar.</p>
           <p class="hero-copy">Award-winning comedian, musician and songwriter. From the London Comedy Store to concert stages and radio studios, Richard has spent a career finding the funny in just about everything.</p>
           <div class="hero-actions">
             <a class="text-link" href="#about">Get to know Richard <span class="arrow" aria-hidden="true">↗</span></a>
-            <span class="small-info">1992 Time Out Comedy Award winner</span>
+            
           </div>
         </div>
         <div class="cover-art" aria-label="Retro illustrated record sleeve featuring a vinyl disc; temporary artwork until approved photographs arrive" role="img">
           <div class="poster" aria-hidden="true">
-            <div class="poster-kicker"><span>Comedy · Music</span><span>In fine form</span></div>
+            
             <div class="poster-title">A little<br><em>bit of</em><br>everything</div>
             <div class="vinyl"></div><div class="vinyl-label">RM<br>33⅓</div>
-            <div class="poster-bottom">Richard Morton</div>
+            
           </div>
-          <div class="disc-badge" aria-hidden="true">Live<br>and<br>laughing</div>
+          
         </div>
       </div>
     </section>
-    <div class="ribbon">
-      <div class="wrap ribbon-inner"><p>Words, music, and a few well-timed surprises.</p><p>Comedian / songwriter / musician</p></div>
-    </div>
+    
     <section class="section-space intro-section" id="about" aria-labelledby="about-heading">
       <div class="wrap intro-grid">
-        <div class="section-header"><p class="eyebrow">The story so far</p><h2 id="about-heading">A proper <em>all-rounder.</em></h2></div>
+        <div class="section-header"><h2 id="about-heading">A proper <em>all-rounder.</em></h2></div>
         <div class="intro-text">
           <p>Richard Morton has never been easy to put in just one box. Stand-up, music, radio, television, songwriting. He has always found room for another idea.</p>
           <p>Part of the British alternative comedy scene from its formative years, Richard was a founder member of The Comedy Store's Cutting Edge and won a Time Out Comedy Award in 1992.</p>
@@ -265,19 +247,19 @@
     <section class="section-space music-section" id="music" aria-labelledby="music-heading">
       <div class="wrap">
         <div class="section-header music-heading">
-          <div><p class="eyebrow">Beyond the microphone</p><h2 id="music-heading">The musical <em>side.</em></h2></div>
+          <div><h2 id="music-heading">The musical <em>side.</em></h2></div>
           <p>Comedy and music have been intertwined throughout Richard's career, from close harmonies to gloriously imagined soundtrack themes.</p>
         </div>
         <div class="music-grid">
-          <article class="music-card"><div class="record-image record-one" aria-hidden="true"><span class="record-text">The<br>Panic<br>Brothers</span></div><p class="type-tag">The early years and reunions</p><h3>The Panic Brothers</h3><p>With Reg Meuross, Richard was one half of the close-harmony comic music duo that made its mark on the London circuit and Edinburgh Fringe.</p></article>
-          <article class="music-card"><div class="record-image record-two" aria-hidden="true"><span class="record-text">The<br>Theme</span></div><p class="type-tag">The Rich Morton Sound</p><h3>The Theme That Never Was</h3><p>A collection of newly composed themes for imaginary films and television shows, created with Dave O'Brien.</p></article>
-          <article class="music-card"><div class="record-image record-three" aria-hidden="true"><span class="record-text">The<br>Sequel</span></div><p class="type-tag">The Rich Morton Sound</p><h3>The Sequel That Never Was</h3><p>The follow-up album, continuing Richard's love affair with the evocative sounds of vintage screen music.</p></article>
+          <article class="music-card"><div class="record-image record-one" aria-hidden="true"><span class="record-text">The<br>Panic<br>Brothers</span></div><h3>The Panic Brothers</h3><p>With Reg Meuross, Richard was one half of the close-harmony comic music duo that made its mark on the London circuit and Edinburgh Fringe.</p></article>
+          <article class="music-card"><div class="record-image record-two" aria-hidden="true"><span class="record-text">The<br>Theme</span></div><h3>The Theme That Never Was</h3><p>A collection of newly composed themes for imaginary films and television shows, created with Dave O'Brien.</p></article>
+          <article class="music-card"><div class="record-image record-three" aria-hidden="true"><span class="record-text">The<br>Sequel</span></div><h3>The Sequel That Never Was</h3><p>The follow-up album, continuing Richard's love affair with the evocative sounds of vintage screen music.</p></article>
         </div>
       </div>
     </section>
     <section class="section-space listen-section" id="watch" aria-labelledby="watch-heading">
       <div class="wrap">
-        <p class="eyebrow">A bit more Richard</p>
+        
         <h2 id="watch-heading">Watch. Listen. <em>Repeat.</em></h2>
         <p class="section-lead">We're putting together a selection of performance clips and music. For now, here's a conversation that goes into the stories behind the career.</p>
         <div class="media-grid">
@@ -288,7 +270,7 @@
     </section>
     <section class="section-space appearances" aria-labelledby="credits-heading">
       <div class="wrap appearances-grid">
-        <div class="section-header"><p class="eyebrow">A few familiar places</p><h2 id="credits-heading">On stage. <em>On air.</em></h2><p>Some of the many places Richard's work has been seen and heard.</p></div>
+        <div class="section-header"><h2 id="credits-heading">On stage. <em>On air.</em></h2><p>Some of the many places Richard's work has been seen and heard.</p></div>
         <ul class="appearance-list">
           <li><strong>The Comedy Store</strong><span>Stand-up and Cutting Edge</span></li>
           <li><strong>Edinburgh Festival Fringe</strong><span>Solo shows and collaborations</span></li>
@@ -300,13 +282,13 @@
     </section>
     <section class="section-space dates-section" id="dates" aria-labelledby="dates-heading">
       <div class="wrap dates-grid">
-        <div><p class="eyebrow">Out in the world</p><h2 id="dates-heading">See Richard <em>live.</em></h2><p>We'll add a proper diary of public performances, venues and ticket links once Richard's upcoming dates are confirmed.</p></div>
+        <div><h2 id="dates-heading">See Richard <em>live.</em></h2><p>We'll add a proper diary of public performances, venues and ticket links once Richard's upcoming dates are confirmed.</p></div>
         <div class="dates-panel"><strong>New dates coming soon.</strong><p>No unverified shows or ticket links here. The diary is ready to fill.</p></div>
       </div>
     </section>
     <section class="section-space contact-section" id="contact" aria-labelledby="contact-heading">
       <div class="wrap contact-grid">
-        <div><p class="eyebrow">Get in touch</p><h2 id="contact-heading">Bookings <em>&amp; press.</em></h2><p class="contact-note">For club, theatre, festival and media enquiries, the right contact details and a downloadable press pack will be added when Richard has approved them.</p><div class="link-row"><a href="https://en.wikipedia.org/wiki/Richard_Morton_(comedian)" target="_blank" rel="noopener noreferrer">Wikipedia profile</a><a href="https://www.comedycv.co.uk/richardmorton/" target="_blank" rel="noopener noreferrer">Full comedy CV</a></div></div>
+        <div><h2 id="contact-heading">Bookings <em>&amp; press.</em></h2><p class="contact-note">For club, theatre, festival and media enquiries, the right contact details and a downloadable press pack will be added when Richard has approved them.</p><div class="link-row"><a href="https://en.wikipedia.org/wiki/Richard_Morton_(comedian)" target="_blank" rel="noopener noreferrer">Wikipedia profile</a><a href="https://www.comedycv.co.uk/richardmorton/" target="_blank" rel="noopener noreferrer">Full comedy CV</a></div></div>
         <div class="contact-box"><span>Coming together nicely...</span><strong>New photos, video and booking details are next.</strong><p>This is a first design draft, ready for Richard's preferred photographs, press material and personal touches.</p></div>
       </div>
     </section>
