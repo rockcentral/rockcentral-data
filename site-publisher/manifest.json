@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 123,
+  "revision": 124,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -184,27 +184,7 @@
     },
     {
       "path": "Richard/index.html",
-      "sha256": "bf219c86e45393bc69d79aca7bc2e1403e1f5917cbc76f0b1e7b6b0b61af0055"
-    },
-    {
-      "path": "Richard/assets/panic-brothers.webp",
-      "sha256": "c6a35f5f973241d55a32f983bc83ddf59446459ffe46c30ea3f7d7abfbac9981"
-    },
-    {
-      "path": "Richard/assets/theme-that-never-was.webp",
-      "sha256": "738be35b3103d64d5c6e285ccb8a551845899bdf7f476ec7ec01a2afa64a116b"
-    },
-    {
-      "path": "Richard/assets/sequel-that-never-was.webp",
-      "sha256": "1753c0e76fe2230b504291083464660d99530b20856bcd417b01059de9db318d"
-    },
-    {
-      "path": "Richard/assets/richard-portrait.webp",
-      "sha256": "1f32193c8203f6089e433078a0a2331376e350eb20948178cd3a2b3fc9497b4c"
-    },
-    {
-      "path": "Richard/assets/richard-live-blue.webp",
-      "sha256": "fbae27ff534faae17d129125741fd18bf29750b0e21a43688f5aec1e9e84d0e2"
+      "sha256": "1c47e4245b8b8977a8cd7c852ba5cf66829cb253ac905db53aba3c502fde72ff"
     }
   ]
 }
