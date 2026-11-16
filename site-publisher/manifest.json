@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 122,
+  "revision": 123,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -184,7 +184,7 @@
     },
     {
       "path": "Richard/index.html",
-      "sha256": "2b0eee847b417dc4dc73168017e034deddb77f8dc3b32528bd3a96361c8256a6"
+      "sha256": "bf219c86e45393bc69d79aca7bc2e1403e1f5917cbc76f0b1e7b6b0b61af0055"
     },
     {
       "path": "Richard/assets/panic-brothers.webp",
@@ -201,6 +201,10 @@
     {
       "path": "Richard/assets/richard-portrait.webp",
       "sha256": "1f32193c8203f6089e433078a0a2331376e350eb20948178cd3a2b3fc9497b4c"
+    },
+    {
+      "path": "Richard/assets/richard-live-blue.webp",
+      "sha256": "fbae27ff534faae17d129125741fd18bf29750b0e21a43688f5aec1e9e84d0e2"
     }
   ]
 }
