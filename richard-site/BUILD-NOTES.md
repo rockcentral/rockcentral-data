@@ -1,41 +1,48 @@
-# Richard Morton website starter
+# Richard Morton site: build and publishing notes
 
-## Status
-- Starter design committed 16 November 2026.
-- Source: `site-publisher/files/Richard/index.html`
-- Publishing manifest: `site-publisher/manifest.json`, revision 118, path `Richard/index.html`.
-- Target preview: `https://rockcentralpromotions.com/Richard/` (case-sensitive).
-- This is a **draft preview**, not an approved public launch. Site uses `noindex, nofollow` and a preview banner. Do not remove those before Richard approves the content, images, videos and contact information.
-- GitHub commit for initial page: `4b325332c0dea069e7485916b1d92cea03108d98`. Manifest commit: `b3e4da58bcd1f45c1d21663d834c29e416eea342`.
+## Current status (16 November 2026)
+- **Preview version:** redesigned, portrait-led site. Repository path: `site-publisher/files/Richard/index.html`.
+- Manifest: `site-publisher/manifest.json`, **revision 122**.
+- Intended hosting path: `https://rockcentralpromotions.com/Richard/` (capital R).
+- GitHub contains the site, portrait and the three previously supplied album cover images. The live publisher and hosted output have not been independently verified in this build session.
+- The page retains robots `noindex, nofollow` pending Richard's approval. Footer says Website preview.
 
-## Portability and isolation
-- The website is currently **one completely self-contained HTML file**, including all CSS, decorative artwork, a small navigation script and its own fallback fonts. It uses **no** shared RockCentral assets, styles, scripts, framework, data feeds or CDN fonts.
-- All internal navigation uses local hash links, so the same file works if moved to a different directory, domain or host.
-- External hyperlinks point only to third-party informational resources, not to dependencies required to render the site.
-- Future images, audio, videos, downloads and any separate CSS/JS should go **inside `Richard/`**. Do not put Richard's files in shared `/assets/` or reference Kevin's/Anthony's files.
-- To move: copy the `Richard` folder as one unit to a new document root. Replace the draft's `noindex` setting and insert domain-specific canonical/OG URLs once a final domain is known. No absolute internal paths need changing.
-- When updating via the current publisher, update the corresponding SHA-256 entry in the publishing manifest and increment its revision. Do not modify any existing site's file entries.
+## Direction
+This replaces an earlier coloured retro record-sleeve concept, which Anthony rejected because it resembled other previous designs. The new site draws on the direct, image-led layouts of Milton Jones and Michael McIntyre without copying their visual branding. It uses clean white and near-black, a restrained red call-to-action colour, a single sans-serif system font, no decorative section eyebrow labels, no textures, and no gratuitous animation.
 
-## Design intention
-- Deliberately different from Anthony's and Kevin's conventional dark comedy layouts.
-- Mid-century record sleeve meets theatre poster: warm cream paper, red-orange, mustard, ink-blue, large editorial serif typography, CSS vinyl graphics and expansive type-led composition.
-- No unlicensed artist photography, external hotlinks, false video embeds or fabricated ticket dates.
+Design priority order:
+1. Establish who Richard is with a recognisable image and simple introductory description.
+2. Demonstrate credibility through an award, Comedy Store credits, verified press quotations, video link and career history.
+3. Display public gig dates and verified booking links as Richard supplies them.
+4. Provide a clear, usable booking contact.
 
-## Pending Richard's input
-1. Approved portrait / gig photos, with photographer credits and permission to publish.
-2. Exact official YouTube channel URL and the clips Richard wants featured. Search results have not established a reliable official channel link.
-3. Any official Bandcamp page, streaming or album purchase links. Do not infer a Bandcamp profile from the existence of The Rich Morton Sound.
-4. Preferred booking and press email or agency contact. No dummy form or invented email is published.
-5. Verified upcoming public dates and ticket URLs.
-6. Approved biography wording, quotes, tone, music emphasis and any downloadable electronic press kit.
+## Source files, independence and portability
+- HTML, CSS and mobile navigation JavaScript are in the one `Richard/index.html` file.
+- All images are under `Richard/assets/`. No files are loaded from `/assets/`, Kevin, Anthony, any fonts CDN or website framework.
+- All local paths are relative. Copy the entire `Richard` folder to another document root or domain to move it.
+- Files currently referenced:
+  - `Richard/assets/richard-portrait.webp` (temporary **low-resolution** optimised copy of user-supplied 31750.jpg, approximately 218×340; suitable for layout review, **replace with a high-resolution local copy before launch**).
+  - `Richard/assets/panic-brothers.webp`
+  - `Richard/assets/theme-that-never-was.webp`
+  - `Richard/assets/sequel-that-never-was.webp`
+- Do not move new assets outside the Richard folder.
+- A new asset requires its own SHA-256 entry in the publisher manifest. Each HTML update requires updating its checksum. Increment manifest revision with every publish.
 
-## Initial research used for the draft
-- Richard's ComedyCV: https://www.comedycv.co.uk/richardmorton/
-- Wikipedia: https://en.wikipedia.org/wiki/Richard_Morton_(comedian)
-- British Comedy Guide: https://www.comedy.co.uk/people/richard_morton/
-- The Divine Comedians interview (June 2025): https://shows.acast.com/divinecomedianspodcast/episodes/divine-comedians-podcast-episode-59-richard-morton
-- Agent/venue biographies also confirm historic career credits. Those pages are not a substitute for Richard's sign-off.
+## Approved / supported material (still request Richard's review)
+- Winner of 1992 Time Out Comedy Award.
+- Founding member of Comedy Store's Cutting Edge.
+- TV credits include Never Mind the Buzzcocks; BBC Radio 4 work.
+- Historic tour support for Jack Dee, Lee Evans, Jo Brand, Lily Savage and Phill Jupitus.
+- Press quotations (three) attributed to The Daily Express, The Sunday Times and The Guardian. These match multiple published booking profiles; see https://manfordscomedyclub.com/comedians/richard-morton/ and https://thecomedyclub.co.uk/comedians/richard-morton.
+- Richard's YouTube channel provided by Anthony: https://www.youtube.com/@richardmorton3519.
+- No individual videos embedded until selection and approval. Media uses a link to his channel rather than an empty player.
+- The Panic Brothers and The Rich Morton Sound albums are secondary content.
 
-## Verification
-- Site file created and manifest entry committed to GitHub.
-- The exact live publisher process and hosting output were not independently verified in this build session; the preview URL should not be presented as confirmed live until checked directly or via StackCP.
+## Outstanding before launch
+- Replace the very small stand-in portrait with the supplied original or optimised high-resolution WebP. Confirm photographer's credit and publishing permission.
+- **Get Richard's preferred direct booking email or authorised representative details.** The interim booking button currently points to https://thecomedyclub.co.uk/comedians/richard-morton, a publicly listed booking agency, explicitly identified as interim. Do not imply this is Richard's personal contact.
+- Obtain confirmed future gigs and direct ticket links. Public date search on 16 November found no reliable confirmed upcoming listings; the site honestly says none currently listed rather than presenting expired shows.
+- Select 1–3 actual YouTube performance videos, possibly add a video embed after testing privacy/performance.
+- Review and approve final bio, quotes and promotional positioning with Richard; decide whether music should remain a separate section.
+- Add correct canonical/OG URLs and final title/metadata for eventual domain, remove `noindex` and preview notice only on approval.
+- Test desktop and mobile in a real browser. Verify all assets through live publisher and that no `/Richard` case-sensitivity issues arise.
