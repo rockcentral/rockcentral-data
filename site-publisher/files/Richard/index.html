@@ -1,313 +1,243 @@
 <!doctype html>
 <html lang="en-GB">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f4ebd7">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="description" content="Richard Morton: award-winning stand-up comedian, songwriter and musician. Comedy, songs, stories, The Panic Brothers and The Rich Morton Sound.">
-  <title>Richard Morton | Comedy, music &amp; everything in between</title>
-  <style>
-    :root {
-      --paper: #f4ebd7;
-      --paper-light: #fff9ed;
-      --ink: #243c4b;
-      --ink-soft: #52606a;
-      --orange: #da5334;
-      --orange-deep: #a53824;
-      --mustard: #e0b259;
-      --line: #cbbda7;
-      --serif: Georgia, 'Times New Roman', serif;
-      --sans: 'Trebuchet MS', Arial, Helvetica, sans-serif;
-      --container: 1200px;
-    }
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
-    body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); line-height: 1.56; -webkit-font-smoothing: antialiased; }
-    body::before { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 15; opacity: .09; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='.13'/%3E%3C/svg%3E"); }
-    img, svg { max-width: 100%; }
-    a { color: inherit; }
-    a:focus-visible, button:focus-visible { outline: 3px solid var(--orange); outline-offset: 4px; }
-    .skip { position: absolute; left: 1rem; top: -5rem; z-index: 100; background: white; padding: .7rem 1rem; }
-    .skip:focus { top: 1rem; }
-    .wrap { width: min(calc(100% - 3rem), var(--container)); margin-inline: auto; }
-    .preview-note { background: var(--ink); color: #fff7e8; font-size: .74rem; text-align: center; letter-spacing: .015em; padding: .46rem 1rem; }
-    .site-header { position: relative; z-index: 20; border-bottom: 1px solid var(--line); background: rgba(244, 235, 215, .96); }
-    .header-inner { min-height: 91px; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
-    .brand { display: flex; align-items: center; gap: .72rem; text-decoration: none; font-family: var(--serif); font-weight: 700; font-size: 1.18rem; white-space: nowrap; letter-spacing: -.04em; }
-    .brand-mark { display: grid; place-items: center; width: 40px; height: 40px; color: var(--paper-light); background: var(--orange); border-radius: 50%; font-family: var(--serif); font-style: italic; font-size: 1.35rem; transform: rotate(-10deg); }
-    .site-nav { display: flex; align-items: center; gap: clamp(1rem, 2.5vw, 2.7rem); }
-    .site-nav a { text-decoration: none; font-size: .82rem; font-weight: 700; transition: color .2s; }
-    .site-nav a:hover { color: var(--orange-deep); }
-    .site-nav .nav-contact { border: 1px solid var(--ink); border-radius: 999px; padding: .65rem 1.15rem; }
-    .menu-toggle { display: none; background: transparent; color: var(--ink); border: 1px solid var(--line); padding: .55rem .8rem; border-radius: 6px; font: inherit; font-weight: 700; }
-    .hero { padding: clamp(3rem, 7vw, 7rem) 0 5rem; overflow: hidden; }
-    .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: clamp(2rem, 5vw, 6rem); }
-    h1, h2, h3, p { margin-top: 0; }
-    h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(5rem, 10.5vw, 10.4rem); line-height: .79; letter-spacing: -.085em; margin: 1.8rem 0 2rem; }
-    h1 span { display: block; }
-    h1 span:last-child { color: var(--orange); font-style: italic; padding-left: .04em; }
-    .hero-intro { font-family: var(--serif); font-size: clamp(1.55rem, 3vw, 2.15rem); max-width: 23ch; line-height: 1.25; letter-spacing: -.045em; margin-bottom: 1.3rem; }
-    .hero-copy { max-width: 48ch; color: var(--ink-soft); font-size: .99rem; }
-    .hero-actions { margin-top: 2.2rem; display: flex; gap: 1.4rem; align-items: center; flex-wrap: wrap; }
-    .text-link { display: inline-flex; align-items: center; gap: .6rem; text-decoration: none; font-weight: 700; font-size: .89rem; border-bottom: 2px solid var(--orange); padding-bottom: .3rem; }
-    .text-link:hover { color: var(--orange-deep); }
-    .text-link .arrow { font-size: 1.24rem; transition: transform .2s ease; }
-    .text-link:hover .arrow { transform: translateX(4px); }
-    .small-info { font-size: .76rem; color: var(--ink-soft); font-style: italic; }
-    .cover-art { position: relative; min-height: 540px; isolation: isolate; display: grid; place-items: center; }
-    .cover-art::before { content: ''; position: absolute; inset: 5% 0 0 8%; background: var(--mustard); transform: rotate(7deg); box-shadow: 20px 24px 0 rgba(36,60,75,.10); z-index: -2; }
-    .poster { position: relative; width: 87%; aspect-ratio: .82; background: var(--orange); color: var(--paper-light); padding: clamp(1.2rem, 3vw, 2.2rem); transform: rotate(-4deg); border: 11px solid var(--paper-light); box-shadow: 0 26px 30px rgba(35,38,32,.20); overflow: hidden; }
-    .poster::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .22; background: repeating-linear-gradient(0deg, transparent 0 7px, rgba(22,35,37,.2) 8px 9px); }
-    .poster-title { position: relative; z-index: 1; margin: 1.1rem 0 0; font-family: var(--serif); font-size: clamp(2.6rem, 5.25vw, 5.5rem); line-height: .86; letter-spacing: -.07em; font-weight: 700; }
-    .poster-title em { display: block; font-weight: 400; }
-    .vinyl { position: absolute; width: 100%; aspect-ratio: 1; border-radius: 50%; background: repeating-radial-gradient(circle at center, #1f3441 0 3px, #2d4450 4px 5px, #1e333f 6px 8px); top: 43%; left: 22%; box-shadow: -12px -12px 0 rgba(0,0,0,.12), inset 0 0 0 2px #162a36, 0 0 0 1px #182e38; }
-    .vinyl::before { content: ''; position: absolute; width: 33%; aspect-ratio: 1; border-radius: 50%; left: 33.5%; top: 33.5%; background: var(--mustard); border: 3px solid #f6dfa0; box-shadow: inset 0 0 0 2px #b98b3e; }
-    .vinyl::after { content: ''; position: absolute; width: 2.4%; aspect-ratio: 1; border-radius: 50%; left: 48.8%; top: 48.8%; background: var(--ink); }
-    .vinyl-label { position: absolute; top: 61%; left: 48%; width: 24%; text-align: center; transform: rotate(-12deg); font-size: clamp(.62rem, 1vw, .9rem); font-family: var(--serif); font-weight: 700; line-height: 1.05; z-index: 2; color: var(--ink); }
-    section { scroll-margin-top: 2rem; }
-    .section-space { padding-block: clamp(4.5rem, 8vw, 8.5rem); }
-    .section-header { margin-bottom: 3rem; }
-    h2 { font: 400 clamp(2.8rem, 6.1vw, 5.5rem)/.98 var(--serif); letter-spacing: -.065em; margin-bottom: .9rem; }
-    h2 em { color: var(--orange); font-weight: 400; }
-    .intro-section { border-bottom: 1px solid var(--line); }
-    .intro-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(2rem, 8vw, 9rem); }
-    .intro-grid .section-header { margin-bottom: 0; }
-    .intro-text p { font-size: clamp(1rem, 1.55vw, 1.18rem); color: #3b4b54; }
-    .intro-text p:first-child { font: 400 clamp(1.35rem, 2.25vw, 1.85rem)/1.36 var(--serif); color: var(--ink); }
-    .credit-strip { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 2.7rem; border-top: 1px solid var(--line); padding-top: 1.35rem; gap: 1rem; }
-    .credit-strip strong { display: block; font-family: var(--serif); font-size: 1.65rem; font-weight: 400; line-height: 1.2; }
-    .credit-strip span { display: block; font-size: .78rem; color: var(--ink-soft); margin-top: .4rem; }
-    .quote-section { padding: 5rem 0; background: var(--mustard); }
-    .quote-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 7vw, 7rem); align-items: start; }
-    .quote-mark { display: block; font-family: var(--serif); font-size: 5rem; line-height: .6; opacity: .7; }
-    blockquote { margin: 0; }
-    blockquote p { font: 400 clamp(2rem, 3.6vw, 3.45rem)/1.1 var(--serif); letter-spacing: -.05em; margin: 1rem 0 1.6rem; }
-    blockquote cite { font-style: normal; font-weight: 700; font-size: .82rem; }
-    .quote-grid blockquote:last-child { border-left: 1px solid rgba(36,60,75,.4); padding-left: clamp(2rem, 6vw, 6rem); }
-    .music-section { background: var(--paper-light); }
-    .music-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
-    .music-heading p { max-width: 36ch; margin-bottom: .5rem; color: var(--ink-soft); }
-    .music-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
-    .music-card { border: 1px solid var(--line); background: #fffaf0; padding: 1.1rem; }
-    .record-image { aspect-ratio: 1; background: #e5dcd1; overflow: hidden; }
-    .record-image img { display: block; width: 100%; height: 100%; object-fit: contain; }
-    .music-card h3 { font: 400 clamp(1.4rem, 2vw, 2rem)/1.1 var(--serif); margin: 1.25rem 0 .55rem; letter-spacing: -.035em; }
-    .music-card p { font-size: .9rem; color: var(--ink-soft); margin-bottom: .4rem; }
-    .listen-section { background: var(--ink); color: var(--paper-light); }
-    .listen-section h2 em { color: var(--mustard); }
-    .listen-section .section-lead { max-width: 55ch; opacity: .83; }
-    .media-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 1.5rem; margin-top: 3.2rem; }
-    .media-card { min-height: 320px; padding: clamp(1.7rem, 3vw, 3rem); display: flex; flex-direction: column; justify-content: space-between; }
-    .media-card--feature { background: var(--orange); color: #fff9ed; }
-    .media-card--small { background: #f7e6c3; color: var(--ink); }
-    .media-icon { width: 52px; height: 52px; display: grid; place-items: center; border: 1.5px solid currentColor; border-radius: 50%; font: 2rem/1 var(--serif); }
-    .media-card h3 { font: 400 clamp(1.85rem, 3.2vw, 3rem)/1.06 var(--serif); letter-spacing: -.045em; max-width: 20ch; margin-bottom: .5rem; }
-    .media-card p { max-width: 47ch; font-size: .93rem; }
-    .media-card .text-link { align-self: start; color: inherit; border-color: currentColor; }
-    .media-card--feature .media-icon { font-size: 1.6rem; }
-    .appearances { border-bottom: 1px solid var(--line); }
-    .appearances-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 5rem; }
-    .appearance-list { list-style: none; padding: 0; margin: 0; }
-    .appearance-list li { padding: 1.4rem 0; display: flex; justify-content: space-between; gap: 1.5rem; border-bottom: 1px solid var(--line); }
-    .appearance-list li:first-child { border-top: 1px solid var(--line); }
-    .appearance-list strong { font: 400 clamp(1.17rem, 2vw, 1.45rem)/1.2 var(--serif); }
-    .appearance-list span { color: var(--ink-soft); font-size: .82rem; text-align: right; }
-    .dates-section { background: var(--orange); color: var(--paper-light); }
-    .dates-section h2 em { color: #ffe1a5; }
-    .dates-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-    .dates-panel { padding: 3rem; border: 1px solid rgba(255,255,255,.65); position: relative; }
-    .dates-panel::before, .dates-panel::after { content: ''; width: 16px; height: 16px; border-radius: 50%; background: var(--orange); border: 1px solid rgba(255,255,255,.65); position: absolute; top: calc(50% - 8px); }
-    .dates-panel::before { left: -8px; } .dates-panel::after { right: -8px; }
-    .dates-panel strong { display: block; font: 400 2rem/1.15 var(--serif); }
-    .dates-panel p { margin: .7rem 0 0; opacity: .85; }
-    .contact-section { background: var(--paper-light); }
-    .contact-grid { display: grid; grid-template-columns: 1fr .85fr; gap: 5rem; align-items: center; }
-    .contact-note { font-size: 1rem; color: var(--ink-soft); max-width: 54ch; }
-    .contact-box { padding: clamp(2rem, 4vw, 4rem); border: 2px solid var(--ink); position: relative; transform: rotate(1.5deg); }
-    .contact-box::before { content: ''; position: absolute; inset: 11px; border: 1px solid var(--line); pointer-events: none; }
-    .contact-box span { display: block; font: italic 400 1.6rem var(--serif); color: var(--orange-deep); }
-    .contact-box strong { display: block; font: 400 clamp(1.8rem, 3vw, 2.7rem)/1.15 var(--serif); letter-spacing: -.04em; margin: 1rem 0; }
-    .contact-box p { font-size: .9rem; color: var(--ink-soft); }
-    .link-row { display: flex; align-items: center; flex-wrap: wrap; gap: 1.2rem 2rem; margin-top: 1.5rem; }
-    .link-row a { font-size: .84rem; font-weight: 700; text-underline-offset: 4px; }
-    .site-footer { background: #182e3a; color: #fff5df; padding: 2.5rem 0; }
-    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
-    .footer-inner strong { font: 400 1.5rem var(--serif); }
-    .footer-inner small { opacity: .7; }
-    .footer-links { display: flex; flex-wrap: wrap; gap: 1rem; font-size: .78rem; }
-    .footer-links a { text-underline-offset: 4px; }
-    @media (max-width: 900px) {
-      .hero-grid { grid-template-columns: 1fr; }
-      .hero { padding-top: 4rem; }
-      .cover-art { min-height: 520px; max-width: 610px; margin: 0 auto; width: 100%; }
-      h1 { font-size: clamp(5.2rem, 15vw, 9rem); }
-      .intro-grid, .appearances-grid, .dates-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .music-grid { grid-template-columns: repeat(2, 1fr); }
-      .media-grid { grid-template-columns: 1fr 1fr; }
-      .site-nav { gap: 1rem; }
-      .record-image { height: auto; }
-    }
-    @media (max-width: 650px) {
-      .wrap { width: min(calc(100% - 2rem), var(--container)); }
-      .header-inner { min-height: 75px; }
-      .menu-toggle { display: block; }
-      .site-nav { display: none; position: absolute; top: 100%; left: 0; width: 100%; flex-direction: column; align-items: stretch; background: var(--paper-light); padding: 1.2rem 1.2rem 1.5rem; border-bottom: 1px solid var(--line); gap: .15rem; box-shadow: 0 20px 30px rgba(36,60,75,.08); }
-      .site-nav.is-open { display: flex; }
-      .site-nav a { padding: .7rem .6rem; }
-      .site-nav .nav-contact { text-align: center; margin-top: .4rem; }
-      .hero { padding: 3.2rem 0 3.5rem; }
-      h1 { font-size: clamp(4.5rem, 19vw, 7.6rem); margin: 1.4rem 0 1.7rem; }
-      .hero-intro { font-size: 1.65rem; }
-      .cover-art { min-height: 390px; }
-      .poster { width: 83%; }
-      .poster-title { font-size: clamp(2.5rem, 10vw, 4.6rem); }
-      .credit-strip, .music-grid, .quote-grid, .media-grid { grid-template-columns: 1fr; }
-      .quote-grid blockquote:last-child { border-left: 0; padding: 2rem 0 0; border-top: 1px solid rgba(36,60,75,.4); }
-      .record-image { height: auto; }
-      .media-card { min-height: 290px; }
-      .appearance-list li { flex-direction: column; gap: .4rem; }
-      .appearance-list span { text-align: left; }
-      .dates-panel { padding: 2rem; }
-      .contact-box { transform: none; }
-    }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; } }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="Richard Morton is an award-winning stand-up comedian, musician and songwriter. Watch Richard, read his reviews, find live dates and get in touch about bookings.">
+<title>Richard Morton | Stand-up Comedian &amp; Musician</title>
+<style>
+:root{--ink:#171717;--muted:#5d5d5d;--paper:#fff;--soft:#f5f5f4;--line:#e2e2e0;--accent:#d83945;--max:1160px}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:95px}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.58 Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+button,input{font:inherit}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+.skip{position:absolute;top:-90px;left:16px;padding:10px 15px;background:#fff;z-index:50}
+.skip:focus{top:12px}
+.wrap{width:min(calc(100% - 48px),var(--max));margin-inline:auto}
+header{position:relative;z-index:10;background:#fff;border-bottom:1px solid var(--line)}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:84px}
+.wordmark{font-size:1.13rem;font-weight:900;letter-spacing:-.03em;text-decoration:none;white-space:nowrap}
+nav{display:flex;align-items:center;gap:29px}
+nav a{text-decoration:none;font-size:.91rem;font-weight:700}
+nav a:hover{color:var(--accent)}
+nav .nav-button{padding:10px 16px;background:var(--ink);color:#fff;border:1px solid var(--ink)}
+nav .nav-button:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.menu-toggle{display:none;border:1px solid var(--line);background:#fff;padding:9px 14px;font-size:.85rem;font-weight:700}
+.hero{padding:58px 0 68px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:clamp(36px,6vw,94px)}
+.hero h1{font-weight:900;letter-spacing:-.077em;line-height:.9;font-size:clamp(72px,9vw,136px);margin:0 0 29px}
+.hero h1 span{display:block}
+.hero-role{font-size:clamp(20px,2.4vw,30px);font-weight:700;letter-spacing:-.04em;line-height:1.2;margin:0 0 17px}
+.hero-copy{font-size:clamp(17px,1.65vw,21px);max-width:35ch;color:#484848;line-height:1.56;margin:0 0 30px}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.btn{display:inline-flex;min-height:49px;align-items:center;justify-content:center;gap:10px;border:2px solid var(--ink);padding:12px 19px;text-decoration:none;font-size:.9rem;line-height:1.2;font-weight:800;transition:background .16s,color .16s,border-color .16s}
+.btn--dark{background:var(--ink);color:white}
+.btn--dark:hover{background:var(--accent);border-color:var(--accent)}
+.btn--light{background:white}
+.btn--light:hover{background:var(--soft)}
+.btn--white{background:#fff;color:var(--ink);border-color:#fff}
+.btn--white:hover{background:#e8e8e8}
+.hero-portrait{margin:0;aspect-ratio:4/5;background:#262626;overflow:hidden;position:relative}
+.hero-portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 34%;display:block}
+.proof{background:var(--ink);color:#fff}
+.proof .wrap{display:grid;grid-template-columns:repeat(3,1fr)}
+.proof-item{padding:26px 25px 29px 0;border-right:1px solid #525252;margin:20px 25px 20px 0}
+.proof-item:last-child{border-right:0;margin-right:0}
+.proof strong{display:block;font-size:1rem;line-height:1.4}
+.proof span{display:block;color:#c0c0c0;margin-top:5px;font-size:.86rem}
+section{scroll-margin-top:60px}
+.section{padding:clamp(70px,9vw,130px) 0}
+.section h2{font-size:clamp(38px,5vw,68px);font-weight:900;letter-spacing:-.062em;line-height:1.04;margin:0 0 26px}
+.section-intro{font-size:1.15rem;max-width:63ch;color:var(--muted)}
+.reviews{background:var(--soft)}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:45px}
+.review{background:#fff;padding:33px 28px 26px;min-height:270px;display:flex;flex-direction:column;justify-content:space-between}
+.review blockquote{margin:0;font-weight:800;font-size:clamp(20px,2.25vw,28px);letter-spacing:-.04em;line-height:1.24}
+.review cite{font-size:.86rem;color:var(--muted);font-weight:700;font-style:normal;margin-top:24px}
+.split{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,8vw,120px)}
+.about-text{font-size:1.08rem}
+.about-text p{margin:0 0 22px}
+.about-text a{font-weight:700;text-decoration-thickness:1px;text-underline-offset:4px}
+.about-text a:hover{color:var(--accent)}
+.credits{padding:0;margin:28px 0 0;list-style:none;border-top:1px solid var(--line)}
+.credits li{border-bottom:1px solid var(--line);padding:12px 0;font-size:.95rem}
+.credits strong{font-weight:800}
+.watch{background:var(--ink);color:#fff}
+.watch .watch-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,90px);align-items:center}
+.watch h2{margin-bottom:18px}
+.watch p{color:#cfcfcf;font-size:1.11rem;margin:0 0 27px}
+.watch-art{aspect-ratio:16/10;background:#242424;border:1px solid #4b4b4b;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:background .2s}
+.watch-art:hover{background:#303030}
+.watch-art span{width:88px;height:88px;border-radius:50%;border:3px solid #fff;display:grid;place-items:center;padding-left:6px;font-size:34px;line-height:1}
+.music-section{background:white;padding-top:75px;padding-bottom:90px}
+.music-section h2{font-size:clamp(32px,3.8vw,50px)}
+.music-section>.wrap>p{max-width:64ch;color:var(--muted)}
+.album-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:28px}
+.album img{display:block;width:100%;aspect-ratio:1/1;object-fit:contain;background:#f0f0f0}
+.album h3{font-weight:800;font-size:1.15rem;letter-spacing:-.02em;line-height:1.28;margin:16px 0 7px}
+.album p{font-size:.91rem;line-height:1.5;color:var(--muted);margin:0}
+.dates{background:var(--soft)}
+.dates-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,7vw,95px);align-items:start}
+.date-empty{background:#fff;border:1px solid var(--line);padding:37px}
+.date-empty strong{font-size:1.32rem;letter-spacing:-.03em}
+.date-empty p{margin:12px 0 0;color:var(--muted)}
+.contact{background:var(--ink);color:#fff}
+.contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(30px,7vw,100px);align-items:center}
+.contact p{font-size:1.09rem;max-width:48ch;color:#cacaca}
+.contact-action{padding:32px;border:1px solid #686868}
+.contact-action strong{display:block;font-size:1.35rem;letter-spacing:-.03em;margin-bottom:13px}
+.contact-action p{font-size:.94rem;margin:0 0 22px}
+.contact-note{font-size:.82rem!important;color:#bababa!important;margin-top:20px!important}
+footer{background:#101010;color:#cfcfcf;border-top:1px solid #333}
+.foot{padding:28px 0;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:.81rem}
+.foot strong{color:#fff}
+.foot a{text-underline-offset:3px}
+@media(max-width:850px){
+ .topbar{min-height:70px}
+ nav{gap:17px}
+ .hero{padding:35px 0 55px}
+ .hero-grid{gap:28px}
+ .hero h1{font-size:clamp(62px,9vw,100px)}
+ .proof-item{padding-right:12px;margin-right:12px}
+ .review-grid{gap:12px}
+ .review{padding:24px 21px}
+ .split,.dates-grid{gap:36px}
+}
+@media(max-width:680px){
+ .wrap{width:min(calc(100% - 34px),var(--max))}
+ .menu-toggle{display:block}
+ nav{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);padding:16px 17px 20px;flex-direction:column;align-items:stretch;gap:3px;box-shadow:0 12px 24px #0000000f}
+ nav.is-open{display:flex}
+ nav a{padding:10px 5px}
+ nav .nav-button{text-align:center;padding:12px}
+ .hero{padding-top:32px}
+ .hero-grid,.split,.watch .watch-grid,.dates-grid,.contact-grid{grid-template-columns:1fr}
+ .hero h1{font-size:clamp(65px,14.5vw,100px);margin-bottom:22px}
+ .hero-portrait{max-width:590px;aspect-ratio:5/5.5}
+ .hero-portrait img{object-position:50% 26%}
+ .proof .wrap{grid-template-columns:1fr}
+ .proof-item{border-right:0;border-bottom:1px solid #494949;padding:13px 0 17px;margin:0}
+ .proof-item:last-child{border-bottom:0}
+ .review-grid{grid-template-columns:1fr}
+ .review{min-height:0;padding:26px}
+ .review blockquote{font-size:24px}
+ .section{padding:65px 0}
+ .watch-art{min-height:200px}
+ .album-grid{gap:14px}
+ .album h3{font-size:1rem}
+ .album p{font-size:.84rem}
+ .date-empty{padding:25px}
+ .contact-action{padding:24px}
+}
+@media(max-width:430px){
+ .album-grid{grid-template-columns:1fr}
+ .album{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:start}
+ .album img{width:110px}
+ .album h3{margin-top:0}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.watch-art{transition:none}}
+</style>
 </head>
 <body>
-  <a class="skip" href="#main">Skip to content</a>
-  <div class="preview-note">Website preview · Draft copy and links awaiting Richard's approval</div>
-  <header class="site-header">
-    <div class="wrap header-inner">
-      <a class="brand" href="#top" aria-label="Richard Morton, back to top"><span class="brand-mark" aria-hidden="true">R.</span> Richard Morton</a>
-      <button class="menu-toggle" type="button" aria-controls="main-menu" aria-expanded="false">Menu</button>
-      <nav id="main-menu" class="site-nav" aria-label="Main navigation">
-        <a href="#about">About</a>
-        <a href="#music">Music</a>
-        <a href="#watch">Watch &amp; listen</a>
-        <a href="#dates">Live dates</a>
-        <a class="nav-contact" href="#contact">Bookings &amp; press</a>
-      </nav>
-    </div>
-  </header>
-  <main id="main">
-    <div id="top"></div>
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="wrap hero-grid">
-        <div>
-          
-          <h1 id="hero-title"><span>Richard</span><span>Morton.</span></h1>
-          <p class="hero-intro">Stand-up. Songs. Stories. A very good reason to bring a guitar.</p>
-          <p class="hero-copy">Award-winning comedian, musician and songwriter. From the London Comedy Store to concert stages and radio studios, Richard has spent a career finding the funny in just about everything.</p>
-          <div class="hero-actions">
-            <a class="text-link" href="#about">Get to know Richard <span class="arrow" aria-hidden="true">↗</span></a>
-            
-          </div>
-        </div>
-        <div class="cover-art" aria-label="Retro illustrated record sleeve featuring a vinyl disc; temporary artwork until approved photographs arrive" role="img">
-          <div class="poster" aria-hidden="true">
-            
-            <div class="poster-title">A little<br><em>bit of</em><br>everything</div>
-            <div class="vinyl"></div><div class="vinyl-label">RM<br>33⅓</div>
-            
-          </div>
-          
-        </div>
-      </div>
-    </section>
-    
-    <section class="section-space intro-section" id="about" aria-labelledby="about-heading">
-      <div class="wrap intro-grid">
-        <div class="section-header"><h2 id="about-heading">A proper <em>all-rounder.</em></h2></div>
-        <div class="intro-text">
-          <p>Richard Morton has never been easy to put in just one box. Stand-up, music, radio, television, songwriting. He has always found room for another idea.</p>
-          <p>Part of the British alternative comedy scene from its formative years, Richard was a founder member of The Comedy Store's Cutting Edge and won a Time Out Comedy Award in 1992.</p>
-          <p>His live career has taken him from Edinburgh and Montreal to major UK theatre tours alongside Jack Dee, Jo Brand, Lee Evans and Phill Jupitus. His television work includes <em>The Comedy Store</em>, <em>Never Mind the Buzzcocks</em> and <em>Our Friends in the North</em>, while his radio credits run from <em>Just a Minute</em> to documentaries for BBC Radio 4.</p>
-          <div class="credit-strip" aria-label="Career highlights">
-            <div><strong>1992</strong><span>Time Out Comedy Award</span></div>
-            <div><strong>The Cutting Edge</strong><span>Comedy Store founder member</span></div>
-            <div><strong>BBC</strong><span>Television and radio credits</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="quote-section" aria-label="Press reviews">
-      <div class="wrap quote-grid">
-        <blockquote><span class="quote-mark" aria-hidden="true">“</span><p>Comic genius.</p><cite>Daily Express</cite></blockquote>
-        <blockquote><span class="quote-mark" aria-hidden="true">“</span><p>His hilarious songs give musical comedy a good name.</p><cite>The Guardian</cite></blockquote>
-      </div>
-    </section>
-    <section class="section-space music-section" id="music" aria-labelledby="music-heading">
-      <div class="wrap">
-        <div class="section-header music-heading">
-          <div><h2 id="music-heading">The musical <em>side.</em></h2></div>
-          <p>Comedy and music have been intertwined throughout Richard's career, from close harmonies to gloriously imagined soundtrack themes.</p>
-        </div>
-        <div class="music-grid">
-          <article class="music-card"><div class="record-image"><img src="assets/panic-brothers.webp" alt="The Panic Brothers album cover" width="320" height="320" loading="lazy" decoding="async"></div><h3>The Panic Brothers</h3><p>With Reg Meuross, Richard was one half of the close-harmony comic music duo that made its mark on the London circuit and Edinburgh Fringe.</p></article>
-          <article class="music-card"><div class="record-image"><img src="assets/theme-that-never-was.webp" alt="The Theme That Never Was album cover by The Rich Morton Sound" width="320" height="320" loading="lazy" decoding="async"></div><h3>The Theme That Never Was</h3><p>A collection of newly composed themes for imaginary films and television shows, created with Dave O'Brien.</p></article>
-          <article class="music-card"><div class="record-image"><img src="assets/sequel-that-never-was.webp" alt="The Sequel That Never Was album cover by The Rich Morton Sound" width="320" height="320" loading="lazy" decoding="async"></div><h3>The Sequel That Never Was</h3><p>The follow-up album, continuing Richard's love affair with the evocative sounds of vintage screen music.</p></article>
-        </div>
-      </div>
-    </section>
-    <section class="section-space listen-section" id="watch" aria-labelledby="watch-heading">
-      <div class="wrap">
-        
-        <h2 id="watch-heading">Watch. Listen. <em>Repeat.</em></h2>
-        <p class="section-lead">We're putting together a selection of performance clips and music. For now, here's a conversation that goes into the stories behind the career.</p>
-        <div class="media-grid">
-          <article class="media-card media-card--feature"><span class="media-icon" aria-hidden="true">♫</span><div><h3>Richard Morton on The Divine Comedians Podcast</h3><p>A conversation about comedy, music, television, radio, touring and life on the road. Recorded in 2025.</p><a class="text-link" href="https://shows.acast.com/divinecomedianspodcast/episodes/divine-comedians-podcast-episode-59-richard-morton" target="_blank" rel="noopener noreferrer">Listen to the episode <span class="arrow" aria-hidden="true">↗</span></a></div></article>
-          <article class="media-card media-card--small"><span class="media-icon" aria-hidden="true">▶</span><div><h3>Richard on YouTube</h3><p>Watch Richard's videos on his YouTube channel. We'll add a selection of highlights here later.</p><a class="text-link" href="https://www.youtube.com/@richardmorton3519" target="_blank" rel="noopener noreferrer">Visit Richard's YouTube channel <span class="arrow" aria-hidden="true">↗</span></a></div></article>
-        </div>
-      </div>
-    </section>
-    <section class="section-space appearances" aria-labelledby="credits-heading">
-      <div class="wrap appearances-grid">
-        <div class="section-header"><h2 id="credits-heading">On stage. <em>On air.</em></h2><p>Some of the many places Richard's work has been seen and heard.</p></div>
-        <ul class="appearance-list">
-          <li><strong>The Comedy Store</strong><span>Stand-up and Cutting Edge</span></li>
-          <li><strong>Edinburgh Festival Fringe</strong><span>Solo shows and collaborations</span></li>
-          <li><strong>BBC Radio 4</strong><span>Documentaries and panel programmes</span></li>
-          <li><strong>Never Mind the Buzzcocks</strong><span>Television appearance</span></li>
-          <li><strong>Our Friends in the North</strong><span>Acting appearance</span></li>
-        </ul>
-      </div>
-    </section>
-    <section class="section-space dates-section" id="dates" aria-labelledby="dates-heading">
-      <div class="wrap dates-grid">
-        <div><h2 id="dates-heading">See Richard <em>live.</em></h2><p>We'll add a proper diary of public performances, venues and ticket links once Richard's upcoming dates are confirmed.</p></div>
-        <div class="dates-panel"><strong>New dates coming soon.</strong><p>No unverified shows or ticket links here. The diary is ready to fill.</p></div>
-      </div>
-    </section>
-    <section class="section-space contact-section" id="contact" aria-labelledby="contact-heading">
-      <div class="wrap contact-grid">
-        <div><h2 id="contact-heading">Bookings <em>&amp; press.</em></h2><p class="contact-note">For club, theatre, festival and media enquiries, the right contact details and a downloadable press pack will be added when Richard has approved them.</p><div class="link-row"><a href="https://en.wikipedia.org/wiki/Richard_Morton_(comedian)" target="_blank" rel="noopener noreferrer">Wikipedia profile</a><a href="https://www.comedycv.co.uk/richardmorton/" target="_blank" rel="noopener noreferrer">Full comedy CV</a></div></div>
-        <div class="contact-box"><span>Coming together nicely...</span><strong>New photos, video and booking details are next.</strong><p>This is a first design draft, ready for Richard's preferred photographs, press material and personal touches.</p></div>
-      </div>
-    </section>
-  </main>
-  <footer class="site-footer"><div class="wrap footer-inner"><strong>Richard Morton.</strong><div class="footer-links"><a href="#about">About</a><a href="#music">Music</a><a href="#contact">Contact</a></div><small>© <span id="year">2026</span> Richard Morton. Draft website.</small></div></footer>
-  <script>
-    (function () {
-      var toggle = document.querySelector('.menu-toggle');
-      var nav = document.querySelector('#main-menu');
-      if (toggle && nav) {
-        toggle.addEventListener('click', function () {
-          var open = nav.classList.toggle('is-open');
-          toggle.setAttribute('aria-expanded', String(open));
-          toggle.textContent = open ? 'Close' : 'Menu';
-        });
-        nav.querySelectorAll('a').forEach(function (link) {
-          link.addEventListener('click', function () {
-            nav.classList.remove('is-open');
-            toggle.setAttribute('aria-expanded', 'false');
-            toggle.textContent = 'Menu';
-          });
-        });
-      }
-      var y = document.querySelector('#year');
-      if (y) y.textContent = String(new Date().getFullYear());
-    }());
-  </script>
+<a class="skip" href="#main">Skip to content</a>
+<header>
+<div class="wrap topbar">
+<a href="#top" class="wordmark">RICHARD MORTON</a>
+<button class="menu-toggle" aria-expanded="false" aria-controls="site-nav" type="button">Menu</button>
+<nav id="site-nav" aria-label="Main navigation">
+<a href="#about">About</a><a href="#reviews">Reviews</a><a href="#watch">Watch</a><a href="#dates">Live dates</a><a href="#contact" class="nav-button">Get in touch</a>
+</nav>
+</div>
+</header>
+<main id="main">
+<section class="hero" id="top" aria-labelledby="hero-title">
+<div class="wrap hero-grid">
+<div class="hero-body">
+<h1 id="hero-title"><span>Richard</span><span>Morton.</span></h1>
+<p class="hero-role">Stand-up comedian. Musician. Songwriter.</p>
+<p class="hero-copy">Award-winning comedy, original songs and decades of experience entertaining audiences across the UK and beyond.</p>
+<div class="actions"><a class="btn btn--dark" href="#watch">Watch Richard ↗</a><a class="btn btn--light" href="#contact">Booking enquiries</a></div>
+</div>
+<figure class="hero-portrait">
+<img src="assets/richard-portrait.webp" width="420" height="654" alt="Richard Morton in a black leather jacket, smiling at the camera" fetchpriority="high">
+</figure>
+</div>
+</section>
+<div class="proof" aria-label="Career highlights"><div class="wrap">
+<div class="proof-item"><strong>Time Out Comedy Award winner</strong><span>1992</span></div>
+<div class="proof-item"><strong>Founder member of The Cutting Edge</strong><span>The Comedy Store</span></div>
+<div class="proof-item"><strong>Television and BBC radio</strong><span>Never Mind the Buzzcocks · Radio 4</span></div>
+</div></div>
+<section id="reviews" class="section reviews" aria-labelledby="reviews-title">
+<div class="wrap">
+<h2 id="reviews-title">What the critics say</h2>
+<div class="review-grid">
+<div class="review"><blockquote>“Comic genius.”</blockquote><cite>The Daily Express</cite></div>
+<div class="review"><blockquote>“A great stand up. Audiences laughed longer and louder at Morton than any other act on the Fringe.”</blockquote><cite>The Sunday Times</cite></div>
+<div class="review"><blockquote>“His hilarious songs give musical comedy a good name.”</blockquote><cite>The Guardian</cite></div>
+</div>
+</div>
+</section>
+<section class="section" id="about" aria-labelledby="about-title">
+<div class="wrap split">
+<div><h2 id="about-title">About Richard</h2></div>
+<div class="about-text">
+<p>Richard Morton combines observational stand-up, quick-fire jokes and original comedy songs. An established favourite on the UK circuit, his work has taken him from The Comedy Store and the Edinburgh Fringe to festivals and theatres around the world.</p>
+<p>A winner of the Time Out Comedy Award, Richard has toured with Jack Dee, Lee Evans, Jo Brand, Lily Savage and Phill Jupitus. His screen credits include <em>Never Mind the Buzzcocks</em>, <em>Jack Dee's Saturday Night</em> and <em>Our Friends in the North</em>, with a long-running presence on BBC radio.</p>
+<ul class="credits">
+<li><strong>Stand-up:</strong> The Comedy Store, Edinburgh Fringe and UK comedy clubs</li>
+<li><strong>Music:</strong> The Panic Brothers and The Rich Morton Sound</li>
+<li><strong>Television:</strong> The Comedy Store, Never Mind the Buzzcocks</li>
+</ul>
+<p><a href="https://www.comedycv.co.uk/richardmorton/" target="_blank" rel="noopener noreferrer">Read Richard's full comedy CV ↗</a></p>
+</div>
+</div>
+</section>
+<section class="section watch" id="watch" aria-labelledby="watch-title">
+<div class="wrap watch-grid">
+<div>
+<h2 id="watch-title">Watch Richard</h2>
+<p>See Richard's comedy performances and videos on his YouTube channel.</p>
+<a class="btn btn--white" href="https://www.youtube.com/@richardmorton3519" target="_blank" rel="noopener noreferrer">Richard's YouTube channel ↗</a>
+</div>
+<a class="watch-art" href="https://www.youtube.com/@richardmorton3519" target="_blank" rel="noopener noreferrer" aria-label="Open Richard Morton's YouTube channel"><span aria-hidden="true">▶</span></a>
+</div>
+</section>
+<section class="section music-section" id="music" aria-labelledby="music-title">
+<div class="wrap">
+<h2 id="music-title">And the music...</h2>
+<p>Alongside stand-up, Richard has made music as one half of The Panic Brothers and with The Rich Morton Sound.</p>
+<div class="album-grid">
+<article class="album"><img src="assets/panic-brothers.webp" alt="The Panic Brothers album artwork" width="320" height="320" loading="lazy"><div><h3>The Panic Brothers</h3><p>Richard Morton and Reg Meuross.</p></div></article>
+<article class="album"><img src="assets/theme-that-never-was.webp" alt="The Theme That Never Was album cover" width="320" height="320" loading="lazy"><div><h3>The Theme That Never Was</h3><p>The Rich Morton Sound.</p></div></article>
+<article class="album"><img src="assets/sequel-that-never-was.webp" alt="The Sequel That Never Was album cover" width="320" height="320" loading="lazy"><div><h3>The Sequel That Never Was</h3><p>The Rich Morton Sound.</p></div></article>
+</div>
+</div>
+</section>
+<section class="section dates" id="dates" aria-labelledby="dates-title">
+<div class="wrap dates-grid">
+<div><h2 id="dates-title">Live dates</h2><p class="section-intro">Upcoming appearances and booking links will be published here as soon as they're confirmed.</p></div>
+<div class="date-empty"><strong>No confirmed dates currently listed.</strong><p>Check back for updates. If you'd like to book Richard for a show or event, use the enquiry link below.</p></div>
+</div>
+</section>
+<section class="section contact" id="contact" aria-labelledby="contact-title">
+<div class="wrap contact-grid">
+<div><h2 id="contact-title">Get in touch</h2><p>Interested in booking Richard for your comedy club, festival, theatre or event?</p><p>We're confirming Richard's preferred direct contact details. In the meantime, booking enquiries can be made through his public agency listing.</p></div>
+<div class="contact-action"><strong>Booking enquiries</strong><p>Use the booking page below to enquire about availability.</p><a class="btn btn--white" href="https://thecomedyclub.co.uk/comedians/richard-morton" target="_blank" rel="noopener noreferrer">Enquire about Richard ↗</a><p class="contact-note">Direct contact details will be added once approved by Richard.</p></div>
+</div>
+</section>
+</main>
+<footer><div class="wrap foot"><span><strong>Richard Morton</strong> · Comedy and music</span><span>© <span id="year">2026</span> Richard Morton · Website preview</span></div></footer>
+<script>
+(function(){
+var button=document.querySelector('.menu-toggle'),menu=document.querySelector('#site-nav');
+if(button&&menu){button.addEventListener('click',function(){var open=menu.classList.toggle('is-open');button.setAttribute('aria-expanded',String(open));button.textContent=open?'Close':'Menu';});menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('is-open');button.setAttribute('aria-expanded','false');button.textContent='Menu';});});}
+var y=document.getElementById('year');if(y)y.textContent=String(new Date().getFullYear());
+})();
+</script>
 </body>
 </html>
