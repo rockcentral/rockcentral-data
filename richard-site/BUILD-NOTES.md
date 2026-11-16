@@ -2,13 +2,13 @@
 
 ## Current status (16 November 2026)
 - **Preview version:** redesigned, portrait-led site. Repository path: `site-publisher/files/Richard/index.html`.
-- Manifest: `site-publisher/manifest.json`, **revision 122**.
+- Manifest: `site-publisher/manifest.json`, **revision 123**.
 - Intended hosting path: `https://rockcentralpromotions.com/Richard/` (capital R).
 - GitHub contains the site, portrait and the three previously supplied album cover images. The live publisher and hosted output have not been independently verified in this build session.
 - The page retains robots `noindex, nofollow` pending Richard's approval. Footer says Website preview.
 
 ## Direction
-This replaces an earlier coloured retro record-sleeve concept, which Anthony rejected because it resembled other previous designs. The new site draws on the direct, image-led layouts of Milton Jones and Michael McIntyre without copying their visual branding. It uses clean white and near-black, a restrained red call-to-action colour, a single sans-serif system font, no decorative section eyebrow labels, no textures, and no gratuitous animation.
+This replaces an earlier coloured retro record-sleeve concept, which Anthony rejected because it resembled other previous designs. The new site draws on the direct, image-led layouts of Milton Jones and Michael McIntyre without copying their visual branding. It uses clean white and near-black, a restrained blue accent inspired by Richard's stage suit, a single sans-serif system font, no decorative section eyebrow labels, no textures, and no gratuitous animation.
 
 Design priority order:
 1. Establish who Richard is with a recognisable image and simple introductory description.
@@ -21,6 +21,7 @@ Design priority order:
 - All images are under `Richard/assets/`. No files are loaded from `/assets/`, Kevin, Anthony, any fonts CDN or website framework.
 - All local paths are relative. Copy the entire `Richard` folder to another document root or domain to move it.
 - Files currently referenced:
+  - `Richard/assets/richard-live-blue.webp` (supplied image of Richard performing in a blue suit; optimised low-resolution temporary copy for layout testing, approx. 420×280).
   - `Richard/assets/richard-portrait.webp` (temporary **low-resolution** optimised copy of user-supplied 31750.jpg, approximately 218×340; suitable for layout review, **replace with a high-resolution local copy before launch**).
   - `Richard/assets/panic-brothers.webp`
   - `Richard/assets/theme-that-never-was.webp`
@@ -46,3 +47,10 @@ Design priority order:
 - Review and approve final bio, quotes and promotional positioning with Richard; decide whether music should remain a separate section.
 - Add correct canonical/OG URLs and final title/metadata for eventual domain, remove `noindex` and preview notice only on approval.
 - Test desktop and mobile in a real browser. Verify all assets through live publisher and that no `/Richard` case-sensitivity issues arise.
+
+## Changes in manifest revision 123
+- Changed all red accents to suit-inspired blue (`#2463a3`, darker hover `#174a80`), including booking and hero buttons.
+- Shortened the biography based on user-supplied Ents24 promotional copy; prioritises performing style, music and established support credits. Retains original studio portrait.
+- Added supplied blue-suit live performance photograph to About section using `assets/richard-live-blue.webp`, local to Richard folder, without replacing hero portrait.
+- About section now precedes press reviews, followed by video/music, dates and booking.
+- Photo is intentionally provisional; replace with higher-resolution optimised version when practical.
