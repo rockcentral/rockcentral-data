@@ -63,3 +63,13 @@ Design priority order:
 - All image sources and internal links validated from the new page content; no external runtime asset dependencies. The HTML source is about 34 KB.
 - Leave the publisher itself unchanged, since it handles other public sites. Any future changes to the Richard website should preserve a single HTML publishing target unless a specifically tested, isolated publisher configuration for assets is introduced.
 - **Still needs confirmation:** Run StackCP's existing `Test Command` again and verify the white-and-blue page appears at https://rockcentralpromotions.com/Richard/?v=124. The GitHub commit and updated manifest alone cannot prove a successful live deployment.
+
+## Design update: revision 125 (16 November 2026)
+- Based on Anthony's mobile review, removed the two hero CTAs and the generic career-highlights bar.
+- Converted the hero to a bold blue editorial split layout, using the studio portrait on the right at desktop widths.
+- At 680px and below, the portrait appears first, immediately below the header, before the name and short bio on blue. This addresses the long mobile scroll before seeing Richard.
+- Changed the mobile Menu text to a 3-line accessible hamburger icon; toggles an X state and maintains aria-label and aria-expanded.
+- Increased meaningful blue usage through the hero, pale-blue review area, dark-blue watch section, blue contact panel and blue-toned footer; avoided decorative microheadings.
+- Retained both portraits/performance photography (live image in About), albums, reviews, live dates and contact sections.
+- The shared publisher still only receives one Richard HTML entry; all five images remain embedded in that document to avoid the unsupported .webp destination error.
+- Manifest revision **125**, checksum for Richard/index.html: `654517e8699ea2693980fc68f3f5f0b9790cd4abb057c6c292356820bcf6361d`. Preview URL: https://rockcentralpromotions.com/Richard/?v=125. The live host could not be inspected independently in this session.
