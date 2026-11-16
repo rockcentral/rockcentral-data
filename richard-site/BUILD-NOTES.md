@@ -2,7 +2,7 @@
 
 ## Current status (16 November 2026)
 - **Preview version:** redesigned, portrait-led site. Repository path: `site-publisher/files/Richard/index.html`.
-- Manifest: `site-publisher/manifest.json`, **revision 123**.
+- Manifest: `site-publisher/manifest.json`, **revision 124**.
 - Intended hosting path: `https://rockcentralpromotions.com/Richard/` (capital R).
 - GitHub contains the site, portrait and the three previously supplied album cover images. The live publisher and hosted output have not been independently verified in this build session.
 - The page retains robots `noindex, nofollow` pending Richard's approval. Footer says Website preview.
@@ -54,3 +54,12 @@ Design priority order:
 - Added supplied blue-suit live performance photograph to About section using `assets/richard-live-blue.webp`, local to Richard folder, without replacing hero portrait.
 - About section now precedes press reviews, followed by video/music, dates and booking.
 - Photo is intentionally provisional; replace with higher-resolution optimised version when practical.
+
+## Publisher workaround: revision 124 (16 November 2026)
+- User ran StackCP Scheduled Tasks > Test Command on the existing every-minute `/usr/bin/php84 /home/sites/33b/7/78a0ecb40e/publisher.php`. The output was: `2026-11-16T11:07:05+00:00 ERROR: Unsupported file type or destination: Richard/assets/panic-brothers.webp`.
+- This proves the publisher was rejecting an unsupported nested image destination before completing deployment. It does **not** establish that the scheduled task itself is disabled or that SSH is necessary.
+- Fix committed: the five small WebP files (portrait, blue-suit live photograph and three album covers) are embedded as `data:image/webp;base64,...` directly in `Richard/index.html`.
+- Manifest revision **124** contains **only** `Richard/index.html` for Richard, with SHA-256 `1c47e4245b8b8977a8cd7c852ba5cf66829cb253ac905db53aba3c502fde72ff`. All five `Richard/assets/*.webp` entries were removed from the publisher manifest, **not** deleted from GitHub source control.
+- All image sources and internal links validated from the new page content; no external runtime asset dependencies. The HTML source is about 34 KB.
+- Leave the publisher itself unchanged, since it handles other public sites. Any future changes to the Richard website should preserve a single HTML publishing target unless a specifically tested, isolated publisher configuration for assets is introduced.
+- **Still needs confirmation:** Run StackCP's existing `Test Command` again and verify the white-and-blue page appears at https://rockcentralpromotions.com/Richard/?v=124. The GitHub commit and updated manifest alone cannot prove a successful live deployment.
