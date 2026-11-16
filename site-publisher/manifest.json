@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 121,
+  "revision": 122,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -184,7 +184,7 @@
     },
     {
       "path": "Richard/index.html",
-      "sha256": "1f075c01654e54a12fe11cd923f588e029d311c604f6d335c7de27883db87e8d"
+      "sha256": "2b0eee847b417dc4dc73168017e034deddb77f8dc3b32528bd3a96361c8256a6"
     },
     {
       "path": "Richard/assets/panic-brothers.webp",
@@ -197,6 +197,10 @@
     {
       "path": "Richard/assets/sequel-that-never-was.webp",
       "sha256": "1753c0e76fe2230b504291083464660d99530b20856bcd417b01059de9db318d"
+    },
+    {
+      "path": "Richard/assets/richard-portrait.webp",
+      "sha256": "1f32193c8203f6089e433078a0a2331376e350eb20948178cd3a2b3fc9497b4c"
     }
   ]
 }
