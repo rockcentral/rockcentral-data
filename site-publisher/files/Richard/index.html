@@ -90,15 +90,8 @@
     .music-heading p { max-width: 36ch; margin-bottom: .5rem; color: var(--ink-soft); }
     .music-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
     .music-card { border: 1px solid var(--line); background: #fffaf0; padding: 1.1rem; }
-    .record-image { height: clamp(210px, 26vw, 365px); display: grid; place-items: center; position: relative; overflow: hidden; }
-    .record-one { background: #da5334; }
-    .record-two { background: #d9b65f; }
-    .record-three { background: #2b5c6a; }
-    .record-image::before { content: ''; border-radius: 50%; width: 77%; aspect-ratio: 1; background: repeating-radial-gradient(circle, #243c4b 0 5px, #344f60 6px 7px, #1d303a 8px 10px); box-shadow: 8px 9px 0 rgba(0,0,0,.18); }
-    .record-image::after { content: ''; position: absolute; width: 28%; aspect-ratio: 1; border-radius: 50%; background: #f6edda; border: 8px solid #e8c779; box-shadow: inset 0 0 0 1px var(--ink); }
-    .record-two::after { background: #d55b41; border-color: #fae4ac; }
-    .record-three::after { background: #ecc16c; border-color: #f6e4b9; }
-    .record-text { position: absolute; z-index: 1; color: var(--ink); text-align: center; font: 700 clamp(.82rem, 1.6vw, 1.35rem)/1.06 var(--serif); max-width: 22%; }
+    .record-image { aspect-ratio: 1; background: #e5dcd1; overflow: hidden; }
+    .record-image img { display: block; width: 100%; height: 100%; object-fit: contain; }
     .music-card h3 { font: 400 clamp(1.4rem, 2vw, 2rem)/1.1 var(--serif); margin: 1.25rem 0 .55rem; letter-spacing: -.035em; }
     .music-card p { font-size: .9rem; color: var(--ink-soft); margin-bottom: .4rem; }
     .listen-section { background: var(--ink); color: var(--paper-light); }
@@ -153,7 +146,7 @@
       .music-grid { grid-template-columns: repeat(2, 1fr); }
       .media-grid { grid-template-columns: 1fr 1fr; }
       .site-nav { gap: 1rem; }
-      .record-image { height: 300px; }
+      .record-image { height: auto; }
     }
     @media (max-width: 650px) {
       .wrap { width: min(calc(100% - 2rem), var(--container)); }
@@ -171,7 +164,7 @@
       .poster-title { font-size: clamp(2.5rem, 10vw, 4.6rem); }
       .credit-strip, .music-grid, .quote-grid, .media-grid { grid-template-columns: 1fr; }
       .quote-grid blockquote:last-child { border-left: 0; padding: 2rem 0 0; border-top: 1px solid rgba(36,60,75,.4); }
-      .record-image { height: 340px; }
+      .record-image { height: auto; }
       .media-card { min-height: 290px; }
       .appearance-list li { flex-direction: column; gap: .4rem; }
       .appearance-list span { text-align: left; }
@@ -251,9 +244,9 @@
           <p>Comedy and music have been intertwined throughout Richard's career, from close harmonies to gloriously imagined soundtrack themes.</p>
         </div>
         <div class="music-grid">
-          <article class="music-card"><div class="record-image record-one" aria-hidden="true"><span class="record-text">The<br>Panic<br>Brothers</span></div><h3>The Panic Brothers</h3><p>With Reg Meuross, Richard was one half of the close-harmony comic music duo that made its mark on the London circuit and Edinburgh Fringe.</p></article>
-          <article class="music-card"><div class="record-image record-two" aria-hidden="true"><span class="record-text">The<br>Theme</span></div><h3>The Theme That Never Was</h3><p>A collection of newly composed themes for imaginary films and television shows, created with Dave O'Brien.</p></article>
-          <article class="music-card"><div class="record-image record-three" aria-hidden="true"><span class="record-text">The<br>Sequel</span></div><h3>The Sequel That Never Was</h3><p>The follow-up album, continuing Richard's love affair with the evocative sounds of vintage screen music.</p></article>
+          <article class="music-card"><div class="record-image"><img src="assets/panic-brothers.webp" alt="The Panic Brothers album cover" width="320" height="320" loading="lazy" decoding="async"></div><h3>The Panic Brothers</h3><p>With Reg Meuross, Richard was one half of the close-harmony comic music duo that made its mark on the London circuit and Edinburgh Fringe.</p></article>
+          <article class="music-card"><div class="record-image"><img src="assets/theme-that-never-was.webp" alt="The Theme That Never Was album cover by The Rich Morton Sound" width="320" height="320" loading="lazy" decoding="async"></div><h3>The Theme That Never Was</h3><p>A collection of newly composed themes for imaginary films and television shows, created with Dave O'Brien.</p></article>
+          <article class="music-card"><div class="record-image"><img src="assets/sequel-that-never-was.webp" alt="The Sequel That Never Was album cover by The Rich Morton Sound" width="320" height="320" loading="lazy" decoding="async"></div><h3>The Sequel That Never Was</h3><p>The follow-up album, continuing Richard's love affair with the evocative sounds of vintage screen music.</p></article>
         </div>
       </div>
     </section>
