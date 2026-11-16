@@ -233,6 +233,14 @@ footer{background:#103456;border-top-color:#34658d}
  .hero-role{color:#172638}
  .hero-copy{color:#465b6d}
 }
+
+/* Album covers must remain square, not stretch to the height of their grid row. */
+.album img{height:auto;align-self:start}
+@media(max-width:680px){
+ .album{grid-template-columns:110px minmax(0,1fr);align-items:start}
+ .album img{width:110px;height:110px;aspect-ratio:1/1;object-fit:contain;align-self:start}
+ .album h3{margin-top:0}
+}
 </style>
 </head>
 <body>
