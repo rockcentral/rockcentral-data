@@ -6,7 +6,7 @@ Last reviewed: 23 November 2026. This document is an operational handover, not a
 
 - Staging/concept website: https://rockcentralpromotions.com/kevin/ . This is the **only Kevin website path we control**. Kevin has not approved it as his main public-facing website. Do not edit kevindanielcomedy.co.uk.
 - Repository: `rockcentral/rockcentral-data`, branch `main`.
-- Website source path: `kevin/index.html` (NOT `kevin-site/index.html`). Confirmed by Git commit `1bb2d33de1bc2e70cf073bea56b657e992c10ac4` and the publisher manifest.
+- Website source path: `site-publisher/files/kevin/index.html`; manifest/deployed path: `kevin/index.html`. Confirmed by Git commit `1bb2d33de1bc2e70cf073bea56b657e992c10ac4` and the publisher manifest.
 - Publisher manifest: `site-publisher/manifest.json`; its entries map deployed paths (including `kevin/index.html`) to SHA-256 checksums. The manifest was at revision 130 when inspected 23 November 2026. Updating source alone is **not** equivalent to publishing. Follow the existing publisher workflow, update checksum and manifest revision consistently, and verify the resulting deployment. Never modify other site paths accidentally.
 - Existing Kevin gig-sync source and older setup documentation: `kevin-site/calendar-sync/`. These older docs describe prototype phases and are **historical**; see current automation below.
 - Site inspected in live browser 23 November: footer `Version 0.3.34, concept pending Kevin's approval`. Six upcoming dates visible before expanding `SHOW ALL DATES`. Browser inspection could not determine whether the gig data is server-rendered or fetched; **do not infer that the feed is hardcoded** merely because no client-side Sheets request appeared.
@@ -80,3 +80,13 @@ Keep internal notes, fees and correspondence out of the public feed.
 6. Commit updated documentation with each future significant change, noting what was actually deployed versus merely proposed.
 
 No website code was changed on 23 November as part of the improvement request; this document records the handover and verified spreadsheet work.
+
+## 23 November 2026 EPK build and publisher fix
+
+- Resolved source/deployment path confusion: **GitHub source** is `site-publisher/files/kevin/index.html`, whereas **deployed path** and manifest entry are `kevin/index.html`. The earlier handover's statement that the repository source was `kevin/index.html` was incorrect. Do not repeat that mistake.
+- Created `site-publisher/files/kevin/epk/index.html`, commit `4eab800285c413f5fbce28298f19da09c0299533`.
+- Registered `kevin/epk/index.html` in `site-publisher/manifest.json`, revision 131, SHA-256 `21e78d5260d22e8ff1d5bfecd940e4e954987b5779ceb9f99eeafb694d15f0a8`, commit `bdc79a61b8b6ff70970d3e2438a6afc2b9ed9fda`.
+- Intended staging URL: https://rockcentralpromotions.com/kevin/epk/ . Initial immediate fetch returned HTTP 404, likely because scheduled publishing had not run yet. **Do not claim deployed or verified until URL returns 200 and content is checked.**
+- EPK has short/full biography with copy buttons, selected historical credits, sourced-on-existing-site promoter quotes, official YouTube channel link, existing press-resource link and email booking contact. It is a standalone page; the main `/kevin/` navigation has **not** been edited to add an EPK link.
+- No full-resolution original press assets were recovered; do not label website photos as high-resolution downloads. EPK uses existing press link until approved files are obtained.
+- Next: verify publisher run and live EPK, test copy controls and mobile layout, then add a discreet link from the main Kevin navigation after safely reading the full existing HTML. The GitHub connector `fetch_file` returned an empty string for the large main `site-publisher/files/kevin/index.html` file on 23 November; do not overwrite it with an empty or reconstructed file.
