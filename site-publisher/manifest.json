@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 138,
+  "revision": 139,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -168,7 +168,7 @@
     },
     {
       "path": "kevin/index.html",
-      "sha256": "8917e9da489c11834338bd89ac24c7ed09e119a9500521bac9ea3b2e885815d2"
+      "sha256": "0e1c897c6a54e900afc4b94c5b48f786da15bab0f1b30de0f456c1e1dfcb2ca1"
     },
     {
       "path": "kevin/privacy/index.html",
@@ -188,7 +188,7 @@
     },
     {
       "path": "kevin/epk/index.html",
-      "sha256": "cca4ee4b978ca01771e33bd98e5431ae1f6226acecba7323b18794e56082788a"
+      "sha256": "152cc086b5c6a3caa51f28843a2aafa7db898a29e0b8fcddd45863e0f48052b3"
     }
   ]
 }
