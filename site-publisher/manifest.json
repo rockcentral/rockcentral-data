@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "revision": 140,
+  "revision": 141,
   "files": [
     {
       "path": "test/publisher-verification.html",
@@ -168,7 +168,7 @@
     },
     {
       "path": "kevin/index.html",
-      "sha256": "6b0682e263568d5a027771514e2f9b72d9ccff64dd7f14014e3f2d9c48384993"
+      "sha256": "e20c2c73ec72cea128540ff194a01e5003bcc552113362795c6e76e246a83cba"
     },
     {
       "path": "kevin/privacy/index.html",
@@ -200,23 +200,23 @@
     },
     {
       "path": "kevin/assets/testimonial-buzz.jpg",
-      "sha256": "784f01552ed9748f3003013d14a7303c868edde8441a00c1441b19f0cc4205c5"
+      "sha256": "84ce7184be8c7f8cb341e934a72a5a5c95cb1c952bd88a02a60704255c154c40"
     },
     {
       "path": "kevin/assets/testimonial-gifted-melon.jpg",
-      "sha256": "0447ad982bde7c3a20779bd4c445c21990517068d5d7cca809d4c003b4197409"
+      "sha256": "38da190bcd794dc0216c8551488f4df5684312856544c11ce1de1ab0e9bfd4b2"
     },
     {
       "path": "kevin/assets/testimonial-shaft-of-wit.jpg",
-      "sha256": "3baaf6d7c80dd35176a3f69a5a7b1da3e86cc59e0af8ad063b9080b5635cf45c"
+      "sha256": "d101cbb73de1be5ab8505c2bf368aeba9c5c115d503d0d2d63e8248060b5c083"
     },
     {
       "path": "kevin/assets/testimonial-chuckl.jpg",
-      "sha256": "e5b8bb1aab1e05a036dee62271ddcf7e98bcb3e347de921cea90d7f67ada2004"
+      "sha256": "b8066694eec50fe137756bb367017a70cbf6d9df8b2778249e6f7f605c307ea1"
     },
     {
       "path": "kevin/assets/testimonial-final.jpg",
-      "sha256": "9a938de446714b48790d64440bd07fdb97f8635ad55c77833f62051cca076550"
+      "sha256": "a1293ef9d2c5cc0f35c8759fd8601c89047535d5649baa91eb12bfe87652ba26"
     }
   ]
 }
