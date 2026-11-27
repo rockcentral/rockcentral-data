@@ -1,0 +1,337 @@
+{
+  "version": 1,
+  "date": "2026-11-27",
+  "purpose": "Richard Morton source-linked editorial timeline candidate database",
+  "published": false,
+  "notes": "This is a research document only. No timeline entries are auto-published. All archive images remain locally private.",
+  "timeline": [
+    {
+      "year": "Late 1970s",
+      "title": "From the North East to London",
+      "detail": "According to Wikipedia, Richard moved to London after playing in rock bands; avoid exact year unless he confirms.",
+      "images": [],
+      "evidence": "Wikipedia only; background",
+      "status": "biographical context"
+    },
+    {
+      "year": "1985",
+      "title": "The Panic Brothers form",
+      "detail": "Richard forms a close-harmony comic duo with Reg Meuross, initially appearing on the London pub-rock circuit.",
+      "images": [
+        "PANIC BROTHERS PROMO '86.png"
+      ],
+      "evidence": "Wikipedia; University of Kent collection history",
+      "status": "strong year, image dated 1986 separately"
+    },
+    {
+      "year": "1986",
+      "title": "The early Panic Brothers",
+      "detail": "Early publicity photograph, and reported appearances including the GLC Farewell Festival. Link date to image only after checking original.",
+      "images": [
+        "PANIC BROTHERS PROMO '86.png"
+      ],
+      "evidence": "Archive filename; Wikipedia source for GLC event",
+      "status": "check image date"
+    },
+    {
+      "year": "1987",
+      "title": "In The Red and Edinburgh",
+      "detail": "The Panic Brothers release mini-LP In The Red and appear at Edinburgh; the Kent catalogue lists four items for 1987, including Panic Brothers flyers and festival ephemera.",
+      "images": [],
+      "evidence": "Wikipedia; Kent BSUCA/RM/1/1",
+      "status": "strong"
+    },
+    {
+      "year": "1988",
+      "title": "Friday Night Live",
+      "detail": "The Panic Brothers appear on Friday Night Live, alongside further festival activity.",
+      "images": [
+        "Edinbugh Festival 1988.jpeg"
+      ],
+      "evidence": "British Comedy Guide, year 1988; archive filename",
+      "status": "strong TV credit; photo year to check"
+    },
+    {
+      "year": "1989",
+      "title": "The Panic Brothers Hold Their Own",
+      "detail": "Their own Edinburgh show is reported in Wikipedia; archive includes Edinburgh 1989 publicity.",
+      "images": [
+        "PANIC BROS, EDINBURGH FESTIVAL '89.jpeg"
+      ],
+      "evidence": "Wikipedia; archive",
+      "status": "promising match"
+    },
+    {
+      "year": "1990",
+      "title": "A new solo comedy chapter",
+      "detail": "The Panic Brothers part ways and Richard develops his solo musical stand-up career, including Cutting Edge.",
+      "images": [
+        "COMEDY STORE'S CUTTING EDGE '90.png",
+        "COMEDY CIRCUIT '90.png",
+        "BENEFIT+PAUL WELLER '90.jpeg"
+      ],
+      "evidence": "Wikipedia; Kent; archive",
+      "status": "strong era, verify individual bills"
+    },
+    {
+      "year": "1992",
+      "title": "Time Out Comedy Award",
+      "detail": "Richard wins a 1992 Time Out Comedy Award, recognising his songs, comedy and collaborations.",
+      "images": [
+        "RICHARD MORTON PROMO '92.jpeg",
+        "BENEFIT '92.png"
+      ],
+      "evidence": "Wikipedia; Kent; independent booking biographies",
+      "status": "strong award, illustrative image"
+    },
+    {
+      "year": "1993",
+      "title": "Edinburgh and the Jack Dee tours",
+      "detail": "Festival appearances and Jack Dee tour publicity appear in the archive.",
+      "images": [
+        "ED. FEST '93.png",
+        "JACK DEE TOUR '93.HEIC",
+        "JACK DEE TOUR PT.2, '93.HEIC",
+        "Edinburgh Festival '93.jpeg"
+      ],
+      "evidence": "Archive originals/filenames; Wikipedia tour history",
+      "status": "individual date verification required"
+    },
+    {
+      "year": "1994",
+      "title": "A headline tour and major venues",
+      "detail": "Kent independently records Richard's first solo headline tour in 1994; an Apollo marquee photograph names him as Jack Dee's special guest.",
+      "images": [
+        "UK TOUR '94.png",
+        "HAMMERSMITH APOLLO + JACK DEE, '94.jpeg",
+        "LONDON PALLADIUM '94.jpeg",
+        "Edinburgh Festival '94.jpeg"
+      ],
+      "evidence": "Kent; Wikipedia; visible venue marquee",
+      "status": "strong, check exact month"
+    },
+    {
+      "year": "1995",
+      "title": "Theatre, touring and television",
+      "detail": "Tour publicity with Jo Brand and Lee Evans; Wikipedia discusses mid-nineties television work. Our Friends in the North was produced before its 1996 transmission, so do not describe 1995 as its broadcast year.",
+      "images": [
+        "JO BRAND TOUR '95.png",
+        "Lee Evans '95.jpeg",
+        "EDINBUGH FESTIVAL, ALSO '95.jpeg"
+      ],
+      "evidence": "Archive; Wikipedia (production), broadcasting date needs dedicated check",
+      "status": "partly verified"
+    },
+    {
+      "year": "1996",
+      "title": "Edinburgh and Newcastle",
+      "detail": "Posters from the Edinburgh and Newcastle comedy festivals.",
+      "images": [
+        "Edinburgh Festival Poster '96.jpeg",
+        "NEWCASTLE FEST. '96.jpeg"
+      ],
+      "evidence": "Archive original posters",
+      "status": "visual verification required"
+    },
+    {
+      "year": "1997",
+      "title": "Comedy Store television special",
+      "detail": "Wikipedia dates Richard's Channel 5 Comedy Store Special to 1997; archive includes a Lee Evans UK tour image and a Time Out/Radio 4 item.",
+      "images": [
+        "LEE EVANS UK TOUR '97.jpeg",
+        "Time Out, '97 + R4 .JPEG"
+      ],
+      "evidence": "Wikipedia; Kent mid-nineties TV summary; archive",
+      "status": "verify exact TV date"
+    },
+    {
+      "year": "1998",
+      "title": "Stand Up Two and Never Mind The Buzzcocks",
+      "detail": "British Comedy Guide lists both 1998 BBC Radio 2 Stand Up Two as host and Never Mind The Buzzcocks appearance.",
+      "images": [
+        "BBC RADIO 2, HOST OF STAND UP 2 '98.jpeg",
+        "Edinburgh Festival OTK Flyer #2 '98.jpeg"
+      ],
+      "evidence": "British Comedy Guide; archive",
+      "status": "strong"
+    },
+    {
+      "year": "1999",
+      "title": "Comedy tours continue",
+      "detail": "Archive publicity featuring Phill Jupitus and a UK tour with Junior Simpson.",
+      "images": [
+        "Phill Jupitus Tour '99.jpeg",
+        "UK TOUR +JUNIOR SIMPSON '99.jpeg"
+      ],
+      "evidence": "Archive",
+      "status": "verify posters"
+    },
+    {
+      "year": "2001",
+      "title": "More years at Edinburgh",
+      "detail": "Wikipedia describes regular Edinburgh work through 2001; the archive includes 2001 Edinburgh/tour artwork.",
+      "images": [
+        "EDINBURGH FESTIVAL + TOUR POSTER. '2001.HEIC"
+      ],
+      "evidence": "Wikipedia; archive",
+      "status": "strong era"
+    },
+    {
+      "year": "2002",
+      "title": "The early 2000s",
+      "detail": "An undifferentiated image labelled 2002 exists. Do not invent a milestone until its contents are reviewed.",
+      "images": [
+        "2002.png"
+      ],
+      "evidence": "Filename only",
+      "status": "hold"
+    },
+    {
+      "year": "2009–2010",
+      "title": "The Theme That Never Was",
+      "detail": "Richard and Dave O'Brien's instrumental-film-and-TV-theme concept album. Wikipedia says the collaboration developed around 2010, but other catalogues list 2009 or an October 2010 release date. Confirm original release history.",
+      "images": [],
+      "evidence": "Wikipedia; Word of Books; D.O.C. records conflicting years",
+      "status": "date conflict"
+    },
+    {
+      "year": "2012",
+      "title": "In The Lounge With Rich Morton",
+      "detail": "A BBC Radio 4 documentary on lounge music written/presented by Richard; episode link supplied directly by Richard.",
+      "images": [],
+      "evidence": "BBC programme b01cwszp; Wikipedia; radio listings",
+      "status": "strong"
+    },
+    {
+      "year": "2013",
+      "title": "I Can't Stand Up for Falling Down",
+      "detail": "BBC Radio 4 documentary, and Wikipedia dates the follow-up Rich Morton Sound album The Sequel That Never Was to 2013. Confirm album publication year.",
+      "images": [],
+      "evidence": "BBC b038c0f4; Wikipedia; potential retail metadata discrepancy",
+      "status": "album date needs confirmation"
+    },
+    {
+      "year": "2014",
+      "title": "Panic Brothers reunion",
+      "detail": "The duo reunites, coinciding with remastered album release.",
+      "images": [],
+      "evidence": "British Comedy Guide Return of the Panic Brothers 2014; Wikipedia",
+      "status": "strong"
+    },
+    {
+      "year": "2015",
+      "title": "The Lost Art of the TV Theme",
+      "detail": "Richard's BBC Radio 4 documentary examines enduring television theme music and its changing role.",
+      "images": [],
+      "evidence": "BBC b05tq6zy; BBC-derived listings",
+      "status": "strong"
+    },
+    {
+      "year": "2021",
+      "title": "Fred At The Stand",
+      "detail": "Richard appears in the BBC At The Stand series.",
+      "images": [],
+      "evidence": "British Comedy Guide, 2021",
+      "status": "strong"
+    },
+    {
+      "year": "2022–2026",
+      "title": "Colour Me Groovy becomes a real BBC theme",
+      "detail": "Written as an imaginary theme, Colour Me Groovy was commissioned for Bennett Arron Worries About... and adopted by Chris McCausland's You Heard It Here First. Richard's 2026 first-person social post reports three series of the latter by March 2026.",
+      "images": [],
+      "evidence": "Richard's own BBC RADIO THEME MUSIC.jpg; British Comedy Guide; BBC Radio 4 programme listings",
+      "status": "strong use, check exact commissioning dates"
+    },
+    {
+      "year": "November 2026",
+      "title": "Bennett Arron's Big Welsh Con",
+      "detail": "Richard's own November 2026 post states he supplied the music for Bennett Arron's BBC Radio Wales series, with an accompanying YouTube clip.",
+      "images": [],
+      "evidence": "Richard's own BBC Radio Wales this month, Nov 2026.png; BBC programme schedules",
+      "status": "strong current event; avoid unverified episode details"
+    }
+  ],
+  "media": [
+    {
+      "type": "Music video",
+      "title": "The Rich Morton Sound — Colour Me Groovy",
+      "url": "https://www.youtube.com/watch?v=vxe8Ln7aZ4M",
+      "source": "Directly supplied .webloc in Richard's 23 Nov 2026 email",
+      "note": "Treat as supplied external video link, not a licensed audio download; test YouTube embed before publishing."
+    },
+    {
+      "type": "Music video",
+      "title": "Theme for Bennett Arron's Big Welsh Con",
+      "url": "https://www.youtube.com/watch?v=y2Xy_9H02pk",
+      "source": "Directly supplied .webloc",
+      "note": "New 2026 BBC Radio Wales credit. Use Richard's chosen video as feature."
+    },
+    {
+      "type": "BBC programme",
+      "title": "In The Lounge With Rich Morton",
+      "url": "https://www.bbc.co.uk/programmes/b01cwszp",
+      "source": "Directly supplied by Richard; Wikipedia",
+      "note": "2012; external Listen link, do not rehost BBC audio."
+    },
+    {
+      "type": "BBC programme",
+      "title": "The Lost Art of the TV Theme",
+      "url": "https://www.bbc.co.uk/programmes/b05tq6zy",
+      "source": "Directly supplied by Richard; Wikipedia",
+      "note": "2015; external Listen link."
+    },
+    {
+      "type": "BBC programme",
+      "title": "I Can't Stand Up for Falling Down",
+      "url": "https://www.bbc.co.uk/programmes/b038c0f4",
+      "source": "Directly supplied by Richard; Wikipedia",
+      "note": "2013; external Listen link."
+    },
+    {
+      "type": "BBC programme",
+      "title": "You Heard It Here First",
+      "url": "https://www.comedy.co.uk/radio/you-heard-it-here-first/",
+      "source": "British Comedy Guide listing",
+      "note": "Richard's Colour Me Groovy is credited as theme music."
+    },
+    {
+      "type": "Archive",
+      "title": "University of Kent — Richard Morton Collection (BSUCA/RM)",
+      "url": "https://archive.kent.ac.uk/Record.aspx?id=BSUCA/RM&src=CalmView.Catalog",
+      "source": "Official Kent Special Collections catalogue",
+      "note": "97 items dated 1987–2001; collection donated by Richard; reproduction rights may require separate consent."
+    },
+    {
+      "type": "Biography",
+      "title": "Wikipedia — Richard Morton (comedian)",
+      "url": "https://en.wikipedia.org/wiki/Richard_Morton_(comedian)",
+      "source": "Richard-supplied link; encyclopedia with inline references",
+      "note": "Useful research map, not guaranteed primary verification."
+    },
+    {
+      "type": "Credits",
+      "title": "British Comedy Guide — Richard Morton",
+      "url": "https://www.comedy.co.uk/people/richard_morton/",
+      "source": "External specialist credits database",
+      "note": "Confirm TV/radio dates such as Friday Night Live 1988, Stand Up Two and Buzzcocks 1998."
+    }
+  ],
+  "sources": [
+    {
+      "type": "wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Richard_Morton_(comedian)"
+    },
+    {
+      "type": "primary_archival_catalogue",
+      "url": "https://archive.kent.ac.uk/Record.aspx?id=BSUCA/RM&src=CalmView.Catalog"
+    },
+    {
+      "type": "primary_archival_item",
+      "url": "https://archive.kent.ac.uk/Record.aspx?id=BSUCA/RM/1/1&src=CalmView.Catalog"
+    },
+    {
+      "type": "credit_db",
+      "url": "https://www.comedy.co.uk/people/richard_morton/"
+    }
+  ]
+}
