@@ -65,3 +65,14 @@ The PHP schema adds one independent `timeline` table and index through `CREATE T
 The 39-item Richard WeTransfer archive was inventoried on RockCentral-2 only. **36 filenames contain a proposed year**; three are undated, five are HEIC and five exceed the current 4 MB uploader limit. A private local `timeline-archive-inventory.csv` and JSON inventory were created under `C:\Users\ant\LearningStudioDev\richard-builder-v1\`. Years are filename-only leads, not verified historical facts. No original images have been published or pushed to GitHub.
 
 The visual component is deliberately Richard-specific for this pilot. Reuse the model/editor, and theme the presentation per comedian as later pilots justify it.
+
+## Timeline deployment and archive preparation receipt (27 November 2026)
+
+- Release commit b62881caf06fc76ca6e646d2f6b5365efc5f9013, publisher manifest revision 144, exact Richard homepage SHA-256 0ccd28b162facf01d38bc4b2fcf2d2defdb09a81880e20f86f4f08a69981cede.
+- Validated hashes for all previous live and staged files and checked PHP lint before deployment. A consistent SQLite backup was created using VACUUM INTO, stored in private .comedian-builder/backups/timeline-pilot-20261127/. Database backup: 36,864 bytes, five tables. Existing news/gig data were not overwritten.
+- Controlled deployment succeeded at 2026-11-27T22:29:43Z. Publisher subsequently reported revision 144 deployed at 2026-11-27T22:31:09Z and the exact homepage hash. All main endpoints returned HTTP 200. The timeline remains disabled and publicly empty.
+- Chrome tested the public timeline JavaScript and actual CSS at 390px mobile and 1280px desktop using a synthetic browser-only JSON feed. Both test milestones and decade markers displayed, images loaded, and there were no JavaScript errors or mobile overflow. No synthetic content was written to the real database.
+- All 39 images from the private WeTransfer were converted locally into web-sized JPEGs (including all five HEIC items). Maximum dimension 2,200px, JPEG quality 88. Total 21.44 MiB, no output exceeds the current 4MB uploader limit. Originals were left untouched.
+- Local working folder on RockCentral-2: C:/Users/ant/LearningStudioDev/richard-builder-v1/archive-web-ready/. It includes an offline review gallery (index.html) and checksum manifest. Convenient ZIP: C:/Users/ant/Downloads/Richard-Morton-Timeline-Web-Ready.zip, 22,419,136 bytes.
+- The archive inventory has 36 possible filename years and three undated items. These are leads only, not verified dates. No archive images have been uploaded to the public website or committed to GitHub.
+- Outstanding: Richard's selection and date/permissions review, signed-in editor acceptance for timeline image save/publish, and final site handover. Keep noindex until approved.
