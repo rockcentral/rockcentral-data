@@ -40,6 +40,37 @@
     }
    }
   }
+
+  // Published, curated career milestones, oldest first.
+  const events=Array.isArray(data.timeline)?data.timeline:[];
+  const timeline=byId('career-timeline'),track=byId('builder-timeline');
+  const showTimeline=!!s.timeline && events.length>0;
+  visible(timeline,showTimeline);
+  visible(document.querySelector('[data-nav-section="timeline"]'),showTimeline);
+  if(showTimeline && track){
+   track.replaceChildren();
+   let priorDecade=null;
+   for(const m of events){
+    const year=Number(m.year);
+    if(!Number.isInteger(year)||year<1950||year>2100)continue;
+    if(!/^\/Richard\/media\/[a-f0-9]{32}\.(?:jpg|png|webp)$/.test(m.image||''))continue;
+    const decade=Math.floor(year/10)*10;
+    if(priorDecade!==decade){
+     const decadeWrap=el('div',null,'timeline-decade');
+     const title=el('h3');title.append(el('span',decade+'s'));decadeWrap.append(title);
+     track.append(decadeWrap);priorDecade=decade;
+    }
+    const item=el('article',null,'timeline-milestone'),card=el('div',null,'timeline-card');
+    const image=el('img');image.src=m.image;image.alt=m.image_alt||m.title||'Archive image';
+    image.loading='lazy';image.decoding='async';
+    const inside=el('div',null,'timeline-card-content');
+    const badge=el('time',m.date_label||String(year),'timeline-card-time');
+    badge.dateTime=String(year);
+    inside.append(badge,el('h3',m.title||'Career milestone'));
+    if(m.caption)inside.append(el('p',m.caption));
+    card.append(image,inside);item.append(card);track.append(item);
+   }
+  }
   const news=byId('latest-news'),items=byId('builder-news');
   visible(news,!!s.news);
   visible(document.querySelector('[data-nav-section="news"]'),!!s.news);

@@ -7,5 +7,6 @@ header('Cache-Control: public, max-age=45');
 echo json_encode([
  'sections'=>siteSections(),
  'articles'=>publicArticles('richard',3),
- 'gigs'=>publicGigs()
+ 'gigs'=>siteSections()['gigs'] ? publicGigs() : [],
+ 'timeline'=>siteSections()['timeline'] ? publicTimeline() : []
 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);

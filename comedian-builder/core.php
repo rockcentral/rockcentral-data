@@ -35,6 +35,20 @@ function siteDB(string $site = 'richard'): PDO {
         status TEXT NOT NULL DEFAULT 'draft' CHECK(status IN ('draft','published')),
         updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
     )");
+    $db->exec("CREATE TABLE IF NOT EXISTS timeline (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        year INTEGER NOT NULL CHECK(year BETWEEN 1950 AND 2100),
+        date_label TEXT NOT NULL DEFAULT '',
+        title TEXT NOT NULL,
+        caption TEXT NOT NULL DEFAULT '',
+        image TEXT NOT NULL DEFAULT '',
+        image_alt TEXT NOT NULL DEFAULT '',
+        sort_order INTEGER NOT NULL DEFAULT 0,
+        status TEXT NOT NULL DEFAULT 'draft' CHECK(status IN ('draft','published')),
+        created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+    )");
+    $db->exec("CREATE INDEX IF NOT EXISTS idx_timeline_public ON timeline(status, year, sort_order, id)");
     $db->exec('CREATE TABLE IF NOT EXISTS failed_logins (ip TEXT PRIMARY KEY, failures INTEGER NOT NULL, first_attempt INTEGER NOT NULL)');
     return $connections[$site] = $db;
 }
@@ -51,7 +65,8 @@ function siteSections(string $site = 'richard'): array {
 }
 function saveSections(array $input, string $site = 'richard'): void {
     $current = siteSections($site);
-    foreach (['reviews','watch','music','news','gigs'] as $key) $current[$key] = !empty($input[$key]);
+    foreach (['reviews','watch','music','timeline','news','gigs'] as $key) $current[$key] = !empty($input[$key]);
+    if ($current['timeline'] && count(publicTimeline($site,1))===0) throw new RuntimeException('Publish at least one image-led milestone before enabling Career timeline');
     siteDB($site)->prepare("INSERT INTO settings(name,value) VALUES ('sections',?) ON CONFLICT(name) DO UPDATE SET value=excluded.value")
         ->execute([json_encode($current, JSON_THROW_ON_ERROR)]);
 }
@@ -119,6 +134,15 @@ function publicArticles(string $site='richard', int $limit=30): array {
         'title'=>$r['title'], 'slug'=>$r['slug'], 'url'=>'/Richard/news/'.rawurlencode($r['slug']).'/',
         'excerpt'=>articleExcerpt($r['body']), 'image'=>$r['featured_image'],
         'date'=>$r['published_at']
+    ],$q->fetchAll());
+}
+function publicTimeline(string $site='richard',int $limit=80): array {
+    $q=siteDB($site)->prepare("SELECT id,year,date_label,title,caption,image,image_alt FROM timeline WHERE status='published' AND image LIKE '/Richard/media/%' ORDER BY year ASC,sort_order ASC,id ASC LIMIT ?");
+    $q->bindValue(1,$limit,PDO::PARAM_INT);
+    $q->execute();
+    return array_map(static fn($r)=>[
+        'year'=>(int)$r['year'], 'date_label'=>$r['date_label'], 'title'=>$r['title'],
+        'caption'=>$r['caption'], 'image'=>$r['image'], 'image_alt'=>$r['image_alt'],
     ],$q->fetchAll());
 }
 function publicGigs(string $site='richard'): array {

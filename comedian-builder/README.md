@@ -47,3 +47,21 @@ Current publishing is split: the old HTML is delivered by the existing manifest-
 - `test.php` exercises the SQLite schema, visibility changes, rich text sanitisation and safe URLs, article slugs and published gig filtering. Test database key: `richardtest`; never seed fake gigs into the production database.
 - HTTP GET checks: `/Richard/studio/`, `/Richard/site-data.php`, `/Richard/news/` returned 200; a nonexistent article slug returned 404.
 - A real signed-in editing walkthrough and mobile checks still need operator acceptance. Do not claim that login/publishing forms are fully acceptance-tested without it.
+
+## Phase 2: image-led career timeline (27 November 2026)
+
+The previously disabled Timeline control is now an implemented first-class feature. The private Studio has a timeline manager supporting:
+- Four-digit year; optional more precise, human-readable date label.
+- Title, short story/caption, image with accessible alternative text.
+- Sort order for multiple events within a year.
+- Private draft and published states. Publishing requires an uploaded, validated local image and image description.
+- An image-card preview **within the signed-in Studio**, including drafts.
+- A show/hide switch that refuses to enable an empty timeline; hiding the section does not delete existing milestones.
+
+The read-only JSON feed now includes `timeline` only if that section is enabled. The Richard homepage has a responsive vertical visual timeline with decade labels, chronological milestones, photographs and an orange-accented design, hidden by default. It uses DOM text nodes for untrusted captions and limits images to the approved local-media path. No external timeline widgets or dependencies.
+
+The PHP schema adds one independent `timeline` table and index through `CREATE TABLE IF NOT EXISTS`. No changes are made to existing article, gig or audience content. `test-timeline.php` passed on the hosting PHP 8.4 runtime using a separate synthetic test database. Tests cover default visibility, empty-section guard, draft exclusion, chronological/year-internal ordering, preservation on hide and existing gig stability. Source lint and public browser checks should be repeated after deployment. **A signed-in owner walkthrough remains required before Richard uses this independently.**
+
+The 39-item Richard WeTransfer archive was inventoried on RockCentral-2 only. **36 filenames contain a proposed year**; three are undated, five are HEIC and five exceed the current 4 MB uploader limit. A private local `timeline-archive-inventory.csv` and JSON inventory were created under `C:\Users\ant\LearningStudioDev\richard-builder-v1\`. Years are filename-only leads, not verified historical facts. No original images have been published or pushed to GitHub.
+
+The visual component is deliberately Richard-specific for this pilot. Reuse the model/editor, and theme the presentation per comedian as later pilots justify it.

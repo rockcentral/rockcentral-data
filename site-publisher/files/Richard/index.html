@@ -300,6 +300,33 @@ nav .nav-button{border-bottom-color:var(--accent)}
 .builder-gig-action a{color:var(--accent);font-weight:700}
 #latest-news{background:#1b1d20}#latest-news h2{font-size:clamp(33px,4vw,50px)}
 @media(max-width:700px){.builder-news-list{grid-template-columns:1fr}.builder-gig{grid-template-columns:1fr;gap:3px}.builder-gig-action{text-align:left;margin-top:7px}}
+
+/* Comedian Site Builder: editorial, image-led career timeline */
+#career-timeline{background:#17191c;color:#f7f2e9}
+#career-timeline h2{font-size:clamp(38px,5.2vw,67px);letter-spacing:-.06em;line-height:1.04;margin:0 0 17px}
+#career-timeline .timeline-intro{color:#c9c4bd;max-width:690px;font-size:18px;margin:0 0 46px}
+.timeline-track{position:relative;padding:1px 0 20px}
+.timeline-track:before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;background:linear-gradient(var(--accent),#4c3a2d);opacity:.65}
+.timeline-decade{position:relative;text-align:center;padding:0 0 24px}
+.timeline-decade span{display:inline-block;position:relative;z-index:1;padding:8px 20px;border-radius:35px;background:#2e261e;border:1px solid #75502d;color:var(--accent);font-weight:850;letter-spacing:.04em;font-size:18px}
+.timeline-milestone{position:relative;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:56px;padding:0 0 35px}
+.timeline-milestone:before{content:"";position:absolute;top:25px;left:calc(50% - 7px);height:14px;width:14px;background:var(--accent);border:3px solid #17191c;border-radius:50%;z-index:2}
+.timeline-milestone:nth-of-type(even) .timeline-card{grid-column:2}
+.timeline-card{background:#232529;border:1px solid #4c4140;border-radius:8px;overflow:hidden;box-shadow:0 15px 30px rgba(0,0,0,.15)}
+.timeline-card img{width:100%;max-height:460px;aspect-ratio:4/3;object-fit:cover;display:block}
+.timeline-card-content{padding:20px 23px 24px}
+.timeline-card-time{display:block;color:var(--accent);font-weight:900;font-size:18px;margin-bottom:8px;line-height:1.2}
+.timeline-card h3{font-size:clamp(22px,2.7vw,31px);line-height:1.15;letter-spacing:-.04em;margin:0 0 11px}
+.timeline-card p{margin:0;color:#d5d0ca;font-size:16px;line-height:1.55;white-space:pre-line}
+@media(max-width:760px){
+ .timeline-track:before{left:12px}
+ .timeline-decade{text-align:left;padding-left:0}
+ .timeline-decade span{font-size:15px;padding:7px 15px}
+ .timeline-milestone{display:block;padding-left:37px;padding-bottom:22px}
+ .timeline-milestone:before{left:5px}
+ .timeline-card img{aspect-ratio:5/4;max-height:360px}
+ .timeline-card-content{padding:17px}
+}
 </style>
 </head>
 <body>
@@ -309,7 +336,7 @@ nav .nav-button{border-bottom-color:var(--accent)}
 <a href="#top" class="wordmark">RICHARD MORTON</a>
 <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav" type="button"><span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span></button>
 <nav id="site-nav" aria-label="Main navigation">
-<a href="#about">About</a><a href="#reviews" data-nav-section="reviews">Reviews</a><a href="#watch" data-nav-section="watch">Watch</a><a href="#music" data-nav-section="music">Music</a><a href="/Richard/news/" data-nav-section="news" hidden>Latest News</a><a href="#dates" data-nav-section="gigs" hidden>Live dates</a><a href="#contact" class="nav-button">Get in touch</a>
+<a href="#about">About</a><a href="#reviews" data-nav-section="reviews">Reviews</a><a href="#watch" data-nav-section="watch">Watch</a><a href="#music" data-nav-section="music">Music</a><a href="#career-timeline" data-nav-section="timeline" hidden>Career</a><a href="/Richard/news/" data-nav-section="news" hidden>Latest News</a><a href="#dates" data-nav-section="gigs" hidden>Live dates</a><a href="#contact" class="nav-button">Get in touch</a>
 </nav>
 </div>
 </header>
@@ -373,6 +400,7 @@ nav .nav-button{border-bottom-color:var(--accent)}
 </div>
 </div>
 </section>
+<section class="section" id="career-timeline" aria-labelledby="timeline-title" hidden><div class="wrap"><h2 id="timeline-title">A life in comedy</h2><p class="timeline-intro">An illustrated journey through the shows, songs and stages that shaped Richard’s career.</p><div id="builder-timeline" class="timeline-track"></div></div></section>
 <section class="section dates" id="dates" aria-labelledby="dates-title" hidden>
 <div class="wrap dates-grid">
 <div><h2 id="dates-title">Live dates</h2><p class="section-intro">Upcoming appearances and booking links will be published here as soon as they're confirmed.</p></div>
@@ -387,7 +415,7 @@ nav .nav-button{border-bottom-color:var(--accent)}
 </div>
 </section>
 </main>
-<footer><div class="wrap foot"><span><strong>Richard Morton</strong> · Comedy and music</span><span>© <span id="year">2026</span> Richard Morton · Website preview</span></div><div class="wrap" style="text-align:center;padding:0 0 12px"><small style="font:11px/1.5 system-ui,sans-serif;color:#a9bdd0">Design v130 | Builder pilot v0.1</small></div></footer>
+<footer><div class="wrap foot"><span><strong>Richard Morton</strong> · Comedy and music</span><span>© <span id="year">2026</span> Richard Morton · Website preview</span></div><div class="wrap" style="text-align:center;padding:0 0 12px"><small style="font:11px/1.5 system-ui,sans-serif;color:#a9bdd0">Design v130 | Builder pilot v0.2 (timeline)</small></div></footer>
 <script>
 (function(){
 var button=document.querySelector('.menu-toggle'),menu=document.querySelector('#site-nav');
